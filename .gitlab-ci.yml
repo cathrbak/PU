@@ -1,5 +1,5 @@
 #Legger til hvilke kommandoer man tillater å kjøre på "runneren"
-image: maven:3-jdk-7
+image: maven:3-jdk-9
 
 # These are the default stages.
 # You don't need to explicitly define them.
