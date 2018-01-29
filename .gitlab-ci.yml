@@ -1,3 +1,6 @@
+#Legger til hvilke kommandoer man tillater å kjøre på "runneren"
+image: maven:latest
+
 # These are the default stages.
 # You don't need to explicitly define them.
 # But you could define any stages you want.
