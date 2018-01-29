@@ -8,7 +8,7 @@ stages:
 
 # This is the name of the job.
 # You can choose it freely.
-maven_build:
+maven_test:
   # A job is always executed within a stage.
   # If no stage is set, it defaults to 'test'.
   stage: test
@@ -16,8 +16,8 @@ maven_build:
   # we can restrict the job to runners with a certain tag.
   # Of course, it is our duty to actually configure a runner
   # with the tag 'maven' and a working maven installation
-  tags:
-    - maven
+  script:
+    - mvn test
   # Here you can execute arbitrate terminal commands.
   # If any of the commands returns a non zero exit code the job fails.
   script:
