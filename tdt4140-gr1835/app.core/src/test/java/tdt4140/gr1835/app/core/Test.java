@@ -12,4 +12,5 @@ public class Test extends TestCase{
 	// Sverre :D :D :D
 	// Jonas :( :( :( 
 	// NORA <3 <3 <3
+	// Cathrine :/
 }
