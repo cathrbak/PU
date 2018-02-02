@@ -11,4 +11,5 @@ public class Test extends TestCase{
 	//Kommenter inn navnet ditt her
 	// Sverre :D :D :D
 	// Jonas :( :( :( 
+	// NORA <3 <3 <3
 }
