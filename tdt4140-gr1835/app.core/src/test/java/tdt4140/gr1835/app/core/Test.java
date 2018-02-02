@@ -7,4 +7,7 @@ public class Test extends TestCase{
 	public void testAll(){
 		assertEquals(true, true);
 	}
+	
+	//Kommenter inn navnet ditt her
+	// Sverre :D :D :D
 }
