@@ -12,6 +12,8 @@ public class FxApp extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FxApp.fxml"));
         Scene scene = new Scene(root);
+ //Neste linje er jeg litt usikker på hvorfor funker. Virker som et kall på getResource henter filer fra resourcemappen
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
