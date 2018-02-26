@@ -25,7 +25,7 @@
             <Label text="Brukernavn" />
             <TextField fx:id="brukernavn" GridPane.columnIndex="1" />
             <TextField fx:id="passord" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#handleButton" text="Logg inn" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" text="Logg inn" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="responsLabel" visible="false" GridPane.rowIndex="2" />
          </children>
       </GridPane>
