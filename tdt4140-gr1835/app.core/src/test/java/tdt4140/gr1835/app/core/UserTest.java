@@ -10,12 +10,12 @@ public class UserTest {
 	
 	//Første forsøk med TDD
 	
-	private User testUser;
+	private Student testUser;
 
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Setup");
-		testUser=new User("testUser");
+		testUser=new Student("testUser");
 	}
 	
 	@Test
@@ -95,6 +95,40 @@ public class UserTest {
 			testUser.setFaculty("ik");
 			fail("Test burde feilet etter at vi prøver å sette et fakultet som ikke eksisterer");
 			
+		}catch (IllegalArgumentException e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
+	}
+	
+	@Test
+	public void testSetPhoneNumber() {
+		System.out.println("testSetPhoneNumber");
+		testUser.setPhoneNumber("46839737");
+		String expected="46839737";
+		assertEquals(expected, testUser.getPhoneNumber());
+		try {
+			testUser.setPhoneNumber("saf12461");
+			fail("Testen skulle ha feilet etter at man prøvde å legge til et nummer med bokasver i");
+		}catch (IllegalArgumentException e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
+		try {
+			testUser.setPhoneNumber("1234567890");
+			fail("Testen skulle ha feilet etter at man prøvde å legge til et telefonnummer med for mange siffer");
+		}catch (IllegalArgumentException e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
+	}
+	
+	@Test
+	public void testSetEmail() {
+		System.out.println("testSetEmail");
+		testUser.setEmail("sverre.s.spetalen@gmail.com");
+		String expected= "sverre.s.spetalen@gmail.com";
+		assertEquals(expected, testUser.getEmail());
+		try {
+			testUser.setEmail("ad@sad@asd.no");	
+			fail("Test bør feile etter at man prøver å legge til email med to @");
 		}catch (IllegalArgumentException e) {
 			assertTrue(e.getClass().equals(IllegalArgumentException.class));
 		}

@@ -14,17 +14,17 @@ public class FxAppController {
 		dh= new MockingDatabase();
 	}
 	
-	public void handleButton() {
-		//System.out.println("Knapp Trykket");
-		System.out.println("Brukernavn: "+brukernavn.getText());
-		System.out.println("Passord: "+passord.getText());
-		if(!dh.getUser(brukernavn.getText()).equals(null)) {
-			responsLabel.setText("Fant bruker");
-		}else {
-			responsLabel.setText("Knapp Trykket");
-		}
-		responsLabel.setVisible(true);;
-	}
+//	public void handleButton() {
+//		//System.out.println("Knapp Trykket");
+//		System.out.println("Brukernavn: "+brukernavn.getText());
+//		System.out.println("Passord: "+passord.getText());
+//		if(!dh.getUser(brukernavn.getText()).equals(null)) {
+//			responsLabel.setText("Fant bruker");
+//		}else {
+//			responsLabel.setText("Knapp Trykket");
+//		}
+//		responsLabel.setVisible(true);;
+//	}
 	@FXML
 	TextField brukernavn;
 	@FXML
