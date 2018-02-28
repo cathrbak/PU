@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MockingDatabase implements UserDatabaseHandler{
-	
+public class MockingDatabase {
+	/*
 	public List<Student> users= new ArrayList<>();
 
 	public MockingDatabase() {
@@ -46,7 +46,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 		return false;
 	}
 
-	@Override
+	//@Override
 	public Student getStudent(String username) {
 		List<Student> result= users.stream()
 				.filter(u->u.getUsername().equals(username))
@@ -78,5 +78,5 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-
+*/
 }

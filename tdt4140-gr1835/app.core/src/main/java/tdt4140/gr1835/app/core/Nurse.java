@@ -5,4 +5,5 @@ public class Nurse extends User{
 	public Nurse(String username) {
 		super(username);
 	}
+	
 }

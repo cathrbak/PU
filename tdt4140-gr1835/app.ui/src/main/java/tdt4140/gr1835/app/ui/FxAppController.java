@@ -11,7 +11,7 @@ public class FxAppController {
 	private UserDatabaseHandler dh;
 	
 	public FxAppController() {
-		dh= new MockingDatabase();
+		//dh= new MockingDatabase();
 	}
 	
 //	public void handleButton() {
