@@ -154,7 +154,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 
 	@Override
 	public Collection<Student> getStudents(Nurse nurse) {
-		//Her er også samme case som getNurse og GetStudent
+		//Her er også samme case som getNurse og GetStudent.
 		
 		return null;
 	}
