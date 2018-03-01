@@ -44,8 +44,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	@Override
 	public void updateNurse(Nurse nurse) throws SQLException{
 		try {
-			//Må matche på brukernavn. Brukernavn kan dermed ikke endres i vinduet der man kan endre bruker.
-			String query = "UPDATE helsesoster(brukernavn, passord, fakultet, fornavn" //Denne er ikke ferdig, må skrive update query
+			//Mï¿½ matche pï¿½ brukernavn. Brukernavn kan dermed ikke endres i vinduet der man kan endre bruker.
+			String query = "UPDATE helsesoster(brukernavn, passord, fakultet, fornavn" //Denne er ikke ferdig, mï¿½ skrive update query
 					+ ", etternavn, email, telefonNr) VALUES (" + nurse.getUsername() + ", " +
 					nurse.getPassword() + ", " + nurse.getFaculty() + ", " + nurse.getFirstName()
 					+ ", " + nurse.getSecondName() + ", " + nurse.getEmail() + ", " + 
@@ -79,6 +79,11 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	public Collection<Student> getStudents(Nurse nurse) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public void createNewStudent(Student student) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
