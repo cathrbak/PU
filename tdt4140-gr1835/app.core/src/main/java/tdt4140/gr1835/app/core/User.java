@@ -135,5 +135,12 @@ public abstract class User {
 	public String getEmail() {
 		return email;
 	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", secondName="
+				+ secondName + ", faculty=" + faculty + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
+	}
+	
 	
 }

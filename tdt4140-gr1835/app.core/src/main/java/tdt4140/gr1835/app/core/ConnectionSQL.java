@@ -17,11 +17,6 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return conn.createStatement();
 	}
 	
-	
-	
-	
-	
-	
 	@Override
 	public void createNewNurse(Nurse nurse) throws SQLException{
 		try {
@@ -44,9 +39,9 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	
 	@Override
 		public Nurse getNurse(String username) throws SQLException {
-			//Må finne en måte å gjøre om ResultSet til et Nurse-objekt. Returnerer foreløpig kun et ResultSet-objekt.
-			//Sjekk hvilke metoder man kan kalle på ResultSet. Feks en while der for hver rs.next() så legges feltet inn i
-			//et string array. Første felt skal dog ikke være med, da dette er HelsesosterID.
+			//Mï¿½ finne en mï¿½te ï¿½ gjï¿½re om ResultSet til et Nurse-objekt. Returnerer forelï¿½pig kun et ResultSet-objekt.
+			//Sjekk hvilke metoder man kan kalle pï¿½ ResultSet. Feks en while der for hver rs.next() sï¿½ legges feltet inn i
+			//et string array. Fï¿½rste felt skal dog ikke vï¿½re med, da dette er HelsesosterID.
 			ResultSet rs = null;
 			try {
 				String query = "SELECT * FROM helsesoster WHERE brukernavn='" + username +"';";
@@ -66,7 +61,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	@Override
 	public void updateNurse(Nurse nurse) throws SQLException{
 		try {
-			//Må matche på brukernavn. Brukernavn kan dermed ikke endres i vinduet der man kan endre bruker.
+			//Mï¿½ matche pï¿½ brukernavn. Brukernavn kan dermed ikke endres i vinduet der man kan endre bruker.
 			Statement stmt = getStatement();
 			
 			String query = "UPDATE helsesoster SET passord= '" + nurse.getPassword() 
@@ -105,13 +100,13 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	
 	@Override
 	public void createNewStudent(Student student) throws SQLException {
-		//Må få til at man ikke trenger å oppgi både helsesosterID og fakultet. HelsesosterID burde komme automatisk når
+		//Mï¿½ fï¿½ til at man ikke trenger ï¿½ oppgi bï¿½de helsesosterID og fakultet. HelsesosterID burde komme automatisk nï¿½r
 		//man oppgir fakultet.
 		try {
 			Statement stmt = getStatement();
 			
 			String query = "INSERT INTO datagiver(brukernavn, passord, fakultet, anonymitet, fornavn"
-					+ ", etternavn, kjønn, email, telefonNr) VALUES ('" + student.getUsername() + "', '" +
+					+ ", etternavn, kjï¿½nn, email, telefonNr) VALUES ('" + student.getUsername() + "', '" +
 					student.getPassword() + "', '" + student.getFaculty() + "', " + student.isAnonymous() + ", '"
 					+ student.getFirstName()
 					+ "', '" + student.getSecondName() + "', '" + student.getEmail() + "', " + 
@@ -129,16 +124,16 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	@Override
 	public void updateStudent(Student student) throws SQLException{
 		try {
-			//Må få til at man ikke trenger å oppgi både helsesosterID og fakultet. HelsesosterID burde komme automatisk når
+			//Mï¿½ fï¿½ til at man ikke trenger ï¿½ oppgi bï¿½de helsesosterID og fakultet. HelsesosterID burde komme automatisk nï¿½r
 			//man oppgir fakultet.
 			
-			//Må matche på brukernavn. Brukernavn kan dermed ikke endres i vinduet der man kan endre bruker.
+			//Mï¿½ matche pï¿½ brukernavn. Brukernavn kan dermed ikke endres i vinduet der man kan endre bruker.
 			Statement stmt = getStatement();
 			
 			String query = "UPDATE datagiver SET passord= '" + student.getPassword() 
 			+ "', fakultet= '" + student.getFaculty() + "', anonymitet= " + student.isAnonymous()
 			+ ", fornavn= '" + student.getFirstName() 
-			+ "', etternavn= '" + student.getSecondName() +"', kjønn= '" + student.getSex()
+			+ "', etternavn= '" + student.getSecondName() +"', kjï¿½nn= '" + student.getSex()
 			+ "', email= '" + student.getEmail() 
 			+ "', telefonNr= " + student.getPhoneNumber()
 			+ "WHERE brukernavn = '" + student.getUsername() + "';";
@@ -153,7 +148,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 
 	@Override
 	public Collection<Student> getStudents(Nurse nurse) {
-		//Her er også samme case som getNurse og GetStudent
+		//Her er ogsï¿½ samme case som getNurse og GetStudent
 		
 		return null;
 	}

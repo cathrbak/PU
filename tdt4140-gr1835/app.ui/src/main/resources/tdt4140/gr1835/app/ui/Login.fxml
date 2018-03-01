@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="750" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.FxAppController">
+<Pane prefHeight="750" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.LoginController">
    <children>
       <GridPane layoutX="36.0" layoutY="173.0" prefHeight="225.0" prefWidth="478.0">
         <columnConstraints>
@@ -28,12 +28,12 @@
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="227.0" text="Brukernavn" />
             <TextField fx:id="brukernavn" GridPane.columnIndex="1" />
             <TextField fx:id="passord" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="button_login" mnemonicParsing="false" text="Logg inn" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="button_login" onAction="#handleLoginButton" mnemonicParsing="false" text="Logg inn" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="140.0" />
                </GridPane.margin></Button>
             <Label fx:id="responsLabel" visible="false" GridPane.rowIndex="2" />
-            <Button fx:id = "button_nybruker" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="143.0" text="Opprett bruker her" GridPane.rowIndex="3">
+            <Button fx:id = "button_nybruker" onAction="#handleNyBrukerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="143.0" text="Opprett bruker her" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin>
