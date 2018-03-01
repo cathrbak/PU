@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MockingDatabase implements UserDatabaseHandler{
-	public List<Student> students= new ArrayList<>();
-	public List<Nurse> nurses= new ArrayList<>();
+	public List<Student> students= new ArrayList<Student>();
+	public List<Nurse> nurses= new ArrayList<Nurse>();
 
 	public MockingDatabase() {
 		init();

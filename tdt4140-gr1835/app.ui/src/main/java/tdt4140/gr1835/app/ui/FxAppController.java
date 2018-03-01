@@ -1,6 +1,8 @@
 package tdt4140.gr1835.app.ui;
 
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import tdt4140.gr1835.app.core.MockingDatabase;
@@ -13,6 +15,13 @@ public class FxAppController {
 	public FxAppController() {
 		//dh= new MockingDatabase();
 	}
+	
+	Button button_login;
+	Button button_nybruker;
+	Button button_registrer;
+	
+	
+	
 	
 //	public void handleButton() {
 //		//System.out.println("Knapp Trykket");
