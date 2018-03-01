@@ -21,7 +21,7 @@ public class UserDatabaseHandlerTest {
 	Student testStudent;
 	@Before
 	public void setUp() throws Exception {
-		udh = new ConnectionSQL();
+		udh = new MockingDatabase();
 		testNurse= new Nurse("carl");
 		testStudent= new Student("hanskristian");
 		testNurse.setFaculty("AD");
