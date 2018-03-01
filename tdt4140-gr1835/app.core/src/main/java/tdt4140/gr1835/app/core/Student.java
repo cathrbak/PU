@@ -3,6 +3,7 @@ package tdt4140.gr1835.app.core;
 public class Student extends User{
 	
 	private boolean isAnonymous;
+	private String sex;
 	private Nurse nurse;
 	
 	public Student(String username) {
@@ -23,6 +24,14 @@ public class Student extends User{
 
 	public void setAnonymous(boolean isAnonymous) {
 		this.isAnonymous = isAnonymous;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 
 }
