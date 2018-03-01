@@ -1,13 +1,14 @@
 package tdt4140.gr1835.app.core;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MockingDatabase {
-	/*
-	public List<Student> users= new ArrayList<>();
+public class MockingDatabase implements UserDatabaseHandler{
+	public List<Student> students= new ArrayList<>();
+	public List<Nurse> nurses= new ArrayList<>();
 
 	public MockingDatabase() {
 		init();
@@ -19,64 +20,107 @@ public class MockingDatabase {
 		s.setFirstName("Sverre");
 		s.setSecondName("Spetalen");
 		s.setFaculty("IE");
-		users.add(s);
+		students.add(s);
 		Student n=new Student("norak");
 		n.setPassword("ngk");
 		n.setFirstName("Nora");
 		n.setSecondName("Kallager");
 		n.setFaculty("IE");
-		users.add(n);
+		students.add(n);
 		Student j=new Student("jonash");
 		j.setPassword("jh");
 		j.setFirstName("Jonas");
 		j.setSecondName("Haga");
 		j.setFaculty("IE");
-		users.add(j);
-		
+		students.add(j);
+		Nurse testNurse = new Nurse("cathrine");
+		testNurse.setPassword("c");
+		testNurse.setFirstName("Cathrine");
+		testNurse.setSecondName("Arke");
+		testNurse.setFaculty("IE");
+		nurses.add(testNurse);
+	}
+
+	/*
+	 *Metoder for studenter 
+	 */
+	@Override
+	public void createNewStudent(Student student) throws SQLException {
+		if(containsStudent(student.getUsername())) {
+			throw new IllegalStateException("Denne brukeren eksisterer allerede i databasen");
+		}
+		students.add(student);
 		
 	}
 
 	@Override
-	public boolean createNewNurse(String username) {
-		if(!users.stream().anyMatch(u->u.getUsername().equals(username))) {
-			Student newUser=new Student(username);
-			users.add(newUser);
-			return true;
-		}
-		return false;
-	}
-
-	//@Override
 	public Student getStudent(String username) {
-		List<Student> result= users.stream()
+		if(!containsStudent(username)) {
+			throw new IllegalStateException("Denne brukeren eksisterer ikke i databasen");
+		}
+		List<Student> result= students.stream()
 				.filter(u->u.getUsername().equals(username))
 				.collect(Collectors.toList());
-		if (result.size()<1) {
-			throw new IllegalStateException("Fant ingen treff på dette brukernavnet");
-		}
-		if (result.size()>1) {
-			throw new IllegalStateException("Fant flere treff på dette brukernavnet");
-		}
 		return result.get(0);
 	}
 	
-	public static void main(String[] args) {
-	
-		
+	private boolean containsStudent(String username) {
+		List<Student> result= students.stream()
+				.filter(u->u.getUsername().equals(username))
+				.collect(Collectors.toList());
+		return result.size()==1;
 	}
 
 	@Override
 	public void updateStudent(Student student) {
-		// TODO Auto-generated method stub
-		
+		//Dette ordner seg selv med pekeren i java.
 	}
 
 	@Override
 	public Collection<Student> getStudents(Nurse nurse) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Student> result= students.stream()
+				.filter(u->u.getFaculty().equals(nurse.getFaculty()))
+				.collect(Collectors.toList());
+		return result;
 	}
 
+	/*
+	 * Metoder for Helsesøstere
+	 */
+	@Override
+	public void createNewNurse(Nurse nurse) throws SQLException {
+		if(containsNurse(nurse.getUsername())) {
+			throw new IllegalStateException("Denne brukeren eksisterer allerede i databasen");
+		}
+		nurses.add(nurse);		
+	}
 
-*/
+	private boolean containsNurse(String username) {
+		List<Nurse> result= nurses.stream()
+				.filter(u->u.getUsername().equals(username))
+				.collect(Collectors.toList());
+		return result.size()==1;
+	}
+
+	@Override
+	public void updateNurse(Nurse nurse) throws SQLException {
+		//Dette ordner seg selv med pekeren i java.
+		
+	}
+	
+	@Override
+	public Nurse getNurse(String username) {
+		if(!containsNurse(username)) {
+			throw new IllegalStateException("Denne brukeren eksisterer ikke i databasen");
+		}
+		List<Nurse> result= nurses.stream()
+				.filter(u->u.getUsername().equals(username))
+				.collect(Collectors.toList());
+		return result.get(0);
+	}
+
+	
+	
+
+
 }
