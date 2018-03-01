@@ -5,8 +5,7 @@ import java.sql.*;
 
 public class ConnectionSQL implements UserDatabaseHandler{
 
-	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/"
-			+ "jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35";
+	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35";
 	
 	
 	private Connection getConnection() throws SQLException{
