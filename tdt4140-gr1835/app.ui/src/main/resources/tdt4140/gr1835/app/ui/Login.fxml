@@ -37,22 +37,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-               <image>
-                  <Image url="@../../../../../../../../../../../../../Downloads/user-login-icon-14.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="35.0" />
-               </GridPane.margin>
-            </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-               <image>
-                  <Image url="@../../../../../../../../../../../../../Downloads/lock_512pxGREY.png" />
-               </image>
-               <GridPane.margin>
-                  <Insets left="55.0" />
-               </GridPane.margin>
-            </ImageView>
             <TextField prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" text="Brukernavn" textFill="#e8e2e2" GridPane.rowIndex="1">
@@ -80,9 +64,19 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <ImageView fx:id="butterflyImage" fitHeight="70.0" fitWidth="78.0" layoutX="353.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="70.0" fitWidth="78.0" layoutX="353.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Image/sommerfugl2.jpg" />
+            <Image url="@Image/sommerfugl2.png" backgroundLoading="true"/>
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="230.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/usericon2.png" backgroundLoading="true"/>
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="258.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/passwordlock.png" backgroundLoading="true"/>
          </image>
       </ImageView>
    </children>
