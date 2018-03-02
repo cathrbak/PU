@@ -129,7 +129,7 @@ public class Ny_BrukerController {
 		
 		TimeUnit.SECONDS.sleep(3);
 		
-		/*
+	
 		 Stage stage; 
 		
 	    Parent root;
@@ -143,7 +143,7 @@ public class Ny_BrukerController {
         scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-         */
+         
 	}
 	
 
