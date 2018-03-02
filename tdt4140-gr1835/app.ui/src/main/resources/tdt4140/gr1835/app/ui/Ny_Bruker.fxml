@@ -55,7 +55,7 @@
                   <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <TextField fx:id="faculty" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                  
-                  <Button fx:id="button_registrer"  mnemonicParsing="false" onAction="#handleButtonRegistrer" prefHeight="53.0" prefWidth="110.0" text="Opprett bruker" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Button fx:id="button_registrer" mnemonicParsing="false" onAction="#handleButtonRegistrer" prefHeight="53.0" prefWidth="110.0" text="Opprett bruker" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                </children>
             </GridPane>
             <Label layoutX="32.0" layoutY="33.0" prefHeight="61.0" prefWidth="328.0" text="Opprett ny bruker:">

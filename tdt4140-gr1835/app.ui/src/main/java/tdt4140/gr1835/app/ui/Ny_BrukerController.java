@@ -4,6 +4,7 @@ package tdt4140.gr1835.app.ui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,7 +61,7 @@ public class Ny_BrukerController {
 	Button backButton;
 	
 	@FXML
-	public void handleButtonRegistrer() {
+	public void handleButtonRegistrer() throws IOException, InterruptedException {
 		Nurse nyNurse=new Nurse(username.getText());
 		//Lager Nurseobjekt med inputs
 		
@@ -121,12 +122,33 @@ public class Ny_BrukerController {
 					infotext.setVisible(true);
 					return;
 				}
-			
-		
-		infotext.setText("Nytt nurseobjekt laget :"+nyNurse);
+	
+		infotext.setText("Du er nå registrert");
+		//infotext.setText("Nytt nurseobjekt laget :"+nyNurse);
 		infotext.setVisible(true);
+		
+		TimeUnit.SECONDS.sleep(3);
+		
+		/*
+		 Stage stage; 
+		
+	    Parent root;
+        //get reference to the button's stage         
+        stage=(Stage) button_registrer.getScene().getWindow();
+        //load up OTHER FXML document
+        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+      	//create a new scene with root and set the stage
+        Scene scene = new Scene(root);
+        //Legger på css stylesheetet
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+         */
 	}
+	
 
+	
+	
 	@FXML 
 	public void handleBackButton() throws IOException {
 		Stage stage; 
