@@ -15,7 +15,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Din side">
             <items>
-              <MenuItem fx:ID="root" mnemonicParsing="false" onAction="#handleProfileMenuItem" text="Profil" />
+              <MenuItem fx:id="root" mnemonicParsing="false" onAction="#handleProfileMenuItem" text="Profil" />
                   <MenuItem mnemonicParsing="false" text="Innstillinger" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Logg ut" />
