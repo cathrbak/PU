@@ -9,14 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.MainPageController">
    <children>
-      <MenuBar layoutX="531.0" prefHeight="29.0" prefWidth="94.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar layoutX="480.0" layoutY="22.0" prefHeight="29.0" prefWidth="94.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="22.0">
         <menus>
           <Menu mnemonicParsing="false" text="Din side">
             <items>
-              <MenuItem mnemonicParsing="false" text="Profil" />
+              <MenuItem fx:ID="root" mnemonicParsing="false" onAction="#handleProfileMenuItem" text="Profil" />
                   <MenuItem mnemonicParsing="false" text="Innstillinger" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Logg ut" />
@@ -27,9 +26,9 @@
             <DropShadow />
          </effect>
       </MenuBar>
-      <Text fill="#f81166" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hovedside">
+      <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hovedside">
          <font>
-            <Font name="Al Bayan Plain" size="36.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
    </children>
