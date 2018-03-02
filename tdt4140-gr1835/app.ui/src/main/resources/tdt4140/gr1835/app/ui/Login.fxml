@@ -19,11 +19,6 @@
             <Font name="Al Bayan Bold" size="48.0" />
          </font>
       </Label>
-      <ImageView fx:id="butterflyImage" fitHeight="74.0" fitWidth="74.0" layoutX="347.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../../../../../../Downloads/sommerfugl2.png" />
-         </image>
-      </ImageView>
       <Label layoutX="405.0" layoutY="38.0" prefHeight="100.0" prefWidth="165.0" text="Helse" textFill="#e8e2e2">
          <font>
             <Font name="Al Bayan Bold" size="48.0" />
@@ -85,5 +80,10 @@
          <font>
             <Font size="14.0" />
          </font></Label>
+      <ImageView fx:id="butterflyImage" fitHeight="70.0" fitWidth="78.0" layoutX="353.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/sommerfugl2.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -12,16 +12,17 @@ public class FxApp extends Application {
 	
 
     @Override
-    public void start(Stage stage) throws Exception {
-    	
+    public void start(Stage primaryStage) throws Exception {
+    		
+    		
         Parent root_login = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Parent root_nybruker = FXMLLoader.load(getClass().getResource("Ny_Bruker.fxml"));
         Scene scene_login = new Scene(root_login);
         Scene scene_nybruker = new Scene(root_nybruker);
         scene_login.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         scene_nybruker.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        stage.setScene(scene_login);
-        stage.show();
+        primaryStage.setScene(scene_login);
+        primaryStage.show();
         
     }
 
