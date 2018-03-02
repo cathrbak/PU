@@ -63,17 +63,66 @@ public class Ny_BrukerController {
 	public void handleButtonRegistrer() {
 		Nurse nyNurse=new Nurse(username.getText());
 		//Lager Nurseobjekt med inputs
+		
+		try {
+			nyNurse.setFirstName(firstName.getText());
+			}catch (Exception e) {
+				nyNurse=null;
+				System.err.println("Noe gikk galt i opprettelsen av Nurseobjektet");
+				infotext.setText("Feil fornavn:"+nyNurse);
+				infotext.setVisible(true);
+				return;
+				
+			}
+		try {
+			nyNurse.setSecondName(familyName.getText());
+			}catch (Exception e) {
+				nyNurse=null;
+				System.err.println("Noe gikk galt i opprettelsen av Nurseobjektet");
+				infotext.setText("Feil etternavn:"+nyNurse);
+				infotext.setVisible(true);
+				return;
+			}
+		try {
+			nyNurse.setPassword(password.getText());
+			}catch (Exception e) {
+				nyNurse=null;
+				System.err.println("Noe gikk galt i opprettelsen av Nurseobjektet");
+				infotext.setText("Feil passord:"+nyNurse);
+				infotext.setVisible(true);
+				return;
+			}
 		try {
 			nyNurse.setEmail(email.getText());
-			nyNurse.setFaculty(faculty.getText());
-			nyNurse.setFirstName(firstName.getText());
-			nyNurse.setPassword(password.getText());
-			nyNurse.setPhoneNumber(phoneNumber.getText());
-			nyNurse.setSecondName(familyName.getText());
 		}catch (Exception e) {
 			nyNurse=null;
-			System.err.println("Noe gikk galt i opprettelsen av Nuseobjektet");
+			System.err.println("Noe gikk galt i opprettelsen av Nurseobjektet");
+			infotext.setText("Feil email:"+nyNurse);
+			infotext.setVisible(true);
+			return;
 		}
+		
+			
+		try {
+			nyNurse.setPhoneNumber(phoneNumber.getText());
+			}catch (Exception e) {
+				nyNurse=null;
+				System.err.println("Noe gikk galt i opprettelsen av Nurseobjektet");
+				infotext.setText("Feil telefonnummer:"+nyNurse);
+				infotext.setVisible(true);
+				return;
+			}
+		try {
+				nyNurse.setFaculty(faculty.getText());
+				}catch (Exception e) {
+					nyNurse=null;
+					System.err.println("Noe gikk galt i opprettelsen av Nurseobjektet");
+					infotext.setText("Feil fakultetsnavn:"+nyNurse);
+					infotext.setVisible(true);
+					return;
+				}
+			
+		
 		infotext.setText("Nytt nurseobjekt laget :"+nyNurse);
 		infotext.setVisible(true);
 	}

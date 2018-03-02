@@ -7,13 +7,13 @@
    version="3.1">
 
   <servlet>
-    <servlet-name>Nurse</servlet-name>
-    <servlet-class>tdt4140.gr1835.web.server.Nurse</servlet-class>
+    <servlet-name>NurseServlet</servlet-name>
+    <servlet-class>tdt4140.gr1835.web.server.NurseServlet</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>Nurse</servlet-name>
-    <url-pattern>/Nurse/*</url-pattern>
+    <servlet-name>NurseServlet</servlet-name>
+    <url-pattern>/NurseServlet/*</url-pattern>
   </servlet-mapping>
 
 </web-app>
