@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="800.0" style="-fx-background-color: #7386b1;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386b1;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.LoginController">
    <children>
       <Label alignment="CENTER_RIGHT" layoutX="240.0" layoutY="38.0" prefHeight="100.0" prefWidth="165.0" text="Psykisk" textFill="#3d5679">
          <font>
@@ -70,7 +70,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="button_login" onAction="#handleLoginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="94.0" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="32.0" prefWidth="94.0" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <opaqueInsets>
                   <Insets left="55.0" />
                </opaqueInsets>
@@ -80,7 +80,10 @@
             </Button>
          </children>
       </GridPane>
-      <Button fx:id="button_nybruker" onAction="#handleNyBrukerButton" layoutX="163.0" layoutY="447.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Opprett ny bruker" textFill="#e8e2e2" />
-      <Label layoutX="66.0" layoutY="447.0" prefHeight="26.0" prefWidth="90.0" text="Ikke registrert?" />
+      <Button fx:id="button_nybruker" layoutX="163.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="124.0" text="Opprett ny bruker" textFill="#e8e2e2" />
+      <Label layoutX="55.0" layoutY="447.0" prefHeight="26.0" prefWidth="101.0" text="Ikke registrert?" textFill="#e8e2e2">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>
