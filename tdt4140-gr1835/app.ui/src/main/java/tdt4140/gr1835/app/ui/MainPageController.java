@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainPageController implements Initializable {
@@ -29,20 +30,29 @@ public class MainPageController implements Initializable {
 	
 	
 	@FXML
-	public void handleProfileMenuItem(ActionEvent event) throws IOException {
-		Stage stage; 
+	public void handleProfileMenuItem() throws IOException {
+		
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("Profile.fxml"));
+		AnchorPane ProfilePage = loader.load();
+	/*
+		//Stage secondStage;
 		Parent root;
+		//MenuItem Profile  = (MenuItem) event.getSource();
+		System.out.println("Clicked On Item:"+ Profile.getId()); 
 	    
         //get reference to the button's stage         
-        stage=(Stage) Profile.getOnAction();
+		//secondStage=(Stage) Profile.getScene().getWindow();
         //load up OTHER FXML document
         root = FXMLLoader.load(getClass().getResource("Profil.fxml"));
+        
       	//create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet
         scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+        secondStage.setScene(scene);
+        secondStage.show();
+        */
 	}
 	
 	 @Override
