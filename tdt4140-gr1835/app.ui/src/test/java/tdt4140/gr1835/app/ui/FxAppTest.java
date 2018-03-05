@@ -41,7 +41,7 @@ public class FxAppTest extends ApplicationTest {
         stage.show();
     }
 	
-	
+	/*
 
     @Test
     public void testNyBrukerInnlogging() {
@@ -76,6 +76,7 @@ public class FxAppTest extends ApplicationTest {
 
     	    assertTrue(true);
     }
+    */
     
 
 }
