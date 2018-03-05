@@ -37,47 +37,7 @@
          <children>
             <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Fornavn" textFill="#e8e2e2">
                <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Etternavn" textFill="#e8e2e2" GridPane.rowIndex="1">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Velg et brukernavn" textFill="#e8e2e2" GridPane.rowIndex="2">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Skriv inn passord" textFill="#e8e2e2" GridPane.rowIndex="3">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Gjenta passord" textFill="#e8e2e2" GridPane.rowIndex="4">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="E-post" textFill="#e8e2e2" GridPane.rowIndex="5">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Gjenta e-post" textFill="#e8e2e2" GridPane.rowIndex="6">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Telefonnummer" textFill="#e8e2e2" GridPane.rowIndex="7">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Hvilket fakultet tilhører du?" textFill="#e8e2e2" GridPane.rowIndex="8">
-               <font>
-                  <Font size="14.0" />
+                  <Font name="Lucida Console" size="14.0" />
                </font>
             </Label>
             <TabPane prefHeight="52.0" prefWidth="129.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -90,23 +50,69 @@
             <TextField fx:id="repeatemail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField fx:id="phoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="faculty" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Button fx:id="button_registrer" mnemonicParsing="false" onAction="#handleButtonRegistrer" prefHeight="41.0" prefWidth="109.0" text="Opprett bruker" textFill="#e8e2e2" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Button fx:id="button_registrer" mnemonicParsing="false" onAction="#handleButtonRegistrer" prefHeight="41.0" prefWidth="123.0" text="Opprett bruker" textFill="#e8e2e2" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <GridPane.margin>
-                  <Insets left="100.0" />
+                  <Insets left="90.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Lucida Console" size="13.0" />
+               </font>
             </Button>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Etternavn" textFill="#e8e2e2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Velg et brukernavn" textFill="#e8e2e2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Skriv inn passord" textFill="#e8e2e2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Gjenta passord" textFill="#e8e2e2" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="E-post" textFill="#e8e2e2" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Gjenta e-post" textFill="#e8e2e2" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Telefonnummer" textFill="#e8e2e2" GridPane.rowIndex="7">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="260.0" text="Hvilket fakultet tilhører du?" textFill="#e8e2e2" GridPane.rowIndex="8">
+               <font>
+                  <Font name="Lucida Console" size="14.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
-      <Label layoutX="42.0" layoutY="43.0" prefHeight="61.0" prefWidth="328.0" text="Opprett ny bruker" textFill="#e8e2e2">
+      <Label layoutX="96.0" layoutY="41.0" prefHeight="69.0" prefWidth="370.0" text="Opprett ny bruker" textFill="#e8e2e2">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="Copperplate Bold" size="36.0" />
          </font>
       </Label>
       <Label fx:id="infotext" alignment="CENTER_RIGHT" layoutX="43.0" layoutY="546.0" prefHeight="200.0" prefWidth="540.0" visible="false" />
-      <Button fx:id="backButton" layoutX="57.0" layoutY="654.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="41.0" prefWidth="78.0" text="Tilbake" textFill="#e8e2e2" />
-      <ImageView fitHeight="178.0" fitWidth="241.0" layoutX="583.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="backButton" layoutX="57.0" layoutY="654.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="41.0" prefWidth="102.0" text="Tilbake" textFill="#e8e2e2">
+         <font>
+            <Font name="Lucida Console" size="13.0" />
+         </font></Button>
+      <ImageView fitHeight="79.0" fitWidth="65.0" layoutX="25.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Image/sommerfugl2.png" backgroundLoading="true"/>
+            <Image url="@Image/heart_icon.png" />
          </image>
       </ImageView>
    </children>

@@ -14,14 +14,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386b1;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.LoginController">
    <children>
-      <Label alignment="CENTER_RIGHT" layoutX="240.0" layoutY="38.0" prefHeight="100.0" prefWidth="165.0" text="Psykisk" textFill="#3d5679">
+      <Label alignment="CENTER_RIGHT" layoutX="202.0" layoutY="109.0" prefHeight="58.0" prefWidth="203.0" text="Psykisk" textFill="#3d5679">
          <font>
-            <Font name="Al Bayan Bold" size="48.0" />
+            <Font name="Copperplate" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="405.0" layoutY="38.0" prefHeight="100.0" prefWidth="165.0" text="Helse" textFill="#e8e2e2">
+      <Label layoutX="405.0" layoutY="109.0" prefHeight="58.0" prefWidth="165.0" text="Helse" textFill="#e8e2e2">
          <font>
-            <Font name="Al Bayan Bold" size="48.0" />
+            <Font name="Copperplate" size="48.0" />
          </font>
       </Label>
       <GridPane layoutX="192.0" layoutY="195.0" prefHeight="197.0" prefWidth="360.0">
@@ -41,42 +41,57 @@
             <TextField prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" text="Brukernavn" textFill="#e8e2e2" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Lucida Console" size="18.0" />
                </font>
             </Label>
             <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="168.0" text="Passord" textFill="#e8e2e2" GridPane.rowIndex="2">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Lucida Console" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="32.0" prefWidth="94.0" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="32.0" prefWidth="130.0" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <opaqueInsets>
                   <Insets left="55.0" />
                </opaqueInsets>
                <GridPane.margin>
-                  <Insets left="90.0" />
+                  <Insets left="70.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="Lucida Console" size="13.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
             </Button>
+            <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+               <image>
+                  <Image backgroundLoading="true" url="@Image/usericon2.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="25.0" />
+               </GridPane.margin>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+               <image>
+                  <Image backgroundLoading="true" url="@Image/passwordlock.png" />
+               </image>
+               <GridPane.margin>
+                  <Insets left="60.0" />
+               </GridPane.margin>
+            </ImageView>
          </children>
       </GridPane>
-      <Button fx:id="button_nybruker" layoutX="163.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="124.0" text="Opprett ny bruker" textFill="#e8e2e2" />
-      <Label layoutX="55.0" layoutY="447.0" prefHeight="26.0" prefWidth="101.0" text="Ikke registrert?" textFill="#e8e2e2">
+      <Button fx:id="button_nybruker" layoutX="202.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="180.0" text="Opprett ny bruker" textFill="#e8e2e2">
          <font>
-            <Font size="14.0" />
+            <Font name="Lucida Console" size="13.0" />
+         </font></Button>
+      <Label layoutX="55.0" layoutY="447.0" prefHeight="26.0" prefWidth="140.0" text="Ikke registrert?" textFill="#e8e2e2">
+         <font>
+            <Font name="Lucida Console" size="14.0" />
          </font></Label>
-      <ImageView fitHeight="70.0" fitWidth="78.0" layoutX="353.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="90.0" layoutX="361.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Image/sommerfugl2.png" backgroundLoading="true"/>
-         </image>
-      </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="34.0" layoutX="230.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/usericon2.png" backgroundLoading="true"/>
-         </image>
-      </ImageView>
-      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="258.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Image/passwordlock.png" backgroundLoading="true"/>
+            <Image url="@Image/heart_icon.png" />
          </image>
       </ImageView>
    </children>
