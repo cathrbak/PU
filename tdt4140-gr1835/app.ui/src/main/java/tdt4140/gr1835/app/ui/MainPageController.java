@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class MainPageController implements Initializable {
+				
 	
 	@FXML
 	Button Profile;
@@ -59,11 +60,13 @@ public class MainPageController implements Initializable {
         stage.setScene(scene);
         stage.show();
 	}
-	 @Override
-	    public void initialize(URL url, ResourceBundle rb) {
-	        // TODO
+	
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+	        
 	    }
 	
+
 	
 
 }
