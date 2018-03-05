@@ -1,35 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.MainPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.MainPageController">
    <children>
-      <MenuBar layoutX="480.0" layoutY="22.0" onMouseReleased="#handleProfileMenuItem" prefHeight="29.0" prefWidth="94.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="22.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Din side">
-            <items>
-              <MenuItem fx:id="Profile" mnemonicParsing="false" onAction="#handleProfileMenuItem" text="Profil" />
-                  <MenuItem mnemonicParsing="false" text="Innstillinger" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Logg ut" />
-            </items>
-          </Menu>
-        </menus>
-         <effect>
-            <DropShadow />
-         </effect>
-      </MenuBar>
       <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hovedside">
          <font>
             <Font name="System Bold" size="36.0" />
          </font>
       </Text>
+    <Button fx:id="Profile" layoutX="451.0" layoutY="23.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="98.5" AnchorPane.topAnchor="23.0" />
+      <Button fx:id="Logout" layoutX="527.0" layoutY="23.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="23.0" />
    </children>
 </AnchorPane>
