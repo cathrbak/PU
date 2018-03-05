@@ -4,13 +4,19 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
+import static org.junit.Assert.assertTrue;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 
 public class FxAppTest extends ApplicationTest {
+	
+	Button btn;
 	
 	@BeforeClass
 	public static void headless() {
@@ -34,9 +40,42 @@ public class FxAppTest extends ApplicationTest {
         stage.setScene(scene);
         stage.show();
     }
+	
+	
 
     @Test
-    public void testFxApp() {
+    public void testNyBrukerInnlogging() {
+    	
+    //Klikker meg over til Opprett ny bruker vinduet
+    	//Man bruker fx:id identitikatoren fra FXML filen inne i clickOn metoden. 
+    		clickOn("#button_nybruker");
+    		
+    	//Trykker videre på first name tekstboksen, fyller inn, og bruker tab for å komme til neste felt.
+    		clickOn("#firstName");
+    		write("Sverre");
+    		push(KeyCode.TAB);
+    		write("Spetalen");
+    		push(KeyCode.TAB);
+    		write("sverress");
+    		push(KeyCode.TAB);
+    		write("sss");
+    		push(KeyCode.TAB);
+    		write("sss");
+    		push(KeyCode.TAB);
+    		write("sverress@stud.ntnu.no");
+    		push(KeyCode.TAB);
+    		write("sverress@stud.ntnu.no");
+    		push(KeyCode.TAB);
+    		write("46839737");
+    		push(KeyCode.TAB);
+    		write("IE");
+    		
+    	//Prøver å lage ny bruker
+    		clickOn("#button_registrer");
+    	
+
+    	    assertTrue(true);
     }
+    
 
 }
