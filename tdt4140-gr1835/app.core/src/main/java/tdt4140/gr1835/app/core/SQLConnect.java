@@ -30,8 +30,7 @@ public class SQLConnect {
 			    System.out.println("");
 			}
 
-			// må få inn lukking av connection her, slik at ikke databasen krasjer. ikke så viktig akkurat nå, men må inn senere.
-			
+//her må tilkoblingen egentlig lukkes, men det er ikke så viktig nå. 			
 		
 		} catch (Exception ex) {
 			Logger.getLogger(Driver.class.getName()).log(Level.SEVERE, null, ex);
