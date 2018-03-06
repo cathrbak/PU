@@ -1,10 +1,15 @@
 package tdt4140.gr1835.app.core;
 
-import java.util.Collection;
 import java.sql.*;
+import java.util.Collection;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class ConnectionSQL implements UserDatabaseHandler{
-
+		
 	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35";
 	
 	
