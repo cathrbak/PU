@@ -73,7 +73,7 @@ public abstract class User {
 
 	public void setSecondName(String secondName) {
 		if(containsNonletter(secondName)) {
-			throw new IllegalArgumentException("Fornavn skal kun inneholde bokstaver");
+			throw new IllegalArgumentException("Etternavn skal kun inneholde bokstaver");
 		}
 		this.secondName=makeNiceName(secondName);	
 	}
@@ -118,7 +118,7 @@ public abstract class User {
 	private void checkValidEmail(String email) {
 		String[] parts = email.split("@");
 		if (parts.length != 2) {
-			throw new IllegalArgumentException(email + " contained more than one @");
+			throw new IllegalArgumentException("Ugyldig email");
 		}
 		//String[] domainParts = parts[1].split("\\.");
 	}
