@@ -248,6 +248,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		Nurse nurse = new Nurse("soster"); 
 		System.out.println(nurse.getUsername());
 	}
+	*/
 
 	
 
