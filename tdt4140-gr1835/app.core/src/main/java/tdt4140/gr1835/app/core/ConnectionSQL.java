@@ -265,7 +265,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		con.getConnection();
 		Nurse nurse = new Nurse("soster"); 
 		System.out.println(nurse.getUsername());
-	
+	//bare for å få pushet på nytt
 	}
 	
 
