@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.MainPageController">
    <children>
-      <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hovedside" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
+      <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
          <font>
             <Font name="Copperplate" size="36.0" />
          </font>

@@ -7,6 +7,22 @@
     -fx-background-radius: 30;
     -fx-background-insets: 0;
     -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+.label_text {
+	-fx-font-family: Lucida Console;
+	-fx-font-size: 14px;
+}
+
+.label_overskrift {
+	-fx-font-family: Copperplate Bold;
+	-fx-font-size: 36px;
+}
+
+.label_hovedoverskrifter {
+	-fx-font-family: Copperplate Bold;
+	-fx-font-size: 48px;
 }
 
 

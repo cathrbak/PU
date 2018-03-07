@@ -14,12 +14,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386b1;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.LoginController">
    <children>
-      <Label alignment="CENTER_RIGHT" layoutX="202.0" layoutY="109.0" prefHeight="58.0" prefWidth="203.0" text="Psykisk" textFill="#3d5679">
+      <Label alignment="CENTER_RIGHT" layoutX="202.0" layoutY="109.0" prefHeight="58.0" prefWidth="203.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Psykisk" textFill="#3d5679">
          <font>
             <Font name="Copperplate" size="48.0" />
          </font>
       </Label>
-      <Label layoutX="405.0" layoutY="109.0" prefHeight="58.0" prefWidth="165.0" text="Helse" textFill="#e8e2e2">
+      <Label layoutX="405.0" layoutY="109.0" prefHeight="58.0" prefWidth="165.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Helse" textFill="#e8e2e2">
          <font>
             <Font name="Copperplate" size="48.0" />
          </font>
@@ -39,17 +39,17 @@
          <children>
             <TextField prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" text="Brukernavn" textFill="#e8e2e2" GridPane.rowIndex="1">
+            <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Brukernavn" textFill="#e8e2e2" GridPane.rowIndex="1">
                <font>
                   <Font name="Lucida Console" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="168.0" text="Passord" textFill="#e8e2e2" GridPane.rowIndex="2">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="168.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Passord" textFill="#e8e2e2" GridPane.rowIndex="2">
                <font>
                   <Font name="Lucida Console" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="32.0" prefWidth="130.0" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="32.0" prefWidth="130.0" stylesheets="@stylesheet.css" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <opaqueInsets>
                   <Insets left="55.0" />
                </opaqueInsets>
@@ -81,11 +81,11 @@
             </ImageView>
          </children>
       </GridPane>
-      <Button fx:id="button_nybruker" layoutX="202.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="180.0" text="Opprett ny bruker" textFill="#e8e2e2">
+      <Button fx:id="button_nybruker" layoutX="202.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="180.0" stylesheets="@stylesheet.css" text="Opprett ny bruker" textFill="#e8e2e2">
          <font>
             <Font name="Lucida Console" size="13.0" />
          </font></Button>
-      <Label layoutX="55.0" layoutY="447.0" prefHeight="26.0" prefWidth="140.0" text="Ikke registrert?" textFill="#e8e2e2">
+      <Label layoutX="55.0" layoutY="447.0" prefHeight="26.0" prefWidth="140.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Ikke registrert?" textFill="#e8e2e2">
          <font>
             <Font name="Lucida Console" size="14.0" />
          </font></Label>
