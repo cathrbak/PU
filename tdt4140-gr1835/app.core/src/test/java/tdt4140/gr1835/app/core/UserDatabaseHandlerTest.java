@@ -73,7 +73,7 @@ public class UserDatabaseHandlerTest {
 	 * Tester avhengighet til faktultet også :)
 	 */
 	@Test
-	public void testgetStudents() throws SQLException {
+	public void testgetStudents() throws Exception {
 		List<Student> expected= new ArrayList<>();
 		
 		//Oppretter studenter som tilhører AD fakultetet

@@ -2,6 +2,7 @@ package tdt4140.gr1835.app.core;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 public interface UserDatabaseHandler {
 	
@@ -17,6 +18,9 @@ public interface UserDatabaseHandler {
 	
 	//Gir meg datagivere til denne helses�steren
 	public Collection<Student> getStudents(Nurse nurse) throws SQLException, Exception;
+	
+	//Gir meg svarene til en student
+	public List<String> getAnswers(Student student) throws SQLException;
 	
 
 }

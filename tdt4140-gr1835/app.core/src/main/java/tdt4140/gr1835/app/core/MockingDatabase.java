@@ -119,6 +119,12 @@ public class MockingDatabase implements UserDatabaseHandler{
 		return result.get(0);
 	}
 
+	@Override
+	public List<String> getAnswers(Student student) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 	
 
