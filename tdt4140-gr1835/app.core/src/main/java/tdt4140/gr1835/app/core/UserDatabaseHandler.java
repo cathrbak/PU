@@ -16,7 +16,7 @@ public interface UserDatabaseHandler {
 	public void updateStudent(Student student) throws SQLException;
 	
 	//Gir meg datagivere til denne helses�steren
-	public Collection<Student> getStudents(Nurse nurse) throws SQLException;
+	public Collection<Student> getStudents(Nurse nurse) throws SQLException, Exception;
 	
 
 }

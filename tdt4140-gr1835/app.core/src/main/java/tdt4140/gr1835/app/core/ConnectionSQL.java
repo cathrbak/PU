@@ -11,11 +11,12 @@ import java.sql.Statement;
 
 public class ConnectionSQL implements UserDatabaseHandler{
 		
-	// Har trøbbel med fakultet-attributtene. De er lagret som nøkkelen i fakultettabellen, altså FakultetID i databasen, 
+	// Har trï¿½bbel med fakultet-attributtene. De er lagret som nï¿½kkelen i fakultettabellen, altsï¿½ FakultetID i databasen, 
 	//men attributtet i Student og Nurse-objektene her i prosjektet er navneforkortelsen...
 	
 	
 	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35&useSSL=false";
+	private int fakultetID;
 	
 	
 	private Connection getConnection() throws SQLException{
@@ -228,31 +229,84 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 
 	@Override
-	public Collection<Student> getStudents(Nurse nurse) {
-		Collection<Student> students = new ArrayList<Student>();
-		
-	//	int faculty = nurse.getFaculty(); //Vil at faculty skal være FakultetID som det er i databasen, altså et int.
-		
-		
-		
-		
-		
-		return students;
-	}
+    public Collection<Student> getStudents(Nurse nurse) throws Exception {
+        Collection<Student> students = new ArrayList<Student>();
+        
+        int faculty = new Integer(null); //Vil at faculty skal vÃ¦re FakultetID som det er i databasen, altsÃ¥ et int.
+        String nurseFaculty = nurse.getFaculty();
+        faculty = switchInsert(nurse);
+        ResultSet rs = null;
+        
+        try {
+            String query = "SELECT * FROM datagiver WHERE fakultet=" + faculty +";";
+            Statement stmt = getStatement();
+            
+            if(stmt.execute(query)) {
+                rs = stmt.getResultSet();
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        
+        while(rs.next()) {
+            String username = rs.getString("brukernavn");
+            Student student = getStudent(username);
+            students.add(student);
+            
+            
+        }
+        return students;
+    }
 	
 	
-	/*
 	public static void main(String[] args) throws SQLException {
 		ConnectionSQL con = new ConnectionSQL();
 		con.getConnection();
 		Nurse nurse = new Nurse("soster"); 
 		System.out.println(nurse.getUsername());
+	
 	}
-	*/
-
 	
 
+	public int switchInsert(Nurse nurse) throws Exception {
+		
+		if (nurse.getFaculty().equalsIgnoreCase("AD")) {
+			int fakultetID = 1;
+		}
+		else if (nurse.getFaculty().equalsIgnoreCase("HF")) {
+			int fakultetID = 2;
+		}
+		else if (nurse.getFaculty().equalsIgnoreCase("IE")) {
+			int fakultetID = 3;
+		}
+		else if (nurse.getFaculty().equalsIgnoreCase("IV")) {
+			int fakultetID = 4;
+		}	
+		else if (nurse.getFaculty().equalsIgnoreCase("MH")) {
+			int fakultetID = 5;
+		}
+		else if (nurse.getFaculty().equalsIgnoreCase("NV")) {
+			int fakultetID = 6;
+		}
+		else if (nurse.getFaculty().equalsIgnoreCase("SU")) {
+			int fakultetID = 7;
+		}
+		else if (nurse.getFaculty().equalsIgnoreCase("OK")) {
+			int fakultetID = 8;
+		}
+		else if (nurse.getFaculty().equalsIgnoreCase("VM")) {
+			int fakultetID = 9;
+		}
+		else throw illegalArgumentException("Noe gikk galt");
+		
+		return fakultetID;
+		
+	}
 	
-	
+	private Exception illegalArgumentException(String string) {
+		return null;
+	}
 
 }
+
