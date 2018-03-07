@@ -42,5 +42,6 @@
             <TableColumn prefWidth="60.0" text="Total" />
         </columns>
       </TableView>
+      <Button fx:id= "Question" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill = "#e8e2e2" />
    </children>
 </AnchorPane>
