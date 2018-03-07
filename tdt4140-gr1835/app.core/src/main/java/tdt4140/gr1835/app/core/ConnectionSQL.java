@@ -1,6 +1,7 @@
 package tdt4140.gr1835.app.core;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -10,7 +11,11 @@ import java.sql.Statement;
 
 public class ConnectionSQL implements UserDatabaseHandler{
 		
-	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35";
+	// Har trøbbel med fakultet-attributtene. De er lagret som nøkkelen i fakultettabellen, altså FakultetID i databasen, 
+	//men attributtet i Student og Nurse-objektene her i prosjektet er navneforkortelsen...
+	
+	
+	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35&useSSL=false";
 	
 	
 	private Connection getConnection() throws SQLException{
@@ -34,7 +39,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 					nurse.getPhoneNumber() + ");";
 			
 			stmt.executeUpdate(query);
-			
+			System.out.println(query);
 		}
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -44,10 +49,9 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	
 	@Override
 		public Nurse getNurse(String username) throws SQLException {
-			//Mï¿½ finne en mï¿½te ï¿½ gjï¿½re om ResultSet til et Nurse-objekt. Returnerer forelï¿½pig kun et ResultSet-objekt.
-			//Sjekk hvilke metoder man kan kalle pï¿½ ResultSet. Feks en while der for hver rs.next() sï¿½ legges feltet inn i
-			//et string array. Fï¿½rste felt skal dog ikke vï¿½re med, da dette er HelsesosterID.
+			
 			ResultSet rs = null;
+			Nurse nurse = new Nurse(username);
 			try {
 				String query = "SELECT * FROM helsesoster WHERE brukernavn='" + username +"';";
 				Statement stmt = getStatement();
@@ -60,7 +64,28 @@ public class ConnectionSQL implements UserDatabaseHandler{
 				System.out.println("SQLException: " + e.getMessage());
 			}
 			
-			return null; //Skal returnere enten rs som et ResultSet eller et Nurse-objekt
+			while(rs.next()) {
+				String password = rs.getString("passord");
+				nurse.setPassword(password);
+				
+				String faculty = rs.getString("fakultet");
+				nurse.setFaculty(faculty);
+				
+				String firstName = rs.getString("fornavn");
+				nurse.setFirstName(firstName);
+				
+				String secondName = rs.getString("etternavn");
+				nurse.setSecondName(secondName);
+				
+				String email = rs.getString("email");
+				nurse.setEmail(email);
+				
+				String phoneNumber = rs.getString("telefonNr");
+				nurse.setPhoneNumber(phoneNumber);
+				
+			}
+			
+			return nurse; 
 		}
 	
 	@Override
@@ -84,10 +109,10 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 	
 	@Override
-	public Student getStudent(String username) {
-		//Samme caset her som i getNurse()
+	public Student getStudent(String username) throws SQLException {
 		
 		ResultSet rs = null;
+		Student student = new Student(username);
 		try {
 			String query = "SELECT * FROM datagiver WHERE brukernavn='" + username +"';";
 			Statement stmt = getStatement();
@@ -99,10 +124,61 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		
-		return null;//Skal returnere enten rs som et ResultSet eller et Student-objekt
+		while(rs.next()) {
+			String password = rs.getString("passord");
+			student.setPassword(password);
+			
+			String faculty = rs.getString("fakultet");
+			student.setFaculty(faculty);
+			
+			boolean isAnonymous = rs.getBoolean("anonymitet");
+			student.setAnonymous(isAnonymous);
+			
+			String firstName = rs.getString("fornavn");
+			student.setFirstName(firstName);
+			
+			String secondName = rs.getString("etternavn");
+			student.setSecondName(secondName);
+			
+			String sex = rs.getString("kjonn");
+			student.setSex(sex);
+			
+			String email = rs.getString("email");
+			student.setEmail(email);
+			
+			String phoneNumber = rs.getString("telefonNr");
+			student.setPhoneNumber(phoneNumber);
+			
+			int nurseID = rs.getInt("HelsesosterID");
+			Nurse nurse = getNurseFromID(nurseID);
+			student.setNurse(nurse);
+		}
+		return student;
 	}
 	
+	private Nurse getNurseFromID(int nurseID) throws SQLException{
+		ResultSet rs = null;
+		Nurse nurse = new Nurse(null);
+		try {
+			String query = "SELECT * FROM helsesoster WHERE HelsesosterID=" + nurseID +";";
+			Statement stmt = getStatement();
+			
+			if(stmt.execute(query)) {
+				rs = stmt.getResultSet();
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		
+		if(rs.next()) {
+			String username = rs.getString("brukernavn");
+			nurse = getNurse(username);
+		} 
+		
+		 
+		return nurse; 
+	}
 	@Override
 	public void createNewStudent(Student student) throws SQLException {
 		//Mï¿½ fï¿½ til at man ikke trenger ï¿½ oppgi bï¿½de helsesosterID og fakultet. HelsesosterID burde komme automatisk nï¿½r
@@ -111,10 +187,11 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			Statement stmt = getStatement();
 			
 			String query = "INSERT INTO datagiver(brukernavn, passord, fakultet, anonymitet, fornavn"
-					+ ", etternavn, kjï¿½nn, email, telefonNr) VALUES ('" + student.getUsername() + "', '" +
+					+ ", etternavn, kjonn, email, telefonNr) VALUES ('" + student.getUsername() + "', '" +
 					student.getPassword() + "', '" + student.getFaculty() + "', " + student.isAnonymous() + ", '"
 					+ student.getFirstName()
-					+ "', '" + student.getSecondName() + "', '" + student.getEmail() + "', " + 
+					+ "', '" + student.getSecondName() + "', '" + student.getSex() + "', '" +
+					student.getEmail() + "', " + 
 					student.getPhoneNumber() +");";
 			
 			stmt.executeUpdate(query);
@@ -129,16 +206,15 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	@Override
 	public void updateStudent(Student student) throws SQLException{
 		try {
-			//Mï¿½ fï¿½ til at man ikke trenger ï¿½ oppgi bï¿½de helsesosterID og fakultet. HelsesosterID burde komme automatisk nï¿½r
-			//man oppgir fakultet.
 			
-			//Mï¿½ matche pï¿½ brukernavn. Brukernavn kan dermed ikke endres i vinduet der man kan endre bruker.
+			
+			//Mï¿½ matche pï¿½ brukernavn. Brukernavn kan dermed ikke endres i vinduet der man kan endre bruker
 			Statement stmt = getStatement();
 			
 			String query = "UPDATE datagiver SET passord= '" + student.getPassword() 
 			+ "', fakultet= '" + student.getFaculty() + "', anonymitet= " + student.isAnonymous()
 			+ ", fornavn= '" + student.getFirstName() 
-			+ "', etternavn= '" + student.getSecondName() +"', kjï¿½nn= '" + student.getSex()
+			+ "', etternavn= '" + student.getSecondName() +"', kjonn= '" + student.getSex()
 			+ "', email= '" + student.getEmail() 
 			+ "', telefonNr= " + student.getPhoneNumber()
 			+ "WHERE brukernavn = '" + student.getUsername() + "';";
@@ -153,15 +229,27 @@ public class ConnectionSQL implements UserDatabaseHandler{
 
 	@Override
 	public Collection<Student> getStudents(Nurse nurse) {
-		//Her er ogsï¿½ samme case som getNurse og GetStudent
+		Collection<Student> students = new ArrayList<Student>();
 		
-		return null;
+	//	int faculty = nurse.getFaculty(); //Vil at faculty skal være FakultetID som det er i databasen, altså et int.
+		
+		
+		
+		
+		
+		return students;
 	}
 	
 	
-	
-	
-	
+	/*
+	public static void main(String[] args) throws SQLException {
+		ConnectionSQL con = new ConnectionSQL();
+		con.getConnection();
+		Nurse nurse = new Nurse("soster"); 
+		System.out.println(nurse.getUsername());
+	}
+	*/
+
 	
 
 	
