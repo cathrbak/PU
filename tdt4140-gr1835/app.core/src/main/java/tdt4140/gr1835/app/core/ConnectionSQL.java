@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class ConnectionSQL implements UserDatabaseHandler{
 		
-	// Har trøbbel med fakultet-attributtene. De er lagret som nøkkelen i fakultettabellen, altså FakultetID i databasen, 
+	// Har trï¿½bbel med fakultet-attributtene. De er lagret som nï¿½kkelen i fakultettabellen, altsï¿½ FakultetID i databasen, 
 	//men attributtet i Student og Nurse-objektene her i prosjektet er navneforkortelsen...
 	
 	
@@ -231,7 +231,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	public Collection<Student> getStudents(Nurse nurse) {
 		Collection<Student> students = new ArrayList<Student>();
 		
-	//	int faculty = nurse.getFaculty(); //Vil at faculty skal være FakultetID som det er i databasen, altså et int.
+	//	int faculty = nurse.getFaculty(); //Vil at faculty skal vï¿½re FakultetID som det er i databasen, altsï¿½ et int.
 		
 		
 		
@@ -248,7 +248,6 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		Nurse nurse = new Nurse("soster"); 
 		System.out.println(nurse.getUsername());
 	}
-	*/
 
 	
 

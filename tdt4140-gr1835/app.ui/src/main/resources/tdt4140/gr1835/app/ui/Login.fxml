@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386b1;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386b1;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.LoginController">
    <children>
       <Label alignment="CENTER_RIGHT" layoutX="202.0" layoutY="109.0" prefHeight="58.0" prefWidth="203.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Psykisk" textFill="#3d5679">
          <font>
@@ -37,8 +38,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         	<TextField fx:id="brukernavn" onTextChange="#handleTextChange" prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Brukernavn" textFill="#e8e2e2" GridPane.rowIndex="1">
                <font>
                   <Font name="Lucida Console" size="18.0" />
@@ -79,8 +79,10 @@
                   <Insets left="60.0" />
                </GridPane.margin>
             </ImageView>
+            <PasswordField fx:id="passord" onTextChange="#handleTextChange" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
+
       <Button fx:id="button_nybruker" layoutX="202.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="180.0" stylesheets="@stylesheet.css" text="Opprett ny bruker" textFill="#e8e2e2">
          <font>
             <Font name="Lucida Console" size="13.0" />
@@ -94,5 +96,6 @@
             <Image url="@Image/heart_icon.png" />
          </image>
       </ImageView>
+      <Label fx:id="responsLabel" layoutX="400.0" layoutY="450.0" prefHeight="26.0" prefWidth="333.0" styleClass="label_text" stylesheets="@stylesheet.css" text="" textFill="#e8e2e2" />
    </children>
 </AnchorPane>
