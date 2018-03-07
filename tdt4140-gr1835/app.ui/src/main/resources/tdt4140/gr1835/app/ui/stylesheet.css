@@ -13,16 +13,19 @@
 .label_text {
 	-fx-font-family: Lucida Console;
 	-fx-font-size: 14px;
+	-fx-text-fill: #e8e2e2
 }
 
 .label_overskrift {
 	-fx-font-family: Copperplate Bold;
 	-fx-font-size: 36px;
+	-fx-text-fill: #e8e2e2
 }
 
 .label_hovedoverskrifter {
 	-fx-font-family: Copperplate Bold;
 	-fx-font-size: 48px;
+	-fx-text-fill: #e8e2e2
 }
 
 

@@ -26,21 +26,22 @@
          <effect>
             <Blend />
          </effect></Button>
-      <TableView layoutX="59.0" layoutY="134.0" prefHeight="200.0" prefWidth="728.0" style="-fx-background-color: e8e2e2;" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="134.0">
+         <TableView fx:id="tableID" layoutX="28.0" layoutY="134.0" prefHeight="200.0" prefWidth="727.0" style="-fx-background-color: e8e2e2;" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="134.0">
         <columns>
-          <TableColumn prefWidth="70.0" text="PersonID" />
-          <TableColumn prefWidth="60.0" text="Spm 1" />
-            <TableColumn prefWidth="60.0" text="Spm 2" />
-            <TableColumn prefWidth="60.0" text="Spm 3" />
-            <TableColumn prefWidth="60.0" text="Spm 4" />
-            <TableColumn prefWidth="60.0" text="Spm 5" />
-            <TableColumn prefWidth="60.0" text="Spm 6" />
-            <TableColumn prefWidth="60.0" text="Spm 7" />
-            <TableColumn minWidth="8.0" prefWidth="60.0" text="Spm 8" />
-            <TableColumn prefWidth="60.0" text="Spm 9" />
-            <TableColumn prefWidth="60.0" text="Spm 10" />
-            <TableColumn prefWidth="60.0" text="Total" />
+          <TableColumn fx:id="PersonID" prefWidth="65.0" text="PersonID" />
+          <TableColumn fx:id="Spm1" prefWidth="60.0" text="Spm 1" />
+            <TableColumn fx:id="Spm2" prefWidth="60.0" text="Spm 2" />
+            <TableColumn fx:id="Spm3" prefWidth="60.0" text="Spm 3" />
+            <TableColumn fx:id="Spm4" prefWidth="60.0" text="Spm 4" />
+            <TableColumn fx:id="Spm5" prefWidth="60.0" text="Spm 5" />
+            <TableColumn fx:id="Spm6" prefWidth="60.0" text="Spm 6" />
+            <TableColumn fx:id="Spm7" prefWidth="60.0" text="Spm 7" />
+            <TableColumn fx:id="Spm8" prefWidth="60.0" text="Spm 8" />
+            <TableColumn fx:id="Spm9" prefWidth="60.0" text="Spm 9" />
+            <TableColumn fx:id="Spm10" prefWidth="60.0" text="Spm 10" />
+            <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
         </columns>
       </TableView>
+      <Button fx:id= "Question" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill = "#e8e2e2" />
    </children>
 </AnchorPane>

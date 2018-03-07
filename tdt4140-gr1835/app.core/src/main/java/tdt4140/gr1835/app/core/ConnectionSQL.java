@@ -260,14 +260,13 @@ public class ConnectionSQL implements UserDatabaseHandler{
     }
 	
 	
-	public static void main(String[] args) throws SQLException {
+	/*public static void main(String[] args) throws SQLException {
 		ConnectionSQL con = new ConnectionSQL();
 		con.getConnection();
 		Nurse nurse = new Nurse("soster"); 
 		System.out.println(nurse.getUsername());
-	//bare for å få pushet på nytt
 	}
-	
+	*/
 
 	public int switchInsert(Nurse nurse) throws Exception {
 		
@@ -300,6 +299,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		}
 		else throw illegalArgumentException("Noe gikk galt");
 		
+	
 		return fakultetID;
 		
 	}

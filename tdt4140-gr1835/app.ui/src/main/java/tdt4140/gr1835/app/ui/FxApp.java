@@ -16,11 +16,8 @@ public class FxApp extends Application {
     		
     		
         Parent root_login = FXMLLoader.load(getClass().getResource("Login.fxml"));
-        Parent root_nybruker = FXMLLoader.load(getClass().getResource("Ny_Bruker.fxml"));
         Scene scene_login = new Scene(root_login);
-        Scene scene_nybruker = new Scene(root_nybruker);
         scene_login.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        scene_nybruker.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         primaryStage.setScene(scene_login);
         primaryStage.show();
         
