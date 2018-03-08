@@ -21,7 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 
-public class FxAppTest extends ApplicationTest {
+public class TestNyBruker extends ApplicationTest {
 	
 	Button btn;
 	
@@ -29,17 +29,7 @@ public class FxAppTest extends ApplicationTest {
 	
 	@BeforeClass
 	public static void headless() {
-		if (Boolean.valueOf(System.getProperty("gitlab-ci", "false"))) {
-			System.setProperty("prism.verbose", "true"); // optional
-			System.setProperty("java.awt.headless", "true");
-			System.setProperty("testfx.robot", "glass");
-			System.setProperty("testfx.headless", "true");
-			System.setProperty("glass.platform", "Monocle");
-			System.setProperty("monocle.platform", "Headless");
-			System.setProperty("prism.order", "sw");
-			System.setProperty("prism.text", "t2k");
-			System.setProperty("testfx.setup.timeout", "5000");
-		}
+		GitLab_CI_Setup.init();
 	}
 
 	@Override
@@ -87,11 +77,19 @@ public class FxAppTest extends ApplicationTest {
 		catch (IllegalArgumentException e){
 			assertFalse("Fikk IllegalArgumentException etter å sette inn gyldig argument",e.getClass().equals(IllegalArgumentException.class));
 		}
+		clickOn("#firstName");
+		push(KeyCode.LEFT);
+		push(KeyCode.LEFT);
+		push(KeyCode.BACK_SPACE);
+		write("o");
+		clickOn("#button_registrer");
+		
+		FxAssert.verifyThat("#infotext", hasText("Det eksisterer en bruker med dette brukernavnet"));
 	}
 	
 
     @Test
-    public void testNyBrukerInnlogging() {
+    public void testNyBrukerKorrektInnlogging() {
     	
     //Klikker meg over til Opprett ny bruker vinduet
     	//Man bruker fx:id identitikatoren fra FXML filen inne i clickOn metoden. 
@@ -129,6 +127,7 @@ public class FxAppTest extends ApplicationTest {
     		}
     }
  
+    
     
 
 }

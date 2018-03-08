@@ -43,9 +43,9 @@ public class Ny_BrukerController {
 	@FXML
 	TextField username;
 	@FXML
-	TextField password;
+	PasswordField password;
 	@FXML
-	TextField repeatpassword;
+	PasswordField repeatpassword;
 	@FXML
 	TextField repeatemail;
 	@FXML

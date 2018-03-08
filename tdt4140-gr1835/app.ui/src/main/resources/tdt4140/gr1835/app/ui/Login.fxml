@@ -39,6 +39,7 @@
         </rowConstraints>
          <children>
          	<TextField fx:id="brukernavn" onTextChange="#handleTextChange" prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         	<PasswordField fx:id="passord" onTextChange="#handleTextChange" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Brukernavn" textFill="#e8e2e2" GridPane.rowIndex="1">
                <font>
                   <Font name="Lucida Console" size="18.0" />
@@ -79,7 +80,7 @@
                   <Insets left="60.0" />
                </GridPane.margin>
             </ImageView>
-            <PasswordField fx:id="passord" onTextChange="#handleTextChange" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
          </children>
       </GridPane>
 
