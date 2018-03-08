@@ -1,7 +1,9 @@
 package tdt4140.gr1835.app.ui;
 
+import java.util.List;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -16,10 +18,22 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import tdt4140.gr1835.app.core.ConnectionSQL;
+import tdt4140.gr1835.app.core.Nurse;
+import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
+import tdt4140.gr1835.app.core.UserDatabaseHandler;
 
 public class MainPageController implements Initializable {
+UserDatabaseHandler database;
+	
+	public MainPageController(Nurse nurse) throws SQLException, Exception {
+		this.database=new ConnectionSQL();
+		this.nurse = nurse;
+		addInfo();	
+	}
 				
+	private Nurse nurse;
 	
 	@FXML
 	Button Profile;
@@ -60,37 +74,50 @@ public class MainPageController implements Initializable {
 	public int idNumber = 1;
 	public int total = 0;
 	
-	
-	//@FXML 
-	//private int answer1; 
-	
-	//lager tabell-data
-	final ObservableList<Table> data = FXCollections.observableArrayList(
-			new Table(idNumber++, 5, 2,9,7,5,8,3,8,9,10,total), 
-			new Table(idNumber++, 5, 2,9,7,5,8,3,8,9,10,total), 
-			new Table(idNumber++, 5, 2,9,7,5,8,3,8,9,10,total), 
-			new Table(idNumber++, 5, 2,9,7,5,8,3,8,9,10,total),
-			new Table(idNumber++, 5, 2,9,7,5,8,3,8,9,10,total),
-			new Table(idNumber++, 5, 2,9,7,5,8,3,8,9,10,total),
-			new Table(idNumber++, 5, 2,9,7,5,8,3,8,9,10,total));
-	
+	//lager listen som skal inneholde dataen
+	final ObservableList<Table> data = FXCollections.observableArrayList();
 
+
+	public void addInfo() throws SQLException, Exception{
+		List<Student> students;
+		students = database.getStudents(nurse);
+		for (Student student : students) {
+			try {
+				List<Table> listOfAnswers = database.getAnswers(student);
+				for(Table answer: listOfAnswers) {
+					data.add(answer);	
+				}
+					
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+		}
+		
+	}
+		
 	
 	@FXML
 	public void handleProfileButton() throws IOException {
-		Stage stage; 
-	    Parent root;
-        //get reference to the button's stage         
+		//Ta meg til profil
+        Stage stage; 
+        Parent root;
+        //get reference to the button's stage        
         stage=(Stage) Profile.getScene().getWindow();
-        
-        //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
-      	//create a new scene with root and set the stage
+        ProfileController controller= new ProfileController(this.nurse);//Lager en kontroller instans
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
+            
+            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+
+            root = (Parent) loader.load();
+          //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet
         scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
+        System.out.println("Sender bruker tilbake til mainPage");
 	}
 	
 	
@@ -144,19 +171,6 @@ public class MainPageController implements Initializable {
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
 	    tableID.setItems(data);
-	    }
-	
-//legg til data og tabellen vil bli oppdatert
-	/*public void onAddItem(ActionEvent event) {
-		Table entry = new Table(idNumber, 4);
-		idNumber ++;
-		//legg til data i tabellen
-		data.add(entry);
-		
-	}*/
-	
-	
-
-	
+	    }	
 
 }

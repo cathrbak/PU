@@ -35,7 +35,7 @@ public class LoginController{
 	private UserDatabaseHandler database;
 	
 	public LoginController() {
-		System.out.println("Oppretter mockingdatabase");
+		System.out.println("Oppretter database");
 		this.database= new ConnectionSQL();
 //		Scene scene=(Scene) button_nybruker.getScene();
 //		
@@ -63,29 +63,32 @@ public class LoginController{
 	}
 	
 	@FXML
-	public void handleLoginButton() throws IOException {
+	public void handleLoginButton() throws Exception {
 		if(loginOk()) {
 			//Ta meg til mainPage
-			System.out.println("Login ok, sender bruker til mainPage");
-			
-			Stage stage; 
-		    Parent root;
-	        //get reference to the button's stage         
-	        stage=(Stage) button_login.getScene().getWindow();
-	        //load up OTHER FXML document
-	        root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-	      	//create a new scene with root and set the stage
-	        Scene scene = new Scene(root);
-	        try {
-				scene.setUserData(database.getNurse(brukernavn.getText()));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	        //Legger på css stylesheetet
-	        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-	        stage.setScene(scene);
-	        stage.show();
+            System.out.println("Login ok, sender bruker til mainPage");
+            
+            Stage stage; 
+            Parent root;
+            //get reference to the button's stage        
+            stage=(Stage) button_login.getScene().getWindow();
+            
+            Nurse nurse=database.getNurse(brukernavn.getText());//Henter relevant Nurseobjekt
+            
+            MainPageController controller= new MainPageController(nurse);//Lager en kontroller instans
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+                
+                loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+
+                root = (Parent) loader.load();
+              //create a new scene with root and set the stage
+            Scene scene = new Scene(root);
+            //Legger på css stylesheetet
+            scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+            stage.setScene(scene);
+            stage.show();
+	       
 		}
 	}
 	
@@ -95,7 +98,9 @@ public class LoginController{
 	}
 	
 	
-	private boolean loginOk() {
+	
+	
+	private boolean loginOk() throws Exception {
 		try {
 			System.out.println("Prøver å hente Nurseobjekt fra databasen");
 			Nurse nyNurse= database.getNurse(brukernavn.getText());
@@ -110,7 +115,6 @@ public class LoginController{
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return true;
 	}
 	
