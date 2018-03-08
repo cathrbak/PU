@@ -140,19 +140,27 @@ UserDatabaseHandler database;
 	
 	@FXML
 	public void handleQuestionButton() throws IOException {
-		Stage stage;
-		Parent root;
-		//get reference to the button's stage
-		stage=(Stage) Question.getScene().getWindow();
-		
-		// load up OTHER FXML document
-		root = FXMLLoader.load(getClass().getResource("Questions.fxml"));
-		// create a new scene with root and set the stage
-		Scene scene = new Scene(root);
-		//Legger på css stylesheetet
-		scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-		stage.setScene(scene);
-		stage.show();
+		//Ta meg til mainPage
+        System.out.println("Sender bruker til questionPage");
+        
+        Stage stage; 
+        Parent root;
+        //get reference to the button's stage        
+        stage=(Stage) Question.getScene().getWindow();
+        
+        QuestionsController controller= new QuestionsController(this.nurse);//Lager en kontroller instans
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Questions.fxml"));
+            
+            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+
+            root = (Parent) loader.load();
+          //create a new scene with root and set the stage
+        Scene scene = new Scene(root);
+        //Legger på css stylesheetet
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
 		
 	}
 	
