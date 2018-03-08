@@ -2,8 +2,10 @@ package tdt4140.gr1835.app.ui;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +21,10 @@ import tdt4140.gr1835.app.core.UserDatabaseHandler;
 
 public class Ny_BrukerController {
 	
-	UserDatabaseHandler udh;
+	UserDatabaseHandler database;
 	
 	public Ny_BrukerController() {
-		this.udh=new MockingDatabase();
+		this.database=new MockingDatabase();
 	}
 	
 	List<String> inputs= new ArrayList<>();
@@ -57,9 +59,11 @@ public class Ny_BrukerController {
 	
 
 	
+	
 	@FXML
-	public void handleButtonRegistrer(){
+	public void handleButtonRegistrer() throws IOException{
 		infotext.setVisible(false);
+		System.out.println("Tester om alle feltene er riktig");
 		try {
 			Nurse newNurse= new Nurse(username.getText());
 			newNurse.setEmail(email.getText());
@@ -69,12 +73,69 @@ public class Ny_BrukerController {
 			newNurse.setPhoneNumber(phoneNumber.getText());
 			newNurse.setSecondName(familyName.getText());
 		}catch (Exception e) {
-			infotext.setText("Kunne ikke opprette ny bruker");
+			infotext.setText("Kan ikke opprette ugyldig bruker");
 			infotext.setVisible(true);
 			return;
 		}
-		infotext.setText("Bruker opprettet");
+		
+		System.out.println("Legger til den nye brukeren i databasen");
+		
+		try {
+			database.getNurse(username.getText());
+		} catch (SQLException e) {
+			infotext.setText("Det eksisterer en bruker med dette brukernavnet");
+			infotext.setVisible(true);
+			System.out.println(e.getMessage());
+			return;
+		}catch (IllegalStateException e) {
+			if (e.getMessage().equals("Denne brukeren eksisterer ikke i databasen")) {
+				Nurse newNurse= new Nurse(username.getText());
+				newNurse.setEmail(email.getText());
+				newNurse.setFaculty(faculty.getText());
+				newNurse.setFirstName(firstName.getText());
+				newNurse.setPassword(password.getText());
+				newNurse.setPhoneNumber(phoneNumber.getText());
+				newNurse.setSecondName(familyName.getText());
+				
+				try {
+					database.createNewNurse(newNurse);
+				} catch (SQLException ex) {
+					System.out.println("Fikk problemer med å legge til ny Helsesøster i databasen");
+					System.out.println(ex.getStackTrace());
+					return;
+				}
+			}
+		}
+
+		try {
+			System.out.println(database.getNurse(username.getText()));
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		infotext.setText("Brukeren ble opprettet");
 		infotext.setVisible(true);
+//		try {
+//			TimeUnit.SECONDS.sleep(3);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		Stage stage; 
+	    Parent root;
+        //get reference to the button's stage         
+        stage=(Stage) backButton.getScene().getWindow();
+        //load up OTHER FXML document
+        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+      	//create a new scene with root and set the stage
+        Scene scene = new Scene(root);
+//        scene.setUserData(firstName.getText());
+//        System.out.println(scene.getUserData());
+        //Legger på css stylesheetet
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
 		
 		//Så må vi sende dette til databasen
 

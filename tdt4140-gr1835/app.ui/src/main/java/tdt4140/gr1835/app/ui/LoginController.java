@@ -36,6 +36,11 @@ public class LoginController{
 	public LoginController() {
 		System.out.println("Oppretter mockingdatabase");
 		this.database= new MockingDatabase();
+//		Scene scene=(Scene) button_nybruker.getScene();
+//		
+//		if(scene.getUserData() instanceof String) {
+//    			responsLabel.setText("Velkommen " + scene.getUserData() + "\n"+ "Skriv inn ditt nye brukernavn og passord");
+//		}
 	}
 
 
@@ -94,7 +99,7 @@ public class LoginController{
 			System.out.println("Prøver å hente Nurseobjekt fra databasen");
 			Nurse nyNurse= database.getNurse(brukernavn.getText());
 			if(!nyNurse.getPassword().equals(passord.getText())) {
-				responsLabel.setText("Brukeren finnes, men passordet stemmer ikke overens med brukeren");
+				responsLabel.setText("Brukeren finnes, men passordet er feil");
 				return false;
 			}
 		}catch (IllegalStateException e) {
