@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tdt4140.gr1835.app.core.ConnectionSQL;
 import tdt4140.gr1835.app.core.MockingDatabase;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.UserDatabaseHandler;
@@ -35,7 +36,7 @@ public class LoginController{
 	
 	public LoginController() {
 		System.out.println("Oppretter mockingdatabase");
-		this.database= new MockingDatabase();
+		this.database= new ConnectionSQL();
 //		Scene scene=(Scene) button_nybruker.getScene();
 //		
 //		if(scene.getUserData() instanceof String) {

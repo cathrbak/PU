@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import tdt4140.gr1835.app.core.ConnectionSQL;
 import tdt4140.gr1835.app.core.MockingDatabase;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.UserDatabaseHandler;
@@ -24,7 +25,7 @@ public class Ny_BrukerController {
 	UserDatabaseHandler database;
 	
 	public Ny_BrukerController() {
-		this.database=new MockingDatabase();
+		this.database=new ConnectionSQL();
 	}
 	
 	List<String> inputs= new ArrayList<>();
@@ -61,7 +62,7 @@ public class Ny_BrukerController {
 	
 	
 	@FXML
-	public void handleButtonRegistrer() throws IOException{
+	public void handleButtonRegistrer() throws IOException, SQLException{
 		infotext.setVisible(false);
 		System.out.println("Tester om alle feltene er riktig");
 		try {
@@ -82,13 +83,12 @@ public class Ny_BrukerController {
 		
 		try {
 			database.getNurse(username.getText());
-		} catch (SQLException e) {
 			infotext.setText("Det eksisterer en bruker med dette brukernavnet");
+			System.out.println("Det eksisterer en bruker med dette brukernavnet");
 			infotext.setVisible(true);
-			System.out.println(e.getMessage());
 			return;
 		}catch (IllegalStateException e) {
-			if (e.getMessage().equals("Denne brukeren eksisterer ikke i databasen")) {
+			if (e.getMessage().equals("Denne brukeren eksisterer ikke i databasen")) { //Dette er burde vi endre på slik at den kanskje returnerer null isteden
 				Nurse newNurse= new Nurse(username.getText());
 				newNurse.setEmail(email.getText());
 				newNurse.setFaculty(faculty.getText());
@@ -96,6 +96,7 @@ public class Ny_BrukerController {
 				newNurse.setPassword(password.getText());
 				newNurse.setPhoneNumber(phoneNumber.getText());
 				newNurse.setSecondName(familyName.getText());
+				System.out.println("Oppretter objektet: "+newNurse);
 				
 				try {
 					database.createNewNurse(newNurse);
@@ -108,7 +109,7 @@ public class Ny_BrukerController {
 		}
 
 		try {
-			System.out.println(database.getNurse(username.getText()));
+			System.out.println("Dette ligger nå i databasen: "+database.getNurse(username.getText()));
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
