@@ -77,7 +77,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 	@Override
-	public Collection<Student> getStudents(Nurse nurse) {
+	public List<Student> getStudents(Nurse nurse) {
 		List<Student> result= students.stream()
 				.filter(u->u.getFaculty().equals(nurse.getFaculty()))
 				.collect(Collectors.toList());
@@ -120,7 +120,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 	@Override
-	public List<String> getAnswers(Student student) throws SQLException {
+	public List<Table> getAnswers(Student student) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

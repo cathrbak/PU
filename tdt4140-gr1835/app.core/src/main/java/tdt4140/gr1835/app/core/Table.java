@@ -81,6 +81,13 @@ public class Table  {
 	public int getSpm1() {
 		return Spm1.get();
 	}
+
+	@Override
+	public String toString() {
+		return "Table [PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
+				+ ", Spm5=" + Spm5 + ", Spm6=" + Spm6 + ", Spm7=" + Spm7 + ", Spm8=" + Spm8 + ", Spm9=" + Spm9
+				+ ", Spm10=" + Spm10 + ", Total=" + Total + "]";
+	}
 	
 	
 	

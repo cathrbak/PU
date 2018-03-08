@@ -2,7 +2,7 @@ package tdt4140.gr1835.app.core;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
 import java.sql.DriverManager;
 import java.sql.Connection;
@@ -11,18 +11,22 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class ConnectionSQL implements UserDatabaseHandler{
-		
 
-	
-	
 	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35&useSSL=false";
-	
-	
-	
+ 
 	private Connection getConnection() throws SQLException{
 		return DriverManager.getConnection(dbURL);
-		
 	}
+	
+	private boolean containsNurse(Nurse nurse) {
+		
+		return false;
+	}
+	
+	public void closeConnection() throws SQLException {
+		getConnection().close();
+	}
+	
 	private Statement getStatement() throws SQLException{
 		Connection conn = getConnection();
 		return conn.createStatement();
@@ -33,8 +37,6 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		try {
 			Statement stmt = getStatement();
 			String faculty = nurse.getFaculty();
-
-			
 			String query = "INSERT INTO helsesoster(brukernavn, passord, fakultet, fornavn"
 					+ ", etternavn, email, telefonNr) VALUES ('" + nurse.getUsername() + "', '" +
 					nurse.getPassword() + "', " + switchInsert(faculty) + ", '" + nurse.getFirstName()
@@ -51,7 +53,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 	
 	@Override
-		public Nurse getNurse(String username) throws SQLException {
+	public Nurse getNurse(String username) throws SQLException {
 			
 			ResultSet rs = null;
 			Nurse nurse = new Nurse(username);
@@ -61,6 +63,11 @@ public class ConnectionSQL implements UserDatabaseHandler{
 				
 				if(stmt.execute(query)) {
 					rs = stmt.getResultSet();
+					
+					if (!rs.isBeforeFirst() ) {    
+					    System.out.println("No data"); 
+					    throw new IllegalStateException("Denne brukeren eksisterer ikke i databasen"); //Dette er burde vi endre pÃ¥ slik at den kanskje returnerer null isteden
+					} 
 				}
 			}
 			catch (SQLException e) {
@@ -85,7 +92,6 @@ public class ConnectionSQL implements UserDatabaseHandler{
 				
 				String phoneNumber = rs.getString("telefonNr");
 				nurse.setPhoneNumber(phoneNumber);
-				
 			}
 			
 			return nurse; 
@@ -184,7 +190,9 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		 
 		return nurse; 
 	}
+	
 	@Override
+	
 	public void createNewStudent(Student student) throws SQLException {
 		//Mï¿½ fï¿½ til at man ikke trenger ï¿½ oppgi bï¿½de helsesosterID og fakultet. HelsesosterID burde komme automatisk nï¿½r
 		//man oppgir fakultet.
@@ -235,12 +243,11 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 
 	@Override
-    public Collection<Student> getStudents(Nurse nurse) throws Exception {
-        Collection<Student> students = new ArrayList<Student>();
+    public List<Student> getStudents(Nurse nurse) throws Exception {
+        List<Student> students = new ArrayList<Student>();
         
-        Integer faculty = new Integer(null); 
         String nurseFaculty = nurse.getFaculty();
-        faculty = switchInsert(nurseFaculty);
+        Integer faculty = switchInsert(nurseFaculty);
         ResultSet rs = null;
         
         try {
@@ -259,13 +266,9 @@ public class ConnectionSQL implements UserDatabaseHandler{
             String username = rs.getString("brukernavn");
             Student student = getStudent(username);
             students.add(student);
-            
-            
         }
         return students;
     }
-	
-
 
 	public int switchInsert(String faculty) {
 		Integer fakultetID = 0;
@@ -331,16 +334,10 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
-	
-	
-	//Sverreeeeeeee! Her kommer den metoden vi snakket om i sted. Den kjører en spørring på svarlogg
-	// og får ut en liste med strenger, der hver streng er en representasjon av svarene på en undersøkelse
-	// f.eks "1,3,4,2,4,2,2"
-	
 	@Override
-	public List<String> getAnswers(Student student) throws SQLException { 
+	public List<Table> getAnswers(Student student) throws SQLException { 
 
-		List<String> answers = new ArrayList<String>();
+		List<Table> answers = new ArrayList<>();
 		
 		ResultSet rs = null;
 		int studentID = getStudentID(student);
@@ -359,23 +356,50 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 		while(rs.next()) {
 			String answer = rs.getString("svarString");
-			
-			answers.add(answer);
-			
-			
+			answers.add(listToTableConverter(student, answer));
 		}
-		
-		
-		
 		return answers;
 	}
+	
+	public static void main(String[] args) throws Exception {
+		ConnectionSQL database= new ConnectionSQL();
+	 	try{
+	 		System.out.println(database.getNurse("sverress"));
+	 	}catch (Exception e) {
+			
+		}
+//	 	Nurse testNurse = new Nurse("cathrine");
+//		testNurse.setPassword("c");
+//		testNurse.setFirstName("Cathrine");
+//		testNurse.setSecondName("Arke");
+//		testNurse.setFaculty("IE");
+//		testNurse.setEmail("sverress@stud.tnu");
+//		database.createNewNurse(testNurse);
+//		System.out.println(database.getNurse("cathrine"));
+		
+	}
+	
+	private Table listToTableConverter(Student student, String anslist) throws SQLException {
+		int sum=0;
+		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen pÃ¥ komma, og lager en liste av den
+		List<Integer> intlist=new ArrayList<>();
+		for(String c:stringList) {
+			sum+=Integer.parseInt(c); //Summerer opp for totalen
+			intlist.add(Integer.parseInt(c)); //Legger til svar i svarliste kalt intlist
+		}
+		//Returnerer Tableobjekt med student og svar
+		return new Table(getStudentID(student),intlist.get(0), intlist.get(1),intlist.get(2),intlist.get(3),intlist.get(4),intlist.get(5),intlist.get(6), intlist.get(7), intlist.get(8), intlist.get(9), sum);
+	}
+	
+	//Ser nÃ¥ at det kan vÃ¦re hensiktsmessig Ã¥ legge inn studentID som et felt i Student-klassen for Ã¥ slippe ny spÃ¸rring til databasen
 	private int getStudentID(Student student) throws SQLException {
 		Integer studentID = null;
 		
 		ResultSet rs = null;
 		
 		try {
-			String query = "SELECT * FROM datagiver WHERE brukernavn=" + student.getUsername() +";";
+			String query = "SELECT * FROM `datagiver` WHERE `brukernavn` LIKE '" + student.getUsername() +"'";
+			//fra myphpadmin: "SELECT * FROM `datagiver` WHERE `brukernavn` LIKE 'sverress'";
 			Statement stmt = getStatement();
 			
 			if(stmt.execute(query)) {
@@ -385,10 +409,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		
 		while(rs.next()) {
 			studentID = rs.getInt("DatagiverID");
-			
 		} 
 		
 		return studentID;

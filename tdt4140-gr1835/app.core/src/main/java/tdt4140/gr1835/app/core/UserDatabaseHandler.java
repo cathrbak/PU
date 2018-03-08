@@ -17,10 +17,11 @@ public interface UserDatabaseHandler {
 	public void updateStudent(Student student) throws SQLException;
 	
 	//Gir meg datagivere til denne helses�steren
-	public Collection<Student> getStudents(Nurse nurse) throws SQLException, Exception;
+	//Denne burde byttes om til List
+	public List<Student> getStudents(Nurse nurse) throws SQLException, Exception;
 	
 	//Gir meg svarene til en student
-	public List<String> getAnswers(Student student) throws SQLException;
+	public List<Table> getAnswers(Student student) throws SQLException;
 	
 
 }
