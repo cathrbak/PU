@@ -1,11 +1,21 @@
 ## Forventet adferd
 <!--- If you're describing a bug, tell us what should happen -->
 <!--- If you're suggesting a change/improvement, tell us how it should work -->
+
+<!--- Her vil det være narturlig å legge til en form for "HOW TO DEMO" som beskriver hva som skal kunne gjøres for å lukke issuet -->
+
 Formålet med issuet er å kunne opprette en web-server som kjører lokalt på pcen. Serveren skal kunne respondere på HTTP meldinger over en web-browser. I tillegg skal web-serveren integreres med prosjektet slik at det bygger riktig når vi kjører det i git CI.
+
+
+## Avhengiheter
+<!-- Hvilke issues er avhengig av at denne issuen blir ferdig, og hvilke issues er denne issuen avhening av-->
+Avhengigheter: (ingen)
+Issues som må vente på denne issuen: #63
 
 ## Nåværnde oppførsel
 <!--- If describing a bug, tell us what happens instead of the expected behavior -->
 <!--- If suggesting a change/improvement, explain the difference from current behavior -->
+
 <!--- Har ikke lagt til noe på nåværende oppførsel på denne issuen -->
 
 ## Mulig løsning
@@ -23,11 +33,7 @@ Kommer til å bruke denne videoen så langt det fungerer: https://www.youtube.co
 ## Context
 <!--- How has this issue affected you? What are you trying to accomplish? -->
 <!--- Providing context helps us come up with a solution that is most useful in the real world -->
-Denne webserveren skal videre fungere som et REST API for applikasjonen
 
-## Your Environment
-<!--- Include as many relevant details about the environment you experienced the bug in -->
-* Version used:
-* Browser Name and version:
-* Operating System and version (desktop or mobile):
-* Link to your project:
+<!--- Her burde man også referere til brukerhistorien til denne issuen hvis det eksisterer -->
+Brukerhistorie: Nettside for student
+Denne webserveren skal videre fungere som et REST API for applikasjonen
