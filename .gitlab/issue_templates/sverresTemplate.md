@@ -6,10 +6,12 @@ Formålet med issuet er å kunne opprette en web-server som kjører lokalt på p
 ## Nåværnde oppførsel
 <!--- If describing a bug, tell us what happens instead of the expected behavior -->
 <!--- If suggesting a change/improvement, explain the difference from current behavior -->
+<!--- Har ikke lagt til noe på nåværende oppførsel på denne issuen -->
 
 ## Mulig løsning
 <!--- Not obligatory, but suggest a fix/reason for the bug, -->
 <!--- or ideas how to implement the addition or change -->
+Kommer til å bruke denne videoen så langt det fungerer: https://www.youtube.com/watch?v=Vvnliarkw48. @carlfly har sett litt på dette tidligere, så @sverress og @carlfly kommer til å jobbe med dette ganske parallelt.
 
 ## Handlingsplan
 <!--- Provide a link to a live example, or an unambiguous set of steps to -->
@@ -21,6 +23,7 @@ Formålet med issuet er å kunne opprette en web-server som kjører lokalt på p
 ## Context
 <!--- How has this issue affected you? What are you trying to accomplish? -->
 <!--- Providing context helps us come up with a solution that is most useful in the real world -->
+Denne webserveren skal videre fungere som et REST API for applikasjonen
 
 ## Your Environment
 <!--- Include as many relevant details about the environment you experienced the bug in -->
