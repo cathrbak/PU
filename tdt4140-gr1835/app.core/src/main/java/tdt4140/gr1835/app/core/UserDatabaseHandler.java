@@ -10,11 +10,13 @@ public interface UserDatabaseHandler {
 	public void createNewNurse(Nurse nurse) throws SQLException;
 	public void updateNurse(Nurse nurse) throws SQLException;
 	public Nurse getNurse(String username) throws SQLException;
+	public void deleteNurse(Nurse nurse) throws SQLException;
 
 	//Metoder for Studenter
 	public void createNewStudent(Student student) throws SQLException;
 	public Student getStudent(String username) throws SQLException;
 	public void updateStudent(Student student) throws SQLException;
+	public void deleteStudent(Student student) throws SQLException;
 	
 	//Gir meg datagivere til denne helses�steren
 	//Denne burde byttes om til List
