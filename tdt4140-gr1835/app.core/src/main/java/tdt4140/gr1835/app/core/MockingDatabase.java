@@ -137,6 +137,12 @@ public class MockingDatabase implements UserDatabaseHandler{
 		
 	}
 
+	@Override
+	public void closeConnection() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 

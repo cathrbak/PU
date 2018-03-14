@@ -22,14 +22,12 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return DriverManager.getConnection(dbURL);
 	}
 	
-	private boolean containsNurse(Nurse nurse) {
-		
-		return false;
-	}
 	
 	public void closeConnection() throws SQLException {
 		getConnection().close();
 	}
+	
+	
 	
 	public Statement getStatement() throws SQLException{
 		Connection conn = getConnection();
@@ -59,6 +57,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
+		
+		closeConnection();
 		
 	}
 	
@@ -114,7 +114,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 					nurse.setPhoneNumber(phoneNumber);
 				}
 			}
-			
+			closeConnection();
 			return nurse; 
 		}
 	
@@ -137,6 +137,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
+		closeConnection();
 	}
 	
 	public void deleteNurse(Nurse nurse) throws SQLException{
@@ -152,6 +153,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
+		closeConnection();
 		
 	}
 	
@@ -220,6 +222,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			}
 			
 		}
+		closeConnection();
 		return student;
 	}
 	
@@ -243,7 +246,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			nurse = getNurse(username);
 		} 
 		
-		 
+		closeConnection();
 		return nurse; 
 	}
 	
@@ -270,7 +273,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		
+		closeConnection();
 	}
 
 	@Override
@@ -296,6 +299,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
+		closeConnection();
 	}
 	
 	public void deleteStudent(Student student) throws SQLException{
@@ -311,6 +315,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
+		closeConnection();
 	}
 
 	@Override
@@ -338,6 +343,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
             Student student = getStudent(username);
             students.add(student);
         }
+        closeConnection();
         return students;
     }
 
@@ -376,7 +382,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		}
 		
 		
-	
+		
 		return fakultetID;
 		
 	}
@@ -432,6 +438,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			String answer = rs.getString("svarString");
 			answers.add(listToTableConverter(student, answer));
 		}
+		closeConnection();
 		return answers;
 	}
 	
@@ -490,6 +497,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			studentID = rs.getInt("DatagiverID");
 		} 
 		
+		closeConnection();
 		return studentID;
 	}
 	
@@ -513,7 +521,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		while(rs.next()) {
 			nurseID = rs.getInt("HelsesosterID");
 		} 
-		
+		closeConnection();
 		return nurseID;
 	}
 

@@ -55,7 +55,7 @@ public class ConnectionSQLTest {
 	public void tearDown() throws SQLException{
 		udh.deleteNurse(testNurse);
 		udh.deleteStudent(testStudent);
-		
+		udh.closeConnection();
 		
 		udh = null;
 		testNurse = null;

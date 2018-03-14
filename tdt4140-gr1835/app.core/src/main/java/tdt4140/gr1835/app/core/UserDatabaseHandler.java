@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface UserDatabaseHandler {
 	
+	public void closeConnection() throws SQLException;
+	
 	//Metoder for Nurses
 	public void createNewNurse(Nurse nurse) throws SQLException;
 	public void updateNurse(Nurse nurse) throws SQLException;
