@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+   <children>
+      <Text fill="#e8e2e2" layoutX="24.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Fornavn Etternavn">
+         <font>
+            <Font name="Copperplate" size="36.0" />
+         </font>
+      </Text>
+      <Button fx:id="sendMessageButton" layoutX="607.0" layoutY="270.0" mnemonicParsing="false" onMouseReleased="#handleSendMessageButton" prefHeight="29.0" prefWidth="141.0" stylesheets="@stylesheet.css" text="Send melding" textFill="#e8e2e2">
+         <font>
+            <Font name="Lucida Console" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="returnButton" layoutX="675.0" layoutY="36.0" mnemonicParsing="false" onMouseReleased="#handleReturnButton" prefHeight="29.0" prefWidth="73.0" stylesheets="@stylesheet.css" text="Tilbake" textFill="#e8e2e2">
+         <font>
+            <Font name="Lucida Console" size="13.0" />
+         </font>
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <TableView fx:id="tableID" layoutX="24.0" layoutY="324.0" prefHeight="200.0" prefWidth="724.0" style="-fx-background-color: e8e2e2;" stylesheets="@stylesheet.css">
+         <columns>
+            <TableColumn fx:id="Spm1" prefWidth="60.0" text="Spm 1" />
+            <TableColumn fx:id="Spm2" prefWidth="60.0" text="Spm 2" />
+            <TableColumn fx:id="Spm3" prefWidth="60.0" text="Spm 3" />
+            <TableColumn fx:id="Spm4" prefWidth="60.0" text="Spm 4" />
+            <TableColumn fx:id="Spm5" prefWidth="60.0" text="Spm 5" />
+            <TableColumn fx:id="Spm6" prefWidth="60.0" text="Spm 6" />
+            <TableColumn fx:id="Spm7" prefWidth="60.0" text="Spm 7" />
+            <TableColumn fx:id="Spm8" prefWidth="60.0" text="Spm 8" />
+            <TableColumn fx:id="Spm9" prefWidth="60.0" text="Spm 9" />
+            <TableColumn fx:id="Spm10" prefWidth="60.0" text="Spm 10" />
+            <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
+            <TableColumn fx:id="Total1" prefWidth="60.0" text="Dato" />
+         </columns>
+      </TableView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/user_icon_profile.jpg" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER_RIGHT" layoutX="275.0" layoutY="120.0" styleClass="label_text" stylesheets="@stylesheet.css" text="E-post" />
+      <Label alignment="CENTER_RIGHT" layoutX="221.0" layoutY="180.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Telefonnummer" />
+      <Label alignment="CENTER_RIGHT" layoutX="269.0" layoutY="240.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Fakultet" />
+      <TextField layoutX="346.0" layoutY="115.0" prefHeight="27.0" prefWidth="215.0" styleClass="text-field" stylesheets="@stylesheet.css" />
+      <TextField layoutX="346.0" layoutY="175.0" prefHeight="27.0" prefWidth="215.0" styleClass="text-field" stylesheets="@stylesheet.css" />
+      <TextField layoutX="346.0" layoutY="235.0" prefHeight="27.0" prefWidth="215.0" styleClass="text-field" stylesheets="@stylesheet.css" />
+   </children>
+</AnchorPane>

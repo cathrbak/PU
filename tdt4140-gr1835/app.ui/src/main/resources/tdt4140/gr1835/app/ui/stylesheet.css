@@ -1,5 +1,5 @@
 .root {
-     -fx-background-color: white;
+     -fx-background-color: #7386B1;
 }
 
 .button {
@@ -33,6 +33,13 @@
     -fx-background-color: -fx-text-box-border, -fx-background ;
     -fx-background-insets: 0, 0 0 1 0 ;
     -fx-background-radius: 0 ;
+}
+
+.text-melding {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-font-size: 18px;
 }
 
 .password-field{
