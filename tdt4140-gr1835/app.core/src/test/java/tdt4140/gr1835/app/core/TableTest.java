@@ -9,16 +9,13 @@ import junit.framework.TestCase;
 public class TableTest extends TestCase{
 	
 	private Table testTable;
+	private Table testTableTom;
 
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Setup");
 		testTable=new Table(1,1,2,3,4,5,1,2,3,4,5,30);
-	}
-	@Before
-	public void setUpEmpty() throws Exception {
-		System.out.println("Setup");
-		testTable=new Table(1);
+		testTableTom = new Table(1);
 	}
 
 	@Test
@@ -29,13 +26,33 @@ public class TableTest extends TestCase{
 	}
 	
 	@Test
+	public void testNewTomTable() {
+		System.out.println("testTomTable");
+		assertFalse(testTableTom==null);
+		assertEquals(1, testTableTom.getPersonID());
+		assertEquals(0, testTableTom.getTotal());
+	}
+	
+	@Test
+	public void testRightValueEmptyConstructor() {
+		System.out.println("TestRightValueEmptyConstructor");
+		int expected = testTableTom.getPersonID();
+		assertEquals(expected, 1);
+		try {
+			Table testTable2= new Table(0);
+			fail("Testen skulle ha feilet pga at personID er mindre enn 1");
+		}catch(IllegalArgumentException e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
+		
+	}
+	@Test
 	public void testRightValue() {
 		System.out.println("testAllInt");
 		Table testTable2= new Table(1,1,2,3,4,5,1,2,3,4,5,30);
 		int expected = testTable.getSpm5();
 		assertEquals(expected, testTable2.getSpm5());
 		try {
-			//Table testTable2= new Table(1,1,2,3,4,50,1,2,3,4,5,30);
 			testTable2.setSpm5(50);
 			fail("Testen skulle ha feilet pga at et av tallene er større enn 5");
 		}catch(IllegalArgumentException e) {
@@ -47,7 +64,6 @@ public class TableTest extends TestCase{
 @Test
 public void testRightValueConstructor() {
 	System.out.println("testValue1");
-	//Table testTable2= new Table(1,1,2,3,4,5,1,2,3,4,5,30);
 	int expected = testTable.getSpm1();
 	assertEquals(expected, 1);
 	try {
@@ -68,6 +84,11 @@ public void testRightValueConstructor() {
 	
 }
 
+
+@Test 
+public void testSimpleIntegerProperty() {
+	
+}
 @Test
 public void testSum() {
 	Table testTable2= new Table(1,1,2,3,4,5,1,2,3,4,5,30);
@@ -90,6 +111,7 @@ public void testSum() {
 	public void tearDown() {
 		System.out.println("tearDown");
 		testTable=null;
+		testTableTom = null;
 	}
 
 }

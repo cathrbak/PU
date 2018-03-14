@@ -16,11 +16,16 @@ public class Table  {
 	private SimpleIntegerProperty Spm8;
 	private SimpleIntegerProperty Spm9;
 	private SimpleIntegerProperty Spm10;
-	private final SimpleIntegerProperty Total;
+	private SimpleIntegerProperty Total;
 	
 	public Table(int PersonID) {
-		this.PersonID = new SimpleIntegerProperty(PersonID);
-		this.Total = new SimpleIntegerProperty(0);
+		if (PersonID > 0) {
+			this.PersonID = new SimpleIntegerProperty(PersonID);
+			this.Total = new SimpleIntegerProperty(0);	
+		}
+		else {
+			throw new IllegalArgumentException("PersonID må være større enn 0");
+		}
 	}
 	
 	public Table(int PersonID, int Spm1, int Spm2,int Spm3,int Spm4,int Spm5,int Spm6,int Spm7,int Spm8,int Spm9,int Spm10,int Total) {
