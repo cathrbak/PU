@@ -125,6 +125,18 @@ public class MockingDatabase implements UserDatabaseHandler{
 		return null;
 	}
 
+	@Override
+	public void deleteNurse(Nurse nurse) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+//sånn
+	@Override
+	public void deleteStudent(Student student) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 
