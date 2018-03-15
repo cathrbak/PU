@@ -31,7 +31,10 @@ public class ConnectionSQLTest {
 		udh = new ConnectionSQL();
 		
 		testNurse = new Nurse("testNurseUN");
-		testNurse.setFaculty("MH");
+		testNurse.setFaculty("OK");
+		testNurse.setEmail("jajaja@gmail.com");
+		testNurse.setFirstName("Sos");
+		
 		
 		testStudent = new Student("testStudentUN");
 		testStudent.setPassword("testPass");
@@ -77,6 +80,7 @@ public class ConnectionSQLTest {
 		
 		udh.createNewStudent(testStudent);
 		
+		
 		assertEquals("Brukernavn",testStudent.getUsername(), udh.getStudent("testStudentUN").getUsername());
 		assertEquals("Passord",testStudent.getPassword(), udh.getStudent("testStudentUN").getPassword());
 		assertEquals("Fakultet",testStudent.getFaculty(), udh.getStudent("testStudentUN").getFaculty());
@@ -93,8 +97,8 @@ public class ConnectionSQLTest {
 		
 		try {
 			Student dobbeltgjenger = new Student("testStudentUN");
-			dobbeltgjenger.setFaculty("AD");
-			dobbeltgjenger.setNurse(udh.getNurse("testsoster"));
+			dobbeltgjenger.setFaculty("MH");
+			dobbeltgjenger.setNurse(udh.getNurse("sostertiltester"));
 			udh.createNewStudent(dobbeltgjenger);
 			
 			fail("Prover a legge til bruker som allerede eksisterer med dette brukernavnet. Burde utlose en IllegalStateException");
@@ -106,42 +110,44 @@ public class ConnectionSQLTest {
 	}
 	
 	
-	@Test //Tror ikke updateStudent fungerer helt.
+	@Test 
 	public void testUpdateStudent() throws SQLException {
-		
+		udh.createNewStudent(testStudent);
 		Student endretStudent=udh.getStudent("testStudentUN");
 		endretStudent.setEmail("hei@gmail.com");
 		endretStudent.setFaculty("MH");
 		endretStudent.setNurse(udh.getNurse("testsoster"));
 		endretStudent.setPassword("frans");
 		udh.updateStudent(endretStudent);
-		//assertEquals("hei@gmail.com",udh.getStudent(endretStudent.getUsername()).getEmail() );
-		//assertEquals("frans", udh.getStudent(endretStudent.getUsername()).getPassword());
+		
+		assertEquals("hei@gmail.com",udh.getStudent(endretStudent.getUsername()).getEmail() );
+		assertEquals("frans", udh.getStudent(endretStudent.getUsername()).getPassword());
 	}
 	
 	
-	/*
+	
 	@Test
 	public void testgetStudents() throws Exception {
 		List<Student> expected= new ArrayList<>();
+		List<Student> fromDB= new ArrayList<>();
 		
 		//Oppretter studenter som tilhorer MH fakultetet
 		Student s=new Student("haraldmu");
 		
-		s.setFaculty("MH");
-		s.setNurse(udh.getNurse("testsoster"));
+		s.setFaculty("OK");
+		s.setNurse(udh.getNurse("sostertiltester"));
 		
 		expected.add(s);
 		Student n=new Student("alexoh");
 		
-		n.setFaculty("MH");
-		n.setNurse(udh.getNurse("testsoster"));
+		n.setFaculty("OK");
+		n.setNurse(udh.getNurse("sostertiltester"));
 		
 		expected.add(n);
 		Student j=new Student("petter");
 		
-		j.setFaculty("MH");
-		j.setNurse(udh.getNurse("testsoster"));
+		j.setFaculty("OK");
+		j.setNurse(udh.getNurse("sostertiltester"));
 		
 		expected.add(j);
 		
@@ -151,27 +157,41 @@ public class ConnectionSQLTest {
 		udh.createNewStudent(j);
 		
 		//Sjekker om jeg kun får ut disse studentene og ikke noen andre
-		assertThat(udh.getStudents(testNurse),is(expected));
+		//assertThat(udh.getStudents(testNurse),is(expected));
+		fromDB = udh.getStudents(testNurse);
+		Student first = expected.get(0);
+		Student firstdb = fromDB.get(0);
+		Student second = expected.get(1);
+		Student seconddb = fromDB.get(1);
+		Student third = expected.get(2);
+		Student thirddb = fromDB.get(2);
+		assertEquals("Sjekker om forste student i begge listene er like", first.getUsername(),firstdb.getUsername());
+		assertEquals("Sjekker om andre student i begge listene er like", second.getUsername(),seconddb.getUsername());
+		assertEquals("Sjekker om tredje student i begge listene er like", third.getUsername(),thirddb.getUsername());
+
+		
+		
 		udh.deleteStudent(udh.getStudent("haraldmu"));
 		udh.deleteStudent(udh.getStudent("alexoh"));
 		udh.deleteStudent(udh.getStudent("petter"));
 	}
-	*/
-	/*
+	
+	
 	@Test
 	public void testCreateNewNurse() throws SQLException {
 		udh.createNewNurse(testNurse);
-		assertEquals("Prøver å lage en ny Nurse",testNurse, udh.getNurse("testNurseUN"));
 		
-		try {
-			Nurse dobbeltgjenger = new Nurse("testNurseUN");
-			udh.createNewNurse(dobbeltgjenger);
-			fail("Prøver å legge til bruker som allerede eksisterer med dette brukernavnet. Burde utløse en IllegalStateException");
-		}catch (IllegalStateException e) {
-			assertTrue(e.getClass().equals(IllegalStateException.class));
-		}
+		assertEquals("Brukernavn",testNurse.getUsername(), udh.getNurse("testNurseUN").getUsername());
+		assertEquals("Passord",testNurse.getPassword(), udh.getNurse("testNurseUN").getPassword());
+		assertEquals("Fornavn",testNurse.getFirstName(), udh.getNurse("testNurseUN").getFirstName());
+		assertEquals("Etternavn",testNurse.getSecondName(), udh.getNurse("testNurseUN").getSecondName());
+		assertEquals("Fakultet",testNurse.getFaculty(), udh.getNurse("testNurseUN").getFaculty());
+		assertEquals("TelefonNr",testNurse.getPhoneNumber(), udh.getNurse("testNurseUN").getPhoneNumber());
+		assertEquals("Email",testNurse.getEmail(), udh.getNurse("testNurseUN").getEmail());
+		
+		udh.deleteNurse(testNurse);
 	}
-	*/
+	
 
 	
 }

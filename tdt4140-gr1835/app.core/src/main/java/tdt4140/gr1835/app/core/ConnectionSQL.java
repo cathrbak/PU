@@ -52,7 +52,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 					nurse.getPhoneNumber() + ");";
 			
 			stmt.executeUpdate(query);
-			System.out.println(query);
+			
 		}
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -87,30 +87,32 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			while(rs.next()) {
 				
 				String password = rs.getString("passord");
-				if(!rs.wasNull()) {
+				if(!(password.equals("null"))) {
 					nurse.setPassword(password);
 				}
 								
 				Integer faculty = rs.getInt("fakultet");
-				if(!rs.wasNull()) {
+				if(!(faculty==0)) {
 					nurse.setFaculty(switchFakultetIDtoName(faculty));
 				}
 					
 				String firstName = rs.getString("fornavn");
-				if(!rs.wasNull()) {
+				if(!(firstName.equals("null"))) {
 					nurse.setFirstName(firstName);
 				}
 				
 				String secondName = rs.getString("etternavn");
+				if(!(secondName.equals("null"))) {
 					nurse.setSecondName(secondName);
-				
+				}
+					
 				String email = rs.getString("email");
-				if(!rs.wasNull()) {
+				if(!(email.equals("null"))) {
 					nurse.setEmail(email);
 				}
 				
 				String phoneNumber = rs.getString("telefonNr");
-				if(!rs.wasNull()) {
+				if(phoneNumber != null) {
 					nurse.setPhoneNumber(phoneNumber);
 				}
 			}
@@ -144,11 +146,11 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		try {
 			Statement stmt = getStatement();
 			
-			String query = "DELETE from datagiver WHERE brukernavn='" + nurse.getUsername()
+			String query = "DELETE from helsesoster WHERE brukernavn='" + nurse.getUsername()
 			+ "';";
 			
 			stmt.executeUpdate(query);
-			System.out.println(query);
+			//System.out.println(query);
 		}
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -174,49 +176,51 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
+		
+		
+		
 		while(rs.next()) {
 			String password = rs.getString("passord");
-			if(!rs.wasNull()) {
+			if(!(password.equals("null"))) {
 				student.setPassword(password);
 			}
 				
 			Integer faculty = rs.getInt("fakultet");
-			if(!rs.wasNull()) {
+			if(!(faculty==0)) {
 				student.setFaculty(switchFakultetIDtoName(faculty));
 			}
 			
 			boolean isAnonymous = rs.getBoolean("anonymitet");
-			if(!rs.wasNull()) {
-				student.setAnonymous(isAnonymous);
-			}
+			student.setAnonymous(isAnonymous);
+			
 			
 			String firstName = rs.getString("fornavn");
-			if(!rs.wasNull()) {
+			if(!(firstName.equals("null"))) {
 				student.setFirstName(firstName);
 			}
 			
 			String secondName = rs.getString("etternavn");
-			if(!rs.wasNull()) {
+			if(!(secondName.equals("null"))) {
 				student.setSecondName(secondName);
 			}
 			
 			String sex = rs.getString("kjonn");
-			if(!rs.wasNull()) {
+			if(!(sex.equals("null")) ) {
 				student.setSex(sex);
 			}
 				
 			String email = rs.getString("email");
-			if(!rs.wasNull()) {
+			if(!(email.equals("null"))) {
 				student.setEmail(email);
 			}
 			
 			String phoneNumber = rs.getString("telefonNr");
-			if(!rs.wasNull()) {
+			if(phoneNumber != null) {
 				student.setPhoneNumber(phoneNumber);
 			}
 			
-			int nurseID = rs.getInt("HelsesosterID");
-			if(!rs.wasNull()) {
+			Integer nurseID = rs.getInt("HelsesosterID");
+			if(!(nurseID==0)) {
 				Nurse nurse = getNurseFromID(nurseID);
 				student.setNurse(nurse);
 			}
@@ -310,7 +314,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			+ "';";
 			
 			stmt.executeUpdate(query);
-			System.out.println(query);
+			//System.out.println(query);
 		}
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
