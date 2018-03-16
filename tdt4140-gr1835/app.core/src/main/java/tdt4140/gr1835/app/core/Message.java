@@ -1,13 +1,12 @@
 package tdt4140.gr1835.app.core;
 
-import java.sql.Time;
-
+import java.sql.Timestamp;
 
 public class Message {
 	
 	Student student;
 	Nurse nurse;
-	Time time;
+	Timestamp time;
 	String text;
 	
 
@@ -45,8 +44,18 @@ public class Message {
 	public void setText(String text) {
 		if (text == "") {
 			throw new IllegalArgumentException("Meldingen kan ikke være tom.");
+		} else if (text.length() > 250) {
+			throw new IllegalArgumentException("Meldingen kan ikke være lengre enn 255 tegn.");
 		}
 		this.text = text;
+	}
+	
+	public Timestamp getTime() {
+		return time;
+	}
+	
+	public void setTime(Timestamp time) {
+		this.time = time;
 	}
 	
 }

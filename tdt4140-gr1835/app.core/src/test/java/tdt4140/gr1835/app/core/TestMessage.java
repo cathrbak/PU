@@ -49,6 +49,15 @@ public class TestMessage {
 		} catch (IllegalArgumentException e) {
 			assertTrue(e.getClass().equals(IllegalArgumentException.class));
 		}
+		try {
+			testMessage.setText("QwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxc"
+					+ "QwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxc"
+					+"QwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxc"
+					+ "QwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxchei");
+			fail("Prøver å sende en alt for lang melding. Skal ikke være mulig.");
+		} catch (IllegalArgumentException e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
 	}
 	
 	@Test
@@ -64,21 +73,5 @@ public class TestMessage {
 		assertFalse(testNurse==null);
 		assertEquals(testNurse, testMessage.getSender());
 	}
-	
-	/*
-	@Test
-	public void testTime() {
-		System.out.println("testTime");
-		Time expected = ;
-		testUser.setDate(expected);
-		assertEquals(expected, testMessage.getDate());
-		try {
-			testMessage.setTime("14-03-2017");
-			fail("Formatet på datoen er feil.");
-		} catch (IllegalArgumentException e) {
-			assertTrue(e.getClass().equals(IllegalArgumentException.class));
-		}
-	}
-	*/
 	
 }
