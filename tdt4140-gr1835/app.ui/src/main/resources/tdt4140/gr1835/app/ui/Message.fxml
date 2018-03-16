@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextArea layoutX="92.0" layoutY="84.0" prefHeight="237.0" prefWidth="408.0" promptText="Skriv inn din melding her..." stylesheets="@stylesheet.css">
+      <TextArea fx:id="textbox" onTextChange="#handleTextboxChange" layoutX="92.0" layoutY="84.0" prefHeight="237.0" prefWidth="408.0" promptText="Skriv inn din melding her..." stylesheets="@stylesheet.css">
          <font>
             <Font size="18.0" />
          </font></TextArea>
