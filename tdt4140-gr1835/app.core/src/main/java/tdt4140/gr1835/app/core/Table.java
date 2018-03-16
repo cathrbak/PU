@@ -3,29 +3,35 @@ package tdt4140.gr1835.app.core;
 import javafx.beans.property.SimpleIntegerProperty;
 
 //dette er en klasse som behandler svarene til en person, personen identifiseres ved PersonID
-//foreløpig er svarene på feil format, ikke en svarstreng slik i databasen
+
 public class Table  {
-	private final SimpleIntegerProperty PersonID;
-	private final SimpleIntegerProperty Spm1;
-	private final SimpleIntegerProperty Spm2;
-	private final SimpleIntegerProperty Spm3;
-	private final SimpleIntegerProperty Spm4;
+	private SimpleIntegerProperty PersonID;
+	private SimpleIntegerProperty Spm1;
+	private SimpleIntegerProperty Spm2;
+	private SimpleIntegerProperty Spm3;
+	private SimpleIntegerProperty Spm4;
 	private SimpleIntegerProperty Spm5;
-	private final SimpleIntegerProperty Spm6;
-	private final SimpleIntegerProperty Spm7;
-	private final SimpleIntegerProperty Spm8;
-	private final SimpleIntegerProperty Spm9;
-	private final SimpleIntegerProperty Spm10;
-	private final SimpleIntegerProperty Total;
+	private SimpleIntegerProperty Spm6;
+	private SimpleIntegerProperty Spm7;
+	private SimpleIntegerProperty Spm8;
+	private SimpleIntegerProperty Spm9;
+	private SimpleIntegerProperty Spm10;
+	private SimpleIntegerProperty Total;
+	
+	public Table(int PersonID) {
+		if (PersonID > 0) {
+			this.PersonID = new SimpleIntegerProperty(PersonID);
+			this.Total = new SimpleIntegerProperty(0);	
+		}
+		else {
+			throw new IllegalArgumentException("PersonID må være større enn 0");
+		}
+	}
 	
 	public Table(int PersonID, int Spm1, int Spm2,int Spm3,int Spm4,int Spm5,int Spm6,int Spm7,int Spm8,int Spm9,int Spm10,int Total) {
 		super();
 		this.PersonID = new SimpleIntegerProperty(PersonID);
-		/*if (!((Spm1 instanceof Integer) &&  (Spm2 instanceof Integer) && (Spm3 instanceof Integer) && (Spm4 instanceof Integer) && (Spm4 instanceof Integer) && (Spm5 instanceof Integer) && (Spm6 instanceof Integer) && (Spm7 instanceof Integer) && (Spm8 instanceof Integer) && (Spm9 instanceof Integer) && (Spm10 instanceof Integer))) {
-			
-			throw new IllegalArgumentException("Svarene skal være av typen Integer");
-		}*/
-		if (!((0 < Spm1 || Spm1 < 6) && (0 < Spm2 || Spm2 < 6) && (0 < Spm3 || Spm3 < 6) && (0 < Spm4 || Spm4 < 6) && (0 < Spm5 || Spm5 < 6) && (0 < Spm6 || Spm6 < 6) && (0 < Spm7 || Spm7 < 6) && (0 < Spm8 || Spm8 < 6) && (0 < Spm9 || Spm9 < 6) && (0 < Spm10 || Spm10 < 6))) {
+		if (!((0 < Spm1 && Spm1 < 6) && (0 < Spm2 && Spm2 < 6) && (0 < Spm3 && Spm3 < 6) && (0 < Spm4 && Spm4 < 6) && (0 < Spm5 && Spm5 < 6) && (0 < Spm6 && Spm6 < 6) && (0 < Spm7 && Spm7 < 6) && (0 < Spm8 && Spm8 < 6) && (0 < Spm9 && Spm9 < 6) && (0 < Spm10 && Spm10 < 6))) {
 			throw new IllegalArgumentException("Svarene skal være et tall mellom 1 og 5");
 		}
 		else {
