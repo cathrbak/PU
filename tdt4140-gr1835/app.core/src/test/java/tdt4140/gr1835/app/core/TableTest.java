@@ -29,15 +29,14 @@ public class TableTest extends TestCase{
 	public void testNewTomTable() {
 		System.out.println("testTomTable");
 		assertFalse(testTableTom==null);
-		assertEquals(1, testTableTom.getPersonID());
-		assertEquals(0, testTableTom.getTotal());
+		assertEquals(1, testTableTom.getStudentID());
 	}
 	
 	@Test
 	public void testRightValueEmptyConstructor() {
 		System.out.println("TestRightValueEmptyConstructor");
-		int expected = testTableTom.getPersonID();
-		assertEquals(expected, 1);
+		int expected = 1;
+		assertEquals(expected, testTableTom.getStudentID());
 		try {
 			Table testTable2= new Table(0);
 			fail("Testen skulle ha feilet pga at personID er mindre enn 1");
