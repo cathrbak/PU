@@ -130,7 +130,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 		// TODO Auto-generated method stub
 		
 	}
-//sånn
+//sï¿½nn
 	@Override
 	public void deleteStudent(Student student) throws SQLException {
 		// TODO Auto-generated method stub
@@ -141,6 +141,12 @@ public class MockingDatabase implements UserDatabaseHandler{
 	public void closeConnection() throws SQLException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getStudentID(Student student) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	
