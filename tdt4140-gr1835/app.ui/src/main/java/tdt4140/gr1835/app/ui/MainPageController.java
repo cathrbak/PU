@@ -1,9 +1,11 @@
 package tdt4140.gr1835.app.ui;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -30,7 +32,8 @@ UserDatabaseHandler database;
 	public MainPageController(Nurse nurse) throws SQLException, Exception {
 		this.database=new ConnectionSQL();
 		this.nurse = nurse;
-		addInfo();	
+		addInfoAnswers();	
+		addStudents();
 	}
 				
 	private Nurse nurse;
@@ -43,8 +46,21 @@ UserDatabaseHandler database;
 	@FXML
 	Button Question;
 	
+	//tabellen med studenter
+	@FXML 
+	TableView<Table> tableStudents;
+	@FXML
+	TableColumn<Table, Integer> StudentID;
+	
+	//tabellen med spørreundersøkelser
 	@FXML 
 	TableView<Table> tableID;
+	@FXML
+	TableColumn<Table, Integer> Dato;
+	
+	//Får ikke til å sette cellValueFactory i initialize enda
+	/*@FXML
+	TableColumn<Table, Time> Dato;*/
 	@FXML 
 	TableColumn<Table, Integer> PersonID;
 	@FXML 
@@ -74,18 +90,19 @@ UserDatabaseHandler database;
 	public int idNumber = 1;
 	public int total = 0;
 	
-	//lager listen som skal inneholde dataen
-	final ObservableList<Table> data = FXCollections.observableArrayList();
+	//lager listen som skal inneholde dataen med spørreundersøkelser
+	final ObservableList<Table> dataAnswers = FXCollections.observableArrayList();
+	//lager listen som skal inneholde dataen med studenter
+	final ObservableList<Table> dataStudents = FXCollections.observableArrayList();
 
-
-	public void addInfo() throws SQLException, Exception{
+	public void addInfoAnswers() throws SQLException, Exception{
 		List<Student> students;
 		students = database.getStudents(nurse);
 		for (Student student : students) {
 			try {
 				List<Table> listOfAnswers = database.getAnswers(student);
 				for(Table answer: listOfAnswers) {
-					data.add(answer);	
+					dataAnswers.add(answer);	
 				}
 					
 			} catch (SQLException e2) {
@@ -96,6 +113,24 @@ UserDatabaseHandler database;
 		
 	}
 		
+	public void addStudents() throws SQLException, Exception{
+		List<Student> students;
+		students = database.getStudents(nurse);
+		for (Student student : students) {
+			try{
+				int studentID = database.getStudentID(student);
+				Table tableStudent = new Table(studentID); 
+				dataStudents.add(tableStudent);
+			}
+			catch(SQLException e3) {
+				e3.printStackTrace();
+			}
+				
+			}
+			
+		}
+		
+	
 	
 	@FXML
 	public void handleProfileButton() throws IOException {
@@ -140,7 +175,7 @@ UserDatabaseHandler database;
 	
 	@FXML
 	public void handleQuestionButton() throws IOException {
-		//Ta meg til mainPage
+		//Ta meg til questionpage
         System.out.println("Sender bruker til questionPage");
         
         Stage stage; 
@@ -166,6 +201,8 @@ UserDatabaseHandler database;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("StudentID"));
+		Dato.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Dato"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
 		Spm2.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm2"));
@@ -178,7 +215,9 @@ UserDatabaseHandler database;
 		Spm9.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm9"));
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
-	    tableID.setItems(data);
+		tableStudents.setItems(dataStudents);
+	    tableID.setItems(dataAnswers);
 	    }	
 
+	//DATEOFBIRTH.setCellFactory(new PersonController.ColumnFormatter<>(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
 }

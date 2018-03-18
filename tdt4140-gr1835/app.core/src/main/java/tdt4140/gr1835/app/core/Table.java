@@ -1,10 +1,11 @@
 package tdt4140.gr1835.app.core;
 
 import javafx.beans.property.SimpleIntegerProperty;
-
+import java.util.Date;
 //dette er en klasse som behandler svarene til en person, personen identifiseres ved PersonID
 
 public class Table  {
+	private SimpleIntegerProperty StudentID;
 	private SimpleIntegerProperty PersonID;
 	private SimpleIntegerProperty Spm1;
 	private SimpleIntegerProperty Spm2;
@@ -17,14 +18,16 @@ public class Table  {
 	private SimpleIntegerProperty Spm9;
 	private SimpleIntegerProperty Spm10;
 	private SimpleIntegerProperty Total;
+	//private Date Date;
+	//gjør det først som integer for å sjekke at tabellen funker
+	//private SimpleIntegerProperty Date;
 	
-	public Table(int PersonID) {
-		if (PersonID > 0) {
-			this.PersonID = new SimpleIntegerProperty(PersonID);
-			this.Total = new SimpleIntegerProperty(0);	
+	public Table(int StudentID) {
+		if (StudentID > 0) {
+			this.StudentID = new SimpleIntegerProperty(StudentID);	
 		}
 		else {
-			throw new IllegalArgumentException("PersonID må være større enn 0");
+			throw new IllegalArgumentException("StudentID må være større enn 0");
 		}
 	}
 	
@@ -46,9 +49,18 @@ public class Table  {
 			this.Spm9 = new SimpleIntegerProperty(Spm9);
 			this.Spm10 = new SimpleIntegerProperty(Spm10);
 			this.Total = new SimpleIntegerProperty(Total);
+			//this.Date = new SimpleIntegerProperty(date);
 		}
 	}
-//har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
+/*public java.util.Date getDate() {
+		return Date;
+	}
+	
+	public int getDate() {
+		return Date.get();
+	}
+*/
+	//har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
 	public void setSpm5(int spm5) {
 		if( 0 > spm5 || spm5 > 5){
 			throw new IllegalArgumentException("Svaret må være mellom 1 og 5");
@@ -103,14 +115,27 @@ public class Table  {
 		return Spm1.get();
 	}
 
+	/*@Override
+	public String toString() {
+		return "Table [Date=" + Date + "PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
+				+ ", Spm5=" + Spm5 + ", Spm6=" + Spm6 + ", Spm7=" + Spm7 + ", Spm8=" + Spm8 + ", Spm9=" + Spm9
+				+ ", Spm10=" + Spm10 + ", Total=" + Total + "]";
+	}
+	*/
 	@Override
 	public String toString() {
 		return "Table [PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
 				+ ", Spm5=" + Spm5 + ", Spm6=" + Spm6 + ", Spm7=" + Spm7 + ", Spm8=" + Spm8 + ", Spm9=" + Spm9
-				+ ", Spm10=" + Spm10 + ", Total=" + Total + "]";
+				+ ", Spm10=" + Spm10 + ", Total=" + Total + "]" + "Table[StudentID=" + StudentID + "]";
+	}
+	public int getStudentID() {
+		return StudentID.get();
+	}
+
+	/*public void setStudentID(SimpleIntegerProperty studentID) {
+		StudentID = studentID;
 	}
 	
-	
-	
+	*/
 
 }

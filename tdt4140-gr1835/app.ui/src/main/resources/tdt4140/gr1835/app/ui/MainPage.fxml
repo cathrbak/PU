@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
          <font>
@@ -28,20 +28,26 @@
          </effect></Button>
          <TableView fx:id="tableID" layoutX="28.0" layoutY="134.0" prefHeight="200.0" prefWidth="727.0" style="-fx-background-color: e8e2e2;" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="134.0">
         <columns>
-          <TableColumn fx:id="PersonID" prefWidth="65.0" text="PersonID" />
-          <TableColumn fx:id="Spm1" prefWidth="60.0" text="Spm 1" />
-            <TableColumn fx:id="Spm2" prefWidth="60.0" text="Spm 2" />
-            <TableColumn fx:id="Spm3" prefWidth="60.0" text="Spm 3" />
-            <TableColumn fx:id="Spm4" prefWidth="60.0" text="Spm 4" />
-            <TableColumn fx:id="Spm5" prefWidth="60.0" text="Spm 5" />
-            <TableColumn fx:id="Spm6" prefWidth="60.0" text="Spm 6" />
-            <TableColumn fx:id="Spm7" prefWidth="60.0" text="Spm 7" />
-            <TableColumn fx:id="Spm8" prefWidth="60.0" text="Spm 8" />
-            <TableColumn fx:id="Spm9" prefWidth="60.0" text="Spm 9" />
-            <TableColumn fx:id="Spm10" prefWidth="60.0" text="Spm 10" />
-            <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
+            <TableColumn fx:id="Dato" prefWidth="55.0" text="Dato" />
+          <TableColumn fx:id="PersonID" prefWidth="63.0" text="PersonID" />
+          <TableColumn fx:id="Spm1" prefWidth="56.0" text="Spm 1" />
+            <TableColumn fx:id="Spm2" prefWidth="56.0" text="Spm 2" />
+            <TableColumn fx:id="Spm3" prefWidth="56.0" text="Spm 3" />
+            <TableColumn fx:id="Spm4" prefWidth="56.0" text="Spm 4" />
+            <TableColumn fx:id="Spm5" prefWidth="56.0" text="Spm 5" />
+            <TableColumn fx:id="Spm6" prefWidth="56.0" text="Spm 6" />
+            <TableColumn fx:id="Spm7" prefWidth="56.0" text="Spm 7" />
+            <TableColumn fx:id="Spm8" prefWidth="56.0" text="Spm 8" />
+            <TableColumn fx:id="Spm9" prefWidth="56.0" text="Spm 9" />
+            <TableColumn fx:id="Spm10" prefWidth="56.0" text="Spm 10" />
+            <TableColumn fx:id="Total" prefWidth="56.0" text="Total" />
         </columns>
       </TableView>
-      <Button fx:id= "Question" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill = "#e8e2e2" />
+      <Button fx:id="Question" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+      <TableView fx:id="tableStudents" layoutX="28.0" layoutY="402.0" prefHeight="200.0" prefWidth="75.0" stylesheets="@stylesheet.css">
+        <columns>
+          <TableColumn fx:id="StudentID" prefWidth="75.0" text="StudentID" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
