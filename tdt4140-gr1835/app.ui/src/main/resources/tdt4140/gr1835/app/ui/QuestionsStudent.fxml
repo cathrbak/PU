@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="61.0" layoutY="44.0" prefHeight="88.0" prefWidth="234.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+      <GridPane layoutX="61.0" layoutY="189.0" prefHeight="295.0" prefWidth="678.0" styleClass="label_text" stylesheets="@stylesheet.css">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="421.0" minWidth="10.0" prefWidth="344.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="334.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label styleClass="label_text" stylesheets="@stylesheet.css" text="1. Jeg er bevisst på hva jeg spiser" />
+            <Label styleClass="label_text" stylesheets="@stylesheet.css" text="6. Jeg er føler fysisk ubehag" GridPane.columnIndex="1" />
+            <Label styleClass="label_text" stylesheets="@stylesheet.css" text="2. Jeg blir stresset når jeg skal spise rundt andre" GridPane.rowIndex="1" />
+            <Label styleClass="label_text" stylesheets="@stylesheet.css" text="7. Jeg veier meg selv" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label styleClass="label_text" stylesheets="@stylesheet.css" text="3. Jeg får dårlig samvittighet av å spise mye" GridPane.rowIndex="2" />
+            <Label prefHeight="18.0" prefWidth="373.0" styleClass="label_text" stylesheets="@stylesheet.css" text="8. Jeg er misfornøyd med hvordan jeg ser ut" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label prefHeight="49.0" prefWidth="415.0" styleClass="label_text" stylesheets="@stylesheet.css" text="4. Jeg blir irritert når andre bryr seg om &#10;    hva / hvor mye jeg spiser" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+            <Label styleClass="label_text" stylesheets="@stylesheet.css" text="9. Jeg er sliten og trøtt uten å vite hvorfor " GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label styleClass="label_text" stylesheets="@stylesheet.css" text="5. Jeg er usikker på meg selv" GridPane.rowIndex="4" />
+            <Label styleClass="label_text" stylesheets="@stylesheet.css" text="10. Jeg er opptatt av at ting må være perfekt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <Label layoutX="61.0" layoutY="141.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Svar: 1 - aldri, 2 - sjeldent, 3 - noen ganger, 4 - ofte, 5 - svært ofte" />
+      <Button fx:id="returnButton" layoutX="651.0" layoutY="55.0" mnemonicParsing="false" onMouseReleased = "#handleReturnButton" prefHeight="35.0" prefWidth="78.0" stylesheets="@stylesheet.css" text="Tilbake" />
+   </children>
+</AnchorPane>
