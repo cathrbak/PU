@@ -60,6 +60,10 @@ public class ConnectionSQLTest {
 		udh.deleteStudent(testStudent);
 		udh.closeConnection();
 		
+		udh.deleteStudent(udh.getStudent("haraldmu"));
+		udh.deleteStudent(udh.getStudent("alexoh"));
+		udh.deleteStudent(udh.getStudent("petter"));
+		
 		udh = null;
 		testNurse = null;
 		testStudent = null;
@@ -179,7 +183,7 @@ public class ConnectionSQLTest {
 	
 	@Test
 	public void testCreateNewNurse() throws SQLException {
-		udh.createNewNurse(testNurse);
+		udh.createNewNurse(testNurse);	
 		
 		assertEquals("Brukernavn",testNurse.getUsername(), udh.getNurse("testNurseUN").getUsername());
 		assertEquals("Passord",testNurse.getPassword(), udh.getNurse("testNurseUN").getPassword());
