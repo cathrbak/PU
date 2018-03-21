@@ -10,15 +10,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
+      <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Profil" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
          <font>
             <Font name="Copperplate" size="36.0" />
          </font>
       </Text>
-    <Button fx:id="Profile" layoutX="451.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" prefHeight="29.0" prefWidth="67.0" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="18.0">
+   <!--   <Button fx:id="Profile" layoutX="451.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" prefHeight="29.0" prefWidth="67.0" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="18.0">
          <font>
             <Font name="Lucida Console" size="13.0" />
-         </font></Button>
+         </font></Button> -->
       <Button fx:id="Logout" layoutX="527.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="73.0" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="18.0">
          <font>
             <Font name="Lucida Console" size="13.0" />
@@ -42,6 +42,6 @@
             <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
         </columns>
       </TableView>
-      <Button fx:id= "Question" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill = "#e8e2e2" />
+      <Button fx:id= "Anonymitet" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleAnonymitetButton" stylesheets="@stylesheet.css" text="Anonymitet" textFill = "#e8e2e2" />
    </children>
 </AnchorPane>

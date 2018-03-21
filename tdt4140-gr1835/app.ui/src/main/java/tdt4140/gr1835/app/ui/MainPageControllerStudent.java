@@ -30,7 +30,7 @@ UserDatabaseHandler database;
 	public MainPageControllerStudent(Student student) throws SQLException, Exception {
 		this.database=new ConnectionSQL();
 		this.student = student;
-		//addInfo();	
+		addInfo();	
 	}
 				
 	private Student student;
@@ -41,7 +41,7 @@ UserDatabaseHandler database;
 	Button Logout;
 
 	@FXML
-	Button Question;
+	Button Anonymitet;
 	
 	@FXML 
 	TableView<Table> tableID;
@@ -77,13 +77,11 @@ UserDatabaseHandler database;
 	//lager listen som skal inneholde dataen
 	final ObservableList<Table> data = FXCollections.observableArrayList();
 
-	/*
-	 * Må kune fylle tabellen med studentens svar
-	 * 
-	 * public void addInfo() throws SQLException, Exception{
-		List<Student> students;
-		students = database.getAnswers(student);
-		for (Student student : students) {
+	
+	  //Må kunne fylle tabellen med studentens svar
+	 
+	  public void addInfo() throws SQLException, Exception{
+
 			try {
 				List<Table> listOfAnswers = database.getAnswers(student);
 				for(Table answer: listOfAnswers) {
@@ -96,8 +94,6 @@ UserDatabaseHandler database;
 			}
 		}
 		
-	}
-	*/
 		
 	
 	@FXML
@@ -142,14 +138,14 @@ UserDatabaseHandler database;
 	}
 	
 	@FXML
-	public void handleQuestionButton() throws IOException {
+	public void handleAnonymitetButton() throws IOException {
 		//Ta meg til mainPage
         System.out.println("Sender studentbruker til questionPage");
         
         Stage stage; 
         Parent root;
         //get reference to the button's stage        
-        stage=(Stage) Question.getScene().getWindow();
+        stage=(Stage) Anonymitet.getScene().getWindow();
         
        // QuestionsController controller= new QuestionsController(this.student);//Lager en kontroller instans
 
