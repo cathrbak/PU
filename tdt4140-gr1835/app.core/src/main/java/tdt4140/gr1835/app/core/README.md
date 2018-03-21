@@ -27,6 +27,8 @@ Here you find everything you need to install for our project.
 
 ## Running the software
 
+* AS NURSE:
+
 Download the project from git by copy the URL.
 
 Import the project and save the folder in a place you can easily locate.
@@ -39,6 +41,26 @@ see this link for more info on how to do this.
 Locate the folder you imported earlier.
 
 Locate the FxApp.java class in the UI-package. Try to run it by right-clicking and selecting Run FxApp.java.
+
+This will make the program up and running.
+
+Should you run into any more trouble, feel free to contact us at jonahag@stud.ntnu.no and we will aid you as best we can!
+
+
+* AS STUDENT:
+
+Download the project from git by copy the URL.
+
+Import the project and save the folder in a place you can easily locate.
+
+(If you are connected to a network at NTNU, you can skip this step) Connect to the NTNU network using the Cisco AnyConnect VPN.
+
+see this link for more info on how to do this.
+(This might work the same in other IDEs, but this setup was based on Java Eclipce) Open Java Eclipse.
+
+Locate the folder you imported earlier.
+
+Locate the FxAppStudent.java class in the UI-package. Try to run it by right-clicking and selecting Run FxAppStudent.java.
 
 This will make the program up and running.
 
