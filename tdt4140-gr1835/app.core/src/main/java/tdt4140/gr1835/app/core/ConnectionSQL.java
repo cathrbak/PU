@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 
-//Man kan ikke opprette en student uten å fylle inn både fakultet og helsesøster.
+//Man kan ikke opprette en student uten ï¿½ fylle inn bï¿½de fakultet og helsesï¿½ster.
 
 public class ConnectionSQL implements UserDatabaseHandler{
 
@@ -229,6 +229,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 		return student;
 	}
+	
 	
 	private Nurse getNurseFromID(int nurseID) throws SQLException{
 		ResultSet rs = null;

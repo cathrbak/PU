@@ -84,19 +84,19 @@
          </children>
       </GridPane>
 
-      <Button fx:id="studentbutton_nybruker" layoutX="202.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="180.0" stylesheets="@stylesheet.css" text="Opprett ny studentbruker" textFill="#e8e2e2"> 
+   <!--    <Button fx:id="studentbutton_nybruker" layoutX="202.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="180.0" stylesheets="@stylesheet.css" text="Opprett ny studentbruker" textFill="#e8e2e2"> 
          <font>
             <Font name="Lucida Console" size="13.0" />
          </font></Button>
       <Label layoutX="55.0" layoutY="447.0" prefHeight="26.0" prefWidth="140.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Ikke registrert?" textFill="#e8e2e2">
          <font>
             <Font name="Lucida Console" size="14.0" />
-         </font></Label>
+         </font></Label>  -->
       <ImageView fitHeight="79.0" fitWidth="90.0" layoutX="361.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Image/heart_icon.png" />
          </image>
       </ImageView>
-      <Label fx:id="studentresponsLabel" layoutX="400.0" layoutY="450.0" prefHeight="26.0" prefWidth="333.0" styleClass="label_text" stylesheets="@stylesheet.css" text="" textFill="#e8e2e2" /> 
+      <Label fx:id="responsLabel" layoutX="400.0" layoutY="450.0" prefHeight="26.0" prefWidth="333.0" styleClass="label_text" stylesheets="@stylesheet.css" text="" textFill="#e8e2e2" /> 
    </children>
 </AnchorPane>

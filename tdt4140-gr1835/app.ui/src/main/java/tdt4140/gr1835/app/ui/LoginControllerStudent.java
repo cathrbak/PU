@@ -28,7 +28,7 @@ public class LoginControllerStudent {
 	Button studentbutton_nybruker;
 	
 	@FXML
-	Label studentresponsLabel;
+	Label responsLabel;
 	
 	private UserDatabaseHandler database;
 	
@@ -64,7 +64,7 @@ public class LoginControllerStudent {
 	public void handleLoginButton() throws Exception {
 		if(loginOk()) {
 			//Ta meg til mainPage
-            System.out.println("Login ok, sender bruker til mainPage");
+            System.out.println("Login ok, sender bruker til mainPageStudent");
             
             Stage stage; 
             Parent root;
@@ -92,7 +92,7 @@ public class LoginControllerStudent {
 	
 	@FXML
 	public void handleTextChange() {
-		studentresponsLabel.setText("");
+		responsLabel.setText("");
 	}
 	
 	
@@ -100,21 +100,29 @@ public class LoginControllerStudent {
 	
 	private boolean loginOk() throws Exception {
 		try {
+			
 			System.out.println("Prøver å hente Studentobjekt fra databasen");
 			Student nyStudent= database.getStudent(studentbrukernavn.getText());
 			if(!nyStudent.getPassword().equals(studentpassord.getText())) {
-				studentresponsLabel.setText("Brukeren finnes, men passordet er feil");
+
+				responsLabel.setText("Brukeren finnes, men passordet er feil");
+				
 				return false;
 			}
-		}catch (IllegalStateException e) {
+			
+			// Måtte endre til exception fra IllegalStateException
+		}catch (Exception e) {
 			System.out.println("getStudent ga en IllegalStateException da brukeren ikke eksisterer");
-			studentresponsLabel.setText(e.getMessage());
+			responsLabel.setText("Ugyldig bruker");
+	
 			return false;
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
+		}//catch (SQLException e) {
+			//e.printStackTrace();
+		//}
 		return true;
 	}
+	
+
 	
 }
 
