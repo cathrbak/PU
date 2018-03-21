@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 
 //Man kan ikke opprette en student uten ï¿½ fylle inn bï¿½de fakultet og helsesï¿½ster.
@@ -18,22 +19,22 @@ public class ConnectionSQL implements UserDatabaseHandler{
 
 	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35&useSSL=false";
  
+	
+	//Metoder for å opprette en kobling mellom applikasjonen og databasen
 	private Connection getConnection() throws SQLException{
 		return DriverManager.getConnection(dbURL);
 	}
 	
-	
 	public void closeConnection() throws SQLException {
 		getConnection().close();
 	}
-	
-	
 	
 	public Statement getStatement() throws SQLException{
 		Connection conn = getConnection();
 		return conn.createStatement();
 	}
 	
+	//Metode for å legge til en helsesoster i databasen
 	@Override
 	public void createNewNurse(Nurse nurse) throws SQLException{
 		try {
@@ -62,6 +63,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
+	//For å hente ut en helsesoster fra databasen
 	@Override
 	public Nurse getNurse(String username) throws SQLException {
 			
@@ -120,6 +122,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			return nurse; 
 		}
 	
+	//For å oppdatere en helsesoster som allerede ligger lagret i databasen
 	@Override
 	public void updateNurse(Nurse nurse) throws SQLException{
 		try {
@@ -142,6 +145,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 	
+	//For å slette en helsesoster. Mest for testene sin del
 	public void deleteNurse(Nurse nurse) throws SQLException{
 		try {
 			Statement stmt = getStatement();
@@ -159,6 +163,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
+	//Metode for å hente ut en student som ligger lagret i databasen
 	@Override
 	public Student getStudent(String username) throws SQLException {
 		
@@ -230,7 +235,9 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return student;
 	}
 	
-	
+
+	//metode for å hente ut et nurse-objekt når kan kun får HelsesosterID fra raden i databasen
+
 	private Nurse getNurseFromID(int nurseID) throws SQLException{
 		ResultSet rs = null;
 		Nurse nurse = new Nurse(null);
@@ -255,6 +262,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return nurse; 
 	}
 	
+	//for å legge en ny student i databasen
 	@Override
 	
 	public void createNewStudent(Student student) throws SQLException {
@@ -281,6 +289,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 
+	//For å oppdatere en student som ligger i databasen
 	@Override
 	public void updateStudent(Student student) throws SQLException{
 		try {
@@ -307,6 +316,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 	
+	//For å slette en student som ligger i databasen.
 	public void deleteStudent(Student student) throws SQLException{
 		try {
 			Statement stmt = getStatement();
@@ -323,6 +333,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 
+	//For å hente ut en liste med alle studentene en helsesoster har tilgang til
 	@Override
     public List<Student> getStudents(Nurse nurse) throws Exception {
         List<Student> students = new ArrayList<Student>();
@@ -352,6 +363,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
         return students;
     }
 
+	//for å sørge for at det blir riktig format på attributtet facultet/faculty. Dette er nemlig fakultetID i databasen
+	//, altså en int, mens det er fakultetnavnet i java-koden, altså string.
 	public int switchFacultyNametoID(String faculty) {
 		
 		Integer fakultetID = 0;
@@ -392,6 +405,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
+	//for å sørge for at det blir riktig format på attributtet facultet/faculty. Dette er nemlig fakultetID i databasen
+	//, altså en int, mens det er fakultetnavnet i java-koden, altså string.
 	public String switchFakultetIDtoName(Integer facID) {
 		String facultyName = null;
 		
@@ -419,6 +434,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
+	//For å hente ut alle svarlogger en student har tilknyttet til seg.
 	@Override
 	public List<Table> getAnswers(Student student) throws SQLException { 
 
@@ -446,28 +462,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 		return answers;
 	}
-	
-	public static void main(String[] args) throws Exception {
-		ConnectionSQL database= new ConnectionSQL();
-		
-		Student student= new Student("heisann");
-		student.setFaculty("AD");
-		student.setSex("mann");
-		student.setEmail("heihei@gmail.com");
-		database.createNewStudent(student);
-		
-		
-//	 	Nurse testNurse = new Nurse("cathrine");
-//		testNurse.setPassword("c");
-//		testNurse.setFirstName("Cathrine");
-//		testNurse.setSecondName("Arke");
-//		testNurse.setFaculty("IE");
-//		testNurse.setEmail("sverress@stud.tnu");
-//		database.createNewNurse(testNurse);
-//		System.out.println(database.getNurse("cathrine"));
-		
-	}
-	
+
+	//gjør om listen med svar til en tabell
 	private Table listToTableConverter(Student student, String anslist) throws SQLException {
 		int sum=0;
 		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen pÃ¥ komma, og lager en liste av den
@@ -480,7 +476,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return new Table(getStudentID(student),intlist.get(0), intlist.get(1),intlist.get(2),intlist.get(3),intlist.get(4),intlist.get(5),intlist.get(6), intlist.get(7), intlist.get(8), intlist.get(9), sum);
 	}
 	
-	//Ser nÃ¥ at det kan vÃ¦re hensiktsmessig Ã¥ legge inn studentID som et felt i Student-klassen for Ã¥ slippe ny spÃ¸rring til databasen
+	//metoder for å hente iden til en student og helsesoster når man bare har objektet i java. Burde kanskje legge til 
+	//DatagiverID og HelsesosterID som attributt i Nurse og Student.
 	public int getStudentID(Student student) throws SQLException {
 		Integer studentID = null;
 		
@@ -529,6 +526,213 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 		return nurseID;
 	}
+
+	
+	//Metode for å slette meldinger i testene. Ikke bruk i noe annet enn test, da den sletter alle meldingene sendt til en student.
+	@Override
+	public void deleteMessages(Message message) throws SQLException {
+		try {
+			Statement stmt = getStatement();
+			
+			String query = "DELETE from meldinger WHERE DatagiverID=" + getStudentID(message.getReciver())
+			+ ";";
+			
+			stmt.executeUpdate(query);
+			
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		closeConnection();
+		
+	}
+
+	
+	//Metode for å legge til en melding i databasen
+	@Override
+	public void createNewMessage(Message message) throws SQLException {
+		try {
+			Statement stmt = getStatement();
+			
+			String query = "INSERT INTO meldinger(DatagiverID, HelsesosterID, tekst) VALUES (" + getStudentID(message.getReciver()) + ", " +
+					getNurseID(message.getSender()) + ", '" + message.getText()+ "');";
+			
+			stmt.executeUpdate(query);
+			
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		
+		closeConnection();
+		
+	}
+	//Metode for å hente ut 1 melding
+	@Override
+	public Message getMessage(Student student, Nurse nurse) throws SQLException {
+		ResultSet rs = null;
+		Message message = new Message(student, nurse);
+		try {
+			String query = "SELECT * FROM meldinger WHERE DatagiverID=" + getStudentID(student) +" AND HelsesosterID=" + getNurseID(nurse) + ";";
+			Statement stmt = getStatement();
+			
+			if(stmt.execute(query)) {
+				rs = stmt.getResultSet();
+				
+				if (!rs.isBeforeFirst() ) {    
+				    System.out.println("Meldingen ligger ikke i databasen."); 
+				    throw new IllegalStateException("Denne meldingen eksisterer ikke i databasen"); 
+				} 
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		
+		while(rs.next()) {
+			
+			Integer messageID = rs.getInt("MeldingID");
+			if(!(messageID==0)) {
+				message.setMessageID(messageID);
+			}
+			Integer studentID = rs.getInt("DatagiverID");
+			if(!(studentID==0)) {
+				message.setReciver(getStudentFromID(studentID));
+			}
+			Integer nurseID = rs.getInt("HelsesosterID");
+			if(!(nurseID==0)) {
+				message.setNurse(getNurseFromID(nurseID));
+			}
+			Timestamp tstamp = rs.getTimestamp("datoTid");
+			message.setTime(tstamp);
+			//System.out.println(message.getTime());
+			
+			String text = rs.getString("tekst");
+			if(!(text.equals("null"))){
+				message.setText(text);
+			}
+			
+							
+		}
+		closeConnection();
+		return message; 
+		
+		
+	}
+	
+	//Metode for å hente ut alle meldingene som er sendt til en student.
+
+	@Override
+	public List<Message> getMessages(Student student) throws SQLException {
+		List<Message> messages = new ArrayList<Message>();
+  
+        ResultSet rs = null;
+        
+        try {
+            String query = "SELECT * FROM meldinger WHERE DatagiverID=" + getStudentID(student) +";";
+            Statement stmt = getStatement();
+            
+            if(stmt.execute(query)) {
+                rs = stmt.getResultSet();
+                 
+            }
+            
+        }
+        catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        
+        while(rs.next()) {
+            Integer messageID = rs.getInt("MeldingID");         
+            
+            Message message = getMessageFromID(messageID); 
+            
+            
+            
+            messages.add(message);
+            
+            
+            
+        }
+        closeConnection();
+        return messages;
+	}
+	
+	public Message getMessageFromID(Integer messageid) throws SQLException{
+		ResultSet rs = null;
+		Message message = new Message(null, null);
+		try {
+			String query = "SELECT * FROM meldinger WHERE MeldingID=" + messageid + ";";
+			Statement stmt = getStatement();
+			
+			if(stmt.execute(query)) {
+				rs = stmt.getResultSet();
+				
+				if (!rs.isBeforeFirst() ) {    
+				    System.out.println("Meldingen ligger ikke i databasen."); 
+				    throw new IllegalStateException("Denne meldingen eksisterer ikke i databasen"); 
+				} 
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		
+		while(rs.next()) {
+			
+			Integer messageID = rs.getInt("MeldingID");
+			if(!(messageID==0)) {
+				message.setMessageID(messageID);
+			}
+			Integer studentID = rs.getInt("DatagiverID");
+			if(!(studentID==0)) {
+				message.setReciver(getStudentFromID(studentID));
+			}
+			Integer nurseID = rs.getInt("HelsesosterID");
+			if(!(nurseID==0)) {
+				message.setNurse(getNurseFromID(nurseID));
+			}
+			Timestamp tstamp = rs.getTimestamp("datoTid");
+			message.setTime(tstamp);
+			//System.out.println(message.getTime());
+			
+			String text = rs.getString("tekst");
+			if(!(text.equals("null"))){
+				message.setText(text);
+			}
+							
+		}
+		closeConnection();
+		return message; 
+		
+		
+	}
+
+	
+	private Student getStudentFromID(int studentID) throws SQLException{
+		ResultSet rs = null;
+		Student student = new Student(null);
+		try {
+			String query = "SELECT * FROM datagiver WHERE DatagiverID=" + studentID +";";
+			Statement stmt = getStatement();
+			
+			if(stmt.execute(query)) {
+				rs = stmt.getResultSet();
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		
+		while(rs.next()) {
+			String username = rs.getString("brukernavn");
+			student = getStudent(username);
+		} 
+		
+		closeConnection();
+		return student; 
+	}
+	
 
 	
 }

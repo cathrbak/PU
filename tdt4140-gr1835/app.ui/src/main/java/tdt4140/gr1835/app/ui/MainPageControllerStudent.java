@@ -30,7 +30,7 @@ UserDatabaseHandler database;
 	public MainPageControllerStudent(Student student) throws SQLException, Exception {
 		this.database=new ConnectionSQL();
 		this.student = student;
-		addInfo();	
+		//addInfo();	
 	}
 				
 	private Student student;
@@ -77,9 +77,13 @@ UserDatabaseHandler database;
 	//lager listen som skal inneholde dataen
 	final ObservableList<Table> data = FXCollections.observableArrayList();
 
-	
-	 public void addInfo() throws SQLException, Exception{
-	
+	/*
+	 * Må kune fylle tabellen med studentens svar
+	 * 
+	 * public void addInfo() throws SQLException, Exception{
+		List<Student> students;
+		students = database.getAnswers(student);
+		for (Student student : students) {
 			try {
 				List<Table> listOfAnswers = database.getAnswers(student);
 				for(Table answer: listOfAnswers) {
@@ -92,7 +96,8 @@ UserDatabaseHandler database;
 			}
 		}
 		
-
+	}
+	*/
 		
 	
 	@FXML
@@ -179,6 +184,5 @@ UserDatabaseHandler database;
 	    tableID.setItems(data);
 	    }	
 
-	
 }
 
