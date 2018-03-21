@@ -10,6 +10,14 @@
     -fx-font-size: 13px;
 }
 
+.button:pressed {
+	-fx-background-color: linear-gradient(#242915, #595B5E);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 13px;
+}
+
 .label_text {
 	-fx-font-family: Lucida Console;
 	-fx-font-size: 14px;
