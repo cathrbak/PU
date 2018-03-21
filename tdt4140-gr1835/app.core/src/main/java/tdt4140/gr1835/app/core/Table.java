@@ -32,16 +32,13 @@ public class Table  {
 		}
 	}
 	
-	public Table(Timestamp date, int PersonID,  int Spm1, int Spm2,int Spm3,int Spm4,int Spm5,int Spm6,int Spm7,int Spm8,int Spm9,int Spm10,int Total) {
+	public Table(int PersonID,  int Spm1, int Spm2,int Spm3,int Spm4,int Spm5,int Spm6,int Spm7,int Spm8,int Spm9,int Spm10,int Total) {
 		super();
 		this.PersonID = new SimpleIntegerProperty(PersonID);
 		if (!((0 < Spm1 && Spm1 < 6) && (0 < Spm2 && Spm2 < 6) && (0 < Spm3 && Spm3 < 6) && (0 < Spm4 && Spm4 < 6) && (0 < Spm5 && Spm5 < 6) && (0 < Spm6 && Spm6 < 6) && (0 < Spm7 && Spm7 < 6) && (0 < Spm8 && Spm8 < 6) && (0 < Spm9 && Spm9 < 6) && (0 < Spm10 && Spm10 < 6))) {
 			throw new IllegalArgumentException("Svarene skal være et tall mellom 1 og 5");
 		}
 		else {
-			this.tstamp = date;
-			
-			this.DateString = new SimpleStringProperty(getDateString(tstamp));
 			this.Spm1 = new SimpleIntegerProperty(Spm1);
 			this.Spm2 = new SimpleIntegerProperty(Spm2);
 			this.Spm3 = new SimpleIntegerProperty(Spm3);
@@ -59,8 +56,12 @@ public class Table  {
 	public String getDateString(Timestamp tstamp) {
 		return tstamp.toString();
 	}
-
 	
+	public void setDateString(Timestamp tstamp) {
+		this.tstamp = tstamp;
+		this.DateString = new SimpleStringProperty(getDateString(tstamp));
+	}
+
 	/*har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
 	public void setSpm5(int spm5) {
 		if( 0 > spm5 || spm5 > 5){

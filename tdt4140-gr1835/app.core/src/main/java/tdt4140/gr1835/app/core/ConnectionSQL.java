@@ -468,6 +468,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	//gj�r om listen med svar til en tabell
 	private Table listToTableConverter(Student student, String anslist, Timestamp tstamp) throws SQLException {
 		int sum=0;
+		Timestamp tstampTable = tstamp;
 		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen på komma, og lager en liste av den
 		List<Integer> intlist=new ArrayList<>();
 		for(String c:stringList) {
@@ -475,7 +476,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			intlist.add(Integer.parseInt(c)); //Legger til svar i svarliste kalt intlist
 		}
 		//Returnerer Tableobjekt med student og svar
-		return new Table(tstamp, getStudentID(student),intlist.get(0), intlist.get(1),intlist.get(2),intlist.get(3),intlist.get(4),intlist.get(5),intlist.get(6), intlist.get(7), intlist.get(8), intlist.get(9), sum);
+		return new Table(getStudentID(student),intlist.get(0), intlist.get(1),intlist.get(2),intlist.get(3),intlist.get(4),intlist.get(5),intlist.get(6), intlist.get(7), intlist.get(8), intlist.get(9), sum);
 	}
 	
 	//metoder for � hente iden til en student og helsesoster n�r man bare har objektet i java. Burde kanskje legge til 
