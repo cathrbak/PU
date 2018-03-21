@@ -50,7 +50,7 @@ public class Test_LoginStudent extends ApplicationTest {
 		write("testpass");
 		clickOn("#studentbutton_login");
 		
-		FxAssert.verifyThat("#Profile", hasText("Profil")); //Finner profilknappen
+		FxAssert.verifyThat("#Logout", hasText("Logg ut")); //Finner profilknappen
 	}
 	@Test
 	public void testUgyldigInlogging() {

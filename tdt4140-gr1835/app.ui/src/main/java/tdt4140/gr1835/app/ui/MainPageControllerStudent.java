@@ -41,7 +41,7 @@ UserDatabaseHandler database;
 	Button Logout;
 
 	@FXML
-	Button Question;
+	Button Anonymitet;
 	
 	@FXML 
 	TableView<Table> tableID;
@@ -138,14 +138,14 @@ UserDatabaseHandler database;
 	}
 	
 	@FXML
-	public void handleQuestionButton() throws IOException {
+	public void handleAnonymitetButton() throws IOException {
 		//Ta meg til mainPage
         System.out.println("Sender studentbruker til questionPage");
         
         Stage stage; 
         Parent root;
         //get reference to the button's stage        
-        stage=(Stage) Question.getScene().getWindow();
+        stage=(Stage) Anonymitet.getScene().getWindow();
         
        // QuestionsController controller= new QuestionsController(this.student);//Lager en kontroller instans
 
