@@ -28,6 +28,13 @@ public interface UserDatabaseHandler {
 	public List<Table> getAnswers(Student student) throws SQLException;
 
 	public int getStudentID(Student student) throws SQLException;
+
+	//Metoder for meldinger
+	public void deleteMessages(Message message) throws SQLException;
+	public void createNewMessage(Message message) throws SQLException;
+	public Message getMessage(Student student, Nurse nurse) throws SQLException; 
+	public List<Message> getMessages(Student student) throws SQLException;
+	public Message getMessageFromID(Integer messageid) throws SQLException;
 	
 
 }

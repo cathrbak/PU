@@ -8,11 +8,20 @@ public class Message {
 	Nurse nurse;
 	Timestamp time;
 	String text;
+	Integer messageID;
 	
 
 	public Message(Student student, Nurse nurse) {
 		this.student = student;
 		this.nurse = nurse;
+	}
+	
+	public void setMessageID(Integer id) {
+		this.messageID=id;
+	}
+	
+	public Integer getMessageID() {
+		return messageID;
 	}
 	
 	public Nurse getSender() {
