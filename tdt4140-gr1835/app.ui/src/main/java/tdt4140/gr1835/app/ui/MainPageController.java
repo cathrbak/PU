@@ -26,7 +26,7 @@ import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.core.UserDatabaseHandler;
 
 public class MainPageController implements Initializable {
-UserDatabaseHandler database;
+	UserDatabaseHandler database;
 	
 	public MainPageController(Nurse nurse) throws SQLException, Exception {
 		this.database=new ConnectionSQL();
@@ -97,9 +97,9 @@ UserDatabaseHandler database;
         
 		List<Student> students;
 		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
-		int studentID = database.getStudentID(students.get(0)); //henter studentens ID fra databasen
 		
-        StudentProfileController controller= new StudentProfileController(this.nurse, studentID);
+		
+        StudentProfileController controller= new StudentProfileController(this.nurse, students.get(0));
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
             
@@ -126,7 +126,7 @@ UserDatabaseHandler database;
 		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
 		int studentID = database.getStudentID(students.get(1)); //henter studentens ID fra databasen
 		
-        StudentProfileController controller= new StudentProfileController(this.nurse, studentID);//Lager en kontroller instans
+        StudentProfileController controller= new StudentProfileController(this.nurse, students.get(1));//Lager en kontroller instans
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
             
