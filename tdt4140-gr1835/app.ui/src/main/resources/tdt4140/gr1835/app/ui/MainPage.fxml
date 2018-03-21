@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
          <font>
@@ -49,5 +49,7 @@
           <TableColumn fx:id="StudentID" prefWidth="75.0" text="StudentID" />
         </columns>
       </TableView>
+      <Button fx:id="seProfilButton1" layoutX="107.0" layoutY="429.0" mnemonicParsing="false" onAction="#handleProfilButton1" stylesheets="@../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Se profil" />
+      <Button fx:id="seProfilButton2" layoutX="107.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleProfilButton2" stylesheets="@../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Se Profil" />
    </children>
 </AnchorPane>

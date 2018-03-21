@@ -13,9 +13,11 @@ import tdt4140.gr1835.app.core.Nurse;
 public class StudentProfileController {
 	
 	private Nurse nurse;
-
-	public StudentProfileController(Nurse nurse) {
+	private int studentID;
+	
+	public StudentProfileController(Nurse nurse, int studentID) {
 		this.nurse = nurse;
+		this.studentID = studentID;
 	}
 	
 	@FXML
