@@ -26,10 +26,10 @@
          <effect>
             <Blend />
          </effect></Button>
-         <TableView fx:id="tableID" layoutX="28.0" layoutY="134.0" prefHeight="200.0" prefWidth="727.0" style="-fx-background-color: e8e2e2;" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="134.0">
+         <TableView fx:id="tableID" layoutX="5.0" layoutY="134.0" prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: e8e2e2;" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="134.0">
         <columns>
-            <TableColumn fx:id="Dato" prefWidth="55.0" text="Dato" />
-          <TableColumn fx:id="PersonID" prefWidth="63.0" text="PersonID" />
+            <TableColumn fx:id="DateString" prefWidth="150.0" text="Dato" />
+          <TableColumn fx:id="PersonID" prefWidth="40.0" text="PersonID" />
           <TableColumn fx:id="Spm1" prefWidth="56.0" text="Spm 1" />
             <TableColumn fx:id="Spm2" prefWidth="56.0" text="Spm 2" />
             <TableColumn fx:id="Spm3" prefWidth="56.0" text="Spm 3" />

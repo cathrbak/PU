@@ -1,7 +1,9 @@
 package tdt4140.gr1835.app.core;
 
 import javafx.beans.property.SimpleIntegerProperty;
-import java.util.Date;
+import javafx.beans.property.SimpleStringProperty;
+
+import java.sql.Timestamp;
 //dette er en klasse som behandler svarene til en person, personen identifiseres ved PersonID
 
 public class Table  {
@@ -18,9 +20,8 @@ public class Table  {
 	private SimpleIntegerProperty Spm9;
 	private SimpleIntegerProperty Spm10;
 	private SimpleIntegerProperty Total;
-	//private Date Date;
-	//gjør det først som integer for å sjekke at tabellen funker
-	//private SimpleIntegerProperty Date;
+	private SimpleStringProperty DateString;
+	private Timestamp tstamp;
 	
 	public Table(int StudentID) {
 		if (StudentID > 0) {
@@ -31,13 +32,16 @@ public class Table  {
 		}
 	}
 	
-	public Table(int PersonID, int Spm1, int Spm2,int Spm3,int Spm4,int Spm5,int Spm6,int Spm7,int Spm8,int Spm9,int Spm10,int Total) {
+	public Table(Timestamp date, int PersonID,  int Spm1, int Spm2,int Spm3,int Spm4,int Spm5,int Spm6,int Spm7,int Spm8,int Spm9,int Spm10,int Total) {
 		super();
 		this.PersonID = new SimpleIntegerProperty(PersonID);
 		if (!((0 < Spm1 && Spm1 < 6) && (0 < Spm2 && Spm2 < 6) && (0 < Spm3 && Spm3 < 6) && (0 < Spm4 && Spm4 < 6) && (0 < Spm5 && Spm5 < 6) && (0 < Spm6 && Spm6 < 6) && (0 < Spm7 && Spm7 < 6) && (0 < Spm8 && Spm8 < 6) && (0 < Spm9 && Spm9 < 6) && (0 < Spm10 && Spm10 < 6))) {
 			throw new IllegalArgumentException("Svarene skal være et tall mellom 1 og 5");
 		}
 		else {
+			this.tstamp = date;
+			
+			this.DateString = new SimpleStringProperty(getDateString(tstamp));
 			this.Spm1 = new SimpleIntegerProperty(Spm1);
 			this.Spm2 = new SimpleIntegerProperty(Spm2);
 			this.Spm3 = new SimpleIntegerProperty(Spm3);
@@ -49,24 +53,21 @@ public class Table  {
 			this.Spm9 = new SimpleIntegerProperty(Spm9);
 			this.Spm10 = new SimpleIntegerProperty(Spm10);
 			this.Total = new SimpleIntegerProperty(Total);
-			//this.Date = new SimpleIntegerProperty(date);
 		}
 	}
-/*public java.util.Date getDate() {
-		return Date;
-	}
 	
-	public int getDate() {
-		return Date.get();
+	public String getDateString(Timestamp tstamp) {
+		return tstamp.toString();
 	}
-*/
-	//har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
+
+	
+	/*har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
 	public void setSpm5(int spm5) {
 		if( 0 > spm5 || spm5 > 5){
 			throw new IllegalArgumentException("Svaret må være mellom 1 og 5");
 		}
 		this.Spm5 = new SimpleIntegerProperty(spm5);
-	}
+	}*/
 	public int getSpm2() {
 		return Spm2.get();
 	}
@@ -115,27 +116,15 @@ public class Table  {
 		return Spm1.get();
 	}
 
-	/*@Override
+	@Override
 	public String toString() {
-		return "Table [Date=" + Date + "PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
+		return "Table [Date=" + DateString + ", PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
 				+ ", Spm5=" + Spm5 + ", Spm6=" + Spm6 + ", Spm7=" + Spm7 + ", Spm8=" + Spm8 + ", Spm9=" + Spm9
 				+ ", Spm10=" + Spm10 + ", Total=" + Total + "]";
 	}
-	*/
-	@Override
-	public String toString() {
-		return "Table [PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
-				+ ", Spm5=" + Spm5 + ", Spm6=" + Spm6 + ", Spm7=" + Spm7 + ", Spm8=" + Spm8 + ", Spm9=" + Spm9
-				+ ", Spm10=" + Spm10 + ", Total=" + Total + "]" + "Table[StudentID=" + StudentID + "]";
-	}
+	
 	public int getStudentID() {
 		return StudentID.get();
 	}
-
-	/*public void setStudentID(SimpleIntegerProperty studentID) {
-		StudentID = studentID;
-	}
-	
-	*/
 
 }

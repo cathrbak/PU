@@ -20,7 +20,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35&useSSL=false";
  
 	
-	//Metoder for å opprette en kobling mellom applikasjonen og databasen
+	//Metoder for ï¿½ opprette en kobling mellom applikasjonen og databasen
 	private Connection getConnection() throws SQLException{
 		return DriverManager.getConnection(dbURL);
 	}
@@ -34,7 +34,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return conn.createStatement();
 	}
 	
-	//Metode for å legge til en helsesoster i databasen
+	//Metode for ï¿½ legge til en helsesoster i databasen
 	@Override
 	public void createNewNurse(Nurse nurse) throws SQLException{
 		try {
@@ -63,7 +63,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
-	//For å hente ut en helsesoster fra databasen
+	//For ï¿½ hente ut en helsesoster fra databasen
 	@Override
 	public Nurse getNurse(String username) throws SQLException {
 			
@@ -122,7 +122,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			return nurse; 
 		}
 	
-	//For å oppdatere en helsesoster som allerede ligger lagret i databasen
+	//For ï¿½ oppdatere en helsesoster som allerede ligger lagret i databasen
 	@Override
 	public void updateNurse(Nurse nurse) throws SQLException{
 		try {
@@ -145,7 +145,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 	
-	//For å slette en helsesoster. Mest for testene sin del
+	//For ï¿½ slette en helsesoster. Mest for testene sin del
 	public void deleteNurse(Nurse nurse) throws SQLException{
 		try {
 			Statement stmt = getStatement();
@@ -163,7 +163,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
-	//Metode for å hente ut en student som ligger lagret i databasen
+	//Metode for ï¿½ hente ut en student som ligger lagret i databasen
 	@Override
 	public Student getStudent(String username) throws SQLException {
 		
@@ -236,7 +236,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 	
 
-	//metode for å hente ut et nurse-objekt når kan kun får HelsesosterID fra raden i databasen
+	//metode for ï¿½ hente ut et nurse-objekt nï¿½r kan kun fï¿½r HelsesosterID fra raden i databasen
 
 	private Nurse getNurseFromID(int nurseID) throws SQLException{
 		ResultSet rs = null;
@@ -262,7 +262,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return nurse; 
 	}
 	
-	//for å legge en ny student i databasen
+	//for ï¿½ legge en ny student i databasen
 	@Override
 	
 	public void createNewStudent(Student student) throws SQLException {
@@ -289,7 +289,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 
-	//For å oppdatere en student som ligger i databasen
+	//For ï¿½ oppdatere en student som ligger i databasen
 	@Override
 	public void updateStudent(Student student) throws SQLException{
 		try {
@@ -316,7 +316,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 	
-	//For å slette en student som ligger i databasen.
+	//For ï¿½ slette en student som ligger i databasen.
 	public void deleteStudent(Student student) throws SQLException{
 		try {
 			Statement stmt = getStatement();
@@ -333,7 +333,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 
-	//For å hente ut en liste med alle studentene en helsesoster har tilgang til
+	//For ï¿½ hente ut en liste med alle studentene en helsesoster har tilgang til
 	@Override
     public List<Student> getStudents(Nurse nurse) throws Exception {
         List<Student> students = new ArrayList<Student>();
@@ -363,8 +363,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
         return students;
     }
 
-	//for å sørge for at det blir riktig format på attributtet facultet/faculty. Dette er nemlig fakultetID i databasen
-	//, altså en int, mens det er fakultetnavnet i java-koden, altså string.
+	//for ï¿½ sï¿½rge for at det blir riktig format pï¿½ attributtet facultet/faculty. Dette er nemlig fakultetID i databasen
+	//, altsï¿½ en int, mens det er fakultetnavnet i java-koden, altsï¿½ string.
 	public int switchFacultyNametoID(String faculty) {
 		
 		Integer fakultetID = 0;
@@ -405,8 +405,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
-	//for å sørge for at det blir riktig format på attributtet facultet/faculty. Dette er nemlig fakultetID i databasen
-	//, altså en int, mens det er fakultetnavnet i java-koden, altså string.
+	//for ï¿½ sï¿½rge for at det blir riktig format pï¿½ attributtet facultet/faculty. Dette er nemlig fakultetID i databasen
+	//, altsï¿½ en int, mens det er fakultetnavnet i java-koden, altsï¿½ string.
 	public String switchFakultetIDtoName(Integer facID) {
 		String facultyName = null;
 		
@@ -434,7 +434,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
-	//For å hente ut alle svarlogger en student har tilknyttet til seg.
+	//For ï¿½ hente ut alle svarlogger en student har tilknyttet til seg.
 	@Override
 	public List<Table> getAnswers(Student student) throws SQLException { 
 
@@ -457,14 +457,16 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 		while(rs.next()) {
 			String answer = rs.getString("svarString");
-			answers.add(listToTableConverter(student, answer));
+			Timestamp tstamp = rs.getTimestamp("datoTid");
+			
+			answers.add(listToTableConverter(student, answer, tstamp));
 		}
 		closeConnection();
 		return answers;
 	}
 
-	//gjør om listen med svar til en tabell
-	private Table listToTableConverter(Student student, String anslist) throws SQLException {
+	//gjï¿½r om listen med svar til en tabell
+	private Table listToTableConverter(Student student, String anslist, Timestamp tstamp) throws SQLException {
 		int sum=0;
 		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen pÃ¥ komma, og lager en liste av den
 		List<Integer> intlist=new ArrayList<>();
@@ -473,10 +475,10 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			intlist.add(Integer.parseInt(c)); //Legger til svar i svarliste kalt intlist
 		}
 		//Returnerer Tableobjekt med student og svar
-		return new Table(getStudentID(student),intlist.get(0), intlist.get(1),intlist.get(2),intlist.get(3),intlist.get(4),intlist.get(5),intlist.get(6), intlist.get(7), intlist.get(8), intlist.get(9), sum);
+		return new Table(tstamp, getStudentID(student),intlist.get(0), intlist.get(1),intlist.get(2),intlist.get(3),intlist.get(4),intlist.get(5),intlist.get(6), intlist.get(7), intlist.get(8), intlist.get(9), sum);
 	}
 	
-	//metoder for å hente iden til en student og helsesoster når man bare har objektet i java. Burde kanskje legge til 
+	//metoder for ï¿½ hente iden til en student og helsesoster nï¿½r man bare har objektet i java. Burde kanskje legge til 
 	//DatagiverID og HelsesosterID som attributt i Nurse og Student.
 	public int getStudentID(Student student) throws SQLException {
 		Integer studentID = null;
@@ -528,7 +530,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 
 	
-	//Metode for å slette meldinger i testene. Ikke bruk i noe annet enn test, da den sletter alle meldingene sendt til en student.
+	//Metode for ï¿½ slette meldinger i testene. Ikke bruk i noe annet enn test, da den sletter alle meldingene sendt til en student.
 	@Override
 	public void deleteMessages(Message message) throws SQLException {
 		try {
@@ -548,7 +550,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 
 	
-	//Metode for å legge til en melding i databasen
+	//Metode for ï¿½ legge til en melding i databasen
 	@Override
 	public void createNewMessage(Message message) throws SQLException {
 		try {
@@ -567,7 +569,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 		
 	}
-	//Metode for å hente ut 1 melding
+	//Metode for ï¿½ hente ut 1 melding
 	@Override
 	public Message getMessage(Student student, Nurse nurse) throws SQLException {
 		ResultSet rs = null;
@@ -620,7 +622,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
-	//Metode for å hente ut alle meldingene som er sendt til en student.
+	//Metode for ï¿½ hente ut alle meldingene som er sendt til en student.
 
 	@Override
 	public List<Message> getMessages(Student student) throws SQLException {

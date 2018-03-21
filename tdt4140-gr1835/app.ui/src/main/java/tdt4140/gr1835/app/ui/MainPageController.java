@@ -1,11 +1,10 @@
 package tdt4140.gr1835.app.ui;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.sql.Time;
+
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -42,7 +41,6 @@ UserDatabaseHandler database;
 	Button Profile;
 	@FXML
 	Button Logout;
-
 	@FXML
 	Button Question;
 	
@@ -56,11 +54,7 @@ UserDatabaseHandler database;
 	@FXML 
 	TableView<Table> tableID;
 	@FXML
-	TableColumn<Table, Integer> Dato;
-	
-	//Får ikke til å sette cellValueFactory i initialize enda
-	/*@FXML
-	TableColumn<Table, Time> Dato;*/
+	TableColumn<Table, String> DateString;
 	@FXML 
 	TableColumn<Table, Integer> PersonID;
 	@FXML 
@@ -95,14 +89,17 @@ UserDatabaseHandler database;
 	//lager listen som skal inneholde dataen med studenter
 	final ObservableList<Table> dataStudents = FXCollections.observableArrayList();
 
+	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen
 	public void addInfoAnswers() throws SQLException, Exception{
 		List<Student> students;
-		students = database.getStudents(nurse);
-		for (Student student : students) {
+		
+		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
 			try {
 				List<Table> listOfAnswers = database.getAnswers(student);
 				for(Table answer: listOfAnswers) {
-					dataAnswers.add(answer);	
+					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
+					System.out.println(answer);
 				}
 					
 			} catch (SQLException e2) {
@@ -112,22 +109,21 @@ UserDatabaseHandler database;
 		}
 		
 	}
-		
+	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen	
 	public void addStudents() throws SQLException, Exception{
 		List<Student> students;
-		students = database.getStudents(nurse);
+		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
 		for (Student student : students) {
 			try{
-				int studentID = database.getStudentID(student);
-				Table tableStudent = new Table(studentID); 
-				dataStudents.add(tableStudent);
+				int studentID = database.getStudentID(student); //henter studentens ID fra databasen
+				Table tableStudent = new Table(studentID);  //lager et table-objekt med kun studentID
+				dataStudents.add(tableStudent); //legger til i listen som skal vises i tabellen
 			}
 			catch(SQLException e3) {
 				e3.printStackTrace();
 			}
 				
 			}
-			
 		}
 		
 	
@@ -201,8 +197,8 @@ UserDatabaseHandler database;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		DateString.setCellValueFactory(new PropertyValueFactory<Table, String>("DateString"));
 		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("StudentID"));
-		Dato.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Dato"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
 		Spm2.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm2"));
@@ -218,6 +214,4 @@ UserDatabaseHandler database;
 		tableStudents.setItems(dataStudents);
 	    tableID.setItems(dataAnswers);
 	    }	
-
-	//DATEOFBIRTH.setCellFactory(new PersonController.ColumnFormatter<>(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
 }
