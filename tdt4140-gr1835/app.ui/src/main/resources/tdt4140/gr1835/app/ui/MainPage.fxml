@@ -8,11 +8,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
+      <Text fill="#e8e2e2" layoutX="14.0" layoutY="42.468000411987305" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" wrappingWidth="219.0480194091797" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.0">
          <font>
-            <Font name="Copperplate" size="36.0" />
+            <Font name="Copperplate" size="48.0" />
          </font>
       </Text>
     <Button fx:id="Profile" layoutX="451.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" prefHeight="29.0" prefWidth="67.0" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="18.0">
@@ -26,21 +26,21 @@
          <effect>
             <Blend />
          </effect></Button>
-         <TableView fx:id="tableID" layoutX="5.0" layoutY="134.0" prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: e8e2e2;" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="134.0">
+         <TableView fx:id="tableID" layoutX="25.0" layoutY="133.0" prefHeight="200.0" prefWidth="750.0" style="-fx-background-color: e8e2e2;" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="133.0">
         <columns>
-          <TableColumn fx:id="PersonID" prefWidth="40.0" text="PersonID" />
-          <TableColumn fx:id="Spm1" prefWidth="56.0" text="Spm 1" />
-            <TableColumn fx:id="Spm2" prefWidth="56.0" text="Spm 2" />
-            <TableColumn fx:id="Spm3" prefWidth="56.0" text="Spm 3" />
-            <TableColumn fx:id="Spm4" prefWidth="56.0" text="Spm 4" />
-            <TableColumn fx:id="Spm5" prefWidth="56.0" text="Spm 5" />
-            <TableColumn fx:id="Spm6" prefWidth="56.0" text="Spm 6" />
-            <TableColumn fx:id="Spm7" prefWidth="56.0" text="Spm 7" />
-            <TableColumn fx:id="Spm8" prefWidth="56.0" text="Spm 8" />
-            <TableColumn fx:id="Spm9" prefWidth="56.0" text="Spm 9" />
-            <TableColumn fx:id="Spm10" prefWidth="56.0" text="Spm 10" />
-            <TableColumn fx:id="Total" prefWidth="56.0" text="Total" />
-            <TableColumn fx:id="Dato" prefWidth="75.0" text="Dato" />
+            <TableColumn fx:id="Dato" prefWidth="115.0" text="Dato" />
+          <TableColumn fx:id="PersonID" prefWidth="70.0" text="StudentID" />
+          <TableColumn fx:id="Spm1" prefWidth="52.0" text="Spm 1" />
+            <TableColumn fx:id="Spm2" prefWidth="52.0" text="Spm 2" />
+            <TableColumn fx:id="Spm3" prefWidth="52.0" text="Spm 3" />
+            <TableColumn fx:id="Spm4" prefWidth="52.0" text="Spm 4" />
+            <TableColumn fx:id="Spm5" prefWidth="52.0" text="Spm 5" />
+            <TableColumn fx:id="Spm6" prefWidth="52.0" text="Spm 6" />
+            <TableColumn fx:id="Spm7" prefWidth="52.0" text="Spm 7" />
+            <TableColumn fx:id="Spm8" prefWidth="52.0" text="Spm 8" />
+            <TableColumn fx:id="Spm9" prefWidth="52.0" text="Spm 9" />
+            <TableColumn fx:id="Spm10" prefWidth="52.0" text="Spm 10" />
+            <TableColumn fx:id="Total" prefWidth="45.0" text="Total" />
         </columns>
       </TableView>
       <Button fx:id="Question" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />

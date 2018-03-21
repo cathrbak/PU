@@ -78,7 +78,7 @@ public class MainPageController implements Initializable {
 	@FXML 
 	TableColumn<Table, Integer> Total;
 	@FXML 
-	TableColumn<Table, Integer> Dato;
+	TableColumn<Table, String> Dato;
 
 	
 	@FXML
@@ -274,7 +274,7 @@ public class MainPageController implements Initializable {
 		Spm9.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm9"));
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
-		Dato.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Dato"));
+		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
 
 		tableStudents.setItems(dataStudents);
 	    tableID.setItems(dataAnswers);

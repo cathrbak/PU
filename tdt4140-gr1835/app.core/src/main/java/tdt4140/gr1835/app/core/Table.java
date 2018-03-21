@@ -20,7 +20,7 @@ public class Table  {
 	private SimpleIntegerProperty Spm9;
 	private SimpleIntegerProperty Spm10;
 	private SimpleIntegerProperty Total;
-	private SimpleIntegerProperty Dato;
+	private SimpleStringProperty Dato;
 	private Timestamp tstamp;
 	
 	public Table(int StudentID) {
@@ -53,13 +53,16 @@ public class Table  {
 		}
 	}
 	
-	public int getDato() {
-		return tstamp.getDate();
+	public String getDato() {
+		int date = tstamp.getDate();
+		int month = tstamp.getMonth();
+		int year = tstamp.getYear() + 1900;
+		return (year + "-" + month + "-" + date);
 	}
 	
 	public void setDato(Timestamp tstamp) {
 		this.tstamp = tstamp;
-		this.Dato = new SimpleIntegerProperty(getDato());
+		this.Dato = new SimpleStringProperty(getDato());
 	}
 
 	/*har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
