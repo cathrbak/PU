@@ -28,7 +28,7 @@ public class MessageController {
 	TextArea textbox;
 	
 	@FXML
-	public void handleButton_send() throws SQLException, Exception{
+	public void handleButton_Send() throws SQLException, Exception{
 		//Ta meg til mainPage
         System.out.println("Sender bruker til mainPage");
         

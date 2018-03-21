@@ -77,8 +77,74 @@ UserDatabaseHandler database;
 	TableColumn<Table, Integer> Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
+<<<<<<< HEAD
 	@FXML 
 	TableColumn<Table, Integer> Dato;
+=======
+	
+	@FXML
+	Button seProfilButton1;
+	
+	@FXML
+	Button seProfilButton2;
+	
+	
+	
+	@FXML
+	public void handleProfilButton1() throws SQLException, Exception {
+        Stage stage; 
+        Parent root;
+        //get reference to the button's stage        
+        stage=(Stage) Profile.getScene().getWindow();
+        
+		List<Student> students;
+		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		int studentID = database.getStudentID(students.get(0)); //henter studentens ID fra databasen
+		
+        StudentProfileController controller= new StudentProfileController(this.nurse, studentID);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
+            
+        loader.setController(controller); 
+
+        root = (Parent) loader.load();
+        
+        Scene scene = new Scene(root);
+        //Legger på css stylesheetet
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+	}
+	
+	@FXML
+	public void handleProfilButton2() throws SQLException, Exception {
+	
+        Stage stage; 
+        Parent root;
+        //get reference to the button's stage        
+        stage=(Stage) Profile.getScene().getWindow();
+        
+		List<Student> students;
+		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		int studentID = database.getStudentID(students.get(1)); //henter studentens ID fra databasen
+		
+        StudentProfileController controller= new StudentProfileController(this.nurse, studentID);//Lager en kontroller instans
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
+            
+            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+
+            root = (Parent) loader.load();
+          //create a new scene with root and set the stage
+        Scene scene = new Scene(root);
+        //Legger på css stylesheetet
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Sender bruker tilbake til mainPage");
+	}
+	
+>>>>>>> branch 'master' of https://gitlab.stud.iie.ntnu.no/tdt4140-2018/35.git
 	
 	public int idNumber = 1;
 	public int total = 0;
