@@ -77,10 +77,9 @@ UserDatabaseHandler database;
 	TableColumn<Table, Integer> Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
-<<<<<<< HEAD
 	@FXML 
 	TableColumn<Table, Integer> Dato;
-=======
+
 	
 	@FXML
 	Button seProfilButton1;
@@ -144,7 +143,6 @@ UserDatabaseHandler database;
         System.out.println("Sender bruker tilbake til mainPage");
 	}
 	
->>>>>>> branch 'master' of https://gitlab.stud.iie.ntnu.no/tdt4140-2018/35.git
 	
 	public int idNumber = 1;
 	public int total = 0;
