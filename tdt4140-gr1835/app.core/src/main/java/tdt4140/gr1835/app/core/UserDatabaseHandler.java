@@ -26,7 +26,6 @@ public interface UserDatabaseHandler {
 	
 	//Gir meg svarene til en student
 	public List<Table> getAnswers(Student student) throws SQLException;
-
 	public int getStudentID(Student student) throws SQLException;
 
 	//Metoder for meldinger
