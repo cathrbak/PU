@@ -53,8 +53,6 @@ public class MainPageController implements Initializable {
 	//tabellen med spørreundersøkelser
 	@FXML 
 	TableView<Table> tableID;
-	@FXML
-	TableColumn<Table, String> DateString;
 	@FXML 
 	TableColumn<Table, Integer> PersonID;
 	@FXML 
@@ -79,6 +77,9 @@ public class MainPageController implements Initializable {
 	TableColumn<Table, Integer> Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
+	@FXML 
+	TableColumn<Table, Integer> Dato;
+
 	
 	@FXML
 	Button seProfilButton1;
@@ -179,6 +180,7 @@ public class MainPageController implements Initializable {
 			try{
 				int studentID = database.getStudentID(student); //henter studentens ID fra databasen
 				Table tableStudent = new Table(studentID);  //lager et table-objekt med kun studentID
+				
 				dataStudents.add(tableStudent); //legger til i listen som skal vises i tabellen
 			}
 			catch(SQLException e3) {
@@ -259,7 +261,6 @@ public class MainPageController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		DateString.setCellValueFactory(new PropertyValueFactory<Table, String>("DateString"));
 		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("StudentID"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
@@ -273,6 +274,8 @@ public class MainPageController implements Initializable {
 		Spm9.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm9"));
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
+		Dato.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Dato"));
+
 		tableStudents.setItems(dataStudents);
 	    tableID.setItems(dataAnswers);
 	    }	

@@ -20,7 +20,7 @@ public class Table  {
 	private SimpleIntegerProperty Spm9;
 	private SimpleIntegerProperty Spm10;
 	private SimpleIntegerProperty Total;
-	private SimpleStringProperty DateString;
+	private SimpleIntegerProperty Dato;
 	private Timestamp tstamp;
 	
 	public Table(int StudentID) {
@@ -53,13 +53,13 @@ public class Table  {
 		}
 	}
 	
-	public String getDateString(Timestamp tstamp) {
-		return tstamp.toString();
+	public int getDato() {
+		return tstamp.getDate();
 	}
 	
-	public void setDateString(Timestamp tstamp) {
+	public void setDato(Timestamp tstamp) {
 		this.tstamp = tstamp;
-		this.DateString = new SimpleStringProperty(getDateString(tstamp));
+		this.Dato = new SimpleIntegerProperty(getDato());
 	}
 
 	/*har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
@@ -119,7 +119,7 @@ public class Table  {
 
 	@Override
 	public String toString() {
-		return "Table [Date=" + DateString + ", PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
+		return "Table [Dato=" + Dato + ", PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
 				+ ", Spm5=" + Spm5 + ", Spm6=" + Spm6 + ", Spm7=" + Spm7 + ", Spm8=" + Spm8 + ", Spm9=" + Spm9
 				+ ", Spm10=" + Spm10 + ", Total=" + Total + "]";
 	}
