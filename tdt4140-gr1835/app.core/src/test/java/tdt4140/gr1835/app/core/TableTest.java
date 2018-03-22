@@ -18,7 +18,7 @@ public class TableTest extends TestCase{
 	public void setUp() throws Exception {
 		System.out.println("Setup");
 		testTable=new Table(1,1,2,3,4,5,1,2,3,4,5,30);
-		testTableTom = new Table(1);
+//		testTableTom = new Table();
 		
 	}
 
@@ -29,26 +29,26 @@ public class TableTest extends TestCase{
 		assertEquals(1, testTable.getPersonID());
 	}
 	
-	@Test
-	public void testNewTomTable() {
-		System.out.println("testTomTable");
-		assertFalse(testTableTom==null);
-		assertEquals(1, testTableTom.getStudentID());
-	}
-	
-	@Test
-	public void testRightValueEmptyConstructor() {
-		System.out.println("TestRightValueEmptyConstructor");
-		int expected = 1;
-		assertEquals(expected, testTableTom.getStudentID());
-		try {
-			Table testTable2= new Table(0);
-			fail("Testen skulle ha feilet pga at personID er mindre enn 1");
-		}catch(IllegalArgumentException e) {
-			assertTrue(e.getClass().equals(IllegalArgumentException.class));
-		}
-		
-	}
+//	@Test
+//	public void testNewTomTable() {
+//		System.out.println("testTomTable");
+//		assertFalse(testTableTom==null);
+//		assertEquals(1, testTableTom.getStudentID());
+//	}
+//	
+//	@Test
+//	public void testRightValueEmptyConstructor() {
+//		System.out.println("TestRightValueEmptyConstructor");
+//		int expected = 1;
+//		assertEquals(expected, testTableTom.getStudentID());
+//		try {
+//			Table testTable2= new Table(0);
+//			fail("Testen skulle ha feilet pga at personID er mindre enn 1");
+//		}catch(IllegalArgumentException e) {
+//			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+//		}
+//		
+//	}
 	/*@Test
 	public void testRightValue() {
 		System.out.println("testAllInt");

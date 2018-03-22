@@ -26,6 +26,7 @@ public class Table  {
 	private Timestamp tstamp;
 	
 	private Hyperlink StudentID;
+	private Student student;
 	
 	/*
 	public Table(int StudentID) {
@@ -48,6 +49,10 @@ public class Table  {
 
 	public void setStudentID(Hyperlink StudentID) {
 		this.StudentID = new Hyperlink();
+	}
+	
+	public Table(Student student) {
+		this.student=student;
 	}
 	
 	

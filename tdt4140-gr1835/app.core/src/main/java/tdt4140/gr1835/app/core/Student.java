@@ -1,23 +1,37 @@
 package tdt4140.gr1835.app.core;
 
-import java.nio.channels.IllegalSelectorException;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class Student extends User{
 	
 	private boolean isAnonymous;
 	private String sex;
 	private Nurse nurse;
+	private int studentID;
 	
 	public Student() {
+		
 	}
+	
 	
 	public Student(String username) {
 		super(username);
 	}
 	
+	
+	
+	public int getStudentID() {
+		return studentID;
+	}
+
+
+	public void setStudentID(int studentID) {
+		if(studentID<0) {
+			throw new IllegalArgumentException("Kan ikke ta inn negative tall som studentID. setStudentID tok inn: [ "+studentID+" ]");
+		}
+		this.studentID = studentID;
+	}
+
+
 	public Nurse getNurse() {
 		return nurse;
 	}

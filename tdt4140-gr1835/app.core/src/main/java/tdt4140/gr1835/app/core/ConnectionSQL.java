@@ -481,9 +481,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	
-	private Table listToTableConverter(Student student, String anslist) throws SQLException {
+	private Table listToTableConverter(Student student, String anslist,Timestamp tstamp) throws SQLException {
 		int sum=0;
-		Timestamp tstampTable = tstamp;
 		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen på komma, og lager en liste av den
 		List<Integer> intlist=new ArrayList<>();
 		for(String c:stringList) {

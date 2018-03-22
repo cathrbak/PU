@@ -40,8 +40,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 		testNurse.setFaculty("IE");
 		nurses.add(testNurse);
 		s.setNurse(testNurse);
-		n.setNurse(testNurse); 
-		Table t1=new Table(1);
+		n.setNurse(testNurse);
 	}
 
 	/*
