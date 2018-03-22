@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
@@ -25,6 +26,7 @@ public class ConnectionSQLTest {
 	UserDatabaseHandler udh;
 	Nurse testNurse;
 	Student testStudent;
+	Table testSurvey;
 	
 	@Before
 	public void setUp() throws SQLException{
@@ -44,7 +46,7 @@ public class ConnectionSQLTest {
 		testStudent.setPhoneNumber("46952270");
 		testStudent.setNurse(udh.getNurse("testsoster"));
 		
-		
+		testSurvey = new Table(2,1,2,3,4,5,4,3,2,1,1,20);
 		
 		
 		
@@ -55,6 +57,7 @@ public class ConnectionSQLTest {
 	public void tearDown() throws SQLException{
 		udh.deleteNurse(testNurse);
 		udh.deleteStudent(testStudent);
+		udh.deleteSurvey(testStudent);
 		udh.closeConnection();
 		
 		udh = null;
@@ -65,7 +68,7 @@ public class ConnectionSQLTest {
 	
 	@Test
 	public void testInstance() {
-		if (udh==null && testNurse==null && testStudent==null) {
+		if (udh==null && testNurse==null && testStudent==null && testSurvey ==null) {
 			fail("Testobjektet ble ikke opprettet");
 		}
 	}
@@ -83,7 +86,7 @@ public class ConnectionSQLTest {
 		assertEquals("Anonymitet",testStudent.isAnonymous(), udh.getStudent("testStudentUN").isAnonymous());
 		assertEquals("Fornavn",testStudent.getFirstName(), udh.getStudent("testStudentUN").getFirstName());
 		assertEquals("Etternavn",testStudent.getSecondName(), udh.getStudent("testStudentUN").getSecondName());
-		assertEquals("Kjønn",testStudent.getSex(), udh.getStudent("testStudentUN").getSex());
+		assertEquals("Kjï¿½nn",testStudent.getSex(), udh.getStudent("testStudentUN").getSex());
 		assertEquals("Email",testStudent.getEmail(), udh.getStudent("testStudentUN").getEmail());
 		assertEquals("TelefonNr",testStudent.getPhoneNumber(), udh.getStudent("testStudentUN").getPhoneNumber());
 		assertEquals("Helsesoster",testStudent.getNurse().getUsername(), udh.getStudent("testStudentUN").getNurse().getUsername());
@@ -104,6 +107,24 @@ public class ConnectionSQLTest {
 		
 		
 	}
+	
+	/*@Test
+	public void testCreateSurvey() throws SQLException {
+		
+		udh.createSurvey(testSurvey);
+		
+		
+		try {
+			Table duplikat = new Table(2,1,2,3,4,5,4,3,2,1,1,20);
+			udh.createSurvey(duplikat);
+			
+			fail("Prover a legge til undersÃ¸kelse som allerede eksisterer med duplikerende ID. Burde utlose en IllegalStateException");
+		}catch (IllegalStateException e) {
+			assertTrue(e.getClass().equals(IllegalStateException.class));
+		}
+				
+	}
+	*/
 	
 	
 	@Test //Tror ikke updateStudent fungerer helt.
