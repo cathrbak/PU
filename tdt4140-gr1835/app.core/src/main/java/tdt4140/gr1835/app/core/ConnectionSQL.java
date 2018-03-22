@@ -439,10 +439,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		try {
 			Statement stmt = getStatement();			
 			
-			String query = "INSERT INTO svarlogg(DatagiverID, svarString) VALUES ('" +survey.getPersonID() + "', "  + 
-					survey.getSpm1() + survey.getSpm2() + survey.getSpm3() + survey.getSpm4() + survey.getSpm5() +
-					survey.getSpm6() + survey.getSpm7() + survey.getSpm8() + survey.getSpm8() + survey.getSpm9() + survey.getSpm10() + ");";
-	
+			String query = "INSERT INTO svarlogg(DatagiverID, svarString) VALUES (" +survey.getPersonID() + ",'" + survey.getSpm1() + "," + survey.getSpm2() + ","  + survey.getSpm3() + ","  + survey.getSpm4() + ","  + survey.getSpm5() + ","
+					+ survey.getSpm6() + "," + survey.getSpm7() + ","  + survey.getSpm8() + "," + survey.getSpm9() + ","  + survey.getSpm10() + "');" ;
 			stmt.executeUpdate(query); 
 			
 		}
@@ -515,10 +513,10 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 	
 	public static void main(String[] args) throws Exception {
-		//ConnectionSQL database= new ConnectionSQL();		
-		//Table survey= new Table(2,1,2,3,4,5,4,3,2,1,1,26);
+		ConnectionSQL database= new ConnectionSQL();		
+		Table survey= new Table(2,1,2,3,4,5,4,3,2,1,1,26);
 		//System.out.println(tableToListConverter(survey));
-		//database.createSurvey(survey);
+		database.createSurvey(survey);
 
 		
 //		Student nora = new Student("norak");
