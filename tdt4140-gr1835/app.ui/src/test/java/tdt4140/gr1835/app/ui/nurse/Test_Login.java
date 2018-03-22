@@ -1,4 +1,4 @@
-package tdt4140.gr1835.app.ui;
+package tdt4140.gr1835.app.ui.nurse;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import tdt4140.gr1835.app.ui.GitLab_CI_Setup;
 
 
 public class Test_Login extends ApplicationTest {
