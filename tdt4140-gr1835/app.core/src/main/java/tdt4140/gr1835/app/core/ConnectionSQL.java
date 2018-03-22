@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -425,7 +426,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		}else if(facID == 7) {
 			facultyName = "SU";
 		}else if(facID == 8) {
-			facultyName = "OK";
+			facultyName = "OK"; 
 		}else if(facID == 9) {
 			facultyName = "VM";
 		}
@@ -433,6 +434,54 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return facultyName;
 		
 	}
+	
+	public void createSurvey(Table survey) throws SQLException {
+		try {
+			Statement stmt = getStatement();			
+			
+			String query = "INSERT INTO svarlogg(DatagiverID, svarString) VALUES ('" +survey.getPersonID() + "', "  + 
+					survey.getSpm1() + survey.getSpm2() + survey.getSpm3() + survey.getSpm4() + survey.getSpm5() +
+					survey.getSpm6() + survey.getSpm7() + survey.getSpm8() + survey.getSpm8() + survey.getSpm9() + survey.getSpm10() + ");";
+	
+			stmt.executeUpdate(query); 
+			
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		closeConnection();
+	}
+	
+	
+	// sletter nå alle spørreundersøkseler knyttet til en studentID. Bør få inn dateTime her for å diskriminere undersøkelsene ytterligere.
+	public void deleteSurvey(Student student) throws SQLException{
+		try {
+			Statement stmt = getStatement();
+			
+			String query = "DELETE from svarlogg WHERE datagiverID='" + getStudentID(student)
+			+ "';";
+			
+			stmt.executeUpdate(query);
+			System.out.println(query);
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		closeConnection();			
+	}
+	
+	
+	//Metode for å hente ut spørreundersøkelse når time/date er oppe og går
+	/*public Table getAnswerByTimeDate(List<Table> answer, boolean refresh) {
+		for (Table answer : getTotal()){
+			if (time/date == answer.getTimeDate() || (time/date != null && time/date.equals(answer.getTimeDate()))) {
+				return answer;
+			}
+		}
+		return null;
+	}
+*/
+	
 	
 	//For � hente ut alle svarlogger en student har tilknyttet til seg.
 	@Override
@@ -464,11 +513,66 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 		return answers;
 	}
+	
+	public static void main(String[] args) throws Exception {
+		//ConnectionSQL database= new ConnectionSQL();		
+		//Table survey= new Table(2,1,2,3,4,5,4,3,2,1,1,26);
+		//System.out.println(tableToListConverter(survey));
+		//database.createSurvey(survey);
+
+		
+//		Student nora = new Student("norak");
+//		nora.getUsername();
+//		database.deleteSurvey(nora);
+		
+		
+//	 	Nurse testNurse = new Nurse("cathrine");
+//		testNurse.setPassword("c");
+//		testNurse.setFirstName("Cathrine");
+//		testNurse.setSecondName("Arke");
+//		testNurse.setFaculty("IE");
+//		testNurse.setEmail("sverress@stud.tnu");
+//		database.createNewNurse(testNurse);
+//		System.out.println(database.getNurse("cathrine"));
+		
+	}
+	
+	private static String tableToStringConverter (Table survey) {
+		List<Integer> intList = new ArrayList<>();
+		intList.add(survey.getSpm1());
+		intList.add(survey.getSpm2());
+		intList.add(survey.getSpm3());
+		intList.add(survey.getSpm4());
+		intList.add(survey.getSpm5());
+		intList.add(survey.getSpm6());
+		intList.add(survey.getSpm7());
+		intList.add(survey.getSpm8());
+		intList.add(survey.getSpm9());
+		intList.add(survey.getSpm10());
+		List<String> stringList = intList.stream().map(Object::toString).collect(Collectors.toList());
+		
+		String listString = String.join(",", stringList);
+		return listString;
+		
+	}
+	
 
 	//gj�r om listen med svar til en tabell
-	private Table listToTableConverter(Student student, String anslist, Timestamp tstamp) throws SQLException {
+
+		
+		
+//	 	Nurse testNurse = new Nurse("cathrine");
+//		testNurse.setPassword("c");
+//		testNurse.setFirstName("Cathrine");
+//		testNurse.setSecondName("Arke");
+//		testNurse.setFaculty("IE");
+//		testNurse.setEmail("sverress@stud.tnu");
+//		database.createNewNurse(testNurse);
+//		System.out.println(database.getNurse("cathrine"));
+		
+	
+	private Table listToTableConverter(Student student, String anslist,Timestamp tstamp) throws SQLException {
 		int sum=0;
-		Timestamp tstampTable = tstamp;
 		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen på komma, og lager en liste av den
 		List<Integer> intlist=new ArrayList<>();
 		for(String c:stringList) {
@@ -530,6 +634,30 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		} 
 		closeConnection();
 		return nurseID;
+	}
+	
+	public String getLoggID(Student student) throws SQLException {
+		String loggID = null;
+		
+		ResultSet rs = null;
+		
+		try {
+			String query = "SELECT * FROM `svarlogg` WHERE `DatagiverID` LIKE '" + getStudentID(student)+"'";
+			Statement stmt = getStatement();
+			
+			if(stmt.execute(query)) {
+				rs = stmt.getResultSet();
+			}
+		}
+		catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		while(rs.next()) {
+			loggID = rs.getString("LoggID");
+		} 
+		
+		closeConnection();
+		return loggID;
 	}
 
 	

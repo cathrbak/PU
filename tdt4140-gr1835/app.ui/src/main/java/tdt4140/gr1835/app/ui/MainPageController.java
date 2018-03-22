@@ -9,12 +9,15 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -34,8 +37,14 @@ public class MainPageController implements Initializable {
 		addInfoAnswers();	
 		addStudents();
 	}
+	
 				
-	private Nurse nurse;
+	public Nurse getNurse() {
+		return nurse;
+	}
+
+
+	public Nurse nurse;
 	
 	@FXML
 	Button Profile;
@@ -47,8 +56,9 @@ public class MainPageController implements Initializable {
 	//tabellen med studenter
 	@FXML 
 	TableView<Table> tableStudents;
-	@FXML
-	TableColumn<Table, Integer> StudentID;
+	
+	//@FXML
+	//TableColumn<Table, Integer> StudentID;
 	
 	//tabellen med spørreundersøkelser
 	@FXML 
@@ -78,70 +88,10 @@ public class MainPageController implements Initializable {
 	@FXML 
 	TableColumn<Table, Integer> Total;
 	@FXML 
-	TableColumn<Table, Integer> Dato;
-
+	TableColumn<Table, String> Dato;
 	
 	@FXML
-	Button seProfilButton1;
-	
-	@FXML
-	Button seProfilButton2;
-	
-	
-	
-	@FXML
-	public void handleProfilButton1() throws SQLException, Exception {
-        Stage stage; 
-        Parent root;
-        //get reference to the button's stage        
-        stage=(Stage) Profile.getScene().getWindow();
-        
-		List<Student> students;
-		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
-		
-		
-        StudentProfileController controller= new StudentProfileController(this.nurse, students.get(0));
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
-            
-        loader.setController(controller); 
-
-        root = (Parent) loader.load();
-        
-        Scene scene = new Scene(root);
-        //Legger på css stylesheetet
-        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
-	}
-	
-	@FXML
-	public void handleProfilButton2() throws SQLException, Exception {
-	
-        Stage stage; 
-        Parent root;
-        //get reference to the button's stage        
-        stage=(Stage) Profile.getScene().getWindow();
-        
-		List<Student> students;
-		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
-		int studentID = database.getStudentID(students.get(1)); //henter studentens ID fra databasen
-		
-        StudentProfileController controller= new StudentProfileController(this.nurse, students.get(1));//Lager en kontroller instans
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
-            
-            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
-
-            root = (Parent) loader.load();
-          //create a new scene with root and set the stage
-        Scene scene = new Scene(root);
-        //Legger på css stylesheetet
-        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
-        System.out.println("Sender bruker tilbake til mainPage");
-	}
+	TableColumn<Table, Hyperlink> StudentID;
 	
 	
 	public int idNumber = 1;
@@ -162,7 +112,6 @@ public class MainPageController implements Initializable {
 				List<Table> listOfAnswers = database.getAnswers(student);
 				for(Table answer: listOfAnswers) {
 					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
-					System.out.println(answer);
 				}
 					
 			} catch (SQLException e2) {
@@ -179,18 +128,27 @@ public class MainPageController implements Initializable {
 		for (Student student : students) {
 			try{
 				int studentID = database.getStudentID(student); //henter studentens ID fra databasen
-				Table tableStudent = new Table(studentID);  //lager et table-objekt med kun studentID
-				
-				dataStudents.add(tableStudent); //legger til i listen som skal vises i tabellen
+				String studentid = Integer.toString(studentID);
+				Hyperlink link = new Hyperlink();
+				link.setText(studentid);
+				link.setOnAction(new EventHandler<ActionEvent>() {
+
+					@Override
+					public void handle(ActionEvent event) {
+						System.out.println("This link is clicked");
+						
+					}
+					
+				//Table tableStudent = new Table(studentID);  //lager et table-objekt med kun studentID
+			});
+			dataStudents.add(new Table(link)); //legger til i listen som skal vises i tabellen
 			}
 			catch(SQLException e3) {
 				e3.printStackTrace();
 			}
-				
-			}
-		}
-		
-	
+		}				
+	}
+
 	
 	@FXML
 	public void handleProfileButton() throws IOException {
@@ -261,7 +219,7 @@ public class MainPageController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("StudentID"));
+		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Hyperlink>("StudentID"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
 		Spm2.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm2"));
@@ -274,7 +232,7 @@ public class MainPageController implements Initializable {
 		Spm9.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm9"));
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
-		Dato.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Dato"));
+		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
 
 		tableStudents.setItems(dataStudents);
 	    tableID.setItems(dataAnswers);

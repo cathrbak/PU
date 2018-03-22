@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
@@ -25,6 +26,7 @@ public class ConnectionSQLTest {
 	UserDatabaseHandler udh;
 	Nurse testNurse;
 	Student testStudent;
+	Table testSurvey;
 	Message testMessage;
 	
 	@Before
@@ -48,16 +50,24 @@ public class ConnectionSQLTest {
 		testStudent.setPhoneNumber("46952270");
 		testStudent.setNurse(udh.getNurse("testsoster"));
 		
+		testSurvey = new Table(2,1,2,3,4,5,4,3,2,1,1,20);
+		
+		
+		
 		testMessage = new Message(testStudent, testNurse);
 		testMessage.setNurse(testNurse);
 		testMessage.setReciver(testStudent);
 		testMessage.setText("Heisann");
-		//Timestamp blir automatisk satt, så det blir vanskelig å teste. Vet ikke hva jeg skal assertEquals.
+		//Timestamp blir automatisk satt, sï¿½ det blir vanskelig ï¿½ teste. Vet ikke hva jeg skal assertEquals.
 		
 	}
 	
 	@After
 	public void tearDown() throws SQLException{
+		udh.deleteNurse(testNurse);
+		udh.deleteStudent(testStudent);
+		udh.deleteSurvey(testStudent);
+		udh.closeConnection();
 		udh.deleteStudent(udh.getStudent("haraldmu"));
 		udh.deleteStudent(udh.getStudent("alexoh"));
 		udh.deleteStudent(udh.getStudent("petter"));
@@ -74,7 +84,7 @@ public class ConnectionSQLTest {
 	
 	@Test
 	public void testInstance() {
-		if (udh==null && testNurse==null && testStudent==null) {
+		if (udh==null && testNurse==null && testStudent==null && testSurvey ==null) {
 			fail("Testobjektet ble ikke opprettet");
 		}
 	}
@@ -93,7 +103,7 @@ public class ConnectionSQLTest {
 		assertEquals("Anonymitet",testStudent.isAnonymous(), udh.getStudent("testStudentUN").isAnonymous());
 		assertEquals("Fornavn",testStudent.getFirstName(), udh.getStudent("testStudentUN").getFirstName());
 		assertEquals("Etternavn",testStudent.getSecondName(), udh.getStudent("testStudentUN").getSecondName());
-		assertEquals("Kjønn",testStudent.getSex(), udh.getStudent("testStudentUN").getSex());
+		assertEquals("Kjï¿½nn",testStudent.getSex(), udh.getStudent("testStudentUN").getSex());
 		assertEquals("Email",testStudent.getEmail(), udh.getStudent("testStudentUN").getEmail());
 		assertEquals("TelefonNr",testStudent.getPhoneNumber(), udh.getStudent("testStudentUN").getPhoneNumber());
 		assertEquals("Helsesoster",testStudent.getNurse().getUsername(), udh.getStudent("testStudentUN").getNurse().getUsername());
@@ -114,6 +124,24 @@ public class ConnectionSQLTest {
 		
 		udh.deleteStudent(testStudent);
 	}
+	
+	/*@Test
+	public void testCreateSurvey() throws SQLException {
+		
+		udh.createSurvey(testSurvey);
+		
+		
+		try {
+			Table duplikat = new Table(2,1,2,3,4,5,4,3,2,1,1,20);
+			udh.createSurvey(duplikat);
+			
+			fail("Prover a legge til undersÃ¸kelse som allerede eksisterer med duplikerende ID. Burde utlose en IllegalStateException");
+		}catch (IllegalStateException e) {
+			assertTrue(e.getClass().equals(IllegalStateException.class));
+		}
+				
+	}
+	*/
 	
 	
 	@Test 
@@ -227,7 +255,7 @@ public class ConnectionSQLTest {
 		
 		fromdb = udh.getMessages(testStudent);
 		
-		assertEquals("Sjekker om første melding er samme", expected.get(0).getText(), fromdb.get(0).getText());
+		assertEquals("Sjekker om fï¿½rste melding er samme", expected.get(0).getText(), fromdb.get(0).getText());
 		assertEquals("Sjekker om andre melding er samme", expected.get(1).getText(), fromdb.get(1).getText());
 		
 		udh.deleteMessages(testMessage);

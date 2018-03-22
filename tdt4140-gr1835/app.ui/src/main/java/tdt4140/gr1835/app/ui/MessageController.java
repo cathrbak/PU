@@ -1,6 +1,7 @@
 package tdt4140.gr1835.app.ui;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -116,5 +117,6 @@ public class MessageController {
 			textbox.setVisible(true);
 		}
 	}
+
 	
 }

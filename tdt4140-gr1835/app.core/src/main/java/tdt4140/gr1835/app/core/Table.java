@@ -1,13 +1,15 @@
 package tdt4140.gr1835.app.core;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Hyperlink;
 
 import java.sql.Timestamp;
 //dette er en klasse som behandler svarene til en person, personen identifiseres ved PersonID
 
 public class Table  {
-	private SimpleIntegerProperty StudentID;
+	//private SimpleIntegerProperty StudentID;
 	private SimpleIntegerProperty PersonID;
 	private SimpleIntegerProperty Spm1;
 	private SimpleIntegerProperty Spm2;
@@ -20,9 +22,13 @@ public class Table  {
 	private SimpleIntegerProperty Spm9;
 	private SimpleIntegerProperty Spm10;
 	private SimpleIntegerProperty Total;
-	private SimpleIntegerProperty Dato;
+	private SimpleStringProperty Dato;
 	private Timestamp tstamp;
 	
+	private Hyperlink StudentID;
+	private Student student;
+	
+	/*
 	public Table(int StudentID) {
 		if (StudentID > 0) {
 			this.StudentID = new SimpleIntegerProperty(StudentID);	
@@ -31,7 +37,26 @@ public class Table  {
 			throw new IllegalArgumentException("StudentID må være større enn 0");
 		}
 	}
+	*/
 	
+	public Table(Hyperlink StudentID) {
+		this.StudentID = StudentID;
+	}
+	
+	public Hyperlink getStudentID() {
+		return StudentID;
+	}
+
+	public void setStudentID(Hyperlink StudentID) {
+		this.StudentID = new Hyperlink();
+	}
+	
+	public Table(Student student) {
+		this.student=student;
+	}
+	
+	
+
 	public Table(int PersonID,  int Spm1, int Spm2,int Spm3,int Spm4,int Spm5,int Spm6,int Spm7,int Spm8,int Spm9,int Spm10,int Total) {
 		super();
 		this.PersonID = new SimpleIntegerProperty(PersonID);
@@ -53,13 +78,16 @@ public class Table  {
 		}
 	}
 	
-	public int getDato() {
-		return tstamp.getDate();
+	public String getDato() {
+		int date = tstamp.getDate();
+		int month = tstamp.getMonth();
+		int year = tstamp.getYear() + 1900;
+		return (year + "-" + month + "-" + date);
 	}
 	
 	public void setDato(Timestamp tstamp) {
 		this.tstamp = tstamp;
-		this.Dato = new SimpleIntegerProperty(getDato());
+		this.Dato = new SimpleStringProperty(getDato());
 	}
 
 	/*har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
@@ -122,10 +150,6 @@ public class Table  {
 		return "Table [Dato=" + Dato + ", PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
 				+ ", Spm5=" + Spm5 + ", Spm6=" + Spm6 + ", Spm7=" + Spm7 + ", Spm8=" + Spm8 + ", Spm9=" + Spm9
 				+ ", Spm10=" + Spm10 + ", Total=" + Total + "]";
-	}
-	
-	public int getStudentID() {
-		return StudentID.get();
 	}
 
 }

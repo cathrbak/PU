@@ -20,12 +20,17 @@ public interface UserDatabaseHandler {
 	public void updateStudent(Student student) throws SQLException;
 	public void deleteStudent(Student student) throws SQLException;
 	
+	//Metoder for Undersøkelser
+	public void createSurvey(Table survey) throws SQLException;
+	public void deleteSurvey(Student student) throws SQLException;
+	
 	//Gir meg datagivere til denne helses�steren
 	//Denne burde byttes om til List
 	public List<Student> getStudents(Nurse nurse) throws SQLException, Exception;
 	
 	//Gir meg svarene til en student
 	public List<Table> getAnswers(Student student) throws SQLException;
+
 	public int getStudentID(Student student) throws SQLException;
 
 	//Metoder for meldinger
