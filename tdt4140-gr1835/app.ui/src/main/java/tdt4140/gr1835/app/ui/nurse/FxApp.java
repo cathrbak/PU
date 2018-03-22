@@ -1,4 +1,4 @@
-package tdt4140.gr1835.app.ui;
+package tdt4140.gr1835.app.ui.nurse;
 
 
 import javafx.application.Application;
@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FxAppStudent extends Application {
+public class FxApp extends Application {
 	
 	
 
@@ -15,7 +15,7 @@ public class FxAppStudent extends Application {
     public void start(Stage primaryStage) throws Exception {
     		
     		
-        Parent root_login = FXMLLoader.load(getClass().getResource("LoginStudent.fxml"));
+        Parent root_login = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene scene_login = new Scene(root_login);
         scene_login.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         primaryStage.setScene(scene_login);

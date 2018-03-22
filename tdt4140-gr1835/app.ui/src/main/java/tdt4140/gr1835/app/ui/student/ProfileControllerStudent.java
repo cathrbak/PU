@@ -1,4 +1,4 @@
-package tdt4140.gr1835.app.ui;
+package tdt4140.gr1835.app.ui.student;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.ui.nurse.FxApp;
 
 public class ProfileControllerStudent {
 	private Student student;

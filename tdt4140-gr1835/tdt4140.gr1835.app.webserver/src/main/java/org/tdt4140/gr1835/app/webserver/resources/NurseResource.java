@@ -102,8 +102,8 @@ public class NurseResource {
 	 */
 	
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String createNurse(String input) throws SQLException {
 		Nurse nurse=objectConverter.convertToObject(input);
 		database.createNewNurse(nurse);
@@ -124,8 +124,8 @@ public class NurseResource {
 	}
 	
 	@PUT
-	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String updateNurse(String input) throws SQLException {
 		Nurse nurse=objectConverter.convertToObject(input);
 		System.out.println(nurse);

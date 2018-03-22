@@ -1,4 +1,4 @@
-package tdt4140.gr1835.app.ui;
+package tdt4140.gr1835.app.ui.student;
 
 import java.util.List;
 import java.io.IOException;
@@ -23,6 +23,8 @@ import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.core.UserDatabaseHandler;
+import tdt4140.gr1835.app.ui.nurse.FxApp;
+import tdt4140.gr1835.app.ui.nurse.QuestionsController;
 
 public class MainPageControllerStudent implements Initializable {
 UserDatabaseHandler database;
@@ -137,6 +139,9 @@ UserDatabaseHandler database;
         stage.show();
 	}
 	
+	
+	// Denne metoden fungerer
+	
 	@FXML
 	public void handleAnonymitetButton() throws IOException {
 		//Ta meg til mainPage
@@ -147,11 +152,11 @@ UserDatabaseHandler database;
         //get reference to the button's stage        
         stage=(Stage) Anonymitet.getScene().getWindow();
         
-       // QuestionsController controller= new QuestionsController(this.student);//Lager en kontroller instans
+        QuestionsControllerStudent controller= new QuestionsControllerStudent(this.student);//Lager en kontroller instans
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuestionsStudent.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("QuestionsStudent.fxml"));
             
-           // loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+        loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
 
             root = (Parent) loader.load();
           //create a new scene with root and set the stage

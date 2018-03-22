@@ -1,4 +1,4 @@
-package tdt4140.gr1835.app.ui;
+package tdt4140.gr1835.app.ui.nurse;
 
 import java.sql.SQLException;
 import java.util.List;

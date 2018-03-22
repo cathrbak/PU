@@ -1,4 +1,4 @@
-package tdt4140.gr1835.app.ui;
+package tdt4140.gr1835.app.ui.student;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.ConnectionSQL;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.UserDatabaseHandler;
+import tdt4140.gr1835.app.ui.nurse.FxApp;
 
 public class LoginControllerStudent {
 	@FXML

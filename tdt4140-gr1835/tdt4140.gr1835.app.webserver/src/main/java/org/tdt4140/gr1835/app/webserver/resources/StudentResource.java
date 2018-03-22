@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 import tdt3140.gr1835.app.json.JsonConverterService;
 import tdt3140.gr1835.app.json.NurseJsonConverter;
 import tdt3140.gr1835.app.json.StudentJsonConverter;
+import tdt4140.gr1835.app.core.ConnectionSQL;
 import tdt4140.gr1835.app.core.MockingDatabase;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
@@ -25,7 +26,7 @@ public class StudentResource {
 	
 	private JsonConverterService<Student> studconverter = new StudentJsonConverter();
 	private JsonConverterService<Nurse> nurseconverter = new NurseJsonConverter();
-	private UserDatabaseHandler database = new MockingDatabase();
+	private UserDatabaseHandler database = new ConnectionSQL();
 	
 	/*
 	 *   /students: ikke tillatt
@@ -72,7 +73,10 @@ public class StudentResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String createStudent(String input) throws SQLException {
+		System.out.println("Konverterer JSON til objekt");
 		Student stud=studconverter.convertToObject(input);
+		System.out.println(stud);
+		System.out.println("Kaller på database for å lage ny student: createNewStudent");
 		database.createNewStudent(stud);
 		return studconverter.convertToJason(database.getStudent(stud.getUsername()));
 	}
@@ -82,6 +86,7 @@ public class StudentResource {
 	 */
 	
 	@POST
+	@Path("/{username}/")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createTable(String input) throws SQLException {
