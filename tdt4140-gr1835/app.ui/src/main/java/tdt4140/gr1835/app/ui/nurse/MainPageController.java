@@ -40,7 +40,7 @@ public class MainPageController implements Initializable {
 	
 				
 	public Nurse getNurse() {
-		return nurse;
+		return this.nurse;
 	}
 
 
@@ -124,6 +124,8 @@ public class MainPageController implements Initializable {
 	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen	
 	public void addStudents() throws SQLException, Exception{
 		List<Student> students;
+		Nurse nurseObj = this.nurse;
+		
 		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
 		for (Student student : students) {
 			try{
@@ -133,10 +135,29 @@ public class MainPageController implements Initializable {
 				link.setText(studentid);
 				link.setOnAction(new EventHandler<ActionEvent>() {
 
-					@Override
+					private Student student;
+
 					public void handle(ActionEvent event) {
-						System.out.println("This link is clicked");
 						
+						System.out.println("Sender helsesøster til studentprofil");
+						Parent root;
+						Stage stage;
+						stage=(Stage) link.getScene().getWindow();
+						try {
+							StudentProfileController controller = new StudentProfileController(nurseObj, this.student);
+							FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
+							loader.setController(controller);
+							root = (Parent) loader.load();
+							Scene scene = new Scene(root);
+							
+							scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+							stage.setScene(scene);
+							stage.show();
+						} catch (SQLException e) {
+							e.printStackTrace();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
 					
 				//Table tableStudent = new Table(studentID);  //lager et table-objekt med kun studentID
