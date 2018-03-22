@@ -36,9 +36,11 @@ public class MockingDatabase implements UserDatabaseHandler{
 		Nurse testNurse = new Nurse("cathrine");
 		testNurse.setPassword("c");
 		testNurse.setFirstName("Cathrine");
-		testNurse.setSecondName("Arke");
+		testNurse.setSecondName("Akre");
 		testNurse.setFaculty("IE");
 		nurses.add(testNurse);
+		s.setNurse(testNurse);
+		n.setNurse(testNurse);
 	}
 
 	/*
@@ -56,7 +58,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 	@Override
 	public Student getStudent(String username) {
 		if(!containsStudent(username)) {
-			throw new IllegalStateException("Denne brukeren eksisterer ikke i databasen");
+			return null;
 		}
 		List<Student> result= students.stream()
 				.filter(u->u.getUsername().equals(username))
@@ -111,12 +113,17 @@ public class MockingDatabase implements UserDatabaseHandler{
 	@Override
 	public Nurse getNurse(String username) {
 		if(!containsNurse(username)) {
-			throw new IllegalStateException("Denne brukeren eksisterer ikke i databasen");
+			return null;
 		}
 		List<Nurse> result= nurses.stream()
 				.filter(u->u.getUsername().equals(username))
 				.collect(Collectors.toList());
 		return result.get(0);
+	}
+	
+	public static void main(String[] args) {
+		MockingDatabase database=new MockingDatabase();
+		System.out.println(database.getNurse("fg"));
 	}
 
 	@Override

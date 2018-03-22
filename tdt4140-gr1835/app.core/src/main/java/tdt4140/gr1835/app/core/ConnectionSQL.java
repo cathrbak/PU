@@ -515,11 +515,10 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 	
 	public static void main(String[] args) throws Exception {
-		ConnectionSQL database= new ConnectionSQL();
-		
-		Table survey= new Table(2,1,2,3,4,5,4,3,2,1,1,26);
+		//ConnectionSQL database= new ConnectionSQL();		
+		//Table survey= new Table(2,1,2,3,4,5,4,3,2,1,1,26);
 		//System.out.println(tableToListConverter(survey));
-		database.createSurvey(survey);
+		//database.createSurvey(survey);
 
 		
 //		Student nora = new Student("norak");
@@ -559,9 +558,21 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	
 
 	//gj�r om listen med svar til en tabell
-	private Table listToTableConverter(Student student, String anslist, Timestamp tstamp) throws SQLException {
+
+		
+		
+//	 	Nurse testNurse = new Nurse("cathrine");
+//		testNurse.setPassword("c");
+//		testNurse.setFirstName("Cathrine");
+//		testNurse.setSecondName("Arke");
+//		testNurse.setFaculty("IE");
+//		testNurse.setEmail("sverress@stud.tnu");
+//		database.createNewNurse(testNurse);
+//		System.out.println(database.getNurse("cathrine"));
+		
+	
+	private Table listToTableConverter(Student student, String anslist,Timestamp tstamp) throws SQLException {
 		int sum=0;
-		Timestamp tstampTable = tstamp;
 		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen på komma, og lager en liste av den
 		List<Integer> intlist=new ArrayList<>();
 		for(String c:stringList) {

@@ -62,5 +62,17 @@ public class TestStudent {
 			assertTrue(e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
+	
+	@Test
+	public void testStudentID() {
+		testStudent.setStudentID(1);
+		assertEquals(1, testStudent.getStudentID());
+		try {
+			testStudent.setStudentID(-12);
+			fail("Burde kastet exception etter at vi ");
+		}catch (IllegalArgumentException e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
+	}
 
 }
