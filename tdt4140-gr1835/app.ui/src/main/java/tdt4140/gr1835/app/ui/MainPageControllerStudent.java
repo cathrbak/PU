@@ -4,20 +4,16 @@ import java.util.List;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,39 +24,25 @@ import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.core.UserDatabaseHandler;
 
-public class MainPageController implements Initializable {
-	UserDatabaseHandler database;
+public class MainPageControllerStudent implements Initializable {
+UserDatabaseHandler database;
 	
-	public MainPageController(Nurse nurse) throws SQLException, Exception {
+	public MainPageControllerStudent(Student student) throws SQLException, Exception {
 		this.database=new ConnectionSQL();
-		this.nurse = nurse;
-		addInfoAnswers();	
-		addStudents();
+		this.student = student;
+		addInfo();	
 	}
-	
 				
-	public Nurse getNurse() {
-		return nurse;
-	}
-
-
-	public Nurse nurse;
+	private Student student;
 	
 	@FXML
 	Button Profile;
 	@FXML
 	Button Logout;
+
 	@FXML
-	Button Question;
+	Button Anonymitet;
 	
-	//tabellen med studenter
-	@FXML 
-	TableView<Table> tableStudents;
-	
-	//@FXML
-	//TableColumn<Table, Integer> StudentID;
-	
-	//tabellen med spørreundersøkelser
 	@FXML 
 	TableView<Table> tableID;
 	@FXML 
@@ -87,31 +69,23 @@ public class MainPageController implements Initializable {
 	TableColumn<Table, Integer> Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
-	@FXML 
-	TableColumn<Table, String> Dato;
-	
-	@FXML
-	TableColumn<Table, Hyperlink> StudentID;
 	
 	
 	public int idNumber = 1;
 	public int total = 0;
 	
-	//lager listen som skal inneholde dataen med spørreundersøkelser
-	final ObservableList<Table> dataAnswers = FXCollections.observableArrayList();
-	//lager listen som skal inneholde dataen med studenter
-	final ObservableList<Table> dataStudents = FXCollections.observableArrayList();
+	//lager listen som skal inneholde dataen
+	final ObservableList<Table> data = FXCollections.observableArrayList();
 
-	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen
-	public void addInfoAnswers() throws SQLException, Exception{
-		List<Student> students;
-		
-		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
-		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
+	
+	  //Må kunne fylle tabellen med studentens svar
+	 
+	  public void addInfo() throws SQLException, Exception{
+
 			try {
 				List<Table> listOfAnswers = database.getAnswers(student);
 				for(Table answer: listOfAnswers) {
-					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
+					data.add(answer);	
 				}
 					
 			} catch (SQLException e2) {
@@ -120,35 +94,7 @@ public class MainPageController implements Initializable {
 			}
 		}
 		
-	}
-	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen	
-	public void addStudents() throws SQLException, Exception{
-		List<Student> students;
-		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
-		for (Student student : students) {
-			try{
-				int studentID = database.getStudentID(student); //henter studentens ID fra databasen
-				String studentid = Integer.toString(studentID);
-				Hyperlink link = new Hyperlink();
-				link.setText(studentid);
-				link.setOnAction(new EventHandler<ActionEvent>() {
-
-					@Override
-					public void handle(ActionEvent event) {
-						System.out.println("This link is clicked");
-						
-					}
-					
-				//Table tableStudent = new Table(studentID);  //lager et table-objekt med kun studentID
-			});
-			dataStudents.add(new Table(link)); //legger til i listen som skal vises i tabellen
-			}
-			catch(SQLException e3) {
-				e3.printStackTrace();
-			}
-		}				
-	}
-
+		
 	
 	@FXML
 	public void handleProfileButton() throws IOException {
@@ -157,9 +103,9 @@ public class MainPageController implements Initializable {
         Parent root;
         //get reference to the button's stage        
         stage=(Stage) Profile.getScene().getWindow();
-        ProfileController controller= new ProfileController(this.nurse);//Lager en kontroller instans
+        ProfileControllerStudent controller= new ProfileControllerStudent(this.student);//Lager en kontroller instans
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileStudent.fxml"));
             
             loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
 
@@ -182,7 +128,7 @@ public class MainPageController implements Initializable {
         stage=(Stage) Logout.getScene().getWindow();
         
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        root = FXMLLoader.load(getClass().getResource("LoginStudent.fxml"));
       	//create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet
@@ -192,20 +138,20 @@ public class MainPageController implements Initializable {
 	}
 	
 	@FXML
-	public void handleQuestionButton() throws IOException {
-		//Ta meg til questionpage
-        System.out.println("Sender bruker til questionPage");
+	public void handleAnonymitetButton() throws IOException {
+		//Ta meg til mainPage
+        System.out.println("Sender studentbruker til questionPage");
         
         Stage stage; 
         Parent root;
         //get reference to the button's stage        
-        stage=(Stage) Question.getScene().getWindow();
+        stage=(Stage) Anonymitet.getScene().getWindow();
         
-        QuestionsController controller= new QuestionsController(this.nurse);//Lager en kontroller instans
+       // QuestionsController controller= new QuestionsController(this.student);//Lager en kontroller instans
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Questions.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuestionsStudent.fxml"));
             
-            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+           // loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
 
             root = (Parent) loader.load();
           //create a new scene with root and set the stage
@@ -219,7 +165,6 @@ public class MainPageController implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Hyperlink>("StudentID"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
 		Spm2.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm2"));
@@ -232,9 +177,8 @@ public class MainPageController implements Initializable {
 		Spm9.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm9"));
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
-		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
-
-		tableStudents.setItems(dataStudents);
-	    tableID.setItems(dataAnswers);
+	    tableID.setItems(data);
 	    }	
+
 }
+

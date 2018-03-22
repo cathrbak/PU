@@ -25,6 +25,7 @@ public class ConnectionSQLTest {
 	UserDatabaseHandler udh;
 	Nurse testNurse;
 	Student testStudent;
+	Message testMessage;
 	
 	@Before
 	public void setUp() throws SQLException{
@@ -47,20 +48,25 @@ public class ConnectionSQLTest {
 		testStudent.setPhoneNumber("46952270");
 		testStudent.setNurse(udh.getNurse("testsoster"));
 		
-		
-		
-		
-		
+		testMessage = new Message(testStudent, testNurse);
+		testMessage.setNurse(testNurse);
+		testMessage.setReciver(testStudent);
+		testMessage.setText("Heisann");
+		//Timestamp blir automatisk satt, så det blir vanskelig å teste. Vet ikke hva jeg skal assertEquals.
 		
 	}
 	
 	@After
 	public void tearDown() throws SQLException{
-		udh.deleteNurse(testNurse);
-		udh.deleteStudent(testStudent);
-		udh.closeConnection();
+		udh.deleteStudent(udh.getStudent("haraldmu"));
+		udh.deleteStudent(udh.getStudent("alexoh"));
+		udh.deleteStudent(udh.getStudent("petter"));
 		
+		
+		
+		udh.closeConnection();
 		udh = null;
+		testMessage= null;
 		testNurse = null;
 		testStudent = null;
 		
@@ -106,7 +112,7 @@ public class ConnectionSQLTest {
 			assertTrue(e.getClass().equals(IllegalStateException.class));
 		}
 		
-		
+		udh.deleteStudent(testStudent);
 	}
 	
 	
@@ -122,6 +128,7 @@ public class ConnectionSQLTest {
 		
 		assertEquals("hei@gmail.com",udh.getStudent(endretStudent.getUsername()).getEmail() );
 		assertEquals("frans", udh.getStudent(endretStudent.getUsername()).getPassword());
+		udh.deleteStudent(testStudent);
 	}
 	
 	
@@ -133,22 +140,18 @@ public class ConnectionSQLTest {
 		
 		//Oppretter studenter som tilhorer MH fakultetet
 		Student s=new Student("haraldmu");
-		
 		s.setFaculty("OK");
 		s.setNurse(udh.getNurse("sostertiltester"));
-		
 		expected.add(s);
-		Student n=new Student("alexoh");
 		
+		Student n=new Student("alexoh");
 		n.setFaculty("OK");
 		n.setNurse(udh.getNurse("sostertiltester"));
-		
 		expected.add(n);
-		Student j=new Student("petter");
 		
+		Student j=new Student("petter");
 		j.setFaculty("OK");
 		j.setNurse(udh.getNurse("sostertiltester"));
-		
 		expected.add(j);
 		
 		//Legger de til i databasen
@@ -168,18 +171,12 @@ public class ConnectionSQLTest {
 		assertEquals("Sjekker om forste student i begge listene er like", first.getUsername(),firstdb.getUsername());
 		assertEquals("Sjekker om andre student i begge listene er like", second.getUsername(),seconddb.getUsername());
 		assertEquals("Sjekker om tredje student i begge listene er like", third.getUsername(),thirddb.getUsername());
-
-		
-		
-		udh.deleteStudent(udh.getStudent("haraldmu"));
-		udh.deleteStudent(udh.getStudent("alexoh"));
-		udh.deleteStudent(udh.getStudent("petter"));
 	}
 	
 	
 	@Test
 	public void testCreateNewNurse() throws SQLException {
-		udh.createNewNurse(testNurse);
+		udh.createNewNurse(testNurse);	
 		
 		assertEquals("Brukernavn",testNurse.getUsername(), udh.getNurse("testNurseUN").getUsername());
 		assertEquals("Passord",testNurse.getPassword(), udh.getNurse("testNurseUN").getPassword());
@@ -188,9 +185,59 @@ public class ConnectionSQLTest {
 		assertEquals("Fakultet",testNurse.getFaculty(), udh.getNurse("testNurseUN").getFaculty());
 		assertEquals("TelefonNr",testNurse.getPhoneNumber(), udh.getNurse("testNurseUN").getPhoneNumber());
 		assertEquals("Email",testNurse.getEmail(), udh.getNurse("testNurseUN").getEmail());
+		udh.deleteNurse(testNurse);
 		
+	}
+	
+	@Test
+	public void testCreateNewMessage() throws SQLException{
+		udh.createNewStudent(testStudent);
+		udh.createNewNurse(testNurse);
+		udh.createNewMessage(testMessage);
+		
+		assertEquals("Helsesoster", testMessage.getSender().getUsername(), udh.getMessage(testStudent,testNurse).getSender().getUsername());
+		assertEquals("Student", testMessage.getReciver().getUsername(), udh.getMessage(testStudent,testNurse).getReciver().getUsername());
+		assertEquals("Tekst", testMessage.getText(), udh.getMessage(testStudent,testNurse).getText());
+		
+		udh.deleteMessages(testMessage);
+		udh.deleteStudent(testStudent);
 		udh.deleteNurse(testNurse);
 	}
+	
+	
+	@Test
+	public void testGetMessages() throws SQLException{
+	
+		Message testMessage2 = new Message(testStudent, testNurse);
+		testMessage2.setNurse(testNurse);
+		testMessage2.setReciver(testStudent);
+		testMessage2.setText("2. melding");
+		
+		udh.createNewStudent(testStudent);
+		udh.createNewNurse(testNurse);
+		
+		udh.createNewMessage(testMessage);
+		udh.createNewMessage(testMessage2);
+		
+		List<Message> expected = new ArrayList<>();
+		List<Message> fromdb= new ArrayList<>();
+		
+		expected.add(testMessage);
+		expected.add(testMessage2);
+		
+		fromdb = udh.getMessages(testStudent);
+		
+		assertEquals("Sjekker om første melding er samme", expected.get(0).getText(), fromdb.get(0).getText());
+		assertEquals("Sjekker om andre melding er samme", expected.get(1).getText(), fromdb.get(1).getText());
+		
+		udh.deleteMessages(testMessage);
+		udh.deleteMessages(testMessage2);
+		udh.deleteNurse(testNurse);
+		udh.deleteStudent(testStudent);
+		
+	}
+	
+	
 	
 
 	
