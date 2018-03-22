@@ -66,7 +66,7 @@ public class ConnectionSQLTest {
 	public void tearDown() throws SQLException{
 		udh.deleteNurse(testNurse);
 		udh.deleteStudent(testStudent);
-		udh.deleteSurvey(testStudent);
+		//udh.deleteSurvey(testStudent);
 		udh.closeConnection();
 		udh.deleteStudent(udh.getStudent("haraldmu"));
 		udh.deleteStudent(udh.getStudent("alexoh"));

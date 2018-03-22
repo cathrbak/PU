@@ -458,8 +458,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		try {
 			Statement stmt = getStatement();
 			
-			String query = "DELETE from svarlogg WHERE datagiverID='" + getStudentID(student)
-			+ "';";
+			String query = "DELETE from svarlogg WHERE DatagiverID=" + getStudentID(student)
+			+ ";";
 			
 			stmt.executeUpdate(query);
 			System.out.println(query);
