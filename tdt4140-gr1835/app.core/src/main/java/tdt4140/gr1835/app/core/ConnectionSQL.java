@@ -464,9 +464,24 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 		return answers;
 	}
-
-	//gj�r om listen med svar til en tabell
-	private Table listToTableConverter(Student student, String anslist, Timestamp tstamp) throws SQLException {
+	
+	public static void main(String[] args) throws Exception {
+		ConnectionSQL database= new ConnectionSQL();
+		System.out.println(database.getNurse("testsoster"));
+		
+		
+//	 	Nurse testNurse = new Nurse("cathrine");
+//		testNurse.setPassword("c");
+//		testNurse.setFirstName("Cathrine");
+//		testNurse.setSecondName("Arke");
+//		testNurse.setFaculty("IE");
+//		testNurse.setEmail("sverress@stud.tnu");
+//		database.createNewNurse(testNurse);
+//		System.out.println(database.getNurse("cathrine"));
+		
+	}
+	
+	private Table listToTableConverter(Student student, String anslist) throws SQLException {
 		int sum=0;
 		Timestamp tstampTable = tstamp;
 		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen på komma, og lager en liste av den
