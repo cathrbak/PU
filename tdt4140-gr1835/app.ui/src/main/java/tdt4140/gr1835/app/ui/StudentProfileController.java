@@ -1,6 +1,7 @@
 package tdt4140.gr1835.app.ui;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,14 +9,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import tdt4140.gr1835.app.core.ConnectionSQL;
 import tdt4140.gr1835.app.core.Nurse;
+import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.core.UserDatabaseHandler;
 
 public class StudentProfileController {
 	
 	private Nurse nurse;
-
-	public StudentProfileController(Nurse nurse) {
+	private Student student;
+	private UserDatabaseHandler database = new ConnectionSQL();
+	
+	public StudentProfileController(Nurse nurse, Student student) throws SQLException, Exception {
 		this.nurse = nurse;
+		this.student = student;
 	}
 	
 	@FXML
@@ -61,7 +68,7 @@ public class StudentProfileController {
         //get reference to the button's stage        
         stage=(Stage) returnButton.getScene().getWindow();
         
-        MessageController controller= new MessageController(this.nurse); //Lager en kontroller instans
+        MessageController controller= new MessageController(this.nurse, this.student); //Lager en kontroller instans
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Message.fxml"));
             

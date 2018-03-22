@@ -4,6 +4,7 @@ import java.util.List;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -25,12 +26,13 @@ import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.core.UserDatabaseHandler;
 
 public class MainPageController implements Initializable {
-UserDatabaseHandler database;
+	UserDatabaseHandler database;
 	
 	public MainPageController(Nurse nurse) throws SQLException, Exception {
 		this.database=new ConnectionSQL();
 		this.nurse = nurse;
-		addInfo();	
+		addInfoAnswers();	
+		addStudents();
 	}
 				
 	private Nurse nurse;
@@ -39,10 +41,16 @@ UserDatabaseHandler database;
 	Button Profile;
 	@FXML
 	Button Logout;
-
 	@FXML
 	Button Question;
 	
+	//tabellen med studenter
+	@FXML 
+	TableView<Table> tableStudents;
+	@FXML
+	TableColumn<Table, Integer> StudentID;
+	
+	//tabellen med spørreundersøkelser
 	@FXML 
 	TableView<Table> tableID;
 	@FXML 
@@ -69,23 +77,92 @@ UserDatabaseHandler database;
 	TableColumn<Table, Integer> Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
+	@FXML 
+	TableColumn<Table, String> Dato;
+
+	
+	@FXML
+	Button seProfilButton1;
+	
+	@FXML
+	Button seProfilButton2;
+	
+	
+	
+	@FXML
+	public void handleProfilButton1() throws SQLException, Exception {
+        Stage stage; 
+        Parent root;
+        //get reference to the button's stage        
+        stage=(Stage) Profile.getScene().getWindow();
+        
+		List<Student> students;
+		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		
+		
+        StudentProfileController controller= new StudentProfileController(this.nurse, students.get(0));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
+            
+        loader.setController(controller); 
+
+        root = (Parent) loader.load();
+        
+        Scene scene = new Scene(root);
+        //Legger på css stylesheetet
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+	}
+	
+	@FXML
+	public void handleProfilButton2() throws SQLException, Exception {
+	
+        Stage stage; 
+        Parent root;
+        //get reference to the button's stage        
+        stage=(Stage) Profile.getScene().getWindow();
+        
+		List<Student> students;
+		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		int studentID = database.getStudentID(students.get(1)); //henter studentens ID fra databasen
+		
+        StudentProfileController controller= new StudentProfileController(this.nurse, students.get(1));//Lager en kontroller instans
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
+            
+            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+
+            root = (Parent) loader.load();
+          //create a new scene with root and set the stage
+        Scene scene = new Scene(root);
+        //Legger på css stylesheetet
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+        System.out.println("Sender bruker tilbake til mainPage");
+	}
 	
 	
 	public int idNumber = 1;
 	public int total = 0;
 	
-	//lager listen som skal inneholde dataen
-	final ObservableList<Table> data = FXCollections.observableArrayList();
+	//lager listen som skal inneholde dataen med spørreundersøkelser
+	final ObservableList<Table> dataAnswers = FXCollections.observableArrayList();
+	//lager listen som skal inneholde dataen med studenter
+	final ObservableList<Table> dataStudents = FXCollections.observableArrayList();
 
-
-	public void addInfo() throws SQLException, Exception{
+	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen
+	public void addInfoAnswers() throws SQLException, Exception{
 		List<Student> students;
-		students = database.getStudents(nurse);
-		for (Student student : students) {
+		
+		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
 			try {
 				List<Table> listOfAnswers = database.getAnswers(student);
 				for(Table answer: listOfAnswers) {
-					data.add(answer);	
+					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
+					System.out.println(answer);
 				}
 					
 			} catch (SQLException e2) {
@@ -95,7 +172,25 @@ UserDatabaseHandler database;
 		}
 		
 	}
+	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen	
+	public void addStudents() throws SQLException, Exception{
+		List<Student> students;
+		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		for (Student student : students) {
+			try{
+				int studentID = database.getStudentID(student); //henter studentens ID fra databasen
+				Table tableStudent = new Table(studentID);  //lager et table-objekt med kun studentID
+				
+				dataStudents.add(tableStudent); //legger til i listen som skal vises i tabellen
+			}
+			catch(SQLException e3) {
+				e3.printStackTrace();
+			}
+				
+			}
+		}
 		
+	
 	
 	@FXML
 	public void handleProfileButton() throws IOException {
@@ -140,7 +235,7 @@ UserDatabaseHandler database;
 	
 	@FXML
 	public void handleQuestionButton() throws IOException {
-		//Ta meg til mainPage
+		//Ta meg til questionpage
         System.out.println("Sender bruker til questionPage");
         
         Stage stage; 
@@ -166,6 +261,7 @@ UserDatabaseHandler database;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("StudentID"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
 		Spm2.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm2"));
@@ -178,7 +274,9 @@ UserDatabaseHandler database;
 		Spm9.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm9"));
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
-	    tableID.setItems(data);
-	    }	
+		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
 
+		tableStudents.setItems(dataStudents);
+	    tableID.setItems(dataAnswers);
+	    }	
 }

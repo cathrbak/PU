@@ -154,6 +154,41 @@ public class MockingDatabase implements UserDatabaseHandler{
 		// TODO Auto-generated method stub
 		
 	}
+	public int getStudentID(Student student) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void deleteMessages(Message message) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createNewMessage(Message message) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Message> getMessages(Student student) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Message getMessage(Student student, Nurse nurse) throws SQLException {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Message getMessageFromID(Integer messageid) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 	
