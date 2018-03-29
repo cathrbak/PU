@@ -29,11 +29,12 @@ import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.core.UserDatabaseHandler;
 
 public class MainPageController implements Initializable {
-	UserDatabaseHandler database;
+
+	private Nurse nurse;
 	
 	public MainPageController(Nurse nurse) throws SQLException, Exception {
-		this.database=new ConnectionSQL();
 		this.nurse = nurse;
+		System.out.println("Logget på som: "+nurse);
 		addInfoAnswers();	
 		addStudents();
 	}
@@ -44,7 +45,6 @@ public class MainPageController implements Initializable {
 	}
 
 
-	public Nurse nurse;
 	
 	@FXML
 	Button Profile;
@@ -104,69 +104,26 @@ public class MainPageController implements Initializable {
 
 	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen
 	public void addInfoAnswers() throws SQLException, Exception{
-		List<Student> students;
-		
-		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		List<Student> students=nurse.getStudents(); //henter alle studentene til helsesøsteren
+		System.out.println(students.toString());
 		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
-			try {
-				List<Table> listOfAnswers = database.getAnswers(student);
+				List<Table> listOfAnswers = student.getAnswers();
 				for(Table answer: listOfAnswers) {
 					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
 				}
-					
-			} catch (SQLException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
 		}
 		
 	}
 	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen	
 	public void addStudents() throws SQLException, Exception{
-		List<Student> students;
-		Nurse nurseObj = this.nurse;
-		
-		students = database.getStudents(nurse); //henter alle studentene til helsesøsteren
+		List<Student> students= nurse.getStudents(); //henter alle studentene til helsesøsteren
 		for (Student student : students) {
-			try{
-				int studentID = database.getStudentID(student); //henter studentens ID fra databasen
-				String studentid = Integer.toString(studentID);
-				Hyperlink link = new Hyperlink();
-				link.setText(studentid);
-				link.setOnAction(new EventHandler<ActionEvent>() {
-
-					private Student student;
-
-					public void handle(ActionEvent event) {
-						
-						System.out.println("Sender helsesøster til studentprofil");
-						Parent root;
-						Stage stage;
-						stage=(Stage) link.getScene().getWindow();
-						try {
-							StudentProfileController controller = new StudentProfileController(nurseObj, this.student);
-							FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
-							loader.setController(controller);
-							root = (Parent) loader.load();
-							Scene scene = new Scene(root);
-							
-							scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-							stage.setScene(scene);
-							stage.show();
-						} catch (SQLException e) {
-							e.printStackTrace();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					
-				//Table tableStudent = new Table(studentID);  //lager et table-objekt med kun studentID
-			});
+			int studentID = student.getStudentID(); //henter studentens ID fra databasen
+			String studentid = Integer.toString(studentID);
+			Hyperlink link = new Hyperlink();
+			link.setText(studentid);
+			link.setOnAction(new SendToStudentProfile(this.nurse, student, link));
 			dataStudents.add(new Table(link)); //legger til i listen som skal vises i tabellen
-			}
-			catch(SQLException e3) {
-				e3.printStackTrace();
-			}
 		}				
 	}
 
@@ -180,12 +137,12 @@ public class MainPageController implements Initializable {
         stage=(Stage) Profile.getScene().getWindow();
         ProfileController controller= new ProfileController(this.nurse);//Lager en kontroller instans
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
             
-            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+        loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
 
-            root = (Parent) loader.load();
-          //create a new scene with root and set the stage
+        root = (Parent) loader.load();
+         //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet
         scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
@@ -224,11 +181,11 @@ public class MainPageController implements Initializable {
         
         QuestionsController controller= new QuestionsController(this.nurse);//Lager en kontroller instans
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Questions.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Questions.fxml"));
             
-            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+        loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
 
-            root = (Parent) loader.load();
+        root = (Parent) loader.load();
           //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet

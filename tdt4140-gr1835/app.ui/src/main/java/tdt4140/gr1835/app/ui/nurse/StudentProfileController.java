@@ -18,11 +18,11 @@ public class StudentProfileController {
 	
 	private Nurse nurse;
 	private Student student;
-	private UserDatabaseHandler database = new ConnectionSQL();
 	
 	public StudentProfileController(Nurse nurse, Student student) throws SQLException, Exception {
 		this.nurse = nurse;
 		this.student = student;
+		System.out.println(student.getUsername()+" er logget på med søster: "+nurse.getUsername());
 	}
 	
 	@FXML

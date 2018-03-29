@@ -1,5 +1,6 @@
 package tdt4140.gr1835.app.core;
 
+import java.util.List;
 
 public class Student extends User{
 	
@@ -7,6 +8,7 @@ public class Student extends User{
 	private String sex;
 	private Nurse nurse;
 	private int studentID;
+	private List<Table> answers;
 	
 	public Student() {
 		
@@ -71,6 +73,15 @@ public class Student extends User{
 		}
 		
 		
+	}
+
+	public List<Table> getAnswers() {
+		// TODO Auto-generated method stub
+		return answers;
+	}
+	
+	public void setAnswers(List<Table> answers) {
+		this.answers = answers;
 	}
 
 }
