@@ -1,4 +1,4 @@
-package tdt4140.gr1835.app.core;
+package tdt4140.gr1835.app.database;
 
 
 import java.util.ArrayList;
@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.*;
+
+import tdt4140.gr1835.app.core.Message;
+import tdt4140.gr1835.app.core.Nurse;
+import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.core.Table;
+
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;

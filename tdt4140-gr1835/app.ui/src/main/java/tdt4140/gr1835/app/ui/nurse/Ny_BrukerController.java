@@ -16,10 +16,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import tdt4140.gr1835.app.core.ConnectionSQL;
-import tdt4140.gr1835.app.core.MockingDatabase;
 import tdt4140.gr1835.app.core.Nurse;
-import tdt4140.gr1835.app.core.UserDatabaseHandler;
+import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.MockingDatabase;
+import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
 public class Ny_BrukerController {
 	

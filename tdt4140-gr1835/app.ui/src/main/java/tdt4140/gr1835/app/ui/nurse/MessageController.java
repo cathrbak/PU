@@ -13,11 +13,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import tdt4140.gr1835.app.core.ConnectionSQL;
 import tdt4140.gr1835.app.core.Message;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
-import tdt4140.gr1835.app.core.UserDatabaseHandler;
+import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
 public class MessageController {
 

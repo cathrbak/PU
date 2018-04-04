@@ -19,11 +19,12 @@ import javax.ws.rs.core.Response;
 import tdt3140.gr1835.app.json.JsonConverterService;
 import tdt3140.gr1835.app.json.ListOfStudentConverter;
 import tdt3140.gr1835.app.json.NurseJsonConverter;
-import tdt4140.gr1835.app.core.ConnectionSQL;
-import tdt4140.gr1835.app.core.MockingDatabase;
+import tdt4140.gr1835.app.core.Message;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
-import tdt4140.gr1835.app.core.UserDatabaseHandler;
+import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.MockingDatabase;
+import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
 
 
@@ -117,10 +118,11 @@ public class NurseResource {
 	
 	@POST
 	@Path("/{username}/messages")
-	@Produces(MediaType.TEXT_HTML)
-	public Response createMessage(@PathParam ("username") String username) {
-		//Har ikke messageobjekter her nå. Implementerer dette når jeg merger til master
-		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Har ikke implementert for meldinger ennå. Implementerer dette når jeg merger til master").build();
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Message createMessage(@PathParam ("username") String username,Message message) throws SQLException {
+		database.createNewMessage(message);
+		return database.getMessage(message.getReciver(), message.getSender());
 	}
 	
 	@PUT
@@ -140,5 +142,7 @@ public class NurseResource {
 		database.deleteNurse(nurse);
 		return Boolean.toString(database.getNurse(nurse.getUsername())==null);
 	}
+	
+	
 
 }

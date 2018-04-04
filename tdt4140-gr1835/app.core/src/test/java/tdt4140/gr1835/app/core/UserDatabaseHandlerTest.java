@@ -10,6 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import tdt4140.gr1835.app.database.MockingDatabase;
+import tdt4140.gr1835.app.database.UserDatabaseHandler;
+
 import static org.hamcrest.CoreMatchers.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
