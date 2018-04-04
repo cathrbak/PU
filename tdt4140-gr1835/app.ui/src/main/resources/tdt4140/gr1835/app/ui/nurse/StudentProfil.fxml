@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fx:id="navn" fill="#e8e2e2" layoutX="24.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Fornavn Etternavn">
          <font>

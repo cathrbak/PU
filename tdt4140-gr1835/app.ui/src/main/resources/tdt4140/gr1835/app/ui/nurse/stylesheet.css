@@ -1,5 +1,5 @@
 .root {
-     -fx-background-color: #7386B1;
+     -fx-background-color: #03142B;
 }
 
 .button {
@@ -56,4 +56,13 @@
 
 .text-field:focused {
     -fx-background-color: -fx-focus-color, -fx-background ;
+}
+
+.table-view {
+	-fx-base: #595B5E;
+    -fx-control-inner-background: #e9f7f9;
+    -fx-background-color: #e9f7f9;
+    -fx-table-cell-border-color: #eafdff;
+    -fx-table-header-border-color: #eafdff;
+    -fx-padding: 5;
 }
