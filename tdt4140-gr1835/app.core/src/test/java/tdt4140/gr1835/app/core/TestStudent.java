@@ -74,5 +74,22 @@ public class TestStudent {
 			assertTrue(e.getClass().equals(IllegalArgumentException.class));
 		}
 	}
+	
+	@Test
+	public void testNotat() {
+		System.out.println("testNotatText");
+		String expected="Spist lite i det siste. Følg henne opp jevnlig.";
+		testStudent.setNotat(expected);
+		assertEquals(expected, testStudent.getNotat());
+		try {
+			testStudent.setNotat("QwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxc"
+					+ "QwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxc"
+					+"QwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxc"
+					+ "QwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxchei");
+			fail("Prøver å sende en alt for lang melding. Skal ikke være mulig.");
+		} catch (IllegalArgumentException e) {
+			assertTrue(e.getClass().equals(IllegalArgumentException.class));
+		}
+	}
 
 }
