@@ -9,6 +9,9 @@ import static org.hamcrest.CoreMatchers.*;
 import org.hamcrest.core.IsNull;
 import org.junit.Test;
 
+import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.UserDatabaseHandler;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;

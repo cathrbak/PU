@@ -15,11 +15,11 @@ import javax.ws.rs.core.Response;
 import tdt3140.gr1835.app.json.JsonConverterService;
 import tdt3140.gr1835.app.json.NurseJsonConverter;
 import tdt3140.gr1835.app.json.StudentJsonConverter;
-import tdt4140.gr1835.app.core.ConnectionSQL;
-import tdt4140.gr1835.app.core.MockingDatabase;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
-import tdt4140.gr1835.app.core.UserDatabaseHandler;
+import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.MockingDatabase;
+import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
 @Path("/students")
 public class StudentResource {

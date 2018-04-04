@@ -1,10 +1,15 @@
-package tdt4140.gr1835.app.core;
+package tdt4140.gr1835.app.database;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import tdt4140.gr1835.app.core.Message;
+import tdt4140.gr1835.app.core.Nurse;
+import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.core.Table;
 
 public class MockingDatabase implements UserDatabaseHandler{
 	public List<Student> students= new ArrayList<Student>();

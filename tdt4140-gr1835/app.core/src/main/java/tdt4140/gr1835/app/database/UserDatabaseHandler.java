@@ -1,8 +1,13 @@
-package tdt4140.gr1835.app.core;
+package tdt4140.gr1835.app.database;
 
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
+
+import tdt4140.gr1835.app.core.Message;
+import tdt4140.gr1835.app.core.Nurse;
+import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.core.Table;
 
 public interface UserDatabaseHandler {
 	

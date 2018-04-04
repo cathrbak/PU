@@ -18,11 +18,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import tdt4140.gr1835.app.core.ConnectionSQL;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
-import tdt4140.gr1835.app.core.UserDatabaseHandler;
+import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.UserDatabaseHandler;
 import tdt4140.gr1835.app.ui.nurse.FxApp;
 import tdt4140.gr1835.app.ui.nurse.QuestionsController;
 
