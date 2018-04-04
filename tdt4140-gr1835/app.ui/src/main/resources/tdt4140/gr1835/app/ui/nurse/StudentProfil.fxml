@@ -59,5 +59,6 @@
       <Label fx:id="EpostLabel" layoutX="369.0" layoutY="121.0" styleClass="label_text" />
       <Label fx:id="TelefonLabel" layoutX="369.0" layoutY="181.0" styleClass="label_text" />
       <Label fx:id="FakultetLabel" layoutX="369.0" layoutY="241.0" styleClass="label_text" />
+      <Label fx:id="InnloggetNurseLabel" layoutX="497.0" layoutY="42.0" styleClass="label_text" textFill="#e8e6e6" />
    </children>
 </AnchorPane>

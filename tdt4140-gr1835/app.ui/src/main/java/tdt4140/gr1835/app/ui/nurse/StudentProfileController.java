@@ -13,19 +13,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
-import tdt4140.gr1835.app.database.ConnectionSQL;
-import tdt4140.gr1835.app.database.UserDatabaseHandler;
+
 
 public class StudentProfileController implements Initializable{
 	
@@ -38,7 +35,15 @@ public class StudentProfileController implements Initializable{
 		System.out.println(student.getUsername()+" er logget på med søster: "+nurse.getUsername());
 		addInfo();
 	}
-
+	
+	//Setter label om innlogget helsesøster
+	@FXML
+	Label InnloggetNurseLabel;
+	
+	@FXML
+	public void setInnloggetNurseLabel() {
+		InnloggetNurseLabel.setText("Logget inn som: " + nurse.getUsername() );
+	}
 	
 	//lager listen som skal inneholde dataen
 	final ObservableList<Table> data = FXCollections.observableArrayList();
@@ -141,43 +146,43 @@ public class StudentProfileController implements Initializable{
 	
 	
 	//setter infoen til studenten
-		@FXML
-		Label EpostLabel, TelefonLabel, FakultetLabel;
-		@FXML
-		Text NavnText;
+	@FXML
+	Label EpostLabel, TelefonLabel, FakultetLabel;
+	@FXML
+	Text NavnText;	
 				
-		public void setNavnText(){
-			if (student.isAnonymous()) {
-				NavnText.setText("Denne studenten er anonym");
-			}
-			else {
-				NavnText.setText(student.getFirstName() + " " + student.getSecondName());
-			}
+	public void setNavnText(){
+		if (student.isAnonymous()) {
+			NavnText.setText("Denne studenten er anonym");
 		}
+		else {
+			NavnText.setText(student.getFirstName() + " " + student.getSecondName());
+		}
+	}	
 		
-		//henter epost
-		public void setEpostLabel() {
-			if (student.isAnonymous()) {
-				EpostLabel.setText("anonym@stud.ntnu.no");
-			}
-			else {
-				EpostLabel.setText(student.getEmail());
-			}
+	//henter epost
+	public void setEpostLabel() {
+		if (student.isAnonymous()) {
+			EpostLabel.setText("anonym@stud.ntnu.no");
 		}
+		else {
+			EpostLabel.setText(student.getEmail());			
+			}
+	}	
 		
-		public void setTelefonLabel() {
-			if (student.isAnonymous()) {
-				TelefonLabel.setText("Ikke oppgitt");
-			}
-			TelefonLabel.setText(student.getPhoneNumber());
+	public void setTelefonLabel() {
+		if (student.isAnonymous()) {
+			TelefonLabel.setText("Ikke oppgitt");
 		}
+		TelefonLabel.setText(student.getPhoneNumber());
+	}	
 				
-		public void setFakultetLabel() {
-			if (student.isAnonymous()) {
-				FakultetLabel.setText("Ukjent");
-			}
-			FakultetLabel.setText(student.getFaculty());
+	public void setFakultetLabel() {
+		if (student.isAnonymous()) {
+			FakultetLabel.setText("Ukjent");
 		}
+		FakultetLabel.setText(student.getFaculty());
+	}	
 		
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -197,6 +202,7 @@ public class StudentProfileController implements Initializable{
 	    
 	    
 	    //setter teksten i alle labelene
+	    setInnloggetNurseLabel();
 	    setNavnText();
 		setTelefonLabel();
 		setEpostLabel();
