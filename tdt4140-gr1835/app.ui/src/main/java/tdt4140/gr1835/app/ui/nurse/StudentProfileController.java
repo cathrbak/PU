@@ -37,36 +37,8 @@ public class StudentProfileController implements Initializable{
 		this.student = student;
 		System.out.println(student.getUsername()+" er logget på med søster: "+nurse.getUsername());
 		addInfo();
-		//addName();
 	}
 
-	/*@FXML
-	Text navn;
-	//legger til fornavn og etternavn på studentprofil:
-	public void addName(){
-		if (student.isAnonymous()) {
-			navn.setText("Fornavn Etternavn");
-		}
-		else {
-			navn.setText(student.getFirstName() + " " + student.getSecondName());			
-			}
-	}
-	
-	@FXML
-	TextField epost;
-	@FXML
-	Label label;
-	
-	//henter epost
-	public void setEmail() {
-		if (student.isAnonymous()) {
-			epost.setText("anonym@stud.ntnu.no");
-		}
-		else {
-			epost.setText(student.getEmail());
-			label.setText(student.getEmail());
-		}
-	}*/
 	
 	//lager listen som skal inneholde dataen
 	final ObservableList<Table> data = FXCollections.observableArrayList();
@@ -166,6 +138,47 @@ public class StudentProfileController implements Initializable{
         stage.setScene(scene);
         stage.show();
 	}
+	
+	
+	//setter infoen til studenten
+		@FXML
+		Label EpostLabel, TelefonLabel, FakultetLabel;
+		@FXML
+		Text NavnText;
+				
+		public void setNavnText(){
+			if (student.isAnonymous()) {
+				NavnText.setText("Denne studenten er anonym");
+			}
+			else {
+				NavnText.setText(student.getFirstName() + " " + student.getSecondName());
+			}
+		}
+		
+		//henter epost
+		public void setEpostLabel() {
+			if (student.isAnonymous()) {
+				EpostLabel.setText("anonym@stud.ntnu.no");
+			}
+			else {
+				EpostLabel.setText(student.getEmail());
+			}
+		}
+		
+		public void setTelefonLabel() {
+			if (student.isAnonymous()) {
+				TelefonLabel.setText("Ikke oppgitt");
+			}
+			TelefonLabel.setText(student.getPhoneNumber());
+		}
+				
+		public void setFakultetLabel() {
+			if (student.isAnonymous()) {
+				FakultetLabel.setText("Ukjent");
+			}
+			FakultetLabel.setText(student.getFaculty());
+		}
+		
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
@@ -181,6 +194,13 @@ public class StudentProfileController implements Initializable{
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
 	    tableID.setItems(data);
+	    
+	    
+	    //setter teksten i alle labelene
+	    setNavnText();
+		setTelefonLabel();
+		setEpostLabel();
+		setFakultetLabel();
 	    }	
 	
 	
