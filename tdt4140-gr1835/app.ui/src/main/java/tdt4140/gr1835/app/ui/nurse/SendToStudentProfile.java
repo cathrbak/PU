@@ -2,6 +2,8 @@ package tdt4140.gr1835.app.ui.nurse;
 
 
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -35,19 +37,21 @@ public class SendToStudentProfile implements EventHandler<ActionEvent>{
 		Stage stage;
 		stage=(Stage) link.getScene().getWindow();
 		StudentProfileController controller;
-		try {
 			controller = new StudentProfileController(this.nurse, this.student);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
 			loader.setController(controller);
-			root = (Parent) loader.load();
-			Scene scene = new Scene(root);
+			try {
+				root = (Parent) loader.load();
+				Scene scene = new Scene(root);
+				
+				scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+				stage.setScene(scene);
+				stage.show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-			stage.setScene(scene);
-			stage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 

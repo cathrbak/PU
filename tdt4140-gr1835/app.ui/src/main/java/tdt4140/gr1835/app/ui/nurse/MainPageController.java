@@ -29,7 +29,7 @@ public class MainPageController implements Initializable {
 
 	private Nurse nurse;
 	
-	public MainPageController(Nurse nurse) throws SQLException, Exception {
+	public MainPageController(Nurse nurse){
 		this.nurse = nurse;
 		System.out.println("Logget på som: "+nurse);
 		addInfoAnswers();	
@@ -84,7 +84,7 @@ public class MainPageController implements Initializable {
 	final ObservableList<Table> dataAnswers = FXCollections.observableArrayList();
 	
 	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen
-	public void addInfoAnswers() throws SQLException, Exception{
+	public void addInfoAnswers(){
 		List<Student> students=nurse.getStudents(); //henter alle studentene til helsesøsteren
 		System.out.println(students.toString());
 		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
@@ -107,7 +107,7 @@ public class MainPageController implements Initializable {
 	final ObservableList<Table> dataStudents = FXCollections.observableArrayList();
 		
 	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen	
-	public void addStudents() throws SQLException, Exception{
+	public void addStudents(){
 		List<Student> students= nurse.getStudents(); //henter alle studentene til helsesøsteren
 		for (Student student : students) {
 			int studentID = student.getStudentID(); //henter studentens ID fra databasen
@@ -129,7 +129,7 @@ public class MainPageController implements Initializable {
 	
 	//Ta meg til profil
 	@FXML
-	public void handleProfileButton() throws IOException {
+	public void handleProfileButton() throws IOException{
         Stage stage; 
         Parent root;
         //get reference to the button's stage        
