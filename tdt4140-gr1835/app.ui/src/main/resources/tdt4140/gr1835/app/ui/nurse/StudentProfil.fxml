@@ -64,7 +64,11 @@
             <Label fx:id="TelefonLabel" layoutX="369.0" layoutY="181.0" styleClass="label_text" />
             <Label fx:id="FakultetLabel" layoutX="369.0" layoutY="241.0" styleClass="label_text" />
             <Label fx:id="InnloggetNurseLabel" layoutX="497.0" layoutY="42.0" styleClass="label_text" textFill="#e8e6e6" />
-            <TextArea id="notat" editable="false" layoutX="24.0" layoutY="539.0" prefHeight="169.0" prefWidth="300.0" styleClass="text-melding" stylesheets="@stylesheet.css" />
+            <ScrollPane layoutX="24.0" layoutY="539.0">
+               <content>
+                  <TextArea fx:id="notat" editable="false" prefHeight="169.0" prefWidth="300.0" styleClass="text-melding" stylesheets="@stylesheet.css" />
+               </content>
+            </ScrollPane>
             <Label layoutX="24.0" layoutY="505.0" prefHeight="37.0" prefWidth="121.0" styleClass="label_overskrift" stylesheets="@stylesheet.css" text="Notat" />
             <Button id="saveButton" layoutX="250.0" layoutY="714.0" mnemonicParsing="false" onMouseReleased="#handleSaveButton" prefHeight="27.0" prefWidth="73.0" stylesheets="@stylesheet.css" text="Lagre" />
             <Button id="editButton" layoutX="164.0" layoutY="714.0" mnemonicParsing="false" onMouseReleased="#handleEditButton" prefHeight="27.0" prefWidth="75.0" stylesheets="@stylesheet.css" text="Rediger" />

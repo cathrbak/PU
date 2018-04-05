@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.JScrollPane;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -125,7 +127,7 @@ public class StudentProfileController implements Initializable{
 	public void handleSendMessageButton(){
 		
 		// Ta meg til meldingssiden (Message)
-        System.out.println("Sender bruker til mainPage");
+        System.out.println("Sender bruker til meldingsvindu");
         
         Stage stage; 
         Parent root;
@@ -215,6 +217,7 @@ public class StudentProfileController implements Initializable{
 		setTelefonLabel();
 		setEpostLabel();
 		setFakultetLabel();
+		
 	    }	
 	
 	@FXML
@@ -223,6 +226,7 @@ public class StudentProfileController implements Initializable{
 	
 	@FXML
 	public void handleEditButton() {
+		System.out.println(notat.isEditable());
 		notat.setEditable(true);
 	}
 	
