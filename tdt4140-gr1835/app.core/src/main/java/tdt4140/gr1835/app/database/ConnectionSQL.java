@@ -869,6 +869,12 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 		return student; 
 	}
+
+	@Override
+	public void updateNote(Student student) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 	
