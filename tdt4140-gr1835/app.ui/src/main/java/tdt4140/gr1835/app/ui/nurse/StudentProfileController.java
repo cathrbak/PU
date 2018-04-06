@@ -163,7 +163,7 @@ public class StudentProfileController implements Initializable{
 				
 	public void setNavnText(){
 		if (student.isAnonymous()) {
-			NavnText.setText("Denne studenten er anonym");
+			NavnText.setText("Studenten er anonym");
 		}
 		else {
 			NavnText.setText(student.getFirstName() + " " + student.getSecondName());
@@ -184,14 +184,18 @@ public class StudentProfileController implements Initializable{
 		if (student.isAnonymous()) {
 			TelefonLabel.setText("Ikke oppgitt");
 		}
-		TelefonLabel.setText(student.getPhoneNumber());
+		else{ TelefonLabel.setText(student.getPhoneNumber());
+		
+		}
 	}	
 				
 	public void setFakultetLabel() {
 		if (student.isAnonymous()) {
 			FakultetLabel.setText("Ukjent");
 		}
-		FakultetLabel.setText(student.getFaculty());
+		else{ FakultetLabel.setText(student.getFaculty());
+		
+		}
 	}	
 		
 	@Override
