@@ -218,6 +218,8 @@ public class StudentProfileController implements Initializable{
 		setEpostLabel();
 		setFakultetLabel();
 		
+		//henter frem notatet som skal vises på studentprofilen
+		notat.setText(student.getNotat());
 	    }	
 	
 	@FXML
@@ -226,20 +228,19 @@ public class StudentProfileController implements Initializable{
 	
 	@FXML
 	public void handleEditButton() {
-		System.out.println(notat.isEditable());
+		//gjør det mulig å skrive i tekstfeltet
 		notat.setEditable(true);
 	}
 	
 	@FXML
 	public void handleSaveButton() {
 		student.setNotat(notat.getText());
-		//legger inn meldingen i databasen
-		UserDatabaseHandler database = new ConnectionSQL();
+		//legger inn notatet i databasen
+		//UserDatabaseHandler database = new ConnectionSQL();
 		//database.createNewNote(notat);
-		//String text = database.getStudent(student.getUsername()).getNotat();
 		
+		//hindrer at det er mulig å skrive i teksfeltet uten å trykke rediger
 		notat.setEditable(false);
 	}
-	
 	
 }
