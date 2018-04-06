@@ -1,0 +1,68 @@
+.root {
+     -fx-background-color: #03142B;
+}
+
+.button {
+   -fx-background-color: linear-gradient(#242935, #595B5E);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+.button:pressed {
+	-fx-background-color: linear-gradient(#242915, #595B5E);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 13px;
+}
+
+.label_text {
+	-fx-font-family: Lucida Console;
+	-fx-font-size: 14px;
+	-fx-text-fill: #e8e2e2
+}
+
+.label_overskrift {
+	-fx-font-family: Copperplate Bold;
+	-fx-font-size: 36px;
+	-fx-text-fill: #e8e2e2
+}
+
+.label_hovedoverskrifter {
+	-fx-font-family: Copperplate Bold;
+	-fx-font-size: 48px;
+	-fx-text-fill: #e8e2e2
+}
+
+
+.text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+}
+
+.text-melding {
+    -fx-background-color: -fx-text-box-border, -fx-background ;
+    -fx-background-insets: 0, 0 0 1 0 ;
+    -fx-background-radius: 0 ;
+    -fx-font-size: 18px;
+}
+
+.password-field{
+	fx-font-size: 6pt;
+}
+
+.text-field:focused {
+    -fx-background-color: -fx-focus-color, -fx-background ;
+}
+
+.table-view {
+	-fx-base: #595B5E;
+    -fx-control-inner-background: #e9f7f9;
+    -fx-background-color: #e9f7f9;
+    -fx-table-cell-border-color: #eafdff;
+    -fx-table-header-border-color: #eafdff;
+    -fx-padding: 5;
+}

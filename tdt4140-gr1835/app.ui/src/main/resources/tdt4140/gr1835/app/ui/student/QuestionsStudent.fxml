@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="61.0" layoutY="44.0" prefHeight="88.0" prefWidth="234.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
       <GridPane layoutX="61.0" layoutY="189.0" prefHeight="295.0" prefWidth="678.0" styleClass="label_text" stylesheets="@stylesheet.css">
@@ -44,6 +44,6 @@
          </children>
       </GridPane>
       <Label layoutX="61.0" layoutY="141.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Svar: 1 - aldri, 2 - sjeldent, 3 - noen ganger, 4 - ofte, 5 - svært ofte" />
-      <Button fx:id="returnButton" layoutX="651.0" layoutY="55.0" mnemonicParsing="false" onMouseReleased = "#handleReturnButton" prefHeight="35.0" prefWidth="78.0" stylesheets="@stylesheet.css" text="Tilbake" />
+      <Button fx:id="returnButton" layoutX="651.0" layoutY="55.0" mnemonicParsing="false" onMouseReleased="#handleReturnButton" prefHeight="35.0" prefWidth="78.0" stylesheets="@stylesheet.css" text="Tilbake" />
    </children>
 </AnchorPane>
