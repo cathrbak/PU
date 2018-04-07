@@ -3,6 +3,7 @@ package tdt4140.gr1835.app.ui.nurse;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -15,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -198,6 +201,7 @@ public class StudentProfileController implements Initializable{
 		}
 	}	
 		
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
@@ -224,6 +228,23 @@ public class StudentProfileController implements Initializable{
 		
 		//henter frem notatet som skal vises på studentprofilen
 		notat.setText(student.getNotat());
+		
+		
+		chart.getData().clear();
+		
+		XYChart.Series<String, Number> series = new XYChart.Series<>();
+		List<Table> listOfAnswers = student.getAnswers();
+		List<String> datoer = new ArrayList<String>();
+		List<Number> total = new ArrayList<Number>();
+		for(Table answer: listOfAnswers) {
+			datoer.add(answer.getDato());
+			total.add(answer.getTotal());
+			}
+		for (int i = 0; i < listOfAnswers.size() ; i++) {
+			series.getData().add(new XYChart.Data(datoer.get(i),total.get(i)));
+		}
+		
+		chart.getData().add(series);
 	    }	
 	
 	@FXML
@@ -246,5 +267,11 @@ public class StudentProfileController implements Initializable{
 		//hindrer at det er mulig å skrive i teksfeltet uten å trykke rediger
 		notat.setEditable(false);
 	}
+	@FXML 
+	LineChart chart;
+
+	
+	
+	
 	
 }
