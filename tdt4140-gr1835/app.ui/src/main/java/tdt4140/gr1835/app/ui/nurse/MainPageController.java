@@ -42,10 +42,17 @@ public class MainPageController implements Initializable {
 
 	@FXML
 	Label brukernavn;
+	@FXML
+	Label fakultetsID;
 	
 	@FXML
 	public void setBrukernavnLabel() {
 		brukernavn.setText("Logget inn som: " + nurse.getUsername() );
+	}
+	
+	@FXML
+	public void setFakultetsIDLabel() {
+		fakultetsID.setText(nurse.getFaculty());
 	}
 	
 	
@@ -219,5 +226,7 @@ public class MainPageController implements Initializable {
 	    
 	    //kaller på label-metoden her
 	    setBrukernavnLabel();
-	    }	
+	    setFakultetsIDLabel();
+	    }
+
 }
