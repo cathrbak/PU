@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
@@ -44,7 +43,7 @@
             </Button>
             <TextField layoutX="290.0" layoutY="523.0" prefHeight="26.0" prefWidth="300.0" />
             <TextField layoutX="290.0" layoutY="438.0" prefHeight="26.0" prefWidth="300.0" />
-            <Label layoutX="288.0" layoutY="85.0" styleClass="label_overskrift" stylesheets="@stylesheet.css" text="Fornavn Etternavn" textFill="#e8e2e2">
+            <Label fx:id="fulltnavn" layoutX="288.0" layoutY="85.0" styleClass="label_overskrift" stylesheets="@stylesheet.css" textFill="#e8e2e2">
                <font>
                   <Font name="Copperplate" size="36.0" />
                </font>
