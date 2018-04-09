@@ -14,6 +14,7 @@ public class Student extends User{
 	private int studentID;
 	@Exclude
 	private transient List<Table> answers;
+	private String notat;
 	
 	public Student() {
 		
@@ -81,12 +82,22 @@ public class Student extends User{
 	}
 
 	public List<Table> getAnswers() {
-		// TODO Auto-generated method stub
 		return answers;
 	}
 	
 	public void setAnswers(List<Table> answers) {
 		this.answers = answers;
+	}
+	
+	public void setNotat(String notat) {
+		if (notat.length() > 250) {
+			throw new IllegalArgumentException("Meldingen kan ikke være lengre enn 255 tegn.");
+		}
+		this.notat = notat;
+	}
+	
+	public String getNotat() {
+		return notat;
 	}
 
 }

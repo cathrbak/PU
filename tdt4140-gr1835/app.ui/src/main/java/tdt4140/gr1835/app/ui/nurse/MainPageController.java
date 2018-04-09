@@ -9,8 +9,6 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,44 +24,43 @@ import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
-import tdt4140.gr1835.app.database.ConnectionSQL;
-import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
 public class MainPageController implements Initializable {
 
 	private Nurse nurse;
 	
-	public MainPageController(Nurse nurse) throws SQLException, Exception {
+	public MainPageController(Nurse nurse){
 		this.nurse = nurse;
 		System.out.println("Logget på som: "+nurse);
 		addInfoAnswers();	
 		addStudents();
 	}
-	
 				
 	public Nurse getNurse() {
 		return this.nurse;
 	}
 
-
+	@FXML
+	Label brukernavn;
+	@FXML
+	Label fakultetsID;
 	
 	@FXML
-	Button Profile;
+	public void setBrukernavnLabel() {
+		brukernavn.setText("Logget inn som: " + nurse.getUsername() );
+	}
+	
 	@FXML
-	Button Logout;
-	@FXML
-	Button Question;
+	public void setFakultetsIDLabel() {
+		fakultetsID.setText(nurse.getFaculty());
+	}
 	
-	//tabellen med studenter
-	@FXML 
-	TableView<Table> tableStudents;
 	
-	//@FXML
-	//TableColumn<Table, Integer> StudentID;
-	
-	//tabellen med spørreundersøkelser
+	//tabellen med spørreundersøkelsene til studentene en helsesøster har ansvar for 
 	@FXML 
 	TableView<Table> tableID;
+	@FXML 
+	TableColumn<Table, String> Dato;
 	@FXML 
 	TableColumn<Table, Integer> PersonID;
 	@FXML 
@@ -87,23 +85,13 @@ public class MainPageController implements Initializable {
 	TableColumn<Table, Integer> Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
-	@FXML 
-	TableColumn<Table, String> Dato;
 	
-	@FXML
-	TableColumn<Table, Hyperlink> StudentID;
-	
-	
-	public int idNumber = 1;
-	public int total = 0;
-	
+
 	//lager listen som skal inneholde dataen med spørreundersøkelser
 	final ObservableList<Table> dataAnswers = FXCollections.observableArrayList();
-	//lager listen som skal inneholde dataen med studenter
-	final ObservableList<Table> dataStudents = FXCollections.observableArrayList();
-
+	
 	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen
-	public void addInfoAnswers() throws SQLException, Exception{
+	public void addInfoAnswers(){
 		List<Student> students=nurse.getStudents(); //henter alle studentene til helsesøsteren
 		System.out.println(students.toString());
 		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
@@ -114,8 +102,19 @@ public class MainPageController implements Initializable {
 		}
 		
 	}
+	
+	
+	//tabellen med hyperlink til studenters profil
+	@FXML 
+	TableView<Table> tableStudents;
+	@FXML
+	TableColumn<Table, Hyperlink> StudentID;
+		
+	//lager listen som skal inneholde dataen med studenter
+	final ObservableList<Table> dataStudents = FXCollections.observableArrayList();
+		
 	//I denne metoden legges informasjonen fra databasen til i listen som skal vises i applikasjonen	
-	public void addStudents() throws SQLException, Exception{
+	public void addStudents(){
 		List<Student> students= nurse.getStudents(); //henter alle studentene til helsesøsteren
 		for (Student student : students) {
 			int studentID = student.getStudentID(); //henter studentens ID fra databasen
@@ -126,11 +125,18 @@ public class MainPageController implements Initializable {
 			dataStudents.add(new Table(link)); //legger til i listen som skal vises i tabellen
 		}				
 	}
-
-	
+	//Knapper 
 	@FXML
-	public void handleProfileButton() throws IOException {
-		//Ta meg til profil
+	Button Profile;
+	@FXML
+	Button Logout;
+	@FXML
+	Button Question;
+	
+	
+	//Ta meg til profil
+	@FXML
+	public void handleProfileButton() throws IOException{
         Stage stage; 
         Parent root;
         //get reference to the button's stage        
@@ -139,7 +145,7 @@ public class MainPageController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile.fxml"));
             
-        loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+        loader.setController(controller); //Legger til kontrolleren  i fxmlfilen
 
         root = (Parent) loader.load();
          //create a new scene with root and set the stage
@@ -148,10 +154,10 @@ public class MainPageController implements Initializable {
         scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-        System.out.println("Sender bruker tilbake til mainPage");
+        System.out.println("Sender bruker til profil");
 	}
 	
-	
+	//logger ut av applikasjonen
 	@FXML
 	public void handleLogoutButton() throws IOException {
 		Stage stage; 
@@ -169,9 +175,9 @@ public class MainPageController implements Initializable {
         stage.show();
 	}
 	
+	//Ta meg til questionpage
 	@FXML
 	public void handleQuestionButton() throws IOException {
-		//Ta meg til questionpage
         System.out.println("Sender bruker til questionPage");
         
         Stage stage; 
@@ -183,7 +189,7 @@ public class MainPageController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Questions.fxml"));
             
-        loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+        loader.setController(controller); //Legger til controller
 
         root = (Parent) loader.load();
           //create a new scene with root and set the stage
@@ -195,9 +201,12 @@ public class MainPageController implements Initializable {
 		
 	}
 	
+	
+	//initialiserer dataene 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Hyperlink>("StudentID"));
+		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
 		Spm2.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm2"));
@@ -210,9 +219,14 @@ public class MainPageController implements Initializable {
 		Spm9.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm9"));
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
-		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
-
+		
+		//putter dataene i cellene 
 		tableStudents.setItems(dataStudents);
 	    tableID.setItems(dataAnswers);
-	    }	
+	    
+	    //kaller på label-metoden her
+	    setBrukernavnLabel();
+	    setFakultetsIDLabel();
+	    }
+
 }

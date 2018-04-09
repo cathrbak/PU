@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" style="-fx-background-color: #7386B1;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Profil" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
          <font>
@@ -26,7 +26,7 @@
          <effect>
             <Blend />
          </effect></Button>
-         <TableView fx:id="tableID" layoutX="28.0" layoutY="134.0" prefHeight="200.0" prefWidth="727.0" style="-fx-background-color: e8e2e2;" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="134.0">
+         <TableView fx:id="tableID" layoutX="28.0" layoutY="134.0" prefHeight="200.0" prefWidth="727.0" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="134.0">
         <columns>
           <TableColumn fx:id="PersonID" prefWidth="65.0" text="PersonID" />
           <TableColumn fx:id="Spm1" prefWidth="60.0" text="Spm 1" />
@@ -42,6 +42,6 @@
             <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
         </columns>
       </TableView>
-      <Button fx:id= "Anonymitet" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleAnonymitetButton" stylesheets="@stylesheet.css" text="Anonymitet" textFill = "#e8e2e2" />
+      <Button fx:id="Anonymitet" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleAnonymitetButton" stylesheets="@stylesheet.css" text="Anonymitet" textFill="#e8e2e2" />
    </children>
 </AnchorPane>

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 
+import javafx.scene.control.TextArea;
 import tdt4140.gr1835.app.core.Message;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
@@ -44,6 +45,8 @@ public interface UserDatabaseHandler {
 	public Message getMessage(Student student, Nurse nurse) throws SQLException; 
 	public List<Message> getMessages(Student student) throws SQLException;
 	public Message getMessageFromID(Integer messageid) throws SQLException;
+
+	public void updateNote(Student student);
 	
 
 }

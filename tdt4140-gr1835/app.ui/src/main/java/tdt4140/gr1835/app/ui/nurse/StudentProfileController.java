@@ -1,9 +1,13 @@
 package tdt4140.gr1835.app.ui.nurse;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javax.swing.JScrollPane;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,12 +16,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -27,46 +32,27 @@ import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
+
 public class StudentProfileController implements Initializable{
 	
 	private Nurse nurse;
 	private Student student;
 	
-	public StudentProfileController(Nurse nurse, Student student) throws SQLException, Exception {
+	public StudentProfileController(Nurse nurse, Student student) {
 		this.nurse = nurse;
 		this.student = student;
 		System.out.println(student.getUsername()+" er logget på med søster: "+nurse.getUsername());
 		addInfo();
-		//addName();
-	}
-
-	/*@FXML
-	Text navn;
-	//legger til fornavn og etternavn på studentprofil:
-	public void addName(){
-		if (student.isAnonymous()) {
-			navn.setText("Fornavn Etternavn");
-		}
-		else {
-			navn.setText(student.getFirstName() + " " + student.getSecondName());			
-			}
 	}
 	
+	//Setter label om innlogget helsesøster
 	@FXML
-	TextField epost;
-	@FXML
-	Label label;
+	Label InnloggetNurseLabel;
 	
-	//henter epost
-	public void setEmail() {
-		if (student.isAnonymous()) {
-			epost.setText("anonym@stud.ntnu.no");
-		}
-		else {
-			epost.setText(student.getEmail());
-			label.setText(student.getEmail());
-		}
-	}*/
+	@FXML
+	public void setInnloggetNurseLabel() {
+		InnloggetNurseLabel.setText("Logget inn som: " + nurse.getUsername() );
+	}
 	
 	//lager listen som skal inneholde dataen
 	final ObservableList<Table> data = FXCollections.observableArrayList();
@@ -101,7 +87,7 @@ public class StudentProfileController implements Initializable{
 	TableColumn<Table, Integer> Total;
 	
 	//Legger til data i tabellen:
-	public void addInfo() throws SQLException, Exception{
+	public void addInfo() {
 		List<Table> listOfAnswers = student.getAnswers();
 			for(Table answer: listOfAnswers) {
 				data.add(answer);	
@@ -112,7 +98,7 @@ public class StudentProfileController implements Initializable{
 	Button returnButton;
 	
 	@FXML
-	public void handleReturnButton() throws SQLException, Exception{
+	public void handleReturnButton() throws IOException{
 		//Ta meg til mainPage
         System.out.println("Sender bruker til mainPage");
         
@@ -141,10 +127,10 @@ public class StudentProfileController implements Initializable{
 	Button sendMessageButton;
 	
 	@FXML
-	public void handleSendMessageButton() throws SQLException, Exception{
+	public void handleSendMessageButton(){
 		
 		// Ta meg til meldingssiden (Message)
-        System.out.println("Sender bruker til mainPage");
+        System.out.println("Sender bruker til meldingsvindu");
         
         Stage stage; 
         Parent root;
@@ -156,16 +142,66 @@ public class StudentProfileController implements Initializable{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Message.fxml"));
             
         loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
-        root = (Parent) loader.load();
-        
-        //create a new scene with root and set the stage 
-        Scene scene = new Scene(root);
-       
-        //Legger på css stylesheetet
-        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
+        try {
+			root = (Parent) loader.load();
+	        //create a new scene with root and set the stage 
+	        Scene scene = new Scene(root);
+	       
+	        //Legger på css stylesheetet
+	        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+	        stage.setScene(scene);
+	        stage.show();
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
+	
+	//setter infoen til studenten
+	@FXML
+	Label EpostLabel, TelefonLabel, FakultetLabel;
+	@FXML
+	Text NavnText;	
+				
+	public void setNavnText(){
+		if (student.isAnonymous()) {
+			NavnText.setText("Studenten er anonym");
+		}
+		else {
+			NavnText.setText(student.getFirstName() + " " + student.getSecondName());
+		}
+	}	
+		
+	//henter epost
+	public void setEpostLabel() {
+		if (student.isAnonymous()) {
+			EpostLabel.setText("anonym@stud.ntnu.no");
+		}
+		else {
+			EpostLabel.setText(student.getEmail());			
+			}
+	}	
+		
+	public void setTelefonLabel() {
+		if (student.isAnonymous()) {
+			TelefonLabel.setText("Ikke oppgitt");
+		}
+		else{ TelefonLabel.setText(student.getPhoneNumber());
+		
+		}
+	}	
+				
+	public void setFakultetLabel() {
+		if (student.isAnonymous()) {
+			FakultetLabel.setText("Ukjent");
+		}
+		else{ FakultetLabel.setText(student.getFaculty());
+		
+		}
+	}	
+		
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
@@ -181,7 +217,61 @@ public class StudentProfileController implements Initializable{
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
 	    tableID.setItems(data);
+	    
+	    
+	    //setter teksten i alle labelene
+	    setInnloggetNurseLabel();
+	    setNavnText();
+		setTelefonLabel();
+		setEpostLabel();
+		setFakultetLabel();
+		
+		//henter frem notatet som skal vises på studentprofilen
+		notat.setText(student.getNotat());
+		
+		
+		chart.getData().clear();
+		
+		XYChart.Series<String, Number> series = new XYChart.Series<>();
+		List<Table> listOfAnswers = student.getAnswers();
+		List<String> datoer = new ArrayList<String>();
+		List<Number> total = new ArrayList<Number>();
+		for(Table answer: listOfAnswers) {
+			datoer.add(answer.getDato());
+			total.add(answer.getTotal());
+			}
+		for (int i = 0; i < listOfAnswers.size() ; i++) {
+			series.getData().add(new XYChart.Data(datoer.get(i),total.get(i)));
+		}
+		
+		chart.getData().add(series);
 	    }	
+	
+	@FXML
+	TextArea notat;
+	
+	
+	@FXML
+	public void handleEditButton() {
+		//gjør det mulig å skrive i tekstfeltet
+		notat.setEditable(true);
+	}
+	
+	@FXML
+	public void handleSaveButton() {
+		student.setNotat(notat.getText());
+		//legger inn notatet i databasen
+		UserDatabaseHandler database = new ConnectionSQL();
+		database.updateNote(student);
+		
+		//hindrer at det er mulig å skrive i teksfeltet uten å trykke rediger
+		notat.setEditable(false);
+	}
+	@FXML 
+	LineChart chart;
+
+	
+	
 	
 	
 }

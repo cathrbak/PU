@@ -1,17 +1,20 @@
 package tdt4140.gr1835.app.ui.nurse;
 
-import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Nurse;
 
-public class ProfileController {
+public class ProfileController implements Initializable{
 	private Nurse nurse;
 	public ProfileController(Nurse nurse) {
 		this.nurse = nurse;
@@ -48,7 +51,44 @@ public class ProfileController {
             stage.show();
 		}
 	
+		// Labels for fullt navn for innlogget helsesøster
+		@FXML
+		Label fulltnavn;
+		@FXML
+		Label username;
+		@FXML
+		Label email;
+		@FXML
+		Label faculty;
+		@FXML
+		Label phonenumber;
+
+
+		// Metode for å sette fullt navn
+		@FXML
+		public void setFulltnavnLabel() {
+			fulltnavn.setText(nurse.getFirstName() + " " + nurse.getSecondName());
+		}
+		
+		// Metode for å sette informasjon
+		@FXML
+		public void setProfileInformationLabel() {
+			username.setText(nurse.getUsername());
+			email.setText(nurse.getEmail());
+			faculty.setText(nurse.getFaculty());
+			phonenumber.setText(nurse.getPhoneNumber());
+		}
+		
+
+		@Override
+		public void initialize(URL location, ResourceBundle resources) {
+			// kaller på Label-metodene
+			setFulltnavnLabel();
+			setProfileInformationLabel();
+			
+		}
 	
-	
+
+		
 	
 }

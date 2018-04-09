@@ -40,6 +40,7 @@ public class ConnectionSQLTest {
 		testNurse.setFaculty("OK");
 		testNurse.setEmail("jajaja@gmail.com");
 		testNurse.setFirstName("Sos");
+		testNurse.setPassword("bla");
 		
 		
 		testStudent = new Student("testStudentUN");
@@ -52,6 +53,8 @@ public class ConnectionSQLTest {
 		testStudent.setEmail("jonas@gmail.com");
 		testStudent.setPhoneNumber("46952270");
 		testStudent.setNurse(udh.getNurse("testsoster"));
+		testStudent.setNotat("Dette er et notat");
+		
 		
 		testSurvey = new Table(2,1,2,3,4,5,4,3,2,1,1,20);
 		
@@ -110,7 +113,7 @@ public class ConnectionSQLTest {
 		assertEquals("Email",testStudent.getEmail(), udh.getStudent("testStudentUN").getEmail());
 		assertEquals("TelefonNr",testStudent.getPhoneNumber(), udh.getStudent("testStudentUN").getPhoneNumber());
 		assertEquals("Helsesoster",testStudent.getNurse().getUsername(), udh.getStudent("testStudentUN").getNurse().getUsername());
-
+		assertEquals("Notat",testStudent.getNotat(), udh.getStudent("testStudentUN").getNotat());
 
 		
 		
@@ -155,10 +158,12 @@ public class ConnectionSQLTest {
 		endretStudent.setFaculty("MH");
 		endretStudent.setNurse(udh.getNurse("testsoster"));
 		endretStudent.setPassword("frans");
+		endretStudent.setNotat("Dette er ogsaa et notat");
 		udh.updateStudent(endretStudent);
 		
 		assertEquals("hei@gmail.com",udh.getStudent(endretStudent.getUsername()).getEmail() );
 		assertEquals("frans", udh.getStudent(endretStudent.getUsername()).getPassword());
+		assertEquals("Dette er ogsaa et notat", udh.getStudent(endretStudent.getUsername()).getNotat());
 		udh.deleteStudent(testStudent);
 	}
 	
@@ -218,6 +223,19 @@ public class ConnectionSQLTest {
 		assertEquals("Email",testNurse.getEmail(), udh.getNurse("testNurseUN").getEmail());
 		udh.deleteNurse(testNurse);
 		
+	}
+	
+	@Test 
+	public void testUpdateNurse() throws SQLException {
+		udh.createNewNurse(testNurse);
+		Nurse endretNurse=udh.getNurse("testNurseUN");
+		endretNurse.setPassword("blabla");
+		
+		udh.updateNurse(endretNurse);
+		
+		assertEquals("blabla",udh.getNurse(endretNurse.getUsername()).getPassword());
+	
+		udh.deleteNurse(testNurse);
 	}
 	
 	@Test
