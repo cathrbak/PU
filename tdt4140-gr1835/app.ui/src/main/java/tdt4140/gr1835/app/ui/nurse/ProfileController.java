@@ -54,6 +54,15 @@ public class ProfileController implements Initializable{
 		// Labels for fullt navn for innlogget helsesøster
 		@FXML
 		Label fulltnavn;
+		@FXML
+		Label username;
+		@FXML
+		Label email;
+		@FXML
+		Label faculty;
+		@FXML
+		Label phonenumber;
+
 
 		// Metode for å sette fullt navn
 		@FXML
@@ -61,11 +70,21 @@ public class ProfileController implements Initializable{
 			fulltnavn.setText(nurse.getFirstName() + " " + nurse.getSecondName());
 		}
 		
+		// Metode for å sette informasjon
+		@FXML
+		public void setProfileInformationLabel() {
+			username.setText(nurse.getUsername());
+			email.setText(nurse.getEmail());
+			faculty.setText(nurse.getFaculty());
+			phonenumber.setText(nurse.getPhoneNumber());
+		}
+		
 
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
 			// kaller på Label-metodene
 			setFulltnavnLabel();
+			setProfileInformationLabel();
 			
 		}
 	
