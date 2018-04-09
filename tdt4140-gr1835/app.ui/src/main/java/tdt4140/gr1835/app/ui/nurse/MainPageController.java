@@ -52,7 +52,9 @@ public class MainPageController implements Initializable {
 	
 	@FXML
 	public void setFakultetsIDLabel() {
-		fakultetsID.setText(nurse.getFaculty());
+		fakultetsID.setText("Denne tabellen viser alle studenter \n" + 
+				"som tilhører " + nurse.getFaculty() + " fakultetet");
+	
 	}
 	
 	
