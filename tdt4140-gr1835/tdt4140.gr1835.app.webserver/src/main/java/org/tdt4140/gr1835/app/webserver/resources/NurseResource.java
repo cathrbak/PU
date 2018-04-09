@@ -27,6 +27,7 @@ import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.MockingDatabase;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
 
@@ -36,7 +37,7 @@ public class NurseResource {
 	
 	private JsonConverterService<Nurse> objectConverter = new NurseJsonConverter();
 	private JsonConverterService<List<Student>> listConverter = new ListOfStudentConverter();
-	private UserDatabaseHandler database = new ConnectionSQL();
+	private UserDatabaseHandler database = new MockingDatabase();
 	//Lager en cache med de nursene jeg allerede har funnet fra getNurse
 	private static List<Nurse> nurses= new ArrayList<>();
 	
@@ -146,7 +147,6 @@ public class NurseResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateNurse(String input){
 		Nurse nurse=objectConverter.convertToObject(input);
-		System.out.println(nurse);
 		try {
 			database.updateNurse(nurse);
 		} catch (SQLException e) {
@@ -158,18 +158,18 @@ public class NurseResource {
 	}
 	
 	@DELETE
+	@Path("/{username}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response deleteNurse(String input){
-		Nurse nurse=objectConverter.convertToObject(input);
+	public Response deleteNurse(@PathParam ("username") String username){
 		
 		try {
-			database.deleteNurse(nurse);
+			database.deleteNurse(database.getNurse(username));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-		return Response.status(201).build(); //201 Created
+		return Response.status(204).build(); //201 Created
 	}
 
 }

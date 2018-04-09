@@ -25,6 +25,7 @@ import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.MockingDatabase;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
 @Path("/students")
@@ -32,8 +33,7 @@ public class StudentResource {
 	
 	private JsonConverterService<Student> studconverter = new StudentJsonConverter();
 	private JsonConverterService<Nurse> nurseconverter = new NurseJsonConverter();
-	private UserDatabaseHandler database = new ConnectionSQL();
-	private static List<Student> students=new ArrayList<>();
+	private UserDatabaseHandler database = new MockingDatabase();
 	
 	/*
 	 *   /students: ikke tillatt
@@ -53,7 +53,6 @@ public class StudentResource {
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getStudent(@PathParam ("username") String username) throws SQLException {
-		
 		Student stud=database.getStudent(username);
 		if (stud==null) {
 			return null;
@@ -94,10 +93,6 @@ public class StudentResource {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		messages.stream().forEach(m->{
-			System.out.println("mottager: "+m.getReciver());
-			System.out.println("sender: "+m.getSender());
-		});
 		JsonConverterService<List<Message>> converterService=new ListOfMessagesConverter();
 		return converterService.convertToJason(messages);
 	}
@@ -110,10 +105,7 @@ public class StudentResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createStudent(String input){
-		System.out.println("Konverterer JSON til objekt");
 		Student stud=studconverter.convertToObject(input);
-		System.out.println(stud);
-		System.out.println("Kaller på database for å lage ny student: createNewStudent");
 		try {
 			database.createNewStudent(stud);
 		} catch (SQLException e) {
@@ -132,7 +124,6 @@ public class StudentResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createTable(String input) {
 		JsonConverterService<Table> converter= new TableJsonConverter();
-		System.out.println(converter.convertToObject(input).getPersonID());
 		try {
 			database.createSurvey(converter.convertToObject(input));
 		} catch (SQLException e) {
