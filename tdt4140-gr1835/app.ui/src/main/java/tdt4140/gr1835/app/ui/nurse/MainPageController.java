@@ -41,9 +41,7 @@ public class MainPageController implements Initializable {
 	}
 
 	@FXML
-	Label brukernavn;
-	@FXML
-	Label fakultetsID;
+	Label brukernavn, fakultetsID;
 	
 	@FXML
 	public void setBrukernavnLabel() {
@@ -68,25 +66,7 @@ public class MainPageController implements Initializable {
 	@FXML
 	TableColumn<Table, String> Navn;
 	@FXML 
-	TableColumn<Table, Integer> Spm1;
-	@FXML 
-	TableColumn<Table, Integer> Spm2;
-	@FXML 
-	TableColumn<Table, Integer> Spm3;
-	@FXML 
-	TableColumn<Table, Integer> Spm4;
-	@FXML 
-	TableColumn<Table, Integer> Spm5;
-	@FXML 
-	TableColumn<Table, Integer> Spm6;
-	@FXML 
-	TableColumn<Table, Integer> Spm7;
-	@FXML 
-	TableColumn<Table, Integer> Spm8;
-	@FXML 
-	TableColumn<Table, Integer> Spm9;
-	@FXML 
-	TableColumn<Table, Integer> Spm10;
+	TableColumn<Table, Integer> Spm1, Spm2, Spm3, Spm4, Spm5, Spm6, Spm7, Spm8, Spm9, Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
 	
@@ -99,10 +79,20 @@ public class MainPageController implements Initializable {
 		List<Student> students=nurse.getStudents(); //henter alle studentene til helsesøsteren
 		System.out.println(students.toString());
 		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
-				//Table studentTable = new Table(student);
+				//henter navnet til studenten.
+				String studentName;
+				if (student.isAnonymous()) {
+					studentName = "Anonym";
+				}
+				else {
+					studentName = student.getFirstName() + " " + student.getSecondName();
+				}
+				
 				List<Table> listOfAnswers = student.getAnswers();
 				for(Table answer: listOfAnswers) {
+					answer.setNavn(studentName); //legger til studentens navn i table-objektet
 					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
+					
 				}
 		}
 		
@@ -132,12 +122,7 @@ public class MainPageController implements Initializable {
 	}
 	//Knapper 
 	@FXML
-	Button Profile;
-	@FXML
-	Button Logout;
-	@FXML
-	Button Question;
-	
+	Button Profile, Logout, Question;
 	
 	//Ta meg til profil
 	@FXML
