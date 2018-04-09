@@ -65,6 +65,8 @@ public class MainPageController implements Initializable {
 	TableColumn<Table, String> Dato;
 	@FXML 
 	TableColumn<Table, Integer> PersonID;
+	@FXML
+	TableColumn<Table, String> Navn;
 	@FXML 
 	TableColumn<Table, Integer> Spm1;
 	@FXML 
@@ -97,6 +99,7 @@ public class MainPageController implements Initializable {
 		List<Student> students=nurse.getStudents(); //henter alle studentene til helsesøsteren
 		System.out.println(students.toString());
 		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
+				//Table studentTable = new Table(student);
 				List<Table> listOfAnswers = student.getAnswers();
 				for(Table answer: listOfAnswers) {
 					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
@@ -210,6 +213,7 @@ public class MainPageController implements Initializable {
 		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Hyperlink>("StudentID"));
 		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
+		Navn.setCellValueFactory(new PropertyValueFactory<Table, String>("Navn"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
 		Spm2.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm2"));
 		Spm3.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm3"));

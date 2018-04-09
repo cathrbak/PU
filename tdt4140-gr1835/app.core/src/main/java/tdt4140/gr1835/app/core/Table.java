@@ -7,20 +7,13 @@ import javafx.scene.control.Hyperlink;
 
 import java.sql.Timestamp;
 //dette er en klasse som behandler informasjon som skal inn i de to tabellene på mainPage 
+import java.util.ArrayList;
 
 
 public class Table  {
+	private SimpleStringProperty Navn;
 	private SimpleIntegerProperty PersonID;
-	private SimpleIntegerProperty Spm1;
-	private SimpleIntegerProperty Spm2;
-	private SimpleIntegerProperty Spm3;
-	private SimpleIntegerProperty Spm4;
-	private SimpleIntegerProperty Spm5;
-	private SimpleIntegerProperty Spm6;
-	private SimpleIntegerProperty Spm7;
-	private SimpleIntegerProperty Spm8;
-	private SimpleIntegerProperty Spm9;
-	private SimpleIntegerProperty Spm10;
+	private SimpleIntegerProperty Spm1, Spm2, Spm3, Spm4, Spm5, Spm6, Spm7, Spm8, Spm9, Spm10;
 	private SimpleIntegerProperty Total;
 	private SimpleStringProperty Dato;
 	private Timestamp tstamp;
@@ -52,6 +45,7 @@ public class Table  {
 			throw new IllegalArgumentException("Svarene skal være et tall mellom 1 og 5");
 		}
 		else {
+			this.Navn = new SimpleStringProperty("Anonym");
 			this.Spm1 = new SimpleIntegerProperty(Spm1);
 			this.Spm2 = new SimpleIntegerProperty(Spm2);
 			this.Spm3 = new SimpleIntegerProperty(Spm3);
@@ -66,6 +60,7 @@ public class Table  {
 		}
 	}
 	
+
 	public String getDato() {
 		int date = tstamp.getDate();
 		int month = tstamp.getMonth();
@@ -77,7 +72,22 @@ public class Table  {
 		this.tstamp = tstamp;
 		this.Dato = new SimpleStringProperty(getDato());
 	}
-
+//prøver å hente navn herfra men må ha tilgang til student.getName først
+	/*public void setNavn() {
+		if (!student.isAnonymous()) {
+			this.Navn = new SimpleStringProperty(student.getFirstName() + " " + student.getSecondName());
+		}
+		else {
+			this.Navn = new SimpleStringProperty("Anonym");
+		}
+	}*/
+	
+	public String getNavn() {
+		return Navn.get();
+	} 
+	public int getPersonID() {
+		return PersonID.get();
+	}
 	public int getSpm1() {
 		return Spm1.get();
 	}
@@ -122,9 +132,6 @@ public class Table  {
 		return Total.get();
 	}
 
-	public int getPersonID() {
-		return PersonID.get();
-	}
 	@Override
 	public String toString() {
 		return "Table [Dato=" + Dato + ", PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
