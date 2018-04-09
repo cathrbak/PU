@@ -100,9 +100,19 @@ public class MainPageController implements Initializable {
 		System.out.println(students.toString());
 		for (Student student : students) { //løkker gjennom hver student og henter svarene deres på spørreundersøkelse
 				//Table studentTable = new Table(student);
+				String studentName;
+				if (student.isAnonymous()) {
+					studentName = "Anonym";
+				}
+				else {
+					studentName = student.getFirstName() + " " + student.getSecondName();
+				}
+				
 				List<Table> listOfAnswers = student.getAnswers();
 				for(Table answer: listOfAnswers) {
+					answer.setNavn(studentName);
 					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
+					
 				}
 		}
 		
