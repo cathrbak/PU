@@ -6,6 +6,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -14,26 +15,46 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
 import tdt4140.gr1835.app.ui.nurse.FxApp;
-import tdt4140.gr1835.app.ui.nurse.QuestionsController;
+import javafx.scene.control.ToggleButton;
 
 public class MainPageControllerStudent implements Initializable {
-UserDatabaseHandler database;
+	
+	UserDatabaseHandler database;
 	
 	public MainPageControllerStudent(Student student) throws SQLException, Exception {
 		this.database=new ConnectionSQL();
 		this.student = student;
 		addInfo();	
 	}
+	
+	@FXML
+	ToggleButton anonymousOn;
+	@FXML
+	ToggleButton anonymousOff;
+	
+	
+	public void handleAnonymousOnButton() throws SQLException {
+		student.setAnonymous(true);
+		System.out.println("ON");
+		//database.updateStudent(student);
+	}
+	
+	public void handleAnonymousOffButton() throws SQLException {
+		student.setAnonymous(false);
+		System.out.println("OFF");
+		//database.updateStudent(student);
+	}
+
 				
 	private Student student;
 	
@@ -184,6 +205,6 @@ UserDatabaseHandler database;
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
 	    tableID.setItems(data);
 	    }	
-
+	
 }
 
