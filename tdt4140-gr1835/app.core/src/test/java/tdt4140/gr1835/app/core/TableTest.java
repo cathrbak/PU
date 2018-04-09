@@ -6,20 +6,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import javafx.scene.control.Hyperlink;
 import junit.framework.TestCase;
 
 public class TableTest extends TestCase{
 	
 	private Table testTable;
-	private Table testTableTom;
-
-
+	private Table testTableHyperLink;
+	private Hyperlink studentID;
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("Setup");
 		testTable=new Table(1,1,2,3,4,5,1,2,3,4,5,30);
-//		testTableTom = new Table();
-		
+		testTableHyperLink = new Table(studentID);	
 	}
 
 	@Test
@@ -28,42 +27,12 @@ public class TableTest extends TestCase{
 		assertFalse(testTable==null);
 		assertEquals(1, testTable.getPersonID());
 	}
+	@Test 
+	public void testNewTableHyperLink() {
+		assertFalse(testTableHyperLink == null);
+		assertEquals(studentID, testTableHyperLink.getStudentID());
+	}
 	
-//	@Test
-//	public void testNewTomTable() {
-//		System.out.println("testTomTable");
-//		assertFalse(testTableTom==null);
-//		assertEquals(1, testTableTom.getStudentID());
-//	}
-//	
-//	@Test
-//	public void testRightValueEmptyConstructor() {
-//		System.out.println("TestRightValueEmptyConstructor");
-//		int expected = 1;
-//		assertEquals(expected, testTableTom.getStudentID());
-//		try {
-//			Table testTable2= new Table(0);
-//			fail("Testen skulle ha feilet pga at personID er mindre enn 1");
-//		}catch(IllegalArgumentException e) {
-//			assertTrue(e.getClass().equals(IllegalArgumentException.class));
-//		}
-//		
-//	}
-	/*@Test
-	public void testRightValue() {
-		System.out.println("testAllInt");
-		Table testTable2= new Table(2018-01-10 00:00:00, 1,1,2,3,4,5,1,2,3,4,5,30);
-		int expected = testTable.getSpm5();
-		assertEquals(expected, testTable2.getSpm5());
-		try {
-			testTable2.setSpm5(50);
-			fail("Testen skulle ha feilet pga at et av tallene er større enn 5");
-		}catch(IllegalArgumentException e) {
-			assertTrue(e.getClass().equals(IllegalArgumentException.class));
-		}
-		
-	}*/
-
 @Test
 public void testRightValueConstructor() {
 	System.out.println("testValue1");
@@ -83,15 +52,9 @@ public void testRightValueConstructor() {
 		fail("Testen skulle ha feilet pga at et av tallene er større enn 5");
 	}catch(IllegalArgumentException e) {
 		assertTrue(e.getClass().equals(IllegalArgumentException.class));
-	}
-	
+	}	
 }
 
-
-@Test 
-public void testSimpleIntegerProperty() {
-	
-}
 @Test
 public void testSum() {
 	Table testTable2= new Table(1,1,2,3,4,5,1,2,3,4,5,30);
@@ -109,12 +72,14 @@ public void testSum() {
 		assertTrue(e.getClass().equals(IllegalArgumentException.class));
 	}
 }
+
 	
 	@After
 	public void tearDown() {
 		System.out.println("tearDown");
 		testTable=null;
-		testTableTom = null;
+		testTableHyperLink = null;
 	}
+	
 
 }

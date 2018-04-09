@@ -6,10 +6,10 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Hyperlink;
 
 import java.sql.Timestamp;
-//dette er en klasse som behandler svarene til en person, personen identifiseres ved PersonID
+//dette er en klasse som behandler informasjon som skal inn i de to tabellene på mainPage 
+
 
 public class Table  {
-	//private SimpleIntegerProperty StudentID;
 	private SimpleIntegerProperty PersonID;
 	private SimpleIntegerProperty Spm1;
 	private SimpleIntegerProperty Spm2;
@@ -28,17 +28,7 @@ public class Table  {
 	private Hyperlink StudentID;
 	private Student student;
 	
-	/*
-	public Table(int StudentID) {
-		if (StudentID > 0) {
-			this.StudentID = new SimpleIntegerProperty(StudentID);	
-		}
-		else {
-			throw new IllegalArgumentException("StudentID må være større enn 0");
-		}
-	}
-	*/
-	
+	// denne konstruktøren hører til tabellen med link til studentprofilen. 
 	public Table(Hyperlink StudentID) {
 		this.StudentID = StudentID;
 	}
@@ -54,9 +44,7 @@ public class Table  {
 	public Table(Student student) {
 		this.student=student;
 	}
-	
-	
-
+	//Denne konstruktøren hører til tabellen som behandler svarene til en person, personen identifiseres ved PersonID og navn dersom den ikke er anonym
 	public Table(int PersonID,  int Spm1, int Spm2,int Spm3,int Spm4,int Spm5,int Spm6,int Spm7,int Spm8,int Spm9,int Spm10,int Total) {
 		super();
 		this.PersonID = new SimpleIntegerProperty(PersonID);
@@ -90,13 +78,10 @@ public class Table  {
 		this.Dato = new SimpleStringProperty(getDato());
 	}
 
-	/*har laget denne metoden for å få testet dette, usikker på om denne variabelen skal være final eller ikke 
-	public void setSpm5(int spm5) {
-		if( 0 > spm5 || spm5 > 5){
-			throw new IllegalArgumentException("Svaret må være mellom 1 og 5");
-		}
-		this.Spm5 = new SimpleIntegerProperty(spm5);
-	}*/
+	public int getSpm1() {
+		return Spm1.get();
+	}
+
 	public int getSpm2() {
 		return Spm2.get();
 	}
@@ -140,11 +125,6 @@ public class Table  {
 	public int getPersonID() {
 		return PersonID.get();
 	}
-
-	public int getSpm1() {
-		return Spm1.get();
-	}
-
 	@Override
 	public String toString() {
 		return "Table [Dato=" + Dato + ", PersonID=" + PersonID + ", Spm1=" + Spm1 + ", Spm2=" + Spm2 + ", Spm3=" + Spm3 + ", Spm4=" + Spm4
