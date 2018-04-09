@@ -18,12 +18,15 @@ import javax.ws.rs.core.Response;
 
 import tdt3140.gr1835.app.json.JsonConverterService;
 import tdt3140.gr1835.app.json.ListOfStudentConverter;
+import tdt3140.gr1835.app.json.MessageJsonConverter;
 import tdt3140.gr1835.app.json.NurseJsonConverter;
+import tdt3140.gr1835.app.json.StudentJsonConverter;
+import tdt3140.gr1835.app.json.TableJsonConverter;
 import tdt4140.gr1835.app.core.Message;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
-import tdt4140.gr1835.app.database.MockingDatabase;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
 
 
@@ -55,14 +58,14 @@ public class NurseResource {
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public String getNurse(@PathParam ("username") String username) throws SQLException {
-//		Nurse nurse;
-//		if(nurses.stream().anyMatch(n -> n.getUsername().equals(username))) {
-//			System.out.println("Fant nurse objektet lokalt, bruker denne");
-//			nurse = nurses.stream().filter(n -> n.getUsername().equals(username)).collect(Collectors.toList()).get(0);
-//		}else {
-//			nurse= database.getNurse(username);
-//			nurses.add(nurse);
-//		}
+		Nurse nurse;
+		if(nurses.stream().anyMatch(n -> n.getUsername().equals(username))) {
+			System.out.println("Fant nurse objektet lokalt, bruker denne");
+			nurse = nurses.stream().filter(n -> n.getUsername().equals(username)).collect(Collectors.toList()).get(0);
+		}else {
+			nurse= database.getNurse(username);
+			nurses.add(nurse);
+		}
 		return objectConverter.convertToJason(database.getNurse(username));
 	}
 	
@@ -94,8 +97,7 @@ public class NurseResource {
 	@Path("/{username}/messages")
 	@Produces(MediaType.TEXT_HTML)
 	public Response getMessages(@PathParam ("username") String username) {
-		//Har ikke messageobjekter her nå. Implementerer dette når jeg merger til master
-		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Har ikke implementert for meldinger ennå. Implementerer dette når jeg merger til master").build();
+		return Response.status(Response.Status.NOT_IMPLEMENTED).entity("Har ikke implementert for meldinger ennå. Mangler getStundets(Nurse) i connection SQL").build();
 	}
 	
 	/*
@@ -105,10 +107,16 @@ public class NurseResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String createNurse(String input) throws SQLException {
+	public Response createNurse(String input){
 		Nurse nurse=objectConverter.convertToObject(input);
-		database.createNewNurse(nurse);
-		return objectConverter.convertToJason(database.getNurse(nurse.getUsername()));
+		try {
+			database.createNewNurse(nurse);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		}
+		return Response.status(201).build(); //201 Created
 	}
 	
 	/*
@@ -119,30 +127,49 @@ public class NurseResource {
 	@POST
 	@Path("/{username}/messages")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Message createMessage(@PathParam ("username") String username,Message message) throws SQLException {
-		database.createNewMessage(message);
-		return database.getMessage(message.getReciver(), message.getSender());
+	public Response createMessage(String input){
+		JsonConverterService<Message> converter=new MessageJsonConverter();
+		System.out.println("create new Message:" + converter.convertToObject(input).getText());
+		try {
+			database.createNewMessage(converter.convertToObject(input));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		}
+		return Response.status(201).build(); //201 Created
 	}
+	
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String updateNurse(String input) throws SQLException {
+	public Response updateNurse(String input){
 		Nurse nurse=objectConverter.convertToObject(input);
 		System.out.println(nurse);
-		database.updateNurse(nurse);
-		return objectConverter.convertToJason(database.getNurse(nurse.getUsername()));
+		try {
+			database.updateNurse(nurse);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		}
+		return Response.status(201).build(); //201 Created
 	}
 	
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String deleteNurse(String input) throws SQLException {
+	public Response deleteNurse(String input){
 		Nurse nurse=objectConverter.convertToObject(input);
-		database.deleteNurse(nurse);
-		return Boolean.toString(database.getNurse(nurse.getUsername())==null);
+		
+		try {
+			database.deleteNurse(nurse);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		}
+		return Response.status(201).build(); //201 Created
 	}
-	
-	
 
 }

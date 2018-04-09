@@ -2,13 +2,18 @@ package tdt4140.gr1835.app.core;
 
 import java.util.List;
 
+import com.google.gson.annotations.Expose;
+
+import tdt3140.gr1835.app.json.Exclude;
+
 public class Student extends User{
 	
 	private boolean isAnonymous;
 	private String sex;
 	private Nurse nurse;
 	private int studentID;
-	private List<Table> answers;
+	@Exclude
+	private transient List<Table> answers;
 	
 	public Student() {
 		

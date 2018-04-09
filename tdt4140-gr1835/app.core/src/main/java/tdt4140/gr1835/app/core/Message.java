@@ -1,19 +1,37 @@
 package tdt4140.gr1835.app.core;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.google.gson.annotations.Expose;
+
+import tdt3140.gr1835.app.json.Exclude;
+
+
+
+@XmlRootElement
 public class Message {
 	
-	Student student;
-	Nurse nurse;
-	Timestamp time;
-	String text;
-	Integer messageID;
+	private Student student;
+	private Nurse nurse;
 	
-
+	@Exclude
+	private transient Timestamp time;
+	private long millitime;
+	private String text;
+	private Integer messageID;
+	
 	public Message(Student student, Nurse nurse) {
 		this.student = student;
 		this.nurse = nurse;
+	}
+	
+	public Message() {
+		
 	}
 	
 	public void setMessageID(Integer id) {
@@ -65,6 +83,14 @@ public class Message {
 	
 	public void setTime(Timestamp time) {
 		this.time = time;
+		this.millitime=time.getTime();
 	}
+	
+	public long getMillitime() {
+		return this.millitime;
+	}
+	
+	
+	
 	
 }
