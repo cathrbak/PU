@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css">
          <children>
@@ -54,9 +54,9 @@
                   <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
                </columns>
             </TableView>
-            <ImageView fitHeight="150.0" fitWidth="186.0" layoutX="24.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="186.0" layoutX="24.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/Image/user_icon_profile.jpg" />
+                  <Image backgroundLoading="true" url="@Image/user_icon_profile.jpg" />
                </image>
             </ImageView>
             <Label alignment="CENTER_RIGHT" layoutX="275.0" layoutY="120.0" styleClass="label_text" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="E-post" />

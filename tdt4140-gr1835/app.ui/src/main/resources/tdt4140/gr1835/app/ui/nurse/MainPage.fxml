@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
@@ -19,12 +19,12 @@
                   <Font name="Copperplate" size="48.0" />
                </font>
             </Text>
-          <Button fx:id="Profile" layoutX="451.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" prefHeight="29.0" prefWidth="67.0" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="18.0">
+          <Button fx:id="Profile" layoutX="547.0" layoutY="19.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" prefHeight="29.0" prefWidth="112.0" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="141.0" AnchorPane.topAnchor="19.0">
                <font>
                   <Font name="Lucida Console" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="Logout" layoutX="527.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="73.0" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="18.0">
+            <Button fx:id="Logout" layoutX="527.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="104.0" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="18.0">
                <font>
                   <Font name="Lucida Console" size="13.0" />
                </font>
@@ -50,14 +50,14 @@
                   <TableColumn fx:id="Total" prefWidth="55.27618408203125" text="Total  " />
               </columns>
             </TableView>
-            <Button fx:id="Question" layoutX="408.0" layoutY="351.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
-            <TableView fx:id="tableStudents" layoutX="325.0" layoutY="430.0" prefHeight="200.0" prefWidth="83.0" styleClass="tableview" stylesheets="@stylesheet.css">
+            <Button fx:id="Question" layoutX="705.0" layoutY="366.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+            <TableView fx:id="tableStudents" layoutX="77.0" layoutY="450.0" prefHeight="200.0" prefWidth="83.0" styleClass="tableview" stylesheets="@stylesheet.css">
               <columns>
                 <TableColumn fx:id="StudentID" prefWidth="75.82094192504883" text="StudentID" />
               </columns>
             </TableView>
             <Label fx:id="brukernavn" layoutX="461.0" layoutY="25.0" stylesheets="@stylesheet.css" textFill="#f5f2f2" />
-            <Label layoutX="26.0" layoutY="352.0" prefHeight="23.0" prefWidth="365.0" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="For å se spørsmålene fra spørreundersøkelsen, trykk her" textFill="#e8e2e2">
+            <Label layoutX="312.0" layoutY="369.0" prefHeight="23.0" prefWidth="393.0" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="For å se spørsmålene fra spørreundersøkelsen, trykk her" textFill="#e8e2e2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -72,7 +72,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="26.0" layoutY="499.0" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Trykk på ønsket ID for å komme til &#10;tilhørende studentprofil." textFill="#e8e2e2">
+            <Label layoutX="28.0" layoutY="400.0" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Trykk på ønsket ID for å komme til &#10;tilhørende studentprofil." textFill="#e8e2e2">
                <font>
                   <Font size="16.0" />
                </font>

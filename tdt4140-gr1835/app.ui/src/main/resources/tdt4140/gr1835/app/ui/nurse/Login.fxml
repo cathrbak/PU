@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -15,52 +14,49 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.nurse.LoginController">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
-            <Label alignment="CENTER_RIGHT" layoutX="202.0" layoutY="109.0" prefHeight="58.0" prefWidth="203.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Psykisk" textFill="#3d5679">
+            <Label alignment="CENTER_RIGHT" layoutX="211.0" layoutY="167.0" prefHeight="58.0" prefWidth="203.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Psykisk" textFill="#3d5679">
                <font>
                   <Font name="Copperplate" size="48.0" />
                </font>
             </Label>
-            <Label layoutX="405.0" layoutY="109.0" prefHeight="58.0" prefWidth="165.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Helse" textFill="#e8e2e2">
+            <Label layoutX="414.0" layoutY="167.0" prefHeight="58.0" prefWidth="165.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Helse" textFill="#e8e2e2">
                <font>
                   <Font name="Copperplate" size="48.0" />
                </font>
             </Label>
-            <GridPane layoutX="192.0" layoutY="195.0" prefHeight="197.0" prefWidth="360.0">
+            <GridPane layoutX="231.0" layoutY="263.0" prefHeight="239.0" prefWidth="327.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.19253540039062" minWidth="10.0" prefWidth="43.568267822265625" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.8915100097656" minWidth="10.0" prefWidth="280.4317321777344" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="17.51776123046875" minHeight="4.45941162109375" prefHeight="5.3299560546875" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="44.81683349609375" minHeight="10.0" prefHeight="43.6700439453125" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="49.0186767578125" minHeight="10.0" prefHeight="20.51776123046875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.093902587890625" minHeight="10.0" prefHeight="47.48223876953125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="34.192535400390625" minHeight="3.553314208984375" prefHeight="17.058380126953125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="58.472686767578125" minHeight="10.0" prefHeight="54.158477783203125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.220550537109375" minHeight="10.0" prefHeight="13.213165283203125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.786834716796875" minHeight="10.0" prefHeight="56.786834716796875" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-               	<TextField fx:id="brukernavn" onTextChange="#handleTextChange" prefHeight="31.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-               	<PasswordField fx:id="passord" onTextChange="#handleTextChange" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Brukernavn" textFill="#e8e2e2" GridPane.rowIndex="1">
+               	<TextField fx:id="brukernavn" onTextChange="#handleTextChange" prefHeight="47.0" prefWidth="281.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               	<PasswordField fx:id="passord" onTextChange="#handleTextChange" prefHeight="44.0" prefWidth="281.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#e8e2e2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Lucida Console" size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="41.0" prefWidth="168.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Passord" textFill="#e8e2e2" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Lucida Console" size="18.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="32.0" prefWidth="130.0" stylesheets="@stylesheet.css" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Button fx:id="button_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="48.0" prefWidth="346.0" stylesheets="@stylesheet.css" text="Logg inn  " textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <opaqueInsets>
                         <Insets left="55.0" />
                      </opaqueInsets>
                      <GridPane.margin>
-                        <Insets left="70.0" />
+                        <Insets />
                      </GridPane.margin>
                      <font>
                         <Font name="Lucida Console" size="13.0" />
@@ -74,38 +70,31 @@
                         <Image backgroundLoading="true" url="@Image/usericon2.png" />
                      </image>
                      <GridPane.margin>
-                        <Insets left="25.0" />
+                        <Insets />
                      </GridPane.margin>
                   </ImageView>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                      <image>
                         <Image backgroundLoading="true" url="@Image/passwordlock.png" />
                      </image>
                      <GridPane.margin>
-                        <Insets left="60.0" />
+                        <Insets />
                      </GridPane.margin>
                   </ImageView>
-                  <ProgressBar fx:id="indikator" prefWidth="200.0" progress="0.0" GridPane.rowIndex="4" />
+            
+                  <Button fx:id="button_nybruker" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="48.0" prefWidth="315.0" stylesheets="@stylesheet.css" text="Opprett ny bruker" textFill="#e8e2e2" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                     <font>
+                        <Font name="Lucida Console" size="13.0" />
+                     </font>
+                  </Button>
                   
                </children>
             </GridPane>
-      
-            <Button fx:id="button_nybruker" layoutX="202.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleNyBrukerButton" prefHeight="31.0" prefWidth="180.0" stylesheets="@stylesheet.css" text="Opprett ny bruker" textFill="#e8e2e2">
-               <font>
-                  <Font name="Lucida Console" size="13.0" />
-               </font>
-            </Button>
-            <Label layoutX="55.0" layoutY="447.0" prefHeight="26.0" prefWidth="140.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Ikke registrert?" textFill="#e8e2e2">
-               <font>
-                  <Font name="Lucida Console" size="14.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="79.0" fitWidth="90.0" layoutX="361.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="79.0" fitWidth="90.0" layoutX="370.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/heart_icon.png" />
                </image>
             </ImageView>
-            <Label fx:id="responsLabel" layoutX="400.0" layoutY="450.0" prefHeight="26.0" prefWidth="333.0" styleClass="label_text" stylesheets="@stylesheet.css" text="" textFill="#e8e2e2" />
          </children>
       </AnchorPane>
    </content>
