@@ -45,7 +45,6 @@ public class Table  {
 			throw new IllegalArgumentException("Svarene skal være et tall mellom 1 og 5");
 		}
 		else {
-			this.Navn = new SimpleStringProperty("Anonym");
 			this.Spm1 = new SimpleIntegerProperty(Spm1);
 			this.Spm2 = new SimpleIntegerProperty(Spm2);
 			this.Spm3 = new SimpleIntegerProperty(Spm3);
@@ -72,7 +71,7 @@ public class Table  {
 		this.tstamp = tstamp;
 		this.Dato = new SimpleStringProperty(getDato());
 	}
-// denne metoden kalles på i mainPageController når informasjonen legges til i tabellen. 
+// denne metoden kalles på i mainPageController når informasjonen legges til i tabellen (addInfoAnswers()). 
 	public void setNavn(String navn) {
 		this.Navn = new SimpleStringProperty(navn);
 	}
