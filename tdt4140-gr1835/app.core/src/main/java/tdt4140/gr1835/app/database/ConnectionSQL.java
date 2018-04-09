@@ -141,7 +141,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			+ "', fakultet= " + switchFacultyNametoID(faculty) + ", fornavn= '" + nurse.getFirstName()
 			+ "', etternavn= '" + nurse.getSecondName() + "', email= '" + nurse.getEmail() 
 			+ "', telefonNr= " + nurse.getPhoneNumber()
-			+ "WHERE brukernavn = '" + nurse.getUsername() + "';";
+			+ " WHERE brukernavn = '" + nurse.getUsername() + "';";
 			
 			stmt.executeUpdate(query);
 			
@@ -183,7 +183,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			
 			if(stmt.execute(query)) {
 				rs = stmt.getResultSet();
-			}
+			} 
 		}
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -237,6 +237,11 @@ public class ConnectionSQL implements UserDatabaseHandler{
 				student.setNurse(nurse);
 			}
 			
+			String notat = rs.getString("notat");
+			if((notat != null)) {
+				student.setNotat(notat);
+			}
+			
 		}
 		closeConnection();
 		return student;
@@ -280,12 +285,13 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			String faculty = student.getFaculty();
 			
 			String query = "INSERT INTO datagiver(brukernavn, passord, fakultet, anonymitet, fornavn"
-					+ ", etternavn, kjonn, email, telefonNr, HelsesosterID) VALUES ('" + student.getUsername() + "', '" +
+					+ ", etternavn, kjonn, email, telefonNr, HelsesosterID, notat) VALUES ('" + student.getUsername() + "', '" +
 					student.getPassword() + "', " + switchFacultyNametoID(faculty) + ", " + student.isAnonymous() + ", '"
 					+ student.getFirstName()
 					+ "', '" + student.getSecondName() + "', '" + student.getSex() + "', '" +
 					student.getEmail() + "', " + 
-					student.getPhoneNumber() + ", " + getNurseID(student.getNurse()) + ");";
+					student.getPhoneNumber() + ", " + getNurseID(student.getNurse()) + 
+					", '" + student.getNotat() + "');";
 			
 			stmt.executeUpdate(query);
 			
@@ -312,7 +318,8 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			+ "', etternavn= '" + student.getSecondName() +"', kjonn= '" + student.getSex()
 			+ "', email= '" + student.getEmail() 
 			+ "', telefonNr= " + student.getPhoneNumber()
-			+ " WHERE brukernavn = '" + student.getUsername() + "';";
+			+ ", notat= '" + student.getNotat()
+			+ "' WHERE brukernavn = '" + student.getUsername() + "';";
 			
 			stmt.executeUpdate(query);
 			
