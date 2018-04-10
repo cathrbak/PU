@@ -11,6 +11,15 @@
     -fx-font-size: 15px;
 }
 
+.button-orange {
+   -fx-background-color: linear-gradient(#ff8411, #ff8411);
+   -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+    -fx-text-fill: #283243;
+    -fx-font-size: 15px;
+}
+
 .button:pressed {
 	-fx-background-color: linear-gradient(#4a85d3, #335a8e);
 	-fx-font-weight: bold;

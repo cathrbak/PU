@@ -20,17 +20,17 @@
    <content>
       <AnchorPane prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css">
          <children>
-            <Text fx:id="NavnText" fill="#e8e2e2" layoutX="24.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift">
+            <Text fx:id="NavnText" fill="#283243" layoutX="24.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift">
                <font>
                   <Font name="Copperplate" size="36.0" />
                </font>
             </Text>
-            <Button fx:id="sendMessageButton" layoutX="607.0" layoutY="255.0" mnemonicParsing="false" onMouseReleased="#handleSendMessageButton" prefHeight="29.0" prefWidth="141.0" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Send melding" textFill="#e8e2e2">
+            <Button fx:id="sendMessageButton" layoutX="639.0" layoutY="257.0" mnemonicParsing="false" onMouseReleased="#handleSendMessageButton" prefHeight="29.0" prefWidth="141.0" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Send melding" textFill="#e8e2e2">
                <font>
                   <Font name="Lucida Console" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="returnButton" layoutX="675.0" layoutY="36.0" mnemonicParsing="false" onMouseReleased="#handleReturnButton" prefHeight="29.0" prefWidth="73.0" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Tilbake" textFill="#e8e2e2">
+            <Button fx:id="returnButton" layoutX="708.0" layoutY="36.0" mnemonicParsing="false" onMouseReleased="#handleReturnButton" prefHeight="29.0" prefWidth="73.0" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Tilbake" textFill="#e8e2e2">
                <font>
                   <Font name="Lucida Console" size="13.0" />
                </font>
@@ -38,7 +38,7 @@
                   <Blend />
                </effect>
             </Button>
-            <TableView fx:id="tableID" layoutX="24.0" layoutY="297.0" prefHeight="200.0" prefWidth="724.0" style="-fx-background-color: e8e2e2;" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css">
+            <TableView fx:id="tableID" layoutX="24.0" layoutY="297.0" prefHeight="200.0" prefWidth="760.0" style="-fx-background-color: e8e2e2;" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css">
                <columns>
                   <TableColumn fx:id="Dato" prefWidth="110.0" text="Dato" />
                   <TableColumn fx:id="Spm1" prefWidth="55.0" text="Spm 1" />
@@ -51,7 +51,7 @@
                   <TableColumn fx:id="Spm8" prefWidth="55.0" text="Spm 8" />
                   <TableColumn fx:id="Spm9" prefWidth="55.0" text="Spm 9" />
                   <TableColumn fx:id="Spm10" prefWidth="55.0" text="Spm 10" />
-                  <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
+                  <TableColumn fx:id="Total" prefWidth="89.0" text="Total" />
                </columns>
             </TableView>
             <ImageView fitHeight="150.0" fitWidth="186.0" layoutX="24.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
@@ -66,10 +66,10 @@
             <Label fx:id="EpostLabel" layoutX="369.0" layoutY="121.0" styleClass="label_text" />
             <Label fx:id="TelefonLabel" layoutX="369.0" layoutY="181.0" styleClass="label_text" />
             <Label fx:id="FakultetLabel" layoutX="369.0" layoutY="241.0" styleClass="label_text" />
-            <Label fx:id="InnloggetNurseLabel" layoutX="497.0" layoutY="42.0" styleClass="label_text" textFill="#e8e6e6" />
+            <Label fx:id="InnloggetNurseLabel" layoutX="351.0" layoutY="42.0" prefHeight="18.0" prefWidth="277.0" styleClass="label_text" textFill="#e8e6e6" />
             <ScrollPane layoutX="24.0" layoutY="539.0">
                <content>
-                  <TextArea fx:id="notat" editable="false" prefHeight="169.0" prefWidth="300.0" styleClass="text-melding" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" />
+                  <TextArea fx:id="notat" editable="false" prefHeight="169.0" prefWidth="300.0" styleClass="text-melding" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" wrapText="true" />
                </content>
             </ScrollPane>
             <Label layoutX="24.0" layoutY="505.0" prefHeight="37.0" prefWidth="121.0" styleClass="label_overskrift" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Notat" />
