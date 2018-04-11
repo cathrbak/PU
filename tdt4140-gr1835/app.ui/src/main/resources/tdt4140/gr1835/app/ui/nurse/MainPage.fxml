@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
@@ -37,8 +37,8 @@
                <TableView fx:id="tableID" layoutX="25.0" layoutY="133.0" prefHeight="200.0" prefWidth="765.0" styleClass="tableview" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="133.0">
               <columns>
                   <TableColumn fx:id="Dato" prefWidth="75.0" text="Dato" />
-                <TableColumn fx:id="PersonID" prefWidth="70.0" text="ID" />
-                  <TableColumn fx:id="Navn" prefWidth="100.0" text="Navn" />
+                <TableColumn fx:id="PersonID" prefWidth="47.0" text="ID" />
+                  <TableColumn fx:id="Navn" prefWidth="120.0" text="Navn" />
                 <TableColumn fx:id="Spm1" prefWidth="46.0" text="Spm 1" />
                   <TableColumn fx:id="Spm2" prefWidth="46.0" text="Spm 2" />
                   <TableColumn fx:id="Spm3" prefWidth="46.0" text="Spm 3" />
@@ -53,10 +53,10 @@
               </columns>
             </TableView>
             <Button fx:id="Question" layoutX="395.0" layoutY="348.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
-            <TableView fx:id="tableStudents" layoutX="570.0" layoutY="450.0" prefHeight="200.0" prefWidth="161.0" styleClass="table-view2" stylesheets="@stylesheet.css">
+            <TableView fx:id="tableStudents" layoutX="570.0" layoutY="450.0" prefHeight="200.0" prefWidth="193.0" styleClass="table-view2" stylesheets="@stylesheet.css">
               <columns>
-                <TableColumn fx:id="StudentID" prefWidth="75.82094192504883" text="StudentID" />
-                  <TableColumn prefWidth="75.0" text="Navn" />
+                <TableColumn fx:id="StudentID" prefWidth="70.0" text="ID" />
+                  <TableColumn fx:id="Navn1" prefWidth="112.0" text="Navn" />
               </columns>
             </TableView>
             <Label fx:id="brukernavn" layoutX="552.0" layoutY="30.0" prefHeight="17.0" prefWidth="222.0" stylesheets="@stylesheet.css" textFill="#283243" />
