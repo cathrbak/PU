@@ -258,11 +258,11 @@ public class StudentProfileController implements Initializable{
 	}
 	
 	@FXML
-	public void handleSaveButton() {
+	public void handleSaveButton() throws SQLException {
 		student.setNotat(notat.getText());
 		//legger inn notatet i databasen
 		UserDatabaseHandler database = new ConnectionSQL();
-		database.updateNote(student);
+		database.updateStudent(student);
 		
 		//hindrer at det er mulig å skrive i teksfeltet uten å trykke rediger
 		notat.setEditable(false);
