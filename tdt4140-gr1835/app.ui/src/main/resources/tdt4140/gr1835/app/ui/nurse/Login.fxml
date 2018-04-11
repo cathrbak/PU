@@ -18,12 +18,7 @@
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
-            <Label alignment="CENTER_RIGHT" layoutX="211.0" layoutY="167.0" prefHeight="58.0" prefWidth="203.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Psykisk" textFill="#3d5679">
-               <font>
-                  <Font name="Copperplate" size="48.0" />
-               </font>
-            </Label>
-            <Label layoutX="414.0" layoutY="167.0" prefHeight="58.0" prefWidth="165.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Helse" textFill="#e8e2e2">
+            <Label alignment="CENTER_RIGHT" layoutX="225.0" layoutY="177.0" prefHeight="58.0" prefWidth="370.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="PsykiskHelse" textFill="#3d5679">
                <font>
                   <Font name="Copperplate" size="48.0" />
                </font>
