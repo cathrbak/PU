@@ -16,12 +16,12 @@
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
-            <Text fill="#283243" layoutX="25.0" layoutY="56.20199966430664" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" wrappingWidth="329.0480194091797" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="15.0">
+            <Text fill="#283243" layoutX="25.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_hovedoverskrifter" text="Hovedside" wrappingWidth="329.0480194091797" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="19.79800033569336">
                <font>
                   <Font name="Copperplate" size="48.0" />
                </font>
             </Text>
-          <Button fx:id="Profile" layoutX="538.0" layoutY="19.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" prefHeight="29.0" prefWidth="112.0" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="19.0">
+          <Button fx:id="Profile" layoutX="549.0" layoutY="19.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" prefHeight="29.0" prefWidth="112.0" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="19.0">
                <font>
                   <Font name="Lucida Console" size="13.0" />
                </font>
@@ -53,33 +53,29 @@
               </columns>
             </TableView>
             <Button fx:id="Question" layoutX="395.0" layoutY="348.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
-            <TableView fx:id="tableStudents" layoutX="258.0" layoutY="456.0" prefHeight="200.0" prefWidth="83.0" styleClass="tableview" stylesheets="@stylesheet.css">
+            <TableView fx:id="tableStudents" layoutX="570.0" layoutY="450.0" prefHeight="200.0" prefWidth="161.0" styleClass="table-view2" stylesheets="@stylesheet.css">
               <columns>
                 <TableColumn fx:id="StudentID" prefWidth="75.82094192504883" text="StudentID" />
+                  <TableColumn prefWidth="75.0" text="Navn" />
               </columns>
             </TableView>
-            <Label fx:id="brukernavn" layoutX="300.0" layoutY="25.0" prefHeight="17.0" prefWidth="222.0" stylesheets="@stylesheet.css" textFill="#283243" />
-            <Label layoutX="25.0" layoutY="98.0" prefHeight="49.0" prefWidth="302.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Alle besvarte spørreundersøkelser:" textFill="#e8e2e2">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
+            <Label fx:id="brukernavn" layoutX="316.0" layoutY="48.0" prefHeight="17.0" prefWidth="222.0" stylesheets="@stylesheet.css" textFill="#283243" />
             <Label layoutX="25.0" layoutY="430.0" stylesheets="@stylesheet.css" textFill="#283243">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="75.0" layoutY="495.0" prefHeight="45.0" prefWidth="169.0" stylesheets="@stylesheet.css" text="Trykk på ønsket ID for å&#10;komme til studentprofil" textFill="#283243">
+            <Label layoutX="369.0" layoutY="428.0" prefHeight="45.0" prefWidth="169.0" stylesheets="@stylesheet.css" text="Trykk på ønsket ID for å&#10;komme til studentprofil" textFill="#283243">
                <font>
                   <Font size="12.0" />
                </font>
             </Label>
-            <Label fx:id="fakultetsID" alignment="CENTER" layoutX="172.0" layoutY="397.0" prefHeight="69.0" prefWidth="215.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#283243">
+            <Label fx:id="fakultetsID" alignment="CENTER" layoutX="516.0" layoutY="375.0" prefHeight="69.0" prefWidth="215.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#283243">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="207.0" fitWidth="210.0" layoutX="42.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="207.0" fitWidth="210.0" layoutX="348.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/snakkeboble.png" />
                </image>

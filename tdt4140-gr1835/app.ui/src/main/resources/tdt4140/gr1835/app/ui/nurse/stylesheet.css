@@ -37,13 +37,13 @@
 
 .label_overskrift {
 	-fx-font-family: Copperplate Bold;
-	-fx-font-size: 54px;
+	-fx-font-size: 33px;
 	-fx-text-fill: #283243;
 }
 
 .label_hovedoverskrifter {
 	-fx-font-family: Copperplate Bold;
-	-fx-font-size: 48px;
+	-fx-font-size: 54px;
 	-fx-text-fill: #283243;
 }
 
@@ -70,6 +70,15 @@
 }
 
 .table-view {
+	-fx-base: #1c284f;
+    -fx-control-inner-background:  #4b72b5;
+    -fx-background-color: #4b72b5;
+    -fx-table-cell-border-color: #4b72b5;
+    -fx-table-header-border-color: #4b72b5;
+    -fx-padding: 5;
+}
+
+.table-view2 {
 	-fx-base: #1c284f;
     -fx-control-inner-background:  #4b72b5;
     -fx-background-color: #4b72b5;
