@@ -2,9 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fill="#e8e2e2" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Profil" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="15.1953125">
+      <Text fill="#283243" layoutX="31.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Profil" wrappingWidth="149.0219955444336" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="15.820999145507812">
          <font>
             <Font name="Copperplate" size="36.0" />
          </font>
@@ -21,14 +21,14 @@
          <font>
             <Font name="Lucida Console" size="13.0" />
          </font></Button> -->
-      <Button fx:id="Logout" layoutX="527.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="73.0" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="18.0">
+      <Button fx:id="Logout" layoutX="682.0" layoutY="19.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="99.0" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="19.0">
          <font>
             <Font name="Lucida Console" size="13.0" />
          </font>
          <effect>
             <Blend />
          </effect></Button>
-         <TableView fx:id="tableID" layoutX="28.0" layoutY="134.0" prefHeight="200.0" prefWidth="727.0" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="134.0">
+         <TableView fx:id="tableID" layoutX="28.0" layoutY="157.0" prefHeight="200.0" prefWidth="727.0" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="157.0">
         <columns>
           <TableColumn fx:id="PersonID" prefWidth="65.0" text="PersonID" />
           <TableColumn fx:id="Spm1" prefWidth="60.0" text="Spm 1" />
@@ -44,13 +44,12 @@
             <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
         </columns>
       </TableView>
-      <Button fx:id="Anonymitet" layoutX="40.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleAnonymitetButton" stylesheets="@stylesheet.css" text="Anonymitet" textFill="#e8e2e2" />
-      <Label layoutX="40.0" layoutY="375.0" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Ønsker du å være anonym? &#10;Trykk her:&#10;" textFill="#e8e2e2">
+      <Button fx:id="Anonymitet" layoutX="31.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleAnonymitetButton" prefHeight="29.0" prefWidth="110.0" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+      <Label layoutX="441.0" layoutY="87.0" styleClass="label_text" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Trykk her for å endre anonymitet:&#10;" textFill="#e8e2e2">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <ToggleButton fx:id="anonymousOff" layoutX="150.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleAnonymousOffButton" prefHeight="23.0" prefWidth="65.0" text="Av" />
-        <ToggleButton fx:id="anonymousOn" layoutX="83.0" layoutY="439.0" mnemonicParsing="false" onAction="#handleAnonymousOnButton" prefHeight="23.0" prefWidth="65.0" selected="true" text="På" />
+      <RadioButton fx:id="radioButton" layoutX="674.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleAnonymousRadioButton" prefHeight="18.0" prefWidth="83.0" text="Anonym" />
    </children>
 </AnchorPane>
