@@ -16,7 +16,7 @@
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
-            <Text fill="#283243" layoutX="25.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" wrappingWidth="219.0480194091797" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="14.531999588012695">
+            <Text fill="#283243" layoutX="25.0" layoutY="56.20199966430664" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Hovedside" wrappingWidth="329.0480194091797" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="15.0">
                <font>
                   <Font name="Copperplate" size="48.0" />
                </font>
@@ -52,24 +52,19 @@
                   <TableColumn fx:id="Total" prefWidth="55.27618408203125" text="Total  " />
               </columns>
             </TableView>
-            <Button fx:id="Question" layoutX="411.0" layoutY="346.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+            <Button fx:id="Question" layoutX="395.0" layoutY="348.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
             <TableView fx:id="tableStudents" layoutX="258.0" layoutY="456.0" prefHeight="200.0" prefWidth="83.0" styleClass="tableview" stylesheets="@stylesheet.css">
               <columns>
                 <TableColumn fx:id="StudentID" prefWidth="75.82094192504883" text="StudentID" />
               </columns>
             </TableView>
             <Label fx:id="brukernavn" layoutX="300.0" layoutY="25.0" prefHeight="17.0" prefWidth="222.0" stylesheets="@stylesheet.css" textFill="#283243" />
-            <Label layoutX="25.0" layoutY="349.0" prefHeight="23.0" prefWidth="393.0" styleClass="label_text" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="For å se spørsmålene fra spørreundersøkelsen, trykk her:" textFill="#e8e2e2">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <Label layoutX="25.0" layoutY="98.0" prefHeight="49.0" prefWidth="302.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Alle besvarte spørreundersøkelser:" textFill="#e8e2e2">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="430.0" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" textFill="#283243">
+            <Label layoutX="25.0" layoutY="430.0" stylesheets="@stylesheet.css" textFill="#283243">
                <font>
                   <Font size="16.0" />
                </font>
@@ -89,6 +84,7 @@
                   <Image url="@Image/snakkeboble.png" />
                </image>
             </ImageView>
+            <Label layoutX="26.0" layoutY="347.0" prefHeight="30.0" prefWidth="369.0" styleClass="label_text" stylesheets="@stylesheet.css" text="For å se spørsmålene fra spørreundersøkelsen, trykk her:" textFill="#283243" />
          </children>
       </AnchorPane>
    </content>

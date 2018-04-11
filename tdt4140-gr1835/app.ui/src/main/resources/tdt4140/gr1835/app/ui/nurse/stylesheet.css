@@ -1,9 +1,9 @@
 .root {
-     -fx-background-color: #C9D9DE;
+     -fx-background-color: #d7e1e4;
 }
 
 .button {
-   -fx-background-color: linear-gradient(#4a85d3, #4a85d3);
+   -fx-background-color: linear-gradient(#4b72b5, #4b72b5);
    -fx-font-weight: bold;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
@@ -21,7 +21,7 @@
 }
 
 .button:pressed {
-	-fx-background-color: linear-gradient(#4a85d3, #335a8e);
+	-fx-background-color: linear-gradient(#4b72b5, #335a8e);
 	-fx-font-weight: bold;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
@@ -37,7 +37,7 @@
 
 .label_overskrift {
 	-fx-font-family: Copperplate Bold;
-	-fx-font-size: 36px;
+	-fx-font-size: 54px;
 	-fx-text-fill: #283243;
 }
 
@@ -70,10 +70,10 @@
 }
 
 .table-view {
-	-fx-base: #4a85d3;
-    -fx-control-inner-background:  #b5d4ff;
-    -fx-background-color: #b5d4ff;
-    -fx-table-cell-border-color: #b5d4ff;
-    -fx-table-header-border-color: #b5d4ff;
+	-fx-base: #1c284f;
+    -fx-control-inner-background:  #4b72b5;
+    -fx-background-color: #4b72b5;
+    -fx-table-cell-border-color: #4b72b5;
+    -fx-table-header-border-color: #4b72b5;
     -fx-padding: 5;
 }
