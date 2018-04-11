@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <AnchorPane prefHeight="900.0" prefWidth="700.0" styleClass="root" stylesheets="@stylesheet.css">
+         <children>
+            <Label layoutX="39.0" layoutY="47.0" prefHeight="34.0" prefWidth="429.0" styleClass="label_overskrift" stylesheets="@stylesheet.css" text="Ny spørreundersøkelse" />
+            <Label layoutX="41.0" layoutY="87.0" prefHeight="17.0" prefWidth="634.0" text="Nedenfor står det oppgitt en rekke påstander. Vurder i hvor stor grad hver påstand gjelder for deg." />
+            <Label layoutX="39.0" layoutY="134.0" prefHeight="17.0" prefWidth="286.0" text="Spørsmål 1. Jeg er bevisst på hva jeg spiser" />
+            <Label layoutX="39.0" layoutY="205.0" prefHeight="17.0" prefWidth="409.0" text="Spørsmål 2. Jeg blir stresset når jeg skal spise rundt andre" />
+            <Label layoutX="39.0" layoutY="278.0" prefHeight="17.0" prefWidth="395.0" text="Spørsmål 3. Jeg får dårlig samvittighet av å spise mye" />
+            <GridPane layoutX="39.0" layoutY="156.0" prefHeight="30.0" prefWidth="580.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="39.0" layoutY="225.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="39.0" layoutY="298.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <Label layoutX="39.0" layoutY="345.0" prefHeight="17.0" prefWidth="518.0" text="Spørsmål 4. Jeg blir irritert når andre bryr seg om hva/hvor mye jeg spiser" />
+            <Label layoutX="39.0" layoutY="417.0" prefHeight="17.0" prefWidth="499.0" text="Spørsmål 5. Jeg er usikker på meg selv" />
+            <Label layoutX="39.0" layoutY="478.0" prefHeight="17.0" prefWidth="395.0" text="Spørsmål 6. Jeg får dårlig samvittighet av å spise mye" />
+            <GridPane layoutX="39.0" layoutY="365.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="39.0" layoutY="434.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="39.0" layoutY="498.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <Label layoutX="39.0" layoutY="546.0" prefHeight="17.0" prefWidth="286.0" text="Spørsmål 7. Jeg er bevisst på hva jeg spiser" />
+            <Label layoutX="41.0" layoutY="610.0" prefHeight="17.0" prefWidth="409.0" text="Spørsmål 8. Jeg blir stresset når jeg skal spise rundt andre" />
+            <Label layoutX="39.0" layoutY="679.0" prefHeight="17.0" prefWidth="395.0" text="Spørsmål 9. Jeg får dårlig samvittighet av å spise mye" />
+            <GridPane layoutX="39.0" layoutY="566.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="39.0" layoutY="630.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="39.0" layoutY="699.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <Label layoutX="39.0" layoutY="748.0" prefHeight="17.0" prefWidth="286.0" text="Spørsmål 10. Jeg er bevisst på hva jeg spiser" />
+            <GridPane layoutX="39.0" layoutY="768.0" prefHeight="30.0" prefWidth="580.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="105.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="88.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="125.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <RadioButton mnemonicParsing="false" text="  1 - aldri" />
+                  <RadioButton mnemonicParsing="false" text="  2 - sjeldent" GridPane.columnIndex="1" />
+                  <RadioButton mnemonicParsing="false" text="  3 - noen ganger" GridPane.columnIndex="2" />
+                  <RadioButton mnemonicParsing="false" prefHeight="17.0" prefWidth="138.0" text="  5 - svært ofte" GridPane.columnIndex="4" />
+                  <RadioButton mnemonicParsing="false" text="  4 - ofte" GridPane.columnIndex="3" />
+               </children>
+            </GridPane>
+            <Button fx:id = "BackButton" onAction= "#handleBackButton" layoutX="565.0" layoutY="34.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="83.0" text="Tilbake" />
+            <Button layoutX="512.0" layoutY="832.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="132.0" text="Send skjema" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

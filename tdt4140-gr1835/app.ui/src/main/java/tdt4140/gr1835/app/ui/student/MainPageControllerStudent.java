@@ -27,6 +27,7 @@ import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
 import tdt4140.gr1835.app.ui.nurse.FxApp;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 
 public class MainPageControllerStudent implements Initializable {
 	
@@ -209,6 +210,30 @@ public class MainPageControllerStudent implements Initializable {
 	    }
 	    
 	    }	
+	
+	//Ny spørreundersøkelse
+	@FXML
+	Button newServey;
+	@FXML 
+	public void handleNewServeyButton() throws SQLException, Exception {
+		//Ta meg til side for spørreundersøkelse
+       
+        
+        Stage stage; 
+        Parent root;
+             
+        stage=(Stage) newServey.getScene().getWindow();
+       
+        ServeyForStudentController controller= new ServeyForStudentController(this.student);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ServeyForStudent.fxml"));
+        loader.setController(controller);
+        root = (Parent) loader.load();
+          
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+	}
 	
 }
 

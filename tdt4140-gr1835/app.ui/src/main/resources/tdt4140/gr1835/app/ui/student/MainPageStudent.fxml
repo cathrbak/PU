@@ -51,5 +51,7 @@
          </font>
       </Label>
       <RadioButton fx:id="radioButton" layoutX="674.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleAnonymousRadioButton" prefHeight="18.0" prefWidth="83.0" text="Anonym" />
+      <Label layoutX="28.0" layoutY="386.0" styleClass="label_text" stylesheets="@stylesheet.css" text="For å svare på ny spørreundersøkelse, trykk her:" />
+      <Button fx:id ="newServey" onAction ="#handleNewServeyButton" layoutX="364.0" layoutY="381.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="197.0" text="Ny spørreundersøkelse" />
    </children>
 </AnchorPane>
