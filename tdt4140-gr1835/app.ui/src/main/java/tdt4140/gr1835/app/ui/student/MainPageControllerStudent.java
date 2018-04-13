@@ -14,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,6 +26,7 @@ import tdt4140.gr1835.app.ui.nurse.FxApp;
 import tdt4140.gr1835.app.webclient.RESTClient;
 import tdt4140.gr1835.app.webclient.RestClientImp;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 
 public class MainPageControllerStudent implements Initializable {
 	
@@ -34,25 +37,23 @@ public class MainPageControllerStudent implements Initializable {
 		this.student = student;
 		addInfo();	
 	}
-	
+
+
 	@FXML
-	ToggleButton anonymousOn;
-	@FXML
-	ToggleButton anonymousOff;
+	RadioButton radioButton;
 	
-	
-	public void handleAnonymousOnButton() throws SQLException {
+	public void handleAnonymousRadioButton() throws SQLException {
+		if (radioButton.isSelected()) {
 		student.setAnonymous(true);
 		System.out.println("ON");
-		//database.updateStudent(student);
+		database.updateStudent(student);
+		} else if (!radioButton.isSelected()) {
+			student.setAnonymous(false);
+			System.out.println("OFF");
+			database.updateStudent(student);
+		}
 	}
 	
-	public void handleAnonymousOffButton() throws SQLException {
-		student.setAnonymous(false);
-		System.out.println("OFF");
-		//database.updateStudent(student);
-	}
-
 				
 	private Student student;
 	
@@ -194,7 +195,36 @@ public class MainPageControllerStudent implements Initializable {
 		Spm10.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm10"));
 		Total.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Total"));
 	    tableID.setItems(data);
+	    
+	    if (student.isAnonymous()==true) {
+	    	radioButton.setSelected(true);
+	    }
+	    
 	    }	
+	
+	//Ny spørreundersøkelse
+	@FXML
+	Button newServey;
+	@FXML 
+	public void handleNewServeyButton() throws SQLException, Exception {
+		//Ta meg til side for spørreundersøkelse
+       
+        
+        Stage stage; 
+        Parent root;
+             
+        stage=(Stage) newServey.getScene().getWindow();
+       
+        ServeyForStudentController controller= new ServeyForStudentController(this.student);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ServeyForStudent.fxml"));
+        loader.setController(controller);
+        root = (Parent) loader.load();
+          
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+	}
 	
 }
 

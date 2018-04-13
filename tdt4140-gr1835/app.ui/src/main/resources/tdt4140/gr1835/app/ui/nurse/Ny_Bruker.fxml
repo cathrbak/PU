@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.nurse.Ny_BrukerController">
    <content>
       <AnchorPane prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
@@ -114,11 +113,6 @@
                   <Label fx:id="facultyRespons" prefHeight="17.0" prefWidth="357.0" text="facultyRespons" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="8" />
                </children>
             </GridPane>
-            <Label layoutX="96.0" layoutY="41.0" prefHeight="69.0" prefWidth="370.0" styleClass="label_overskrift" stylesheets="@stylesheet.css" text="Opprett ny bruker" textFill="#e8e2e2">
-               <font>
-                  <Font name="Copperplate Bold" size="36.0" />
-               </font>
-            </Label>
             <Label fx:id="infotext" alignment="CENTER_RIGHT" layoutX="246.0" layoutY="609.0" prefHeight="123.0" prefWidth="540.0" text="" />
             <Button fx:id="backButton" layoutX="57.0" layoutY="654.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="41.0" prefWidth="102.0" text="Tilbake" textFill="#e8e2e2">
                <font>
@@ -130,6 +124,11 @@
                   <Image url="@Image/heart_icon.png" />
                </image>
             </ImageView>
+            <Label layoutX="117.0" layoutY="59.0" prefHeight="38.0" prefWidth="395.0" stylesheets="@stylesheet.css" text="Opprett ny bruker" textFill="#283243">
+               <font>
+                  <Font name="Copperplate Bold" size="39.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </content>

@@ -103,8 +103,12 @@ public class Table  {
 	public void setNavn(String navn) {
 		this.Navn = new SimpleStringProperty(navn);
 	}
-	
+	//henter navn til tabellen med spørreundersøkelser
 	public String getNavn() {
+		return Navn.get();
+	} 
+	//henter navn til tabellen med hyperlink
+	public String getNavn1() {
 		return Navn.get();
 	} 
 	public int getPersonID() {

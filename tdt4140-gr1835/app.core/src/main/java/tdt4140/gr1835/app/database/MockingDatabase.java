@@ -226,11 +226,10 @@ public class MockingDatabase implements UserDatabaseHandler{
 
 
 	@Override
-	public void updateNote(Student student) {
+	public int getNurseID(Nurse nurse) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
-
 
 	@Override
 	public Student getStudentFromID(int studentID) throws SQLException {

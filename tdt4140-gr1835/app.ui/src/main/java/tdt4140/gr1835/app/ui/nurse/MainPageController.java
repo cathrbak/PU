@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
@@ -46,13 +47,6 @@ public class MainPageController implements Initializable {
 	@FXML
 	public void setBrukernavnLabel() {
 		brukernavn.setText("Logget inn som: " + nurse.getUsername() );
-	}
-	
-	@FXML
-	public void setFakultetsIDLabel() {
-		fakultetsID.setText("Studenter \n" + 
-				"som tilhører " + nurse.getFaculty() + " fakultetet");
-	
 	}
 	
 	
@@ -104,6 +98,8 @@ public class MainPageController implements Initializable {
 	TableView<Table> tableStudents;
 	@FXML
 	TableColumn<Table, Hyperlink> StudentID;
+	@FXML
+	TableColumn<Table, String> Navn1;
 		
 	//lager listen som skal inneholde dataen med studenter
 	final ObservableList<Table> dataStudents = FXCollections.observableArrayList();
@@ -112,12 +108,25 @@ public class MainPageController implements Initializable {
 	public void addStudents(){
 		List<Student> students= nurse.getStudents(); //henter alle studentene til helsesøsteren
 		for (Student student : students) {
+			String studentName2;
+			if (student.isAnonymous()) {
+				studentName2 = "Anonym";
+			}
+			else {
+				studentName2 = student.getFirstName() + " " + student.getSecondName();
+			}
+			System.out.println(studentName2);
 			int studentID = student.getStudentID(); //henter studentens ID fra databasen
 			String studentid = Integer.toString(studentID);
 			Hyperlink link = new Hyperlink();
 			link.setText(studentid);
+			link.setTextFill(Color.valueOf("white"));
 			link.setOnAction(new SendToStudentProfile(this.nurse, student, link));
-			dataStudents.add(new Table(link)); //legger til i listen som skal vises i tabellen
+			Table tableLink = new Table(link);
+			tableLink.setNavn(studentName2);
+			System.out.println(tableLink.getNavn());
+			
+			dataStudents.add(tableLink); //legger til i listen som skal vises i tabellen
 		}				
 	}
 	//Knapper 
@@ -196,6 +205,7 @@ public class MainPageController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		StudentID.setCellValueFactory(new PropertyValueFactory<Table, Hyperlink>("StudentID"));
+		Navn1.setCellValueFactory(new PropertyValueFactory<Table, String>("Navn1"));
 		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
 		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
 		Navn.setCellValueFactory(new PropertyValueFactory<Table, String>("Navn"));
@@ -217,7 +227,6 @@ public class MainPageController implements Initializable {
 	    
 	    //kaller på label-metoden her
 	    setBrukernavnLabel();
-	    setFakultetsIDLabel();
 	    }
 
 }

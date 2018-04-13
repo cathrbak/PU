@@ -243,7 +243,7 @@ public class StudentProfileController implements Initializable{
 		for (int i = 0; i < listOfAnswers.size() ; i++) {
 			series.getData().add(new XYChart.Data(datoer.get(i),total.get(i)));
 		}
-		
+		series.setName("Oversikt");
 		chart.getData().add(series);
 	    }	
 	
@@ -262,7 +262,11 @@ public class StudentProfileController implements Initializable{
 		student.setNotat(notat.getText());
 		//legger inn notatet i databasen
 		UserDatabaseHandler database = new ConnectionSQL();
-		database.updateNote(student);
+		try {
+			database.updateStudent(student);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		//hindrer at det er mulig å skrive i teksfeltet uten å trykke rediger
 		notat.setEditable(false);

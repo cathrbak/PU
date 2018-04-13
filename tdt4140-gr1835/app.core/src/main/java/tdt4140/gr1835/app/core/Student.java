@@ -88,6 +88,10 @@ public class Student extends User{
 	public void setAnswers(List<Table> answers) {
 		this.answers = answers;
 	}
+	public void addAnswer(Table answer) {
+		answers.add(answer);
+		
+	}
 	
 	public void setNotat(String notat) {
 		if (notat.length() > 250) {
@@ -99,5 +103,8 @@ public class Student extends User{
 	public String getNotat() {
 		return notat;
 	}
+
+
+	
 
 }
