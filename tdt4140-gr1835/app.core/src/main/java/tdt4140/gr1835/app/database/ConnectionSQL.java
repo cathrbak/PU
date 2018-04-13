@@ -94,6 +94,10 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			}
 			
 			while(rs.next()) {
+				Integer nurseID = rs.getInt("HelsesosterID");
+				if(!(nurseID==0)) {
+					nurse.setNurseID(nurseID);;
+				}
 				
 				String password = rs.getString("passord");
 				if(!(password.equals("null"))) {
@@ -192,6 +196,11 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 		
 		while(rs.next()) {
+			Integer studentID = rs.getInt("DatagiverID");
+			if(!(studentID==0)) {
+				student.setStudentID(studentID);
+			}
+			
 			String password = rs.getString("passord");
 			if(!(password.equals("null"))) {
 				student.setPassword(password);
@@ -501,10 +510,10 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		List<Table> answers = new ArrayList<>();
 		
 		ResultSet rs = null;
-		int studentID = getStudentID(student);
+		
 		
 		try {
-			String query = "SELECT * FROM svarlogg WHERE DatagiverID="+ studentID + ";";
+			String query = "SELECT * FROM svarlogg WHERE DatagiverID="+ student.getStudentID() + ";";
 			Statement stmt = getStatement();
 			
 			if(stmt.execute(query)) {
@@ -562,8 +571,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return connectionTable;
 	}
 	
-	//metoder for � hente iden til en student og helsesoster n�r man bare har objektet i java. Burde kanskje legge til 
-	//DatagiverID og HelsesosterID som attributt i Nurse og Student.
+	//metoder for � hente iden til en student og helsesoster n�r man bare har objektet i java. 
 	public int getStudentID(Student student) throws SQLException {
 		Integer studentID = null;
 		
@@ -644,7 +652,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		try {
 			Statement stmt = getStatement();
 			
-			String query = "DELETE from meldinger WHERE DatagiverID=" + getStudentID(message.getReciver())
+			String query = "DELETE from meldinger WHERE DatagiverID=" + message.getReciver().getStudentID()
 			+ ";";
 			
 			stmt.executeUpdate(query);
@@ -683,7 +691,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		ResultSet rs = null;
 		Message message = new Message(student, nurse);
 		try {
-			String query = "SELECT * FROM meldinger WHERE DatagiverID=" + getStudentID(student) +" AND HelsesosterID=" + getNurseID(nurse) + ";";
+			String query = "SELECT * FROM meldinger WHERE DatagiverID=" + message.getReciver().getStudentID() +" AND HelsesosterID=" + message.getSender().getNurseID() + ";";
 			Statement stmt = getStatement();
 			
 			if(stmt.execute(query)) {
@@ -739,7 +747,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
         ResultSet rs = null;
         
         try {
-            String query = "SELECT * FROM meldinger WHERE DatagiverID=" + getStudentID(student) +";";
+            String query = "SELECT * FROM meldinger WHERE DatagiverID=" + student.getStudentID() +";";
             Statement stmt = getStatement();
             
             if(stmt.execute(query)) {

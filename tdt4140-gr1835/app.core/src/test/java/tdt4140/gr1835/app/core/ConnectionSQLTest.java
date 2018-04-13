@@ -113,7 +113,8 @@ public class ConnectionSQLTest {
 		
 		udh.createNewStudent(testStudent);
 		
-		
+		testStudent.setStudentID(udh.getStudentID(testStudent));
+		assertEquals("ID",testStudent.getStudentID(), udh.getStudent("testStudentUN").getStudentID());
 		assertEquals("Brukernavn",testStudent.getUsername(), udh.getStudent("testStudentUN").getUsername());
 		assertEquals("Passord",testStudent.getPassword(), udh.getStudent("testStudentUN").getPassword());
 		assertEquals("Fakultet",testStudent.getFaculty(), udh.getStudent("testStudentUN").getFaculty());
@@ -150,6 +151,7 @@ public class ConnectionSQLTest {
         
         udh.createNewStudent(testStudent);
         int id = udh.getStudentID(testStudent);
+        testStudent.setStudentID(id);
         Table testSurvey = new Table(id,1,2,3,4,5,4,3,2,1,1,26);
         expected.add(testSurvey);
         
@@ -229,6 +231,8 @@ public class ConnectionSQLTest {
 	public void testCreateNewNurse() throws SQLException {
 		udh.createNewNurse(testNurse);	
 		
+		testNurse.setNurseID(udh.getNurseID(testNurse));
+		assertEquals("ID",testNurse.getNurseID(), udh.getNurse("testNurseUN").getNurseID());
 		assertEquals("Brukernavn",testNurse.getUsername(), udh.getNurse("testNurseUN").getUsername());
 		assertEquals("Passord",testNurse.getPassword(), udh.getNurse("testNurseUN").getPassword());
 		assertEquals("Fornavn",testNurse.getFirstName(), udh.getNurse("testNurseUN").getFirstName());
@@ -259,6 +263,11 @@ public class ConnectionSQLTest {
 		udh.createNewNurse(testNurse);
 		udh.createNewMessage(testMessage);
 		
+		int studentid = udh.getStudentID(testStudent);
+        testStudent.setStudentID(studentid);
+        int nurseid = udh.getNurseID(testNurse);
+        testNurse.setNurseID(nurseid);
+		
 		assertEquals("Helsesoster", testMessage.getSender().getUsername(), udh.getMessage(testStudent,testNurse).getSender().getUsername());
 		assertEquals("Student", testMessage.getReciver().getUsername(), udh.getMessage(testStudent,testNurse).getReciver().getUsername());
 		assertEquals("Tekst", testMessage.getText(), udh.getMessage(testStudent,testNurse).getText());
@@ -273,6 +282,7 @@ public class ConnectionSQLTest {
 	
 		Message testMessage2 = new Message(testStudent, testNurse);
 		testMessage2.setNurse(testNurse);
+		
 		testMessage2.setReciver(testStudent);
 		testMessage2.setText("2. melding");
 		
@@ -281,6 +291,12 @@ public class ConnectionSQLTest {
 		
 		udh.createNewMessage(testMessage);
 		udh.createNewMessage(testMessage2);
+		
+		int studentid = udh.getStudentID(testStudent);
+        testStudent.setStudentID(studentid);
+        int nurseid = udh.getNurseID(testNurse);
+        testNurse.setNurseID(nurseid);
+        
 		
 		List<Message> expected = new ArrayList<>();
 		List<Message> fromdb= new ArrayList<>();
@@ -292,6 +308,7 @@ public class ConnectionSQLTest {
 		
 		assertEquals("Sjekker om f�rste melding er samme", expected.get(0).getText(), fromdb.get(0).getText());
 		assertEquals("Sjekker om andre melding er samme", expected.get(1).getText(), fromdb.get(1).getText());
+		
 		
 		udh.deleteMessages(testMessage);
 		udh.deleteMessages(testMessage2);
