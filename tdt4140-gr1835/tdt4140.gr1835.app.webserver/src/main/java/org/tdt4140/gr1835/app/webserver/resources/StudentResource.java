@@ -8,11 +8,14 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import tdt3140.gr1835.app.json.JsonConverterService;
 import tdt3140.gr1835.app.json.ListOfMessagesConverter;
@@ -33,7 +36,7 @@ public class StudentResource {
 	
 	private JsonConverterService<Student> studconverter = new StudentJsonConverter();
 	private JsonConverterService<Nurse> nurseconverter = new NurseJsonConverter();
-	private UserDatabaseHandler database = new MockingDatabase();
+	private UserDatabaseHandler database = new ConnectionSQL();
 	
 	/*
 	 *   /students: ikke tillatt
@@ -52,12 +55,15 @@ public class StudentResource {
 	@GET
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getStudent(@PathParam ("username") String username) throws SQLException {
+	public Response getStudent(@PathParam ("username") String username) throws SQLException {
 		Student stud=database.getStudent(username);
+		System.out.println(stud);
 		if (stud==null) {
-			return null;
+			return Response.status(Status.NOT_FOUND).entity("Fant ikke student med brukernavn"+username).build();
 		}
-		return studconverter.convertToJason(stud);
+		return Response.ok().entity(studconverter.convertToJason(stud))
+				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_TYPE.withCharset("utf-8"))
+				.build();
 	}
 	
 	
@@ -68,7 +74,7 @@ public class StudentResource {
 	@GET
 	@Path("/{username}/answers")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getTables(@PathParam ("username") String username) {
+	public Response getTables(@PathParam ("username") String username) {
 		List<Table> tables= new ArrayList<>();
 		try {
 			tables=database.getAnswers(database.getStudent(username));
@@ -76,8 +82,23 @@ public class StudentResource {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(tables.isEmpty()) {
+			return Response.status(Status.NOT_FOUND).entity("Fant ikke noen svar for "+username).build();
+		}
+		
 		JsonConverterService<List<Table>> converterService=new ListOfTableConverter();
-		return converterService.convertToJason(tables);
+		String convertToJason = converterService.convertToJason(tables);
+		return Response.ok().entity(convertToJason).build();
+	}
+	
+	public static void main(String[] args) {
+		StudentResource studentResource=new StudentResource();
+		String tables = (String) studentResource.getTables("norak").getEntity();
+		JsonConverterService<List<Table>> tableListJsonConverter= new ListOfTableConverter();
+		List<Table> convertToObject = tableListJsonConverter.convertToObject(tables);
+		for(Table table:convertToObject) {
+			System.out.println(table);
+		}
 	}
 	/*
 	 * /students/{username/id}/messages  : gir en liste med alle Message-objekter til denne
@@ -115,6 +136,22 @@ public class StudentResource {
 		return Response.status(201).build();
 	}
 	
+
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateStudent(String input){
+		Student student=studconverter.convertToObject(input);
+		try {
+			database.updateStudent(student);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+		}
+		return Response.status(204).build(); //204 Updated
+	}
+	
 	/*
 	 * /students/{username}/answers  : Oppretter et nytt svar på en undersøkelse
 	 */
@@ -132,4 +169,6 @@ public class StudentResource {
 		}
 		return Response.status(201).build();
 	}
+	
+	
 }

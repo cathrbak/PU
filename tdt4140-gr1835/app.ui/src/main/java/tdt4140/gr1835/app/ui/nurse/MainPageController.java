@@ -31,8 +31,8 @@ public class MainPageController implements Initializable {
 	
 	public MainPageController(Nurse nurse){
 		this.nurse = nurse;
-		System.out.println("Logget på som: "+nurse);
-		addInfoAnswers();	
+		System.out.println("Logget på som: "+nurse.getUsername());
+		addInfoAnswers();
 		addStudents();
 	}
 				
@@ -87,9 +87,9 @@ public class MainPageController implements Initializable {
 				else {
 					studentName = student.getFirstName() + " " + student.getSecondName();
 				}
-				
 				List<Table> listOfAnswers = student.getAnswers();
 				for(Table answer: listOfAnswers) {
+					System.out.println(answer);
 					answer.setNavn(studentName); //legger til studentens navn i table-objektet
 					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
 					

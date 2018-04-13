@@ -1,10 +1,8 @@
 package tdt4140.gr1835.app.database;
 
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
-import javafx.scene.control.TextArea;
 import tdt4140.gr1835.app.core.Message;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
@@ -38,6 +36,7 @@ public interface UserDatabaseHandler {
 	public List<Table> getAnswers(Student student) throws SQLException;
 
 	public int getStudentID(Student student) throws SQLException;
+	public Student getStudentFromID(int studentID) throws SQLException;
 
 	//Metoder for meldinger
 	public void deleteMessages(Message message) throws SQLException;

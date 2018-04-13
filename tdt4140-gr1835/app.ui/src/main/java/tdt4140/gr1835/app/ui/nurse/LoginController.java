@@ -2,6 +2,7 @@ package tdt4140.gr1835.app.ui.nurse;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.omg.CORBA.portable.IndirectionException;
 
@@ -17,9 +18,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.MockingDatabase;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
+import tdt4140.gr1835.app.webclient.RESTClient;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 
 public class LoginController{
 	
@@ -36,15 +40,10 @@ public class LoginController{
 	@FXML
 	Label responsLabel;
 	
-	private UserDatabaseHandler database;
+	private RESTClient database;
 	
 	public LoginController() {
-		this.database= new ConnectionSQL();
-//		Scene scene=(Scene) button_nybruker.getScene();
-//		
-//		if(scene.getUserData() instanceof String) {
-//    			responsLabel.setText("Velkommen " + scene.getUserData() + "\n"+ "Skriv inn ditt nye brukernavn og passord");
-//		}
+		this.database= new RestClientImp();
 	}
  
 
@@ -80,12 +79,18 @@ public class LoginController{
             Nurse nurse=database.getNurse(brukernavn.getText());
             
             System.out.println("henter studenter");
-            nurse.setStudents(database.getStudents(nurse));
+            List<Student> students = database.getStudents(nurse.getUsername());
+            students.stream().forEach(student->System.out.println(student.getUsername()));
+            nurse.setStudents(students);
+            
+            
             
             System.out.println("henter undersøkelser og student id");
             for(Student student : nurse.getStudents()) {
-            		student.setAnswers(database.getAnswers(student));
-            		student.setStudentID(database.getStudentID(student));
+        			System.out.println("Svar for "+student.getUsername());
+            		List<Table> answers = database.getAnswers(student.getUsername());
+            		answers.stream().forEach(a->System.out.println(a));
+            		student.setAnswers(answers);
             }
             
             MainPageController controller= new MainPageController(nurse);//Lager en kontroller instans
@@ -110,19 +115,19 @@ public class LoginController{
 	}
 	
 	private boolean loginOk() throws Exception {
-		try {
-			System.out.println("Prøver å hente Nurseobjekt fra databasen");
-			Nurse nyNurse= database.getNurse(brukernavn.getText());
-			if(!nyNurse.getPassword().equals(passord.getText())) {
-				responsLabel.setText("Brukeren finnes, men passordet er feil");
-				return false;
-			}
-		}catch (IllegalStateException e) {
-			System.out.println("getNurse ga en IllegalStateException da brukeren ikke eksisterer");
-			responsLabel.setText(e.getMessage());
+		System.out.println("Prøver å hente Nurseobjekt fra databasen");
+		Nurse nyNurse= database.getNurse(brukernavn.getText());
+		if(nyNurse==null) {
+			responsLabel.setText("Brukeren eksisterer ikke i våre systemer");
 			return false;
-		}catch (SQLException e) {
-			e.printStackTrace();
+		}
+		if(!nyNurse.getPassword().equals(passord.getText())) {
+			responsLabel.setText("Brukeren finnes, men passordet er feil");
+			return false;
+		}
+		if(passord.getText().equals("")) {
+			responsLabel.setText("Du må skrive inn et passord");
+			return false;
 		}
 		return true;
 	}

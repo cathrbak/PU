@@ -1,6 +1,7 @@
 package tdt4140.gr1835.app.ui.nurse;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit.ApplicationTest;
@@ -19,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import tdt4140.gr1835.app.database.ConnectionSQL;
+import tdt4140.gr1835.app.database.UserDatabaseHandler;
 import tdt4140.gr1835.app.ui.GitLab_CI_Setup;
 
 
@@ -41,6 +44,7 @@ public class TestNyBruker extends ApplicationTest {
         stage.show();
     }
 	
+	@Ignore
 	@Test
 	public void testFeilBrukerInnlogging() {
 		
@@ -53,17 +57,17 @@ public class TestNyBruker extends ApplicationTest {
 	    	clickOn("#firstName");
 		write("N0ra");
 		push(KeyCode.TAB);
-		write("Spetalen");
+		write("Kallager");
 		push(KeyCode.TAB);
-		write("sverress");
+		write("norak");
 		push(KeyCode.TAB);
-		write("sss");
+		write("k");
 		push(KeyCode.TAB);
-		write("sss");
+		write("k");
 		push(KeyCode.TAB);
-		write("sverress@stud.ntnu.no");
+		write("norak@stud.ntnu.no");
 		push(KeyCode.TAB);
-		write("sverress@stud.ntnu.no");
+		write("norak@stud.ntnu.no");
 		push(KeyCode.TAB);
 		write("46839737");
 		push(KeyCode.TAB);
@@ -88,7 +92,7 @@ public class TestNyBruker extends ApplicationTest {
 		FxAssert.verifyThat("#infotext", hasText("Det eksisterer en bruker med dette brukernavnet"));
 	}
 	
-
+	@Ignore
     @Test
     public void testNyBrukerKorrektInnlogging() {
     	
@@ -99,34 +103,34 @@ public class TestNyBruker extends ApplicationTest {
     	//Trykker videre på first name tekstboksen, fyller inn, og bruker tab for å komme til neste felt.
     	// Riktig inntasting 
     		clickOn("#firstName");
-    		write("Sverre");
+    		write("Tore");
     		push(KeyCode.TAB);
-    		write("Spetalen");
+    		write("Sagen");
     		push(KeyCode.TAB);
-    		write("sverress");
+    		write("toresagen");
     		push(KeyCode.TAB);
-    		write("sss");
+    		write("t");
     		push(KeyCode.TAB);
-    		write("sss");
+    		write("t");
     		push(KeyCode.TAB);
-    		write("sverress@stud.ntnu.no");
+    		write("tores@stud.ntnu.no");
     		push(KeyCode.TAB);
-    		write("sverress@stud.ntnu.no");
+    		write("tores@stud.ntnu.no");
     		push(KeyCode.TAB);
-    		write("46839737");
+    		write("48739828");
     		push(KeyCode.TAB);
     		write("IE");
     		
-    	//Prøver å lage ny gyldig bruker
-    		clickOn("#button_registrer");
-    	
-    		try {
-    			FxAssert.verifyThat("#infotext", hasText("Det eksisterer en bruker med dette brukernavnet"));
-    		}
-    		catch (IllegalArgumentException e){
-    			assertFalse("Fikk IllegalArgumentException etter å sette inn gyldig argument",e.getClass().equals(IllegalArgumentException.class));
-    		}
+    	//Prøver så å logge inn
+		clickOn("#brukernavn");
+		write("toresagen");
+		push(KeyCode.TAB);
+		write("t");
+		clickOn("#button_login");
+		FxAssert.verifyThat("#Profile", hasText("Profil")); //Finner profilknappen
     }
+    
+    
  
     
     

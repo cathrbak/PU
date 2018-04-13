@@ -2,6 +2,7 @@ package tdt4140.gr1835.app.ui.student;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +14,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
 import tdt4140.gr1835.app.ui.nurse.FxApp;
+import tdt4140.gr1835.app.webclient.RESTClient;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 
 public class LoginControllerStudent {
 	@FXML
@@ -31,11 +35,11 @@ public class LoginControllerStudent {
 	@FXML
 	Label responsLabel;
 	
-	private UserDatabaseHandler database;
+	private RESTClient database;
 	
 	public LoginControllerStudent() {
 		System.out.println("Oppretter database");
-		this.database= new ConnectionSQL();
+		this.database= new RestClientImp();
 //		Scene scene=(Scene) button_nybruker.getScene();
 //		
 //		if(scene.getUserData() instanceof String) {
@@ -74,13 +78,17 @@ public class LoginControllerStudent {
             
             Student student=database.getStudent(studentbrukernavn.getText());//Henter relevant Studentobjekt
             
+            List<Table> listOfAnswers = database.getAnswers(student.getUsername()); //Henter studentens spørreundersøkelser
+            
+            student.setAnswers(listOfAnswers);
+            
             MainPageControllerStudent controller= new MainPageControllerStudent(student);//Lager en kontroller instans
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPageStudent.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPageStudent.fxml"));
                 
-                loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
 
-                root = (Parent) loader.load();
+            root = (Parent) loader.load();
               //create a new scene with root and set the stage
             Scene scene = new Scene(root);
             //Legger på css stylesheetet
@@ -99,22 +107,19 @@ public class LoginControllerStudent {
 	
 	
 	
-	private boolean loginOk() throws Exception {
-		try {
-			System.out.println("Prøver å hente Studentobjekt fra databasen");
-			Student nyStudent= database.getStudent(studentbrukernavn.getText());
-			if(!nyStudent.getPassword().equals(studentpassord.getText())) {
-				responsLabel.setText("Brukeren finnes, men passordet er feil");
-				return false;
-			}
-		}catch (Exception e) { //endre dette kanskje
-			System.out.println("getStudent ga en IllegalStateException da brukeren ikke eksisterer");
-			responsLabel.setText("Ugyldig bruker");
+	private boolean loginOk() {
+		Student student=database.getStudent(studentbrukernavn.getText());
+		if(student==null) {
+			responsLabel.setText("Denne studenten finner ikke i våre systemer");
 			return false;
-		}//catch (SQLException e) {
-			//e.printStackTrace();
-	//	}
+		}
+		String passord = studentpassord.getText();
+		if(!student.getPassword().equals(passord)) {
+			responsLabel.setText("Feil passord");
+			return false;
+		}
 		return true;
+		
 	}
 	
 }

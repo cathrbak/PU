@@ -29,6 +29,7 @@ import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.MockingDatabase;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 
 
 
@@ -37,13 +38,14 @@ public class NurseResource {
 	
 	private JsonConverterService<Nurse> objectConverter = new NurseJsonConverter();
 	private JsonConverterService<List<Student>> listConverter = new ListOfStudentConverter();
-	private UserDatabaseHandler database = new MockingDatabase();
+	private UserDatabaseHandler database = new ConnectionSQL();
 	//Lager en cache med de nursene jeg allerede har funnet fra getNurse
-	private static List<Nurse> nurses= new ArrayList<>();
+	private List<Nurse> nurses= new ArrayList<>();
 	
 	/*
 	 *   /nurses: ikke tillatt
 	 */
+	
 	
 	@GET
 	@Produces(MediaType.TEXT_HTML)
@@ -84,7 +86,12 @@ public class NurseResource {
 			nurse = nurses.stream().filter(n -> n.getUsername().equals(username)).collect(Collectors.toList()).get(0);
 		}else {
 			System.out.println("Henter Nurseobjekt fra databasen");
-			nurse = database.getNurse(username);
+			try {
+				nurse = database.getNurse(username);
+			}catch (IllegalStateException e) {
+				System.err.println("404. Fant ikke ");
+				nurse=null;
+			}
 		}
 		return listConverter.convertToJason(database.getStudents(nurse));
 	}
@@ -130,15 +137,32 @@ public class NurseResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createMessage(String input){
 		JsonConverterService<Message> converter=new MessageJsonConverter();
-		System.out.println("create new Message:" + converter.convertToObject(input).getText());
+		System.out.println("create new Message:" + converter.convertToObject(input));
 		try {
-			database.createNewMessage(converter.convertToObject(input));
+			Message convertToObject = converter.convertToObject(input);
+			System.out.println(convertToObject.getText()+convertToObject.getReciver());
+			database.createNewMessage(convertToObject);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
 		return Response.status(201).build(); //201 Created
+	}
+	
+	public static void main(String[] args) throws SQLException {
+		NurseResource nurseResource=new NurseResource();
+		RestClientImp database= new RestClientImp();
+		Nurse nurse = database.getNurse("testsoster");
+		Student student = database.getStudent("sverress");
+		Message testMessage = new Message(student,nurse);
+		testMessage.setText("Heisann");
+		Message testMessage1 = new Message(student,nurse);
+		testMessage.setText("Heisann2");
+		
+		String json=new MessageJsonConverter().convertToJason(testMessage);
+		System.out.println(json);
+		nurseResource.createMessage(json);
 	}
 	
 	
@@ -154,7 +178,7 @@ public class NurseResource {
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-		return Response.status(201).build(); //201 Created
+		return Response.status(204).build(); //204 Updated
 	}
 	
 	@DELETE

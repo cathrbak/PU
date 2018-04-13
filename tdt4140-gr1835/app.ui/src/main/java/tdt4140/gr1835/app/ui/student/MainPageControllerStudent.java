@@ -1,12 +1,11 @@
 package tdt4140.gr1835.app.ui.student;
 
-import java.util.List;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.beans.property.SimpleBooleanProperty;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,24 +14,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
-import tdt4140.gr1835.app.database.ConnectionSQL;
-import tdt4140.gr1835.app.database.UserDatabaseHandler;
 import tdt4140.gr1835.app.ui.nurse.FxApp;
+import tdt4140.gr1835.app.webclient.RESTClient;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 import javafx.scene.control.ToggleButton;
 
 public class MainPageControllerStudent implements Initializable {
 	
-	UserDatabaseHandler database;
+	RESTClient database;
 	
-	public MainPageControllerStudent(Student student) throws SQLException, Exception {
-		this.database=new ConnectionSQL();
+	public MainPageControllerStudent(Student student){
+		this.database=new RestClientImp();
 		this.student = student;
 		addInfo();	
 	}
@@ -103,17 +101,9 @@ public class MainPageControllerStudent implements Initializable {
 	
 	  //Må kunne fylle tabellen med studentens svar
 	 
-	  public void addInfo() throws SQLException, Exception{
-
-			try {
-				List<Table> listOfAnswers = database.getAnswers(student);
-				for(Table answer: listOfAnswers) {
-					data.add(answer);	
-				}
-					
-			} catch (SQLException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+	  public void addInfo() {
+			for(Table answer: student.getAnswers()) {
+				data.add(answer);	
 			}
 		}
 		

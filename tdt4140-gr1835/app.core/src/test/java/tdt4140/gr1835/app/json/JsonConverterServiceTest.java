@@ -34,7 +34,10 @@ public class JsonConverterServiceTest {
 	private Table testTable;
 	private List<Student> studentList=new ArrayList<>();
 	private List<Table> tableList=new ArrayList<>();
+	
 	private List<Message> messageList=new ArrayList<>();
+	private long currentTimeMillis;
+	private Table simpletable;
 	
 	
 	@SuppressWarnings("deprecation")
@@ -71,13 +74,15 @@ public class JsonConverterServiceTest {
 		List<Integer> svarliste2=Arrays.asList(1,4,3,4,3,3,3,2,1,2);
 		
 		testTable=new Table(12,1,2,3,4,2,4,3,3,4,4,svarliste0.stream().collect(Collectors.summingInt(i->i)));
-		Table table1=new Table(11,1,1,3,4,2,3,1,4,2,4,svarliste1.stream().collect(Collectors.summingInt(i->i)));
+		currentTimeMillis = System.currentTimeMillis();
+		testTable.setTstamp(new Timestamp(currentTimeMillis));
+		this.simpletable = new Table(11,1,1,3,4,2,3,1,4,2,4,svarliste1.stream().collect(Collectors.summingInt(i->i)));
 		Table table2=new Table(1,1,4,3,4,3,3,3,2,1,2,svarliste2.stream().collect(Collectors.summingInt(i->i)));
 		Table table3=new Table(2,1,4,3,4,3,3,3,2,1,2,svarliste2.stream().collect(Collectors.summingInt(i->i)));
 		
 		tableList.add(table3);
 		tableList.add(table2);
-		tableList.add(table1);
+		tableList.add(simpletable);
 		tableList.add(testTable);
 		
 
@@ -133,6 +138,17 @@ public class JsonConverterServiceTest {
 		assertEquals(testTable.getSpm1(), service.convertToObject(json).getSpm1());
 		assertEquals(testTable.getSpm10(), service.convertToObject(json).getSpm10());
 		assertEquals(testTable.getTotal(), service.convertToObject(json).getTotal());
+		assertEquals(testTable.getTstamp(), service.convertToObject(json).getTstamp());
+	}
+	@Test
+	public void testSimpleTable() {
+		JsonConverterService<Table> service = new TableJsonConverter();
+		String json=service.convertToJason(simpletable);
+		assertEquals(simpletable.getPersonID(), service.convertToObject(json).getPersonID());
+		assertEquals(simpletable.getSpm1(), service.convertToObject(json).getSpm1());
+		assertEquals(simpletable.getSpm10(), service.convertToObject(json).getSpm10());
+		assertEquals(simpletable.getTotal(), service.convertToObject(json).getTotal());
+		assertEquals(simpletable.getTstamp(), service.convertToObject(json).getTstamp());
 	}
 	
 	@Test
@@ -145,13 +161,27 @@ public class JsonConverterServiceTest {
 	}
 	
 	@Test
-	public void testMessage() {
+	public void testFullMessage() {
 		JsonConverterService<Message> converter= new MessageJsonConverter();
 		String json=converter.convertToJason(testMessage);
+		System.out.println();
 		assertEquals(testMessage.getText(),converter.convertToObject(json).getText());
 		assertEquals(testMessage.getTime(),converter.convertToObject(json).getTime());
 		assertEquals(testMessage.getReciver().getUsername(),converter.convertToObject(json).getReciver().getUsername());
 		assertEquals(testMessage.getSender().getUsername(),converter.convertToObject(json).getSender().getUsername());
+	}
+	
+	@Test
+	public void testSimpleMessage() {
+		JsonConverterService<Message> converter= new MessageJsonConverter();
+		Message message = new Message(testStudent,testNurse);
+		System.out.println(message.getTime());
+		String json=converter.convertToJason(message);
+		System.out.println(json);
+		assertEquals(message.getText(),converter.convertToObject(json).getText());
+		assertEquals(message.getTime(),converter.convertToObject(json).getTime());
+		assertEquals(message.getReciver().getUsername(),converter.convertToObject(json).getReciver().getUsername());
+		assertEquals(message.getSender().getUsername(),converter.convertToObject(json).getSender().getUsername());
 	}
 	
 	@Test

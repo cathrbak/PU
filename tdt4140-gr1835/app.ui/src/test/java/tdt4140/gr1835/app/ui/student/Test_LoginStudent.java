@@ -1,6 +1,7 @@
 package tdt4140.gr1835.app.ui.student;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.testfx.api.FxAssert;
 import org.testfx.framework.junit.ApplicationTest;
@@ -43,6 +44,7 @@ public class Test_LoginStudent extends ApplicationTest {
         stage.show();
     }
 	
+	@Ignore
 	@Test
 	public void testGyldigInlogging() {
 		clickOn("#studentbrukernavn");
@@ -53,6 +55,8 @@ public class Test_LoginStudent extends ApplicationTest {
 		
 		FxAssert.verifyThat("#Logout", hasText("Logg ut")); //Finner profilknappen
 	}
+	
+	@Ignore
 	@Test
 	public void testUgyldigInlogging() {
 		

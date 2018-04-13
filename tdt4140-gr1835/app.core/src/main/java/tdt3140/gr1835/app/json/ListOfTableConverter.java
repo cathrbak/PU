@@ -1,8 +1,8 @@
 package tdt3140.gr1835.app.json;
 
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -20,7 +20,7 @@ public class ListOfTableConverter implements JsonConverterService<List<Table>> {
 		List<EasyTable> list= gson.fromJson(jasonFile, listType);
 		List<Table> res=new ArrayList<>();
 		for(EasyTable table:list) {
-			res.add(new Table(table.getStudentID(),
+			Table resTable = new Table(table.getStudentID(),
 					table.getAnsList().get(0),
 					table.getAnsList().get(1),
 					table.getAnsList().get(2),
@@ -31,8 +31,9 @@ public class ListOfTableConverter implements JsonConverterService<List<Table>> {
 					table.getAnsList().get(7),
 					table.getAnsList().get(8),
 					table.getAnsList().get(9),
-					table.getTotal())
-					);
+					table.getTotal());
+			resTable.setTstamp(new Timestamp(table.getMillis()));
+			res.add(resTable);
 		}
 		return res;
 	}
@@ -43,13 +44,12 @@ public class ListOfTableConverter implements JsonConverterService<List<Table>> {
 		StringBuilder builder= new StringBuilder();
 		builder.append("[");
 		for(Table table:objectToConvert) {
-			builder.append(tableConverter.convertToJason(table)+", ");
+			String convertToJason = tableConverter.convertToJason(table);
+			builder.append(convertToJason+", ");
 		}
+		
 		builder.replace(builder.lastIndexOf(","),builder.length(), "]");
 		return builder.toString();
-	}
-	public static void main(String[] args) {
-		
 	}
 
 }

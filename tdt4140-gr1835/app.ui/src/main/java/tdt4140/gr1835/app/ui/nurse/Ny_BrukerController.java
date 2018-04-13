@@ -20,13 +20,15 @@ import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.MockingDatabase;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
+import tdt4140.gr1835.app.webclient.RESTClient;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 
 public class Ny_BrukerController {
 	
-	UserDatabaseHandler database;
+	RESTClient database;
 	
 	public Ny_BrukerController() {
-		this.database=new ConnectionSQL();
+		this.database=new RestClientImp();
 	}
 	
 	List<String> inputs= new ArrayList<>();
@@ -81,48 +83,33 @@ public class Ny_BrukerController {
 		}
 		
 		System.out.println("Legger til den nye brukeren i databasen");
-		
-		try {
-			database.getNurse(username.getText());
+		Nurse nurse = database.getNurse(username.getText());
+		if(nurse==null) { //eksisterer da ingen med dette brukernavnet
+			Nurse newNurse= new Nurse(username.getText());
+			newNurse.setEmail(email.getText());
+			newNurse.setFaculty(faculty.getText());
+			newNurse.setFirstName(firstName.getText());
+			newNurse.setPassword(password.getText());
+			newNurse.setPhoneNumber(phoneNumber.getText());
+			newNurse.setSecondName(familyName.getText());
+			System.out.println("Oppretter objektet: "+newNurse);
+			
+			boolean OK = database.createNurse(newNurse);
+			if(!OK) { //hvis det gikk noe galt med opprettelsen må man si ifra til brukeren
+				infotext.setText("Fikk problemer med å opprette brukerer, prøv på nytt");
+				infotext.setVisible(true);
+				return;
+			}
+			
+			
+		}else {
 			infotext.setText("Det eksisterer en bruker med dette brukernavnet");
 			System.out.println("Det eksisterer en bruker med dette brukernavnet");
 			infotext.setVisible(true);
 			return;
-		}catch (IllegalStateException e) {
-			if (e.getMessage().equals("Denne brukeren eksisterer ikke i databasen")) { //Dette er burde vi endre på slik at den kanskje returnerer null isteden
-				Nurse newNurse= new Nurse(username.getText());
-				newNurse.setEmail(email.getText());
-				newNurse.setFaculty(faculty.getText());
-				newNurse.setFirstName(firstName.getText());
-				newNurse.setPassword(password.getText());
-				newNurse.setPhoneNumber(phoneNumber.getText());
-				newNurse.setSecondName(familyName.getText());
-				System.out.println("Oppretter objektet: "+newNurse);
-				
-				try {
-					database.createNewNurse(newNurse);
-				} catch (SQLException ex) {
-					System.out.println("Fikk problemer med å legge til ny Helsesøster i databasen");
-					System.out.println(ex.getStackTrace());
-					return;
-				}
-			}
-		}
-
-		try {
-			System.out.println("Dette ligger nå i databasen: "+database.getNurse(username.getText()));
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 		infotext.setText("Brukeren ble opprettet");
 		infotext.setVisible(true);
-//		try {
-//			TimeUnit.SECONDS.sleep(3);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		
 		Stage stage; 
 	    Parent root;
@@ -132,17 +119,31 @@ public class Ny_BrukerController {
         root = FXMLLoader.load(getClass().getResource("Login.fxml"));
       	//create a new scene with root and set the stage
         Scene scene = new Scene(root);
-//        scene.setUserData(firstName.getText());
-//        System.out.println(scene.getUserData());
         //Legger på css stylesheetet
         scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-		
-		//Så må vi sende dette til databasen
-
 	}
 	
+	//Tilbakeknapp
+	@FXML
+	Button backButton;
+	@FXML 
+	public void handleBackButton() throws IOException {
+		Stage stage; 
+	    Parent root;
+        //get reference to the button's stage         
+        stage=(Stage) backButton.getScene().getWindow();
+        //load up OTHER FXML document
+        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+      	//create a new scene with root and set the stage
+        Scene scene = new Scene(root);
+        //Legger på css stylesheetet
+        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+	}
+//-----------------------------------------------------------------------------------------------------------	
 	//Metoder for å se etter feil i feltene
 	
 	@FXML
@@ -291,24 +292,4 @@ public class Ny_BrukerController {
 			facultyRespons.setVisible(true);
 		}
 	}
-	
-	//Tilbakeknapp
-	@FXML
-	Button backButton;
-	@FXML 
-	public void handleBackButton() throws IOException {
-		Stage stage; 
-	    Parent root;
-        //get reference to the button's stage         
-        stage=(Stage) backButton.getScene().getWindow();
-        //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-      	//create a new scene with root and set the stage
-        Scene scene = new Scene(root);
-        //Legger på css stylesheetet
-        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
-	}
-
 }

@@ -1,5 +1,6 @@
 package tdt3140.gr1835.app.json;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class TableJsonConverter implements JsonConverterService<Table> {
 	@Override
 	public Table convertToObject(String jasonFile) {
 		EasyTable eTable=helper.fromJson(jasonFile, EasyTable.class);
-		return new Table(eTable.getStudentID(),
+		Table table = new Table(eTable.getStudentID(),
 				eTable.getAnsList().get(0),
 				eTable.getAnsList().get(1),
 				eTable.getAnsList().get(2),
@@ -28,6 +29,11 @@ public class TableJsonConverter implements JsonConverterService<Table> {
 				eTable.getAnsList().get(8),
 				eTable.getAnsList().get(9),
 				eTable.getTotal());
+		if(eTable.getMillis()==0) {
+			return table;
+		}
+		table.setTstamp(new Timestamp(eTable.getMillis()));
+		return table;
 	}
 
 	@Override
@@ -47,6 +53,11 @@ public class TableJsonConverter implements JsonConverterService<Table> {
 		table.setAnsList(list);
 		table.setStudentID(objectToConvert.getPersonID());
 		table.setTotal(objectToConvert.getTotal());
+		if(objectToConvert.getTstamp()!=null) {
+			table.setMillis(objectToConvert.getTstamp().getTime());
+		}else {
+			table.setMillis(0);
+		}
 		return helper.toJson(table);
 	}
 }

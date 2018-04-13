@@ -7,15 +7,25 @@ public class EasyTable {
 	private List<Integer> ansList;
 	private int total;
 	private int studentID;
+	private long millis;
 	
-	public EasyTable(List<Integer> ansList, int total, int studentID) {
+	public EasyTable(List<Integer> ansList, int total, int studentID,long millis) {
 		this.ansList = ansList;
 		this.total = total;
 		this.studentID = studentID;
+		this.millis = millis;
 	}
 	
 	public EasyTable() {
 		
+	}
+	
+	public long getMillis() {
+		return millis;
+	}
+	
+	public void setMillis(long millis) {
+		this.millis = millis;
 	}
 	
 	

@@ -2,6 +2,7 @@ package tdt4140.gr1835.app.ui.nurse;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,12 +19,15 @@ import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
+import tdt4140.gr1835.app.webclient.RESTClient;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 
 public class MessageController {
 
 	private Nurse nurse;
 	private Student student;
 	private Message message;
+	private RESTClient database;
 
 	
 	public MessageController(Nurse nurse, Student student) {
@@ -38,44 +42,25 @@ public class MessageController {
 	@FXML
 	TextArea textbox;
 	
+	
 	@FXML
 	public void handleButton_Send() throws SQLException, Exception{
 		message = new Message(student, nurse);
-		message.setText(textbox.getText());
+		String melding= textbox.getText();
+		message.setText(melding);
 		//legger inn meldingen i databasen
-		UserDatabaseHandler database = new ConnectionSQL();
-		database.createNewMessage(message);
-		String melding = database.getMessage(student, nurse).getText();
+		database = new RestClientImp();
+		database.newMessage(message);
+		List<Message> messages = database.getMessagesStudent(student.getUsername());
+		//henter melding fra databasen med samme tekst
+		String dbmelding=messages.get(messages.size()-1).getText();
 		
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Melding sendt!");
 		alert.setHeaderText(null);
-		alert.setContentText("Følgende melding ble sendt til " + student.getFirstName() + " " + student.getSecondName()+ ":\n" + melding);
+		alert.setContentText("Følgende melding ble sendt til " + student.getFirstName() + " " + student.getSecondName()+ ":\n" + dbmelding);
 		alert.showAndWait();
 		textbox.setText("");
-		
-//		//Ta meg til profilside
-//        System.out.println("Sender bruker til Profilside");
-//        
-//        Stage stage; 
-//        Parent root;
-//        //get reference to the button's stage        
-//        stage=(Stage) Button_send.getScene().getWindow();
-//        
-//        MessageController controller= new MessageController(this.nurse, this.student); //Lager en kontroller instans
-//
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentProfil.fxml"));
-//            
-//        loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
-//        root = (Parent) loader.load();
-//        
-//        //create a new scene with root and set the stage 
-//        Scene scene = new Scene(root);
-//       
-//        //Legger på css stylesheetet
-//        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-//        stage.setScene(scene);
-//        stage.show();
 	}
 	
 	@FXML

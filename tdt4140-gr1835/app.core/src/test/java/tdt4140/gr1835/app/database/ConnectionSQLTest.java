@@ -1,27 +1,27 @@
-package tdt4140.gr1835.app.core;
+package tdt4140.gr1835.app.database;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.hamcrest.CoreMatchers.*;
-import org.hamcrest.core.IsNull;
 import org.junit.Test;
 
+import tdt3140.gr1835.app.json.MessageJsonConverter;
+import tdt4140.gr1835.app.core.Message;
+import tdt4140.gr1835.app.core.Nurse;
+import tdt4140.gr1835.app.core.Student;
+import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.Ignore;
 
 
 public class ConnectionSQLTest {
@@ -34,7 +34,7 @@ public class ConnectionSQLTest {
 	
 	@Before
 	public void setUp() throws SQLException{
-		udh = new ConnectionSQL();
+		udh =new ConnectionSQL();
 		
 		testNurse = new Nurse("testNurseUN");
 		testNurse.setFaculty("OK");
@@ -65,7 +65,6 @@ public class ConnectionSQLTest {
 		testMessage.setReciver(testStudent);
 		testMessage.setText("Heisann");
 		//Timestamp blir automatisk satt, s� det blir vanskelig � teste. Vet ikke hva jeg skal assertEquals.
-		
 	}
 	
 	@After
@@ -73,13 +72,6 @@ public class ConnectionSQLTest {
 		udh.deleteNurse(testNurse);
 		udh.deleteStudent(testStudent);
 		//udh.deleteSurvey(testStudent);
-		udh.closeConnection();
-		udh.deleteStudent(udh.getStudent("haraldmu"));
-		udh.deleteStudent(udh.getStudent("alexoh"));
-		udh.deleteStudent(udh.getStudent("petter"));
-		
-		
-		
 		udh.closeConnection();
 		udh = null;
 		testMessage= null;
@@ -101,7 +93,6 @@ public class ConnectionSQLTest {
 	public void testCreateNewStudent() throws SQLException {
 		
 		udh.createNewStudent(testStudent);
-		
 		
 		assertEquals("Brukernavn",testStudent.getUsername(), udh.getStudent("testStudentUN").getUsername());
 		assertEquals("Passord",testStudent.getPassword(), udh.getStudent("testStudentUN").getPassword());
@@ -168,26 +159,28 @@ public class ConnectionSQLTest {
 	}
 	
 	
-	
 	@Test
 	public void testgetStudents() throws Exception {
 		List<Student> expected= new ArrayList<>();
 		List<Student> fromDB= new ArrayList<>();
 		
+		//Henter sostertiltest
+		Nurse sostertiltest=udh.getNurse("sostertiltester");
+		
 		//Oppretter studenter som tilhorer MH fakultetet
 		Student s=new Student("haraldmu");
 		s.setFaculty("OK");
-		s.setNurse(udh.getNurse("sostertiltester"));
+		s.setNurse(sostertiltest);
 		expected.add(s);
 		
 		Student n=new Student("alexoh");
 		n.setFaculty("OK");
-		n.setNurse(udh.getNurse("sostertiltester"));
+		n.setNurse(sostertiltest);
 		expected.add(n);
 		
 		Student j=new Student("petter");
 		j.setFaculty("OK");
-		j.setNurse(udh.getNurse("sostertiltester"));
+		j.setNurse(sostertiltest);
 		expected.add(j);
 		
 		//Legger de til i databasen
@@ -197,7 +190,7 @@ public class ConnectionSQLTest {
 		
 		//Sjekker om jeg kun får ut disse studentene og ikke noen andre
 		//assertThat(udh.getStudents(testNurse),is(expected));
-		fromDB = udh.getStudents(testNurse);
+		fromDB = udh.getStudents(sostertiltest);
 		Student first = expected.get(0);
 		Student firstdb = fromDB.get(0);
 		Student second = expected.get(1);
@@ -207,6 +200,9 @@ public class ConnectionSQLTest {
 		assertEquals("Sjekker om forste student i begge listene er like", first.getUsername(),firstdb.getUsername());
 		assertEquals("Sjekker om andre student i begge listene er like", second.getUsername(),seconddb.getUsername());
 		assertEquals("Sjekker om tredje student i begge listene er like", third.getUsername(),thirddb.getUsername());
+		udh.deleteStudent(n);
+		udh.deleteStudent(s);
+		udh.deleteStudent(j);
 	}
 	
 	
@@ -238,6 +234,7 @@ public class ConnectionSQLTest {
 		udh.deleteNurse(testNurse);
 	}
 	
+	@Ignore
 	@Test
 	public void testCreateNewMessage() throws SQLException{
 		udh.createNewStudent(testStudent);
@@ -251,6 +248,20 @@ public class ConnectionSQLTest {
 		udh.deleteMessages(testMessage);
 		udh.deleteStudent(testStudent);
 		udh.deleteNurse(testNurse);
+	}
+	
+	@Ignore
+	@Test
+	public void testCreateMessageWebServer() throws SQLException {
+		Nurse nurse = udh.getNurse("testsoster");
+		Student student = udh.getStudent("sverress");
+		Message testMessage = new Message(student,nurse);
+		testMessage.setText("Heisann");
+		udh.createNewMessage(testMessage);
+		List<Message> messages = udh.getMessages(student);
+		Message dhmessage = messages.stream().filter(m->m.getText().equals("Heisann")).collect(Collectors.toList()).get(0);
+		assertEquals(testMessage.getTime(),dhmessage.getTime());
+		assertEquals(testMessage.getReciver().getUsername(), dhmessage.getReciver().getUsername());
 	}
 	
 	

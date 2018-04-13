@@ -85,7 +85,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 					
 					if (!rs.isBeforeFirst() ) {    
 					    System.out.println("No data"); 
-					    throw new IllegalStateException("Denne brukeren eksisterer ikke i databasen"); //Dette er burde vi endre på slik at den kanskje returnerer null isteden
+					    	return null;
 					} 
 				}
 			}
@@ -240,6 +240,10 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			String notat = rs.getString("notat");
 			if((notat != null)) {
 				student.setNotat(notat);
+			}
+			Integer studentId = rs.getInt("DatagiverID");
+			if(!(studentId == 0)) {
+				student.setStudentID(studentId);
 			}
 			
 		}
@@ -699,7 +703,9 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			Statement stmt = getStatement();
 			
 			String query = "INSERT INTO meldinger(DatagiverID, HelsesosterID, tekst) VALUES (" + getStudentID(message.getReciver()) + ", " +
-					getNurseID(message.getSender()) + ", '" + message.getText()+ "');";
+					getNurseID(message.getSender()) + ", '" + 
+					message.getText()+ "');";
+			
 			
 			stmt.executeUpdate(query);
 			
@@ -853,7 +859,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 
 	
-	private Student getStudentFromID(int studentID) throws SQLException{
+	public Student getStudentFromID(int studentID) throws SQLException{
 		ResultSet rs = null;
 		Student student = new Student(null);
 		try {

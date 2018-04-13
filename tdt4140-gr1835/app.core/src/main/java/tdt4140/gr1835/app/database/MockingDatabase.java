@@ -231,4 +231,11 @@ public class MockingDatabase implements UserDatabaseHandler{
 		
 	}
 
+
+	@Override
+	public Student getStudentFromID(int studentID) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.nurse.LoginController">
+<ScrollPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.nurse.LoginController">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
@@ -41,6 +41,7 @@
                   <RowConstraints maxHeight="34.192535400390625" minHeight="3.553314208984375" prefHeight="17.058380126953125" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="58.472686767578125" minHeight="10.0" prefHeight="54.158477783203125" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="52.220550537109375" minHeight="10.0" prefHeight="13.213165283203125" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.786834716796875" minHeight="10.0" prefHeight="56.786834716796875" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="56.786834716796875" minHeight="10.0" prefHeight="56.786834716796875" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -87,6 +88,7 @@
                         <Font name="Lucida Console" size="13.0" />
                      </font>
                   </Button>
+                  <Label fx:id="responsLabel" prefHeight="31.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   
                </children>
             </GridPane>

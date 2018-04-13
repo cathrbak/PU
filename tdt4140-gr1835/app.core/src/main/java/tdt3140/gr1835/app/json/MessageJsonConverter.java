@@ -18,7 +18,9 @@ public class MessageJsonConverter implements JsonConverterService<Message>{
 		//Oppretter en egen annotasjon som ekskludere gitte felter med @Exclude
 		gson= builder.setExclusionStrategies(new AnnotationExclutionStrategy()).create();
 		Message mess=gson.fromJson(jasonFile, Message.class);
-		mess.setTime(new Timestamp(mess.getMillitime()));
+		if(mess.getMillitime()!=0) {
+			mess.setTime(new Timestamp(mess.getMillitime()));
+		}
 		return mess;
 	}
 
