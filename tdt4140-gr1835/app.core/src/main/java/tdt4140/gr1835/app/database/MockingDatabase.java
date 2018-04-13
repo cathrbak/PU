@@ -225,10 +225,6 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-	@Override
-	public void updateNote(Student student) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

@@ -31,6 +31,7 @@ public class ConnectionSQLTest {
 	Student testStudent;
 	Table testSurvey;
 	Message testMessage;
+	Student testSurveyStudent;
 	
 	@Before
 	public void setUp() throws SQLException{
@@ -56,7 +57,17 @@ public class ConnectionSQLTest {
 		testStudent.setNotat("Dette er et notat");
 		
 		
-		testSurvey = new Table(2,1,2,3,4,5,4,3,2,1,1,20);
+		testSurveyStudent = new Student("testStudentSUR");
+        testStudent.setPassword("surveypass");
+        testStudent.setFaculty("MH");
+        testStudent.setAnonymous(false);
+        testStudent.setFirstName("Hans");
+        testStudent.setSecondName("Ovanger");
+        testStudent.setSex("mann");
+        testStudent.setEmail("hans@gmail.com");
+        testStudent.setPhoneNumber("46952270");
+        testStudent.setNurse(udh.getNurse("testsoster"));
+        testStudent.setNotat("Dette er et notat");
 		
 		
 		
@@ -72,7 +83,7 @@ public class ConnectionSQLTest {
 	public void tearDown() throws SQLException{
 		udh.deleteNurse(testNurse);
 		udh.deleteStudent(testStudent);
-		//udh.deleteSurvey(testStudent);
+		
 		udh.closeConnection();
 		udh.deleteStudent(udh.getStudent("haraldmu"));
 		udh.deleteStudent(udh.getStudent("alexoh"));
@@ -131,25 +142,32 @@ public class ConnectionSQLTest {
 		udh.deleteStudent(testStudent);
 	}
 	
-	/*@Test
-	public void testCreateSurvey() throws SQLException {
+	@Test
+    public void testCreateSurvey() throws SQLException {
+        
+        List<Table> expected = new ArrayList<>();
+        List<Table> fromDB = new ArrayList<>();
+        
+        udh.createNewStudent(testStudent);
+        int id = udh.getStudentID(testStudent);
+        Table testSurvey = new Table(id,1,2,3,4,5,4,3,2,1,1,26);
+        expected.add(testSurvey);
+        
+//        //Legger inn en ny undersøkelse for personID lik min til testSurveyStudent
+        udh.createSurvey(testSurvey);
+//    
+//        //Sjekker om undersøkelsen er den eneste for denne studenten.
+        fromDB = udh.getAnswers(testStudent);
+        
+        
+        assertEquals("Sjekker om første spm. er like i begge", fromDB.get(0).getSpm1(), expected.get(0).getSpm1());
+        assertEquals("Sjekker om andre spm. er like i begge", fromDB.get(0).getSpm1(), expected.get(0).getSpm1());
+        assertEquals("Sjekker om femte spm. er like i begge", fromDB.get(0).getSpm1(), expected.get(0).getSpm1());
+        assertEquals("Sjekker om totalen er lik i begge", fromDB.get(0).getTotal(), expected.get(0).getTotal());
+        
+        udh.deleteSurvey(testStudent);
+    }
 		
-		udh.createSurvey(testSurvey);
-		
-		
-		try {
-			Table duplikat = new Table(2,1,2,3,4,5,4,3,2,1,1,20);
-			udh.createSurvey(duplikat);
-			
-			fail("Prover a legge til undersÃ¸kelse som allerede eksisterer med duplikerende ID. Burde utlose en IllegalStateException");
-		}catch (IllegalStateException e) {
-			assertTrue(e.getClass().equals(IllegalStateException.class));
-		}
-				
-	}
-	*/
-	
-	
 	@Test 
 	public void testUpdateStudent() throws SQLException {
 		udh.createNewStudent(testStudent);
@@ -166,9 +184,7 @@ public class ConnectionSQLTest {
 		assertEquals("Dette er ogsaa et notat", udh.getStudent(endretStudent.getUsername()).getNotat());
 		udh.deleteStudent(testStudent);
 	}
-	
-	
-	
+		
 	@Test
 	public void testgetStudents() throws Exception {
 		List<Student> expected= new ArrayList<>();
@@ -208,8 +224,7 @@ public class ConnectionSQLTest {
 		assertEquals("Sjekker om andre student i begge listene er like", second.getUsername(),seconddb.getUsername());
 		assertEquals("Sjekker om tredje student i begge listene er like", third.getUsername(),thirddb.getUsername());
 	}
-	
-	
+		
 	@Test
 	public void testCreateNewNurse() throws SQLException {
 		udh.createNewNurse(testNurse);	
@@ -252,8 +267,7 @@ public class ConnectionSQLTest {
 		udh.deleteStudent(testStudent);
 		udh.deleteNurse(testNurse);
 	}
-	
-	
+		
 	@Test
 	public void testGetMessages() throws SQLException{
 	

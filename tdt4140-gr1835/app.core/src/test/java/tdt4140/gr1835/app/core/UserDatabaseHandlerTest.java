@@ -45,7 +45,7 @@ public class UserDatabaseHandlerTest {
 	}
 	
 	//Testmetoder for studenter
-	
+	/*
 	@Test
 	public void testCreateNewStudent() throws SQLException {
 		udh.createNewStudent(testStudent);
@@ -59,7 +59,7 @@ public class UserDatabaseHandlerTest {
 			assertTrue(e.getClass().equals(IllegalStateException.class));
 		}
 	}
-	
+	*/
 	/*
 	 * testUpdateStudent()
 	 * Denne testen forutsetter at man har lagt inn en Student i databasen med brukernavn sverress
@@ -75,6 +75,7 @@ public class UserDatabaseHandlerTest {
 	/*
 	 * Tester avhengighet til faktultet også :)
 	 */
+	/*
 	@Test
 	public void testgetStudents() throws Exception {
 		List<Student> expected= new ArrayList<>();
@@ -104,6 +105,7 @@ public class UserDatabaseHandlerTest {
 		
 		
 	}
+	*/
 	//Testmetoder for Helsesøstere
 	
 	/*
@@ -117,7 +119,7 @@ public class UserDatabaseHandlerTest {
 		udh.updateNurse(endretNurse);
 		assertEquals("cathrine@gmail.com",udh.getNurse("cathrine").getEmail() );
 	}
-	
+	/*
 	@Test
 	public void testCreateNewNurse() throws SQLException {
 		udh.createNewNurse(testNurse);
@@ -131,6 +133,7 @@ public class UserDatabaseHandlerTest {
 			assertTrue(e.getClass().equals(IllegalStateException.class));
 		}
 	}
+	*/
 	
 	
 

@@ -473,7 +473,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			+ ";";
 			
 			stmt.executeUpdate(query);
-			System.out.println(query);
+			
 		}
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
@@ -525,28 +525,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return answers;
 	}
 	
-	public static void main(String[] args) throws Exception {
-		ConnectionSQL database= new ConnectionSQL();		
-		Table survey= new Table(2,1,2,3,4,5,4,3,2,1,1,26);
-		//System.out.println(tableToListConverter(survey));
-		database.createSurvey(survey);
-
-		
-//		Student nora = new Student("norak");
-//		nora.getUsername();
-//		database.deleteSurvey(nora);
-		
-		
-//	 	Nurse testNurse = new Nurse("cathrine");
-//		testNurse.setPassword("c");
-//		testNurse.setFirstName("Cathrine");
-//		testNurse.setSecondName("Arke");
-//		testNurse.setFaculty("IE");
-//		testNurse.setEmail("sverress@stud.tnu");
-//		database.createNewNurse(testNurse);
-//		System.out.println(database.getNurse("cathrine"));
-		
-	}
+	
 	
 	private static String tableToStringConverter (Table survey) {
 		List<Integer> intList = new ArrayList<>();
@@ -566,20 +545,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return listString;
 		
 	}
-	
 
-	//gj�r om listen med svar til en tabell
-
-		
-		
-//	 	Nurse testNurse = new Nurse("cathrine");
-//		testNurse.setPassword("c");
-//		testNurse.setFirstName("Cathrine");
-//		testNurse.setSecondName("Arke");
-//		testNurse.setFaculty("IE");
-//		testNurse.setEmail("sverress@stud.tnu");
-//		database.createNewNurse(testNurse);
-//		System.out.println(database.getNurse("cathrine"));
 		
 	
 	private Table listToTableConverter(Student student, String anslist,Timestamp tstamp) throws SQLException {
@@ -877,11 +843,6 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		return student; 
 	}
 
-	@Override
-	public void updateNote(Student student) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 
 	

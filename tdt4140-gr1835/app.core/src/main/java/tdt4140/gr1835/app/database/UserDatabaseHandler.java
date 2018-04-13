@@ -46,7 +46,7 @@ public interface UserDatabaseHandler {
 	public List<Message> getMessages(Student student) throws SQLException;
 	public Message getMessageFromID(Integer messageid) throws SQLException;
 
-	public void updateNote(Student student);
+	
 	
 
 }
