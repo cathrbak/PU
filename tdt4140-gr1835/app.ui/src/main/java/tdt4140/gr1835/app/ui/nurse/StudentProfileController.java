@@ -243,7 +243,7 @@ public class StudentProfileController implements Initializable{
 		for (int i = 0; i < listOfAnswers.size() ; i++) {
 			series.getData().add(new XYChart.Data(datoer.get(i),total.get(i)));
 		}
-		
+		series.setName("Oversikt");
 		chart.getData().add(series);
 	    }	
 	
