@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
@@ -46,13 +47,6 @@ public class MainPageController implements Initializable {
 	@FXML
 	public void setBrukernavnLabel() {
 		brukernavn.setText("Logget inn som: " + nurse.getUsername() );
-	}
-	
-	@FXML
-	public void setFakultetsIDLabel() {
-		fakultetsID.setText("Studenter \n" + 
-				"som tilhører " + nurse.getFaculty() + " fakultetet");
-	
 	}
 	
 	
@@ -126,6 +120,7 @@ public class MainPageController implements Initializable {
 			String studentid = Integer.toString(studentID);
 			Hyperlink link = new Hyperlink();
 			link.setText(studentid);
+			link.setTextFill(Color.valueOf("white"));
 			link.setOnAction(new SendToStudentProfile(this.nurse, student, link));
 			Table tableLink = new Table(link);
 			tableLink.setNavn(studentName2);
@@ -232,7 +227,6 @@ public class MainPageController implements Initializable {
 	    
 	    //kaller på label-metoden her
 	    setBrukernavnLabel();
-	    setFakultetsIDLabel();
 	    }
 
 }

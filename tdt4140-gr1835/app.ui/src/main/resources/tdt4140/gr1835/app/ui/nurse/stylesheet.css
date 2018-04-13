@@ -79,10 +79,10 @@
 }
 
 .table-view2 {
-	-fx-base: #1c284f;
-    -fx-control-inner-background:  #4b72b5;
-    -fx-background-color: #4b72b5;
-    -fx-table-cell-border-color: #4b72b5;
-    -fx-table-header-border-color: #4b72b5;
+	-fx-base: #00788e;
+    -fx-control-inner-background:  #4ea9ac;
+    -fx-background-color: #4ea9ac;
+    -fx-table-cell-border-color: #4ea9ac;
+    -fx-table-header-border-color: #4ea9ac;
     -fx-padding: 5;
 }
