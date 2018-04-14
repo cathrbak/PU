@@ -157,6 +157,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 	
 	//For � slette en helsesoster. Mest for testene sin del
+	@Override
 	public void deleteNurse(Nurse nurse) throws SQLException{
 		try {
 			Statement stmt = getStatement();

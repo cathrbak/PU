@@ -30,7 +30,7 @@ public interface UserDatabaseHandler {
 	public void updateStudent(Student student) throws SQLException;
 	//Returnerer et nurse-objekt fra db, gitt et username
 	public Student getStudent(String username) throws SQLException;
-	//Gir meg svarene til alle sporreundersokelser en student har svart p� som en liste med table-objekter
+	//Gir meg svarene til alle sporreundersokelser en student har svart p� som en liste med table-objekter
 	public List<Table> getAnswers(Student student) throws SQLException;
 	//Gir meg alle meldinger som er sendt til en student
 	public List<Message> getMessages(Student student) throws SQLException;
@@ -42,6 +42,9 @@ public interface UserDatabaseHandler {
 	//Metoder for meldinger
 	//Legger til et meldings-objekt i db
 	public void createNewMessage(Message message) throws SQLException;
+	
+	//Sletter tilhørende helsesøster
+	public void deleteNurse(Nurse nurse) throws SQLException;
 	
 	
 	
