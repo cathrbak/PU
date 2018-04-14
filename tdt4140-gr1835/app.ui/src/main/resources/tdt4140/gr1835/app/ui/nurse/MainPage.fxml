@@ -34,7 +34,7 @@
                   <Blend />
                </effect>
             </Button>
-               <TableView fx:id="tableID" layoutX="25.0" layoutY="153.0" prefHeight="200.0" prefWidth="765.0" styleClass="tableview" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="153.0">
+               <TableView fx:id="tableID" layoutX="12.0" layoutY="153.0" prefHeight="200.0" prefWidth="778.0" styleClass="tableview" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="153.0">
               <columns>
                   <TableColumn fx:id="Dato" prefWidth="75.0" text="Dato" />
                 <TableColumn fx:id="PersonID" prefWidth="47.0" text="ID" />
@@ -52,7 +52,7 @@
                   <TableColumn fx:id="Total" prefWidth="55.27618408203125" text="Total  " />
               </columns>
             </TableView>
-            <Button fx:id="Question" layoutX="421.0" layoutY="118.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+            <Button fx:id="Question" layoutX="421.0" layoutY="118.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" styleClass="button-other" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
             <TableView fx:id="tableStudents" layoutX="35.0" layoutY="479.0" prefHeight="200.0" prefWidth="193.0" styleClass="table-view2" stylesheets="@stylesheet.css">
               <columns>
                 <TableColumn fx:id="StudentID" prefWidth="70.0" text="ID" />
@@ -74,6 +74,11 @@
             <ImageView fitHeight="80.0" fitWidth="87.0" layoutX="18.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/ligthBulb.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="158.0" fitWidth="529.0" layoutX="256.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/helsehelse.png" />
                </image>
             </ImageView>
          </children>
