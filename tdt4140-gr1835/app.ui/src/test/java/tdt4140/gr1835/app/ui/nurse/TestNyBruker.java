@@ -44,7 +44,7 @@ public class TestNyBruker extends ApplicationTest {
         stage.show();
     }
 	
-	//@Ignore
+	@Ignore
 	@Test
 	public void testFeilBrukerInnlogging() {
 		
@@ -92,7 +92,7 @@ public class TestNyBruker extends ApplicationTest {
 		FxAssert.verifyThat("#infotext", hasText("Det eksisterer en bruker med dette brukernavnet"));
 	}
 	
-	//@Ignore
+	@Ignore
     @Test
     public void testNyBrukerKorrektInnlogging() {
     	

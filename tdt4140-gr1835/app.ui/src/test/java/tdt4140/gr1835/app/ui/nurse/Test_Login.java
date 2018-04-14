@@ -30,13 +30,16 @@ public class Test_Login extends ApplicationTest {
 	@Override
     public void start(Stage stage) throws Exception {
 		this.stage=stage;
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        LoginController controller=new LoginController();
+        loader.setController(controller);
+        Parent root=loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 	
-	//@Ignore
+	@Ignore
 	@Test
 	public void testGyldigInlogging() {
 		clickOn("#brukernavn");
@@ -47,7 +50,7 @@ public class Test_Login extends ApplicationTest {
 		
 		FxAssert.verifyThat("#Profile", hasText("Profil")); //Finner profilknappen
 	}
-	//@Ignore
+	@Ignore
 	@Test
 	public void testUgyldigInlogging() {
 		
