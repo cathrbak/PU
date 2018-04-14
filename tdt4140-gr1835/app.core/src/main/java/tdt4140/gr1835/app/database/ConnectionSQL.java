@@ -157,6 +157,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 	
 	//For � slette en helsesoster. Mest for testene sin del
+	@Override
 	public void deleteNurse(Nurse nurse) throws SQLException{
 		try {
 			Statement stmt = getStatement();
@@ -187,6 +188,9 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			
 			if(stmt.execute(query)) {
 				rs = stmt.getResultSet();
+				if (!rs.isBeforeFirst() ) {    
+				    	return null;
+				} 
 			} 
 		}
 		catch (SQLException e) {
@@ -362,7 +366,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 
 	//For � hente ut en liste med alle studentene en helsesoster har tilgang til
 	@Override
-    public List<Student> getStudents(Nurse nurse) throws Exception {
+    public List<Student> getStudents(Nurse nurse) throws SQLException {
         List<Student> students = new ArrayList<Student>();
         
         String nurseFaculty = nurse.getFaculty();
@@ -468,6 +472,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 			String query = "INSERT INTO svarlogg(DatagiverID, svarString) VALUES (" +survey.getPersonID() + ",'" + survey.getSpm1() + "," + survey.getSpm2() + ","  + survey.getSpm3() + ","  + survey.getSpm4() + ","  + survey.getSpm5() + ","
 					+ survey.getSpm6() + "," + survey.getSpm7() + ","  + survey.getSpm8() + "," + survey.getSpm9() + ","  + survey.getSpm10() + "');" ;
 			stmt.executeUpdate(query); 
+			System.out.println(query);
 			
 		}
 		catch (SQLException e) {
@@ -651,7 +656,6 @@ public class ConnectionSQL implements UserDatabaseHandler{
 
 	
 	//Metode for � slette meldinger i testene. Ikke bruk i noe annet enn test, da den sletter alle meldingene sendt til en student.
-	@Override
 	public void deleteMessages(Message message) throws SQLException {
 		try {
 			Statement stmt = getStatement();
@@ -692,7 +696,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 	//Metode for � hente ut 1 melding
-	@Override
+	
 	public Message getMessage(Student student, Nurse nurse) throws SQLException {
 		ResultSet rs = null;
 		Message message = new Message(student, nurse);

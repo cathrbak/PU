@@ -26,7 +26,7 @@ import org.junit.Ignore;
 
 public class ConnectionSQLTest {
 
-	UserDatabaseHandler udh;
+	ConnectionSQL udh;
 	Nurse testNurse;
 	Student testStudent;
 	Table testSurvey;

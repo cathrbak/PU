@@ -37,7 +37,13 @@ public class MainPageControllerStudent implements Initializable {
 		this.student = student;
 		addInfo();	
 	}
-
+	@FXML
+	Label InnloggetStudent;
+	
+	@FXML
+	public void setInnloggetStudentLabel() {
+		InnloggetStudent.setText("Logget inn som: " + student.getUsername());
+	}
 
 	@FXML
 	RadioButton radioButton;
@@ -68,35 +74,18 @@ public class MainPageControllerStudent implements Initializable {
 	@FXML 
 	TableView<Table> tableID;
 	@FXML 
-	TableColumn<Table, Integer> PersonID;
+	TableColumn<Table, String> Dato;
 	@FXML 
-	TableColumn<Table, Integer> Spm1;
-	@FXML 
-	TableColumn<Table, Integer> Spm2;
-	@FXML 
-	TableColumn<Table, Integer> Spm3;
-	@FXML 
-	TableColumn<Table, Integer> Spm4;
-	@FXML 
-	TableColumn<Table, Integer> Spm5;
-	@FXML 
-	TableColumn<Table, Integer> Spm6;
-	@FXML 
-	TableColumn<Table, Integer> Spm7;
-	@FXML 
-	TableColumn<Table, Integer> Spm8;
-	@FXML 
-	TableColumn<Table, Integer> Spm9;
-	@FXML 
-	TableColumn<Table, Integer> Spm10;
+	TableColumn<Table, Integer> Spm1, Spm2, Spm3, Spm4, Spm5, Spm6, Spm7, Spm8, Spm9, Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
 	
+
 	
 	public int idNumber = 1;
 	public int total = 0;
 	
-	//lager listen som skal inneholde daten
+	//lager listen som skal inneholde dataen
 	final ObservableList<Table> data = FXCollections.observableArrayList();
 
 	
@@ -180,7 +169,7 @@ public class MainPageControllerStudent implements Initializable {
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-		PersonID.setCellValueFactory(new PropertyValueFactory<Table, Integer>("PersonID"));
+		Dato.setCellValueFactory(new PropertyValueFactory<Table, String>("Dato"));
 		Spm1.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm1"));
 		Spm2.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm2"));
 		Spm3.setCellValueFactory(new PropertyValueFactory<Table, Integer>("Spm3"));
@@ -197,6 +186,8 @@ public class MainPageControllerStudent implements Initializable {
 	    if (student.isAnonymous()==true) {
 	    	radioButton.setSelected(true);
 	    }
+	    
+	    setInnloggetStudentLabel();
 	    
 	    }	
 	

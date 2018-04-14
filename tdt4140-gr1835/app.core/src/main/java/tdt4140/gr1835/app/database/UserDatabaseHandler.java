@@ -12,39 +12,47 @@ public interface UserDatabaseHandler {
 	
 	public void closeConnection() throws SQLException;
 	
-	//Metoder for Nurses
+	//Metoder for Nurses:
+	//Legger til et nurse-objekt i db
 	public void createNewNurse(Nurse nurse) throws SQLException;
+	//Oppdaterer nurse-objekt i db
 	public void updateNurse(Nurse nurse) throws SQLException;
+	//Returnerer et nurse-objekt fra db, gitt et username
 	public Nurse getNurse(String username) throws SQLException;
-	public void deleteNurse(Nurse nurse) throws SQLException;
+	//Returnerer alle student-objektene en gitt nurse har tilgang til
+	public List<Student> getStudents(Nurse nurse) throws SQLException;
+	
 
-	//Metoder for Studenter
+	//Metoder for Studenter:
+	//Legger til et student-objekt i db
 	public void createNewStudent(Student student) throws SQLException;
-	public Student getStudent(String username) throws SQLException;
+	//Oppdaterer nurse-objekt i db
 	public void updateStudent(Student student) throws SQLException;
-	public void deleteStudent(Student student) throws SQLException;
-	
-	//Metoder for Undersøkelser
-	public void createSurvey(Table survey) throws SQLException;
-	public void deleteSurvey(Student student) throws SQLException;
-	
-	//Gir meg datagivere til denne helses�steren
-	//Denne burde byttes om til List
-	public List<Student> getStudents(Nurse nurse) throws SQLException, Exception;
-	
-	//Gir meg svarene til en student
+	//Returnerer et nurse-objekt fra db, gitt et username
+	public Student getStudent(String username) throws SQLException;
+	//Gir meg svarene til alle sporreundersokelser en student har svart p� som en liste med table-objekter
 	public List<Table> getAnswers(Student student) throws SQLException;
-
-	public int getStudentID(Student student) throws SQLException;
-	public Student getStudentFromID(int studentID) throws SQLException;
-	public int getNurseID(Nurse nurse) throws SQLException;
-
-	//Metoder for meldinger
-	public void deleteMessages(Message message) throws SQLException;
-	public void createNewMessage(Message message) throws SQLException;
-	public Message getMessage(Student student, Nurse nurse) throws SQLException; 
+	//Gir meg alle meldinger som er sendt til en student
 	public List<Message> getMessages(Student student) throws SQLException;
-	public Message getMessageFromID(Integer messageid) throws SQLException;
+	
+	//Metoder for sporreundersokelser:
+	//Legger til et table-objekt i db
+	public void createSurvey(Table survey) throws SQLException;
+	
+	//Metoder for meldinger
+	//Legger til et meldings-objekt i db
+	public void createNewMessage(Message message) throws SQLException;
+	
+	//Sletter tilhørende helsesøster
+	public void deleteNurse(Nurse nurse) throws SQLException;
+	
+	
+	
+	
+	
+	 
+	
+	
 
 	
 	
