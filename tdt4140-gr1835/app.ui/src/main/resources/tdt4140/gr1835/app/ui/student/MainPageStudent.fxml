@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fill="#283243" layoutX="31.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_overskrift" text="Profil" wrappingWidth="149.0219955444336" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="15.820999145507812">
+      <Text fill="#283243" layoutX="31.0" layoutY="57.20199966430664" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_hovedoverskrifter" text="Profil" wrappingWidth="235.0219955444336" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="16.0">
          <font>
             <Font name="Copperplate" size="36.0" />
          </font>
@@ -28,9 +28,9 @@
          <effect>
             <Blend />
          </effect></Button>
-         <TableView fx:id="tableID" layoutX="28.0" layoutY="157.0" prefHeight="200.0" prefWidth="727.0" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="157.0">
+         <TableView fx:id="tableID" layoutX="28.0" layoutY="157.0" prefHeight="200.0" prefWidth="745.0" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="157.0">
         <columns>
-          <TableColumn fx:id="PersonID" prefWidth="65.0" text="PersonID" />
+          <TableColumn fx:id="Dato" prefWidth="75.0" text="Dato" />
           <TableColumn fx:id="Spm1" prefWidth="60.0" text="Spm 1" />
             <TableColumn fx:id="Spm2" prefWidth="60.0" text="Spm 2" />
             <TableColumn fx:id="Spm3" prefWidth="60.0" text="Spm 3" />
@@ -52,6 +52,7 @@
       </Label>
       <RadioButton fx:id="radioButton" layoutX="674.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleAnonymousRadioButton" prefHeight="18.0" prefWidth="83.0" text="Anonym" />
       <Label layoutX="28.0" layoutY="386.0" styleClass="label_text" stylesheets="@stylesheet.css" text="For å svare på ny spørreundersøkelse, trykk her:" />
-      <Button fx:id ="newServey" onAction ="#handleNewServeyButton" layoutX="364.0" layoutY="381.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="197.0" text="Ny spørreundersøkelse" />
+      <Button fx:id="newServey" layoutX="364.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleNewServeyButton" prefHeight="29.0" prefWidth="197.0" text="Ny spørreundersøkelse" />
+      <Label fx:id="InnloggetStudent" layoutX="441.0" layoutY="25.0" prefHeight="18.0" prefWidth="197.0" styleClass="label_text" text="Label" />
    </children>
 </AnchorPane>

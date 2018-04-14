@@ -107,7 +107,7 @@ public class Table  {
 	public String getNavn() {
 		return Navn.get();
 	} 
-	//henter navn til tabellen med hyperlink
+	//henter navn til tabellen med hyperlink, kalles på i controlleren
 	public String getNavn1() {
 		return Navn.get();
 	} 
