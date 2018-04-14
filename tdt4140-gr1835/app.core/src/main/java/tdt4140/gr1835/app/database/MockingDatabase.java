@@ -121,7 +121,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-	@Override
+	
 	public void deleteNurse(Nurse nurse) throws SQLException {
 		nurses.remove(nurse);
 	}
@@ -148,7 +148,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-	@Override
+	
 	public void deleteStudent(Student student) throws SQLException {
 		students.remove(student);
 		
@@ -162,7 +162,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-	@Override
+	
 	public void deleteSurvey(Student student) throws SQLException {
 		answers.remove(student);
 		
@@ -170,7 +170,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 
 
 	@Override
-	public List<Student> getStudents(Nurse nurse) throws SQLException, Exception {
+	public List<Student> getStudents(Nurse nurse) throws SQLException {
 		// TODO Auto-generated method stub
 		return students;
 	}
@@ -183,14 +183,14 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-	@Override
+	
 	public int getStudentID(Student student) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 
-	@Override
+	
 	public void deleteMessages(Message message) throws SQLException {
 		// TODO Auto-generated method stub
 		
@@ -204,7 +204,7 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-	@Override
+	
 	public Message getMessage(Student student, Nurse nurse) throws SQLException {
 		// TODO Auto-generated method stub
 		return message;
@@ -218,20 +218,20 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-	@Override
+	
 	public Message getMessageFromID(Integer messageid) throws SQLException {
 		// TODO Auto-generated method stub
 		return message;
 	}
 
 
-	@Override
+	
 	public int getNurseID(Nurse nurse) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public Student getStudentFromID(int studentID) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
