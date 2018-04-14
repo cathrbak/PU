@@ -120,7 +120,7 @@ public class MainPageController implements Initializable {
 			String studentid = Integer.toString(studentID);
 			Hyperlink link = new Hyperlink();
 			link.setText(studentid);
-			link.setTextFill(Color.valueOf("white"));
+			link.setTextFill(Color.valueOf("#283243"));
 			link.setOnAction(new SendToStudentProfile(this.nurse, student, link));
 			Table tableLink = new Table(link);
 			tableLink.setNavn(studentName2);
@@ -164,8 +164,15 @@ public class MainPageController implements Initializable {
         //get reference to the button's stage         
         stage=(Stage) Logout.getScene().getWindow();
         
+        LoginController controller = new LoginController();
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+
+        loader.setController(controller);
+        root = (Parent) loader.load();
+        
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        
       	//create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet

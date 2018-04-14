@@ -36,7 +36,7 @@ public class Test_Login extends ApplicationTest {
         stage.show();
     }
 	
-	@Ignore
+	//@Ignore
 	@Test
 	public void testGyldigInlogging() {
 		clickOn("#brukernavn");
@@ -47,7 +47,7 @@ public class Test_Login extends ApplicationTest {
 		
 		FxAssert.verifyThat("#Profile", hasText("Profil")); //Finner profilknappen
 	}
-	@Ignore
+	//@Ignore
 	@Test
 	public void testUgyldigInlogging() {
 		

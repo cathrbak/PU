@@ -11,8 +11,8 @@
     -fx-font-size: 15px;
 }
 
-.button-orange {
-   -fx-background-color: linear-gradient(#ff8411, #ff8411);
+.button-other {
+   -fx-background-color: linear-gradient(#00788e, #00788e);
    -fx-font-weight: bold;
     -fx-background-radius: 5;
     -fx-background-insets: 0;
@@ -80,9 +80,9 @@
 
 .table-view2 {
 	-fx-base: #00788e;
-    -fx-control-inner-background:  #4ea9ac;
-    -fx-background-color: #4ea9ac;
-    -fx-table-cell-border-color: #4ea9ac;
-    -fx-table-header-border-color: #4ea9ac;
+    -fx-control-inner-background:  #d7e1e4;
+    -fx-background-color: #d7e1e4;
+    -fx-table-cell-border-color: #d7e1e4;
+    -fx-table-header-border-color: #d7e1e4;
     -fx-padding: 5;
 }

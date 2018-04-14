@@ -40,11 +40,7 @@ public class LoginControllerStudent {
 	public LoginControllerStudent() {
 		System.out.println("Oppretter database");
 		this.database= new RestClientImp();
-//		Scene scene=(Scene) button_nybruker.getScene();
-//		
-//		if(scene.getUserData() instanceof String) {
-//    			responsLabel.setText("Velkommen " + scene.getUserData() + "\n"+ "Skriv inn ditt nye brukernavn og passord");
-//		}
+		
 	}
 
 
@@ -86,7 +82,7 @@ public class LoginControllerStudent {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPageStudent.fxml"));
                 
-            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+            loader.setController(controller); //Legger kontrolleren inn i fxmlfilen
 
             root = (Parent) loader.load();
               //create a new scene with root and set the stage
@@ -104,9 +100,6 @@ public class LoginControllerStudent {
 		responsLabel.setText("");
 	}
 	
-	
-	
-	
 	private boolean loginOk() {
 		Student student=database.getStudent(studentbrukernavn.getText());
 		if(student==null) {
@@ -119,9 +112,7 @@ public class LoginControllerStudent {
 			return false;
 		}
 		return true;
-		
 	}
-	
 }
 
 

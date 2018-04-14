@@ -115,8 +115,13 @@ public class Ny_BrukerController {
 	    Parent root;
         //get reference to the button's stage         
         stage=(Stage) backButton.getScene().getWindow();
-        //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        LoginController controller= new LoginController("Velkommen " + firstName.getText()+ " " + familyName.getText());
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+
+        loader.setController(controller);
+        root = (Parent) loader.load();
+        
       	//create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet
@@ -135,7 +140,12 @@ public class Ny_BrukerController {
         //get reference to the button's stage         
         stage=(Stage) backButton.getScene().getWindow();
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        LoginController controller= new LoginController("Velkommen");
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+
+        loader.setController(controller);
+        root = (Parent) loader.load();
       	//create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet

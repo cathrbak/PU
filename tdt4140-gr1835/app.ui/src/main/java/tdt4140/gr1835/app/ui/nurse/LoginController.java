@@ -1,13 +1,16 @@
 package tdt4140.gr1835.app.ui.nurse;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import org.omg.CORBA.portable.IndirectionException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,7 +28,7 @@ import tdt4140.gr1835.app.database.UserDatabaseHandler;
 import tdt4140.gr1835.app.webclient.RESTClient;
 import tdt4140.gr1835.app.webclient.RestClientImp;
 
-public class LoginController{
+public class LoginController implements Initializable{
 	
 	@FXML
 	TextField brukernavn;
@@ -41,12 +44,16 @@ public class LoginController{
 	Label responsLabel;
 	
 	private RESTClient database;
+	private String melding;
+	
+	public LoginController(String welcomeMessage) {
+		this.database= new RestClientImp();
+		this.melding=welcomeMessage;
+	}
 	
 	public LoginController() {
 		this.database= new RestClientImp();
 	}
- 
-
 
 	@FXML
 	public void handleNyBrukerButton() throws IOException {
@@ -130,6 +137,15 @@ public class LoginController{
 			return false;
 		}
 		return true;
+	}
+	
+	@FXML
+	Label velkomst;
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		velkomst.setText(melding);
+		
 	}
 	
 }

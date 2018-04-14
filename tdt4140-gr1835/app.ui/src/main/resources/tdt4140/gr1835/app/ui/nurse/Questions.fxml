@@ -4,18 +4,19 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
-            <Label layoutX="61.0" layoutY="44.0" prefHeight="88.0" prefWidth="234.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
-            <GridPane layoutX="61.0" layoutY="189.0" prefHeight="295.0" prefWidth="678.0" styleClass="label_text" stylesheets="@stylesheet.css">
+            <Label layoutX="86.0" layoutY="19.0" prefHeight="88.0" prefWidth="311.0" styleClass="label_hovedoverskrifter" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+            <GridPane layoutX="58.0" layoutY="252.0" prefHeight="295.0" prefWidth="678.0" styleClass="label_text" stylesheets="@stylesheet.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="421.0" minWidth="10.0" prefWidth="344.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="334.0" />
@@ -47,8 +48,18 @@
                   <Label styleClass="label_text" stylesheets="@stylesheet.css" text="10. Jeg er opptatt av at ting må være perfekt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <Label layoutX="61.0" layoutY="141.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Svar: 1 - aldri, 2 - sjeldent, 3 - noen ganger, 4 - ofte, 5 - svært ofte" />
+            <Label layoutX="90.0" layoutY="166.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Svar: 1 - aldri, 2 - sjeldent, 3 - noen ganger, 4 - ofte, 5 - svært ofte" />
             <Button fx:id="returnButton" layoutX="651.0" layoutY="55.0" mnemonicParsing="false" onMouseReleased="#handleReturnButton" prefHeight="35.0" prefWidth="78.0" stylesheets="@stylesheet.css" text="Tilbake" />
+            <ImageView fitHeight="118.0" fitWidth="755.0" layoutX="20.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/flattextbox.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="95.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/heart_icon.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </content>
