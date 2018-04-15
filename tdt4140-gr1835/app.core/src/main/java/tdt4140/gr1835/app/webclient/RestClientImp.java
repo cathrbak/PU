@@ -151,11 +151,11 @@ public class RestClientImp implements RESTClient {
 	private JsonConverterService<Table> tableJsonConverter= new TableJsonConverter();
 
 	@Override
-	public boolean addNewSurvey(Table survey) {
+	public boolean addNewSurvey(String studentUsername, Table survey) {
 		String inputString=tableJsonConverter.convertToJason(survey);
 		int statuscode=0;
 		try {
-			statuscode = webclient.doPost("answers", inputString);
+			statuscode = webclient.doPost("students/"+studentUsername+"/answers", inputString);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

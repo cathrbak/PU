@@ -83,14 +83,17 @@ public class ConnectionSQL implements UserDatabaseHandler{
 				if(stmt.execute(query)) {
 					rs = stmt.getResultSet();
 					
-					if (!rs.isBeforeFirst() ) {    
-					    System.out.println("No data"); 
+					if (!rs.isBeforeFirst() ) {
 					    	return null;
 					} 
 				}
 			}
 			catch (SQLException e) {
-				System.out.println("SQLException: " + e.getMessage());
+				System.err.println("SQLException: " + e.getMessage());
+			}
+			
+			if(rs==null) {
+				throw new SQLException("Resultsettet er null");
 			}
 			
 			while(rs.next()) {
@@ -481,6 +484,12 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		closeConnection();
 	}
 	
+	public static void main(String[] args) {
+		ConnectionSQL database=new ConnectionSQL();
+		
+		
+	}
+	
 	
 	// sletter nå alle spørreundersøkseler knyttet til en studentID. Bør få inn dateTime her for å diskriminere undersøkelsene ytterligere.
 	public void deleteSurvey(Student student) throws SQLException{
@@ -544,7 +553,6 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	}
 	
 	
-	
 	private static String tableToStringConverter (Table survey) {
 		List<Integer> intList = new ArrayList<>();
 		intList.add(survey.getSpm1());
@@ -564,8 +572,6 @@ public class ConnectionSQL implements UserDatabaseHandler{
 		
 	}
 
-		
-	
 	private Table listToTableConverter(Student student, String anslist,Timestamp tstamp) throws SQLException {
 		int sum=0;
 		List<String> stringList= Arrays.asList(anslist.split(",")); //Deler opp strengen på komma, og lager en liste av den

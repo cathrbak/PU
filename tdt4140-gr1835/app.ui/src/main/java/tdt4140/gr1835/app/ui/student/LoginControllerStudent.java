@@ -40,29 +40,6 @@ public class LoginControllerStudent {
 	public LoginControllerStudent() {
 		System.out.println("Oppretter database");
 		this.database= new RestClientImp();
-//		Scene scene=(Scene) button_nybruker.getScene();
-//		
-//		if(scene.getUserData() instanceof String) {
-//    			responsLabel.setText("Velkommen " + scene.getUserData() + "\n"+ "Skriv inn ditt nye brukernavn og passord");
-//		}
-	}
-
-
-	@FXML
-	public void handleNyBrukerButton() throws IOException {
-		Stage stage; 
-	    Parent root;
-        //get reference to the button's stage         
-        stage=(Stage) studentbutton_nybruker.getScene().getWindow();
-        
-        //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("Ny_BrukerStudent.fxml"));
-      	//create a new scene with root and set the stage
-        Scene scene = new Scene(root);
-        //Legger på css stylesheetet
-        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        stage.setScene(scene);
-        stage.show();
 	}
 	
 	@FXML
@@ -89,7 +66,7 @@ public class LoginControllerStudent {
             loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
 
             root = (Parent) loader.load();
-              //create a new scene with root and set the stage
+            //create a new scene with root and set the stage
             Scene scene = new Scene(root);
             //Legger på css stylesheetet
             scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
@@ -103,9 +80,6 @@ public class LoginControllerStudent {
 	public void handleTextChange() {
 		responsLabel.setText("");
 	}
-	
-	
-	
 	
 	private boolean loginOk() {
 		Student student=database.getStudent(studentbrukernavn.getText());

@@ -53,7 +53,7 @@ public interface RESTClient {
 	public boolean createStudent(Student student);
 	
 //	/students/{username}/answers  : Oppretter et nytt svar på en undersøkelse
-	public boolean addNewSurvey(Table table);
+	public boolean addNewSurvey(String studentUsername, Table table);
 	
 //	/nurses/{username}/messages  : Oppretter en ny melding
 	public boolean newMessage(Message message);

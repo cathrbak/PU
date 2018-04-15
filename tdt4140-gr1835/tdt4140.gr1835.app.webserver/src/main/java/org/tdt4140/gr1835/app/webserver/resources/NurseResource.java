@@ -15,6 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import tdt3140.gr1835.app.json.JsonConverterService;
 import tdt3140.gr1835.app.json.ListOfStudentConverter;
@@ -60,16 +61,25 @@ public class NurseResource {
 	@GET
 	@Path("/{username}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getNurse(@PathParam ("username") String username) throws SQLException {
+	public Response getNurse(@PathParam ("username") String username) {
 		Nurse nurse;
 		if(nurses.stream().anyMatch(n -> n.getUsername().equals(username))) {
 			System.out.println("Fant nurse objektet lokalt, bruker denne");
 			nurse = nurses.stream().filter(n -> n.getUsername().equals(username)).collect(Collectors.toList()).get(0);
 		}else {
-			nurse= database.getNurse(username);
+			//Henter helsesøster
+			try {
+				nurse= database.getNurse(username);
+				if(nurse==null) {
+					return Response.status(Status.NOT_FOUND).entity("Finner ikke brukeren "+username+" i databasen").build();
+				}
+			} catch (SQLException e) {
+				return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+			}
 			nurses.add(nurse);
 		}
-		return objectConverter.convertToJason(database.getNurse(username));
+		String json=objectConverter.convertToJason(nurse);
+		return Response.ok().entity(json).build();
 	}
 	
 	/*
@@ -79,21 +89,32 @@ public class NurseResource {
 	@GET
 	@Path("/{username}/students")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getStudents(@PathParam ("username") String username) throws SQLException, Exception {
+	public Response getStudents(@PathParam ("username") String username){
 		Nurse nurse;
 		if(nurses.stream().anyMatch(n -> n.getUsername().equals(username))) {
 			System.out.println("Fant nurse objektet lokalt, bruker denne");
 			nurse = nurses.stream().filter(n -> n.getUsername().equals(username)).collect(Collectors.toList()).get(0);
 		}else {
-			System.out.println("Henter Nurseobjekt fra databasen");
+			//Henter helsesøster
 			try {
-				nurse = database.getNurse(username);
-			}catch (IllegalStateException e) {
-				System.err.println("404. Fant ikke ");
-				nurse=null;
+				nurse= database.getNurse(username);
+				if(nurse==null) {
+					return Response.status(Status.NOT_FOUND).entity("Finner ikke brukeren "+username+" i databasen").build();
+				}
+			} catch (SQLException e) {
+				return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
 			}
+			nurses.add(nurse);
 		}
-		return listConverter.convertToJason(database.getStudents(nurse));
+		List<Student> students;
+		try {
+			students = database.getStudents(nurse);
+		} catch (SQLException e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Databasefeil etter getStudents(): "+e.getMessage()).build();
+		}
+		String json = listConverter.convertToJason(students);
+		return Response.ok().entity(json).build();
+		
 	}
 	
 	
@@ -120,11 +141,10 @@ public class NurseResource {
 		try {
 			database.createNewNurse(nurse);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Databasefeil etter createNewNurse(): "+e.getMessage()).build();
 		}
-		return Response.status(201).build(); //201 Created
+		return Response.status(Status.CREATED).build();
 	}
 	
 	/*
@@ -137,17 +157,15 @@ public class NurseResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createMessage(String input){
 		JsonConverterService<Message> converter=new MessageJsonConverter();
-		System.out.println("create new Message:" + converter.convertToObject(input));
 		try {
 			Message convertToObject = converter.convertToObject(input);
 			System.out.println(convertToObject.getText()+convertToObject.getReciver());
 			database.createNewMessage(convertToObject);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-		return Response.status(201).build(); //201 Created
+		return Response.status(Status.CREATED).build();
 	}
 	
 	public static void main(String[] args) throws SQLException {
@@ -174,11 +192,9 @@ public class NurseResource {
 		try {
 			database.updateNurse(nurse);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-		return Response.status(204).build(); //204 Updated
+		return Response.ok().entity("Nurseobjekt oppdatert").build(); 
 	}
 	
 	@DELETE
@@ -189,11 +205,9 @@ public class NurseResource {
 		try {
 			database.deleteNurse(database.getNurse(username));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
 		}
-		return Response.status(204).build(); //201 Created
+		return Response.status(Status.NO_CONTENT).build();
 	}
 
 }

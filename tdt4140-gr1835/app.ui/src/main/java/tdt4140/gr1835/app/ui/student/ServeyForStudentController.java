@@ -8,24 +8,30 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import tdt4140.gr1835.app.core.Message;
+import tdt4140.gr1835.app.core.Nurse;
 import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
 import tdt4140.gr1835.app.ui.nurse.FxApp;
+import tdt4140.gr1835.app.webclient.RESTClient;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 
 public class ServeyForStudentController {
 
-	UserDatabaseHandler database;
+	RESTClient database;
 	private Student student;
 		public ServeyForStudentController(Student student) {
 			this.student = student;
-			this.database=new ConnectionSQL();
+			this.database=new RestClientImp();
 		}
 	
 		//Infotext
@@ -252,7 +258,20 @@ public class ServeyForStudentController {
 					IntAns.get(8), IntAns.get(9), IntAns.get(10), IntAns.get(11));
 			
 			System.out.println(answer);
-			database.createSurvey(answer);
+			boolean ok = database.addNewSurvey(student.getUsername(),answer);
+			if(!ok) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Feilmelding");
+				alert.setHeaderText(null);
+				alert.setContentText("Kunne ikke legge til undersøkelse. Prøv igjen!");
+				alert.showAndWait();
+			}else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Opprettet");
+				alert.setHeaderText(null);
+				alert.setContentText("Fullført! Takk for at du svarte på spørreundersøkelsen!");
+				alert.showAndWait();
+			}
 			handleBackButton();
 		}
 			

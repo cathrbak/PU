@@ -57,13 +57,10 @@ public class StudentResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getStudent(@PathParam ("username") String username) throws SQLException {
 		Student stud=database.getStudent(username);
-		System.out.println(stud);
 		if (stud==null) {
 			return Response.status(Status.NOT_FOUND).entity("Fant ikke student med brukernavn"+username).build();
 		}
-		return Response.ok().entity(studconverter.convertToJason(stud))
-				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_TYPE.withCharset("utf-8"))
-				.build();
+		return Response.ok().entity(studconverter.convertToJason(stud)).build();
 	}
 	
 	
@@ -89,16 +86,6 @@ public class StudentResource {
 		JsonConverterService<List<Table>> converterService=new ListOfTableConverter();
 		String convertToJason = converterService.convertToJason(tables);
 		return Response.ok().entity(convertToJason).build();
-	}
-	
-	public static void main(String[] args) {
-		StudentResource studentResource=new StudentResource();
-		String tables = (String) studentResource.getTables("norak").getEntity();
-		JsonConverterService<List<Table>> tableListJsonConverter= new ListOfTableConverter();
-		List<Table> convertToObject = tableListJsonConverter.convertToObject(tables);
-		for(Table table:convertToObject) {
-			System.out.println(table);
-		}
 	}
 	/*
 	 * /students/{username/id}/messages  : gir en liste med alle Message-objekter til denne
@@ -169,6 +156,15 @@ public class StudentResource {
 		}
 		return Response.status(201).build();
 	}
+	public static void main(String[] args) {
+		Table table = new Table(1,1,1,1,1,1,1,1,1,1,1,10);
+		JsonConverterService<Table> converter= new TableJsonConverter();
+		String json = converter.convertToJason(table);
+		StudentResource studentResource=new StudentResource();
+		studentResource.createTable(json);
+		System.out.println();
+	}
+	
 	
 	
 }

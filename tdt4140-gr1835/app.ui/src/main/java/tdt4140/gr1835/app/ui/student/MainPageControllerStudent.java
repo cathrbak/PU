@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -27,6 +28,7 @@ import tdt4140.gr1835.app.webclient.RESTClient;
 import tdt4140.gr1835.app.webclient.RestClientImp;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 
 public class MainPageControllerStudent implements Initializable {
 	
@@ -48,15 +50,41 @@ public class MainPageControllerStudent implements Initializable {
 	@FXML
 	RadioButton radioButton;
 	
-	public void handleAnonymousRadioButton() throws SQLException {
+	public void handleAnonymousRadioButton() {
 		if (radioButton.isSelected()) {
 		student.setAnonymous(true);
-		System.out.println("ON");
-		database.updateStudent(student);
+		boolean ok = database.updateStudent(student);
+		if(!ok) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Feilmelding");
+			alert.setHeaderText(null);
+			alert.setContentText("Kunne ikke endre annonymitet. Prøv igjen!");
+			alert.showAndWait();
+		}else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Oppdatert");
+			alert.setHeaderText(null);
+			alert.setContentText("Du er nå annonym for din helsesøster,"+ student.getNurse().getFirstName()+" "+student.getNurse().getSecondName()+".\n "
+					+ "Helsesøsteren vil fortsatt kunne kontakte deg, men ser ikke ditt navn på sin profil");
+			alert.showAndWait();
+		}
 		} else if (!radioButton.isSelected()) {
 			student.setAnonymous(false);
-			System.out.println("OFF");
-			database.updateStudent(student);
+			boolean ok = database.updateStudent(student);
+			if(!ok) {
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Feilmelding");
+				alert.setHeaderText(null);
+				alert.setContentText("Kunne ikke endre annonymitet. Prøv igjen!");
+				alert.showAndWait();
+			}else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Oppdatert");
+				alert.setHeaderText(null);
+				alert.setContentText("Du er ikke lenger annonym for din helsesøster, "+ student.getNurse().getFirstName()+" "+student.getNurse().getSecondName());
+				alert.showAndWait();
+			}
+			
 		}
 	}
 	

@@ -100,7 +100,7 @@ public class LoginController{
             loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
 
             root = (Parent) loader.load();
-              //create a new scene with root and set the stage
+            //create a new scene with root and set the stage
             Scene scene = new Scene(root);
             //Legger på css stylesheetet
             scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
