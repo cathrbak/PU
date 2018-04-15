@@ -12,6 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+
       <Text fill="#283243" layoutX="31.0" layoutY="57.20199966430664" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_hovedoverskrifter" text="Profil" wrappingWidth="235.0219955444336" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="16.0">
          <font>
             <Font name="Copperplate" size="36.0" />
@@ -44,13 +45,13 @@
             <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
         </columns>
       </TableView>
-      <Button fx:id="Anonymitet" layoutX="31.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleAnonymitetButton" prefHeight="29.0" prefWidth="110.0" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
-      <Label layoutX="441.0" layoutY="87.0" styleClass="label_text" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Trykk her for å endre anonymitet:&#10;" textFill="#e8e2e2">
+      <Button fx:id="Spørsmål" layoutX="31.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" prefHeight="29.0" prefWidth="110.0" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+      <Label layoutX="437.0" layoutY="130.0" styleClass="label_text" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Trykk her for å endre anonymitet:&#10;" textFill="#e8e2e2">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <RadioButton fx:id="radioButton" layoutX="674.0" layoutY="87.0" mnemonicParsing="false" onAction="#handleAnonymousRadioButton" prefHeight="18.0" prefWidth="83.0" text="Anonym" />
+      <RadioButton fx:id="radioButton" layoutX="670.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleAnonymousRadioButton" prefHeight="18.0" prefWidth="83.0" text="Anonym" />
       <Label layoutX="28.0" layoutY="386.0" styleClass="label_text" stylesheets="@stylesheet.css" text="For å svare på ny spørreundersøkelse, trykk her:" />
       <Button fx:id="newServey" layoutX="364.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleNewServeyButton" prefHeight="29.0" prefWidth="197.0" text="Ny spørreundersøkelse" />
       <Label fx:id="InnloggetStudent" layoutX="441.0" layoutY="25.0" prefHeight="18.0" prefWidth="197.0" styleClass="label_text" text="Label" />

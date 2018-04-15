@@ -37,31 +37,30 @@ public class ServeyForStudentController {
 		//Infotext
 		@FXML
 		Label infoText;
-	//Tilbakeknapp
-			@FXML
-			Button BackButton;
-			@FXML 
-			public void handleBackButton() throws SQLException, Exception {
-				//Ta meg til mainPage
+		//Tilbakeknapp
+		@FXML
+		Button BackButton;
+		@FXML 
+		public void handleBackButton() throws SQLException, Exception {
+			//Ta meg til mainPage
 	           
-	            
-	            Stage stage; 
-	            Parent root;
-	            //get reference to the button's stage        
-	            stage=(Stage) BackButton.getScene().getWindow();
+	        Stage stage; 
+	        Parent root;
+	        //get reference to the button's stage        
+	        stage=(Stage) BackButton.getScene().getWindow();
 	           
-	            MainPageControllerStudent controller= new MainPageControllerStudent(this.student);
-	            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPageStudent.fxml"));
-	            loader.setController(controller);
-	            root = (Parent) loader.load();
+	        MainPageControllerStudent controller= new MainPageControllerStudent(this.student);
+	        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPageStudent.fxml"));
+	        loader.setController(controller);
+	        root = (Parent) loader.load();
 	              
-	            Scene scene = new Scene(root);
-	            scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-	            stage.setScene(scene);
-	            stage.show();
+	        Scene scene = new Scene(root);
+	        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+	        stage.setScene(scene);
+	        stage.show();
 			}
 	
-	
+	//oppretter alle mulige svarknapper
 	@FXML
 	private RadioButton AB11;
 	@FXML
@@ -220,12 +219,10 @@ public class ServeyForStudentController {
 		buttons.add(AB103);
 		buttons.add(AB104);
 		buttons.add(AB105);
-		
-		
 	}
 	
-	
-	
+	//oppretter en ny spørreundersøkelse som sendes til database
+	//for deretter å sende brukeren til hovedsiden igjen.
 	public void handleSendAnswerButton() throws SQLException, Exception {
 		addToList();
 		IntAns.clear();
@@ -276,8 +273,6 @@ public class ServeyForStudentController {
 		}
 			
 		}
-			
-			
 			
 	}
 

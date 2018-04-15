@@ -25,7 +25,7 @@
                   <Font name="Copperplate" size="36.0" />
                </font>
             </Text>
-            <Button fx:id="sendMessageButton" layoutX="639.0" layoutY="257.0" mnemonicParsing="false" onMouseReleased="#handleSendMessageButton" prefHeight="29.0" prefWidth="141.0" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Send melding" textFill="#e8e2e2">
+            <Button fx:id="sendMessageButton" layoutX="639.0" layoutY="257.0" mnemonicParsing="false" onMouseReleased="#handleSendMessageButton" prefHeight="29.0" prefWidth="141.0" styleClass="button-other" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Send melding" textFill="#e8e2e2">
                <font>
                   <Font name="Lucida Console" size="13.0" />
                </font>
@@ -54,11 +54,6 @@
                   <TableColumn fx:id="Total" prefWidth="89.0" text="Total" />
                </columns>
             </TableView>
-            <ImageView fitHeight="150.0" fitWidth="186.0" layoutX="24.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image backgroundLoading="true" url="@Image/user_icon_profile.jpg" />
-               </image>
-            </ImageView>
             <Label alignment="CENTER_RIGHT" layoutX="275.0" layoutY="120.0" styleClass="label_text" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="E-post" />
             <Label alignment="CENTER_RIGHT" layoutX="221.0" layoutY="180.0" styleClass="label_text" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Telefonnummer" />
             <Label alignment="CENTER_RIGHT" layoutX="269.0" layoutY="240.0" styleClass="label_text" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Fakultet" />
@@ -83,6 +78,11 @@
               </yAxis>
             </LineChart>
             <Label layoutX="351.0" layoutY="505.0" prefHeight="37.0" prefWidth="436.0" styleClass="label_overskrift" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Studentens Utvikling" />
+            <ImageView fitHeight="285.0" fitWidth="198.0" layoutX="14.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/student.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </content>

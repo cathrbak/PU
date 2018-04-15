@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdt4140.gr1835.app.ui.nurse.LoginController">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
@@ -29,19 +29,19 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.8915100097656" minWidth="10.0" prefWidth="280.4317321777344" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="17.51776123046875" minHeight="4.45941162109375" prefHeight="5.3299560546875" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="44.81683349609375" minHeight="10.0" prefHeight="43.6700439453125" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="49.0186767578125" minHeight="10.0" prefHeight="20.51776123046875" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="50.093902587890625" minHeight="10.0" prefHeight="47.48223876953125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="34.192535400390625" minHeight="3.553314208984375" prefHeight="17.058380126953125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="58.472686767578125" minHeight="10.0" prefHeight="54.158477783203125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="52.220550537109375" minHeight="10.0" prefHeight="13.213165283203125" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="56.786834716796875" minHeight="10.0" prefHeight="56.786834716796875" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="56.786834716796875" minHeight="10.0" prefHeight="56.786834716796875" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="17.51776123046875" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="49.0186767578125" minHeight="0.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="34.192535400390625" minHeight="3.553314208984375" prefHeight="11.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="62.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="52.220550537109375" minHeight="10.0" prefHeight="12.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="56.786834716796875" minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-               	<TextField fx:id="brukernavn" onTextChange="#handleTextChange" prefHeight="47.0" prefWidth="281.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-               	<PasswordField fx:id="passord" onTextChange="#handleTextChange" prefHeight="44.0" prefWidth="281.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+               	<TextField fx:id="brukernavn" onTextChange="#handleTextChange" prefHeight="51.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+               	<PasswordField fx:id="passord" onTextChange="#handleTextChange" prefHeight="51.0" prefWidth="282.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="168.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#e8e2e2" GridPane.rowIndex="1">
                      <font>
                         <Font name="Lucida Console" size="18.0" />
@@ -92,6 +92,8 @@
                   <Image url="@Image/heart_icon.png" />
                </image>
             </ImageView>
+            <Label fx:id="responsLabel" layoutX="231.0" layoutY="512.0" />
+            <Label fx:id="velkomst" layoutX="231.0" layoutY="559.0" />
          </children>
       </AnchorPane>
    </content>

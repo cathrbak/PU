@@ -97,7 +97,7 @@ public class MainPageControllerStudent implements Initializable {
 	Button Logout;
 
 	@FXML
-	Button Anonymitet;
+	Button Spørsmål;
 	
 	@FXML 
 	TableView<Table> tableID;
@@ -107,6 +107,11 @@ public class MainPageControllerStudent implements Initializable {
 	TableColumn<Table, Integer> Spm1, Spm2, Spm3, Spm4, Spm5, Spm6, Spm7, Spm8, Spm9, Spm10;
 	@FXML 
 	TableColumn<Table, Integer> Total;
+	
+
+	
+	public int idNumber = 1;
+	public int total = 0;
 	
 	//lager listen som skal inneholde dataen
 	final ObservableList<Table> data = FXCollections.observableArrayList();
@@ -120,7 +125,6 @@ public class MainPageControllerStudent implements Initializable {
 			}
 		}
 		
-		
 	
 	@FXML
 	public void handleProfileButton() throws IOException {
@@ -133,7 +137,7 @@ public class MainPageControllerStudent implements Initializable {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileStudent.fxml"));
             
-            loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+            loader.setController(controller); //Legger til kontrolleren i fxmlfilen
 
             root = (Parent) loader.load();
           //create a new scene with root and set the stage
@@ -165,16 +169,15 @@ public class MainPageControllerStudent implements Initializable {
 	
 	
 	// Denne metoden fungerer
-	
 	@FXML
-	public void handleAnonymitetButton() throws IOException {
+	public void handleQuestionButton() throws IOException {
 		//Ta meg til mainPage
         System.out.println("Sender studentbruker til questionPage");
         
         Stage stage; 
         Parent root;
         //get reference to the button's stage        
-        stage=(Stage) Anonymitet.getScene().getWindow();
+        stage=(Stage) Spørsmål.getScene().getWindow();
         
         QuestionsControllerStudent controller= new QuestionsControllerStudent(this.student);//Lager en kontroller instans
 
