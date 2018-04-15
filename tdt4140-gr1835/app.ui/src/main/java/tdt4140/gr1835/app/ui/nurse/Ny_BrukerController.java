@@ -115,7 +115,8 @@ public class Ny_BrukerController {
 	    Parent root;
         //get reference to the button's stage         
         stage=(Stage) backButton.getScene().getWindow();
-        LoginController controller= new LoginController("Velkommen " + firstName.getText()+ " " + familyName.getText());
+        LoginController controller= new LoginController(" Velkommen " + firstName.getText()+ " " + familyName.getText() 
+        + "!" + "\n Logg inn med ditt valgte brukernavn og passord.");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 
@@ -140,7 +141,7 @@ public class Ny_BrukerController {
         //get reference to the button's stage         
         stage=(Stage) backButton.getScene().getWindow();
         //load up OTHER FXML document
-        LoginController controller= new LoginController("Velkommen");
+        LoginController controller= new LoginController("Velkommen til PsykiskHelse!");
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 

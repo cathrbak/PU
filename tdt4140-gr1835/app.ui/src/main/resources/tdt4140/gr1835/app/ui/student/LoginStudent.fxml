@@ -35,7 +35,7 @@
          <children>
          	<TextField fx:id="studentbrukernavn" onTextChange="#handleTextChange" prefHeight="46.0" prefWidth="224.0" stylesheets="@stylesheet.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          	<PasswordField fx:id="studentpassord" onTextChange="#handleTextChange" prefHeight="45.0" prefWidth="224.0" stylesheets="@stylesheet.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="studentbutton_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="48.0" prefWidth="224.0" stylesheets="@stylesheet.css" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="studentbutton_login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleLoginButton" prefHeight="48.0" prefWidth="224.0" styleClass="button-darkblue" stylesheets="@stylesheet.css" text="Logg inn" textFill="#e5e1e1" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -79,6 +79,11 @@
             <Image url="@Image/heart_icon.png" />
          </image>
       </ImageView>
-      <Label fx:id="responsLabel" layoutX="400.0" layoutY="450.0" prefHeight="26.0" prefWidth="333.0" styleClass="label_text" stylesheets="@stylesheet.css" text="" textFill="#e8e2e2" /> 
+      <Label fx:id="responsLabel" layoutX="400.0" layoutY="450.0" prefHeight="26.0" prefWidth="333.0" styleClass="label_text" stylesheets="@stylesheet.css" text="" textFill="#e8e2e2" />
+      <ImageView fitHeight="357.0" fitWidth="353.0" layoutX="18.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/1_1_140908115323_adesivo-decorativo---arvore-com-folhas-caindo-01_zps3vebuakw.png" />
+         </image>
+      </ImageView> 
    </children>
 </AnchorPane>

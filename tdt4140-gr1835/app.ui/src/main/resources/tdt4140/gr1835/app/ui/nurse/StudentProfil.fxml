@@ -25,7 +25,7 @@
                   <Font name="Copperplate" size="36.0" />
                </font>
             </Text>
-            <Button fx:id="sendMessageButton" layoutX="639.0" layoutY="257.0" mnemonicParsing="false" onMouseReleased="#handleSendMessageButton" prefHeight="29.0" prefWidth="141.0" styleClass="button-other" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Send melding" textFill="#e8e2e2">
+            <Button fx:id="sendMessageButton" layoutX="639.0" layoutY="257.0" mnemonicParsing="false" onMouseReleased="#handleSendMessageButton" prefHeight="29.0" prefWidth="141.0" style="-fx-background-color: #;" styleClass="button-turkis" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Send melding" textFill="#e8e2e2">
                <font>
                   <Font name="Lucida Console" size="13.0" />
                </font>
@@ -67,7 +67,7 @@
                </content>
             </ScrollPane>
             <Label layoutX="24.0" layoutY="505.0" prefHeight="37.0" prefWidth="121.0" styleClass="label_overskrift" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Notat" />
-            <Button id="saveButton" layoutX="250.0" layoutY="714.0" mnemonicParsing="false" onMouseReleased="#handleSaveButton" prefHeight="27.0" prefWidth="73.0" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Lagre" />
+            <Button id="saveButton" layoutX="250.0" layoutY="714.0" mnemonicParsing="false" onMouseReleased="#handleSaveButton" prefHeight="27.0" prefWidth="73.0" styleClass="button-darkblue" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Lagre" />
             <Button id="editButton" layoutX="146.0" layoutY="714.0" mnemonicParsing="false" onMouseReleased="#handleEditButton" prefHeight="29.0" prefWidth="93.0" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css" text="Rediger" />
             <LineChart fx:id="chart" layoutX="312.0" layoutY="523.0" prefHeight="260.0" prefWidth="500.0">
               <xAxis>
@@ -81,6 +81,11 @@
             <ImageView fitHeight="285.0" fitWidth="198.0" layoutX="14.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Image/student.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="116.0" fitWidth="101.0" layoutX="672.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Image/snakkeboble1.png" />
                </image>
             </ImageView>
          </children>

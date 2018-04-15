@@ -19,7 +19,7 @@
                </font>
             </TextArea>
             <Label layoutX="92.0" layoutY="33.0" styleClass="label_overskrift" stylesheets="@stylesheet.css" text="Melding" />
-            <Button fx:id="Button_Send" layoutX="428.0" layoutY="344.0" mnemonicParsing="false" onMouseReleased="#handleButton_Send" prefHeight="27.0" prefWidth="72.0" stylesheets="@stylesheet.css" text="Send" />
+            <Button fx:id="Button_Send" layoutX="428.0" layoutY="344.0" mnemonicParsing="false" onMouseReleased="#handleButton_Send" prefHeight="27.0" prefWidth="72.0" styleClass="button-turkis" stylesheets="@stylesheet.css" text="Send" />
             <Button fx:id="returnButton" layoutX="323.0" layoutY="344.0" mnemonicParsing="false" onMouseReleased="#handleReturnButton" prefHeight="27.0" prefWidth="83.0" stylesheets="@stylesheet.css" text="Tilbake" />
             <Label fx:id="messageRespons" layoutX="92.0" layoutY="349.0" visible="false" />
             <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">

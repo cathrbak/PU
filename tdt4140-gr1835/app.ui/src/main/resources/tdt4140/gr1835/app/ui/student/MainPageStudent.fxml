@@ -6,30 +6,28 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
 
-      <Text fill="#283243" layoutX="31.0" layoutY="57.20199966430664" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_hovedoverskrifter" text="Profil" wrappingWidth="235.0219955444336" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="16.0">
+      <Text fill="#283243" layoutX="101.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label_hovedoverskrifter" text="Profil" wrappingWidth="235.0219955444336" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="31.79800033569336">
          <font>
             <Font name="Copperplate" size="36.0" />
          </font>
       </Text>
-   <!--   <Button fx:id="Profile" layoutX="451.0" layoutY="18.0" mnemonicParsing="false" onMouseReleased="#handleProfileButton" prefHeight="29.0" prefWidth="67.0" stylesheets="@stylesheet.css" text="Profil" textFill="#e8e2e2" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="18.0">
-         <font>
-            <Font name="Lucida Console" size="13.0" />
-         </font></Button> -->
-      <Button fx:id="Logout" layoutX="682.0" layoutY="19.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="99.0" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="19.0">
+      <Button fx:id="Logout" layoutX="661.0" layoutY="45.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="99.0" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="45.0">
          <font>
             <Font name="Lucida Console" size="13.0" />
          </font>
          <effect>
             <Blend />
          </effect></Button>
-         <TableView fx:id="tableID" layoutX="28.0" layoutY="157.0" prefHeight="200.0" prefWidth="745.0" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="157.0">
+         <TableView fx:id="tableID" layoutX="28.0" layoutY="176.0" prefHeight="200.0" prefWidth="745.0" stylesheets="@stylesheet.css" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="176.0">
         <columns>
           <TableColumn fx:id="Dato" prefWidth="75.0" text="Dato" />
           <TableColumn fx:id="Spm1" prefWidth="60.0" text="Spm 1" />
@@ -45,15 +43,40 @@
             <TableColumn fx:id="Total" prefWidth="60.0" text="Total" />
         </columns>
       </TableView>
-      <Button fx:id="Spørsmål" layoutX="31.0" layoutY="84.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" prefHeight="29.0" prefWidth="110.0" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
-      <Label layoutX="437.0" layoutY="130.0" styleClass="label_text" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Trykk her for å endre anonymitet:&#10;" textFill="#e8e2e2">
+      <Button fx:id="Spørsmål" layoutX="31.0" layoutY="135.0" mnemonicParsing="false" onMouseReleased="#handleQuestionButton" prefHeight="29.0" prefWidth="110.0" styleClass="button-darkblue" stylesheets="@stylesheet.css" text="Spørsmål" textFill="#e8e2e2" />
+      <Label layoutX="437.0" layoutY="149.0" styleClass="label_text" stylesheets="@../../../../../../../../../../../../Documents/NTNU/PU/35/tdt4140-gr1835/app.ui/src/main/resources/tdt4140/gr1835/app/ui/stylesheet.css" text="Trykk her for å endre anonymitet:&#10;" textFill="#e8e2e2">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <RadioButton fx:id="radioButton" layoutX="670.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleAnonymousRadioButton" prefHeight="18.0" prefWidth="83.0" text="Anonym" />
-      <Label layoutX="28.0" layoutY="386.0" styleClass="label_text" stylesheets="@stylesheet.css" text="For å svare på ny spørreundersøkelse, trykk her:" />
-      <Button fx:id="newServey" layoutX="364.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleNewServeyButton" prefHeight="29.0" prefWidth="197.0" text="Ny spørreundersøkelse" />
-      <Label fx:id="InnloggetStudent" layoutX="441.0" layoutY="25.0" prefHeight="18.0" prefWidth="197.0" styleClass="label_text" text="Label" />
+      <RadioButton fx:id="radioButton" layoutX="670.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleAnonymousRadioButton" prefHeight="18.0" prefWidth="83.0" text="Anonym" />
+      <Label layoutX="28.0" layoutY="405.0" styleClass="label_text" stylesheets="@stylesheet.css" text="For å svare på ny spørreundersøkelse, trykk her:" />
+      <Button fx:id="newServey" layoutX="364.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleNewServeyButton" prefHeight="29.0" prefWidth="197.0" styleClass="button-orange" text="Ny spørreundersøkelse" />
+      <Label fx:id="InnloggetStudent" layoutX="538.0" layoutY="18.0" prefHeight="18.0" prefWidth="221.0" styleClass="label_text" />
+      <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="31.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/heart_icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="159.0" fitWidth="175.0" layoutX="7.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/Bilde1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="156.0" fitWidth="193.0" layoutX="205.0" layoutY="537.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/Bilde2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="163.0" fitWidth="175.0" layoutX="413.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/Bilde3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="160.0" fitWidth="175.0" layoutX="620.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Image/Bilde4.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
