@@ -248,7 +248,7 @@ public class ServeyForStudentController {
 				
 		}
 			IntAns.add(sum);
-			IntAns.add(0, 2);
+			IntAns.add(0, student.getStudentID());
 			System.out.println(this.student.toString());
 			Table answer = new Table(IntAns.get(0), IntAns.get(1), IntAns.get(2), 
 					IntAns.get(3), IntAns.get(4), IntAns.get(5), IntAns.get(6),IntAns.get(7), 

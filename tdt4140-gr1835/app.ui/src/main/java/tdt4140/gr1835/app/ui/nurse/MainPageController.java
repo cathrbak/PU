@@ -83,7 +83,6 @@ public class MainPageController implements Initializable {
 				}
 				List<Table> listOfAnswers = student.getAnswers();
 				for(Table answer: listOfAnswers) {
-					System.out.println(answer);
 					answer.setNavn(studentName); //legger til studentens navn i table-objektet
 					dataAnswers.add(answer);	 //legger det til i listen som skal vises i applikasjon
 					
@@ -115,7 +114,6 @@ public class MainPageController implements Initializable {
 			else {
 				studentName2 = student.getFirstName() + " " + student.getSecondName();
 			}
-			System.out.println(studentName2);
 			int studentID = student.getStudentID(); //henter studentens ID fra databasen
 			String studentid = Integer.toString(studentID);
 			Hyperlink link = new Hyperlink();
@@ -124,7 +122,6 @@ public class MainPageController implements Initializable {
 			link.setOnAction(new SendToStudentProfile(this.nurse, student, link));
 			Table tableLink = new Table(link);
 			tableLink.setNavn(studentName2);
-			System.out.println(tableLink.getNavn());
 			
 			dataStudents.add(tableLink); //legger til i listen som skal vises i tabellen
 		}				
