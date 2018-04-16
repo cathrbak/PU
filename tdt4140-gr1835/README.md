@@ -40,6 +40,8 @@ see this link for more info on how to do this.
 
 Locate the folder you imported earlier.
 
+Locate the Web Server-package. Start the server by right-clicking and selecting "Run as" -> "Maven build...". Type in "jetty:run" and click run.
+
 Locate the FxApp.java class in the UI-package. Try to run it by right-clicking and selecting Run FxApp.java.
 
 This will make the program up and running.
@@ -59,6 +61,8 @@ see this link for more info on how to do this.
 (This might work the same in other IDEs, but this setup was based on Java Eclipce) Open Java Eclipse.
 
 Locate the folder you imported earlier.
+
+Locate the Web Server-package. Start the server by right-clicking and selecting "Run as" -> "Maven build...". Type in "jetty:run" and click run.
 
 Locate the FxAppStudent.java class in the UI-package. Try to run it by right-clicking and selecting Run FxAppStudent.java.
 

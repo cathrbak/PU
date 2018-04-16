@@ -68,10 +68,14 @@ public class LoginController implements Initializable{
 	    Parent root;
         //get reference to the button's stage         
         stage=(Stage) button_nybruker.getScene().getWindow();
-        
+        Ny_BrukerController controller = new Ny_BrukerController();
+                   
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("Ny_Bruker.fxml"));
-      	//create a new scene with root and set the stage
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource("Ny_Bruker.fxml"));
+      	
+        loader.setController(controller);
+        root = (Parent) loader.load();
+        //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet
         scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());

@@ -17,12 +17,17 @@ import tdt4140.gr1835.app.core.Table;
 
 abstract class AbstractSQLHandler{
 
+	Connection con = null;
+	
 	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35&useSSL=false";
  
 	//Metoder for � opprette en kobling mellom applikasjonen og databasen
 	private Connection getConnection() throws SQLException{
-		return DriverManager.getConnection(dbURL);
-	}
+        if (con == null) {
+            con = DriverManager.getConnection(dbURL);
+        }
+        return con;
+    }
 	
 	public void closeConnection() throws SQLException {
 		getConnection().close();
@@ -123,7 +128,7 @@ abstract class AbstractSQLHandler{
 			nurse = getNurse(username);
 		} 
 		
-		closeConnection();
+		
 		return nurse; 
 	}
 
@@ -185,7 +190,7 @@ abstract class AbstractSQLHandler{
 				nurse.setPhoneNumber(phoneNumber);
 			}
 		}
-		closeConnection();
+		
 		return nurse; 
 	}
 	
@@ -228,7 +233,7 @@ abstract class AbstractSQLHandler{
 				studentID = rs.getInt("DatagiverID");
 			} 
 			
-			closeConnection();
+			
 			return studentID;
 		}
 		
@@ -252,7 +257,7 @@ abstract class AbstractSQLHandler{
 			while(rs.next()) {
 				nurseID = rs.getInt("HelsesosterID");
 			} 
-			closeConnection();
+			
 			return nurseID;
 		}
 		
@@ -276,7 +281,7 @@ abstract class AbstractSQLHandler{
 				loggID = rs.getString("LoggID");
 			} 
 			
-			closeConnection();
+			
 			return loggID;
 		}
 
@@ -324,7 +329,7 @@ abstract class AbstractSQLHandler{
 				}
 								
 			}
-			closeConnection();
+			
 			return message; 
 			
 			
@@ -351,7 +356,7 @@ abstract class AbstractSQLHandler{
 				student = getStudent(username);
 			} 
 			
-			closeConnection();
+			
 			return student; 
 		}
 
@@ -441,7 +446,7 @@ abstract class AbstractSQLHandler{
 				}
 				
 			}
-			closeConnection();
+			
 			return student;
 		}
 }

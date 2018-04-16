@@ -17,12 +17,18 @@ public class NurseHandler extends AbstractSQLHandler {
 	public void createNewNurse(Nurse nurse) throws SQLException{
 		try {
 			Statement stmt = getStatement();
+			
+			if(!isOnlyNurse(nurse.getFaculty())) {
+				throw new IllegalStateException("Det finnes en annen helsesøster under dette fakultetet.");
+			}
+			
 			String faculty;
 			if (nurse.getFaculty()!=null) {
 				faculty = nurse.getFaculty();
 			}else {
 				faculty = null;
 			}
+			
 			
 			String query = "INSERT INTO helsesoster(brukernavn, passord, fakultet, fornavn"
 					+ ", etternavn, email, telefonNr) VALUES ('" + nurse.getUsername() + "', '" +
@@ -37,7 +43,7 @@ public class NurseHandler extends AbstractSQLHandler {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 		
-		closeConnection();
+		
 		
 	}
 	
@@ -54,7 +60,7 @@ public class NurseHandler extends AbstractSQLHandler {
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 		
 	}
 	
@@ -77,7 +83,7 @@ public class NurseHandler extends AbstractSQLHandler {
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 	}
 	
 	public Nurse getNurse(String username) throws SQLException {
@@ -137,8 +143,35 @@ public class NurseHandler extends AbstractSQLHandler {
 				nurse.setPhoneNumber(phoneNumber);
 			}
 		}
-		closeConnection();
+		
 		return nurse; 
+	}
+	
+	public boolean isOnlyNurse(String facultyString) throws SQLException{
+		
+		int faculty = switchFacultyNametoID(facultyString);
+		ResultSet rs = null;
+		try {
+            String query = "SELECT * FROM helsesoster WHERE fakultet=" + faculty +";";
+            Statement stmt = getStatement();
+            
+            if(stmt.execute(query)) {
+                rs = stmt.getResultSet();
+                
+                if (!rs.isBeforeFirst() ) {    
+			    	return true;
+			}
+            }
+            
+        }
+        catch (SQLException e) {
+            System.out.println("SQLException: " + e.getMessage());
+        }
+        
+        
+        
+		return false;
+		
 	}
 	
 }

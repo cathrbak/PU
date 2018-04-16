@@ -15,13 +15,13 @@ public class SurveyHandler extends AbstractSQLHandler{
 			String query = "INSERT INTO svarlogg(DatagiverID, svarString) VALUES (" +survey.getPersonID() + ",'" + survey.getSpm1() + "," + survey.getSpm2() + ","  + survey.getSpm3() + ","  + survey.getSpm4() + ","  + survey.getSpm5() + ","
 					+ survey.getSpm6() + "," + survey.getSpm7() + ","  + survey.getSpm8() + "," + survey.getSpm9() + ","  + survey.getSpm10() + "');" ;
 			stmt.executeUpdate(query); 
-			System.out.println(query);
+			
 			
 		}
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 	}
 	
 	
@@ -38,7 +38,7 @@ public class SurveyHandler extends AbstractSQLHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();			
+				
 	}
 	
 }

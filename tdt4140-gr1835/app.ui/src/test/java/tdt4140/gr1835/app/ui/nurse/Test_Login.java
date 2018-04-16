@@ -55,7 +55,7 @@ public class Test_Login extends ApplicationTest {
 		
 		FxAssert.verifyThat("#Profile", hasText("Profil")); //Finner profilknappen
 	}
-	
+	@Ignore
 	@Test
 	public void testUgyldigBrukernavnInlogging() {
 		
@@ -77,7 +77,7 @@ public class Test_Login extends ApplicationTest {
 		
 		assertEquals(controller.responsLabel.getText(),"Brukeren finnes, men passordet er feil");
 	}
-	
+	@Ignore
 	@Test
 	public void testTomtPassordfelt() {
 		clickOn("#brukernavn");
