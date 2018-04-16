@@ -26,7 +26,6 @@ public class FxApp extends Application {
         scene_login.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         primaryStage.setScene(scene_login);
         primaryStage.show();
-        
     }
     
     public static void main(String[] args) {

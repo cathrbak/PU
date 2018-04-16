@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.ui.GitLab_CI_Setup;
+import tdt4140.gr1835.app.ui.nurse.LoginController;
 
 
 public class Test_LoginStudent extends ApplicationTest {
@@ -34,51 +35,61 @@ public class Test_LoginStudent extends ApplicationTest {
 	}
 	
 	Stage stage;
+	LoginControllerStudent controller;
 
 	@Override
     public void start(Stage stage) throws Exception {
 		this.stage=stage;
-        Parent root = FXMLLoader.load(getClass().getResource("LoginStudent.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginStudent.fxml"));
+        LoginControllerStudent controller=new LoginControllerStudent(true); //kjører i offlinemodus
+        loader.setController(controller);
+        this.controller=controller;
+        Parent root=loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 	
-	@Ignore
 	@Test
 	public void testGyldigInlogging() {
 		clickOn("#studentbrukernavn");
-		write("sverress");
+		write("offline");
 		push(KeyCode.TAB);
-		write("testpass");
+		write(" ");
 		clickOn("#studentbutton_login");
 		
 		FxAssert.verifyThat("#Logout", hasText("Logg ut")); //Finner profilknappen
 	}
 	
-	@Ignore
 	@Test
-	public void testUgyldigInlogging() {
+	public void testUgyldigBrukernavnInlogging() {
 		
-		//Prøver ugyldig bruker
 		clickOn("#studentbrukernavn");
-		write("sver");
+		write("sverre");
 		push(KeyCode.TAB);
-		write("s");
+		write("");
 		clickOn("#studentbutton_login");
 		
-		FxAssert.verifyThat("#responsLabel", hasText("Ugyldig bruker")); //Sjekker om vi får riktig respons
-		
-		//Prover gyldig bruker med feil passord - funker
+		assertEquals(controller.responsLabel.getText(),"Denne studenten finnes ikke i våre systemer");
+	}
+	@Test
+	public void testUgyldigpassordInlogging() {
 		clickOn("#studentbrukernavn");
-		write("ress");
+		write("offline");
 		push(KeyCode.TAB);
-		write("ss");
+		write("asd");
 		clickOn("#studentbutton_login");
 		
-		FxAssert.verifyThat("#responsLabel", hasText("Brukeren finnes, men passordet er feil")); //Sjekker om vi får riktig respons
+		assertEquals(controller.responsLabel.getText(),"Brukeren finnes, men passordet er feil");
+	}
+	
+	@Test
+	public void testTomtPassordfelt() {
+		clickOn("#studentbrukernavn");
+		write("offline");
+		clickOn("#studentbutton_login");
 		
-		
+		assertEquals(controller.responsLabel.getText(),"Du må skrive inn et passord");
 	}
 }
 
