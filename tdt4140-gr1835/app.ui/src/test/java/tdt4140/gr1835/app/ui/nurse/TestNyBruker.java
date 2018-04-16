@@ -89,5 +89,38 @@ public class TestNyBruker extends ApplicationTest {
 		push(KeyCode.TAB);
 		write("NN");
 		FxAssert.verifyThat("#facultyRespons", hasText("Dette fakultetet eksisterer ikke"));
+		
+		clickOn("#backButton");
 	}
+	
+//	@Test
+//	public void testValidUser() {
+//		clickOn("#button_nybruker");
+//		
+//		clickOn("#firstName");
+//		write("Janine");
+//		push(KeyCode.TAB);
+//		write("Stang");
+//		push(KeyCode.TAB);
+//		write("janines");
+//		
+//		push(KeyCode.TAB);
+//		write("hallo");
+//		push(KeyCode.TAB);
+//		write("hallo");
+//		
+//		push(KeyCode.TAB);
+//		write("janine@stud");
+//
+//		push(KeyCode.TAB);
+//		write("janine@stud");
+//		
+//		push(KeyCode.TAB);
+//		write("98765432");
+//
+//		push(KeyCode.TAB);
+//		write("VM");
+//
+//		clickOn("#button_register");
+//	}
 }
