@@ -8,29 +8,6 @@
 		<artifactId>tdt4140-gr1835</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
-	<profiles>
-		<profile>
-			<id>gitlab-ci</id>
-			<activation>
-				<property>
-					<name>gitlab-ci</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<properties>
-				<skip-ui-tests>true</skip-ui-tests>
-			</properties>
-			<dependencies>
-				<dependency>
-		            <groupId>org.testfx</groupId>
-		            <artifactId>openjfx-monocle</artifactId>
-		            <version>8u76-b04</version> <!-- jdk-9+181 for Java 9 -->
-		            <scope>test</scope>
-		        </dependency>
-			</dependencies>
-		</profile>
-	</profiles>
 
 	<dependencyManagement>
 	  <dependencies>
@@ -45,29 +22,12 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.9.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.9.3</version>
-		</dependency>
-		
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
     			<groupId>com.google.code.gson</groupId>
     			<artifactId>gson</artifactId>
    			<version>2.8.2</version>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -78,29 +38,21 @@
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
 			<version>1.3</version>
-		<scope>test</scope>
+			<scope>test</scope>
 		</dependency>
-    		
-	  <dependency>
-	    <groupId>org.jdbi</groupId>
-	    <artifactId>jdbi3-core</artifactId>
-	  </dependency>
-	  <dependency>
-	    <groupId>org.jdbi</groupId>
-	    <artifactId>jdbi3-sqlobject</artifactId>
-	    <version>3.1.0</version>
-	   </dependency>
+	  	<dependency>
+	    		<groupId>org.jdbi</groupId>
+	    		<artifactId>jdbi3-core</artifactId>
+	  	</dependency>
+	 	<dependency>
+	    		<groupId>org.jdbi</groupId>
+	    		<artifactId>jdbi3-sqlobject</artifactId>
+	    		<version>3.1.0</version>
+	   	</dependency>
 	   <dependency>
     			<groupId>mysql</groupId>
     			<artifactId>mysql-connector-java</artifactId>
     			<version>5.1.45</version>
-		</dependency>
-		
-		<!-- Random navn generator -->
-		<dependency>
-    			<groupId>com.github.javafaker</groupId>
-    			<artifactId>javafaker</artifactId>
-    			<version>0.14</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
@@ -109,21 +61,11 @@
 		    <version>4.5.5</version>
 		</dependency>
     	</dependencies>
-    	
-    	
-
 	<build>
 		<plugins>
 		<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-                <excludes>
-                    <exclude>
-                        test/AppTest.java
-              </exclude>
-                </excludes>
-            </configuration>
         </plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -147,5 +89,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 </project>

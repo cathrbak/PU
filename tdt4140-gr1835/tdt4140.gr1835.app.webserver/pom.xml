@@ -47,30 +47,32 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
-        <!-- Java 6 = JAX-B Version 2.0   -->
-<!-- Java 7 = JAX-B Version 2.2.3 -->
-<!-- Java 8 = JAX-B Version 2.2.8 -->
-<dependency>
-   <groupId>javax.xml.bind</groupId>
-   <artifactId>jaxb-api</artifactId>
-   <version>2.2.11</version>
-</dependency>
-<dependency>
-   <groupId>com.sun.xml.bind</groupId>
-   <artifactId>jaxb-core</artifactId>
-   <version>2.2.11</version>
-</dependency>
-<dependency>
-   <groupId>com.sun.xml.bind</groupId>
-   <artifactId>jaxb-impl</artifactId>
-   <version>2.2.11</version>
-</dependency>
   </dependencies>
   
   
   <build>
     <finalName>tdt4140.gr1835.app.webserver</finalName>
     <plugins>
+    	  <plugin>
+		<groupId>org.jacoco</groupId>
+		<artifactId>jacoco-maven-plugin</artifactId>
+		<version>0.8.0</version>
+		<executions>
+			<execution>
+				<id>pre-unit-test</id>
+				<goals>
+					<goal>prepare-agent</goal>
+				</goals>
+			</execution>
+			<execution>
+				<id>post-unit-test</id>
+				<phase>test</phase>
+				<goals>
+					<goal>report</goal>
+				</goals>
+			</execution>
+		</executions>
+	</plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>2.5.1</version>
@@ -81,13 +83,55 @@
         </configuration>
     </plugin>
 	<plugin>
+	<!-- http://maven.apache.org/surefire/maven-failsafe-plugin/usage.html#Using_jetty_and_maven-failsafe-plugin -->
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>9.2.4.v20141103</version>
         <configuration>
             <scanIntervalSeconds>5</scanIntervalSeconds>
+			<stopKey>STOP</stopKey>
+			<stopPort>8005</stopPort>
         </configuration>
+        	<executions>
+			<execution>
+            <id>start-jetty</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <configuration>
+              <scanIntervalSeconds>0</scanIntervalSeconds>
+              <daemon>true</daemon>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-jetty</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+		</executions>
     </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.21.0</version>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>integration-test</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>verify</id>
+            <goals>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>

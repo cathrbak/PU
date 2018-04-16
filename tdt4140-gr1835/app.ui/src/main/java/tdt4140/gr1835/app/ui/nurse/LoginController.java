@@ -180,6 +180,9 @@ public class LoginController implements Initializable{
 			nyNurse.setEmail("jajaja@gmail.com");
 			nyNurse.setFirstName("Sos");
 			nyNurse.setPassword(" ");
+			if(!brukernavn.getText().equals("offline")) {
+				nyNurse=null;
+			}
 		}else {
 			nyNurse= database.getNurse(brukernavn.getText());
 		}
@@ -188,14 +191,15 @@ public class LoginController implements Initializable{
 			responsLabel.setText("Brukeren eksisterer ikke i våre systemer");
 			return false;
 		}
-		if(!nyNurse.getPassword().equals(passord.getText())) {
-			responsLabel.setText("Brukeren finnes, men passordet er feil");
-			return false;
-		}
 		if(passord.getText().equals("")) {
 			responsLabel.setText("Du må skrive inn et passord");
 			return false;
 		}
+		if(!nyNurse.getPassword().equals(passord.getText())) {
+			responsLabel.setText("Brukeren finnes, men passordet er feil");
+			return false;
+		}
+		
 		return true;
 	}
 	
