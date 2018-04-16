@@ -3,6 +3,8 @@ package tdt4140.gr1835.app.ui.nurse;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -45,6 +47,7 @@ public class LoginController implements Initializable{
 	
 	private RESTClient database;
 	private String melding;
+	private boolean offline=false;
 	
 	public LoginController(String welcomeMessage) {
 		this.database= new RestClientImp();
@@ -53,6 +56,10 @@ public class LoginController implements Initializable{
 	
 	public LoginController() {
 		this.database= new RestClientImp();
+	}
+	
+	public LoginController(boolean offline) {
+		this.offline=true;
 	}
 
 	@FXML
@@ -75,30 +82,73 @@ public class LoginController implements Initializable{
 	@FXML
 	public void handleLoginButton() throws Exception {
 		if(loginOk()) {
+			Nurse nurse;
+			if(offline) {
+				nurse=new Nurse("offline");
+				nurse.setFaculty("MH");
+				nurse.setEmail("jajaja@gmail.com");
+				nurse.setFirstName("Sos");
+				nurse.setPassword(" ");
+				
+				Student testStudent = new Student("testStudentUN");
+				testStudent.setStudentID(12);
+				testStudent.setPassword("testPass");
+				testStudent.setFaculty("MH");
+				testStudent.setAnonymous(false);
+				testStudent.setFirstName("Jonas");
+				testStudent.setSecondName("Haga");
+				testStudent.setSex("mann");
+				testStudent.setEmail("jonas@gmail.com");
+				testStudent.setPhoneNumber("46952270");
+				testStudent.setNotat("Dette er et notat");
+				
+				
+				Student testSurveyStudent = new Student("testStudentSUR");
+				testSurveyStudent.setStudentID(11);
+				testSurveyStudent.setPassword("surveypass");
+				testSurveyStudent.setFaculty("MH");
+				testSurveyStudent.setAnonymous(false);
+				testSurveyStudent.setFirstName("Hans");
+				testSurveyStudent.setSecondName("Ovanger");
+				testSurveyStudent.setSex("mann");
+				testSurveyStudent.setEmail("hans@gmail.com");
+				testSurveyStudent.setPhoneNumber("46952270");
+				testSurveyStudent.setNotat("Dette er et annet notat");
+				
+				nurse.setStudents(Arrays.asList(testStudent,testSurveyStudent));
+		        
+		        Table table=new Table(12,2,3,4,4,2,3,2,3,4,3,30);
+		        table.setDato(new Timestamp(System.currentTimeMillis()));
+		        testStudent.addAnswer(table);
+		        Table table1=new Table(11,2,3,4,4,2,3,2,3,4,3,30);
+		        table1.setDato(new Timestamp(System.currentTimeMillis()));
+		        testSurveyStudent.addAnswer(table1);
+		        
+			}else {
+				System.out.println("henter helsesøster fra databsen");
+	            nurse=database.getNurse(brukernavn.getText());
+	            
+	            System.out.println("henter studenter");
+	            List<Student> students = database.getStudents(nurse.getUsername());
+	            students.stream().forEach(student->System.out.println(student.getUsername()));
+	            nurse.setStudents(students);
+	            
+	            
+	            
+	            System.out.println("henter undersøkelser og student id");
+	            for(Student student : nurse.getStudents()) {
+	        			System.out.println("Svar for "+student.getUsername());
+	            		List<Table> answers = database.getAnswers(student.getUsername());
+	            		answers.stream().forEach(a->System.out.println(a));
+	            		student.setAnswers(answers);
+	            }
+			}
 			
             System.out.println("logincheck passed, taking user to loading screen");
             Stage stage; 
             Parent root;
             //get reference to the button's stage        
             stage=(Stage) button_login.getScene().getWindow();
-       
-            System.out.println("henter helsesøster fra databsen");
-            Nurse nurse=database.getNurse(brukernavn.getText());
-            
-            System.out.println("henter studenter");
-            List<Student> students = database.getStudents(nurse.getUsername());
-            students.stream().forEach(student->System.out.println(student.getUsername()));
-            nurse.setStudents(students);
-            
-            
-            
-            System.out.println("henter undersøkelser og student id");
-            for(Student student : nurse.getStudents()) {
-        			System.out.println("Svar for "+student.getUsername());
-            		List<Table> answers = database.getAnswers(student.getUsername());
-            		answers.stream().forEach(a->System.out.println(a));
-            		student.setAnswers(answers);
-            }
             
             MainPageController controller= new MainPageController(nurse);//Lager en kontroller instans
 
@@ -121,9 +171,19 @@ public class LoginController implements Initializable{
 		responsLabel.setText("");
 	}
 	
-	private boolean loginOk() throws Exception {
+	private boolean loginOk() {
 		System.out.println("Prøver å hente Nurseobjekt fra databasen");
-		Nurse nyNurse= database.getNurse(brukernavn.getText());
+		Nurse nyNurse;
+		if(offline) {
+			nyNurse=new Nurse("offline");
+			nyNurse.setFaculty("OK");
+			nyNurse.setEmail("jajaja@gmail.com");
+			nyNurse.setFirstName("Sos");
+			nyNurse.setPassword(" ");
+		}else {
+			nyNurse= database.getNurse(brukernavn.getText());
+		}
+		
 		if(nyNurse==null) {
 			responsLabel.setText("Brukeren eksisterer ikke i våre systemer");
 			return false;
