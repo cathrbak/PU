@@ -162,3 +162,9 @@
 #PersonID table-cell{
 	-fx--alignment: center-left;
 }
+
+.label-error {
+	-fx-font-family: Consolas;
+	-fx-font-size: 15px;
+	-fx-text-fill: #cb0000;
+}

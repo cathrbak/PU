@@ -93,13 +93,14 @@ public class MessageController {
 	}
 	
 	@FXML
-	Label messageRespons;
+	Label MessageResponse;
 	
+	@FXML
 	public void handleTextboxChange() {   			//metode for å vise felt til bruker om at melding er for lang,
-		messageRespons.setVisible(false);			//samt sette meldingsteksten til å være det brukeren skriver inn.
+		MessageResponse.setVisible(false);			//samt sette meldingsteksten til å være det brukeren skriver inn.
 		if(textbox.getText().length() > 250) {
-			textbox.setText("Meldingen er for lang. Kan ikke overgå 255 tegn.");
-			textbox.setVisible(true);
+			MessageResponse.setText("Meldingen er for lang. Kan ikke overgå 250 tegn.");
+			MessageResponse.setVisible(true);
 		}
 	}
 
