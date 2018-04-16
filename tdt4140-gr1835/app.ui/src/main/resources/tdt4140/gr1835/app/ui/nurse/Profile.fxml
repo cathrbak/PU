@@ -52,7 +52,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="username" prefHeight="18.0" prefWidth="235.0" stylesheets="@stylesheet.css" textFill="#283243" GridPane.columnIndex="1">
+                  <Label fx:id="username" prefHeight="18.0" prefWidth="235.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#283243" GridPane.columnIndex="1">
                      <font>
                         <Font name="Lucida Console" size="13.0" />
                      </font></Label>
@@ -61,19 +61,19 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="email" prefHeight="18.0" prefWidth="248.0" stylesheets="@stylesheet.css" textFill="#283243" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="email" prefHeight="18.0" prefWidth="248.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#283243" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label prefHeight="33.0" prefWidth="126.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Fakultet:" textFill="#e8e2e2" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="faculty" prefHeight="18.0" prefWidth="260.0" stylesheets="@stylesheet.css" textFill="#283243" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="faculty" prefHeight="18.0" prefWidth="260.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#283243" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label prefHeight="33.0" prefWidth="157.0" styleClass="label_text" stylesheets="@stylesheet.css" text="Telefonnummer:" textFill="#e8e2e2" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="phonenumber" prefHeight="18.0" prefWidth="249.0" stylesheets="@stylesheet.css" textFill="#283243" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="phonenumber" prefHeight="18.0" prefWidth="249.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#283243" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label fx:id="username1" layoutX="156.0" layoutY="24.0" prefHeight="18.0" prefWidth="235.0" styleClass="label_text" stylesheets="@stylesheet.css" textFill="#283243" />
                </children>
             </GridPane>
@@ -82,6 +82,7 @@
                   <Image url="@Image/heart_icon.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="301.0" fitWidth="276.0" layoutX="437.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </content>
