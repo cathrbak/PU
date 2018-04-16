@@ -103,10 +103,10 @@ public abstract class User {
 
 	public void setPhoneNumber(String phoneNumber) {
 		if (!containsOnlyNumbers(phoneNumber)) {
-			throw new IllegalArgumentException("Mobilnummer skal kunn inneholde tall. Det gjør ikke din input: "+ phoneNumber);
+			throw new IllegalArgumentException("Mobilnummer skal kunn inneholde tall");
 		}
 		if(phoneNumber.length()!=8) {
-			throw new IllegalArgumentException("Mobilnummer skal ikke være lenger eller kortere enn 8 siffer. Det gjør ikke din input: "+ phoneNumber);
+			throw new IllegalArgumentException("Mobilnummer skal ikke være lenger eller kortere enn 8 siffer");
 		}
 		this.phoneNumber=phoneNumber;
 		

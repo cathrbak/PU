@@ -33,6 +33,7 @@ public class TestNyBruker extends ApplicationTest {
 	
 	@BeforeClass
 	public static void headless() {
+		System.out.println("Starter Test Ny Bruker");
 		GitLab_CI_Setup.init();
 	}
 
@@ -53,96 +54,40 @@ public class TestNyBruker extends ApplicationTest {
         stage.show();
     }
 	
-	@Ignore
 	@Test
-	public void testFeilBrukerInnlogging() {
-		
-	// Klikker meg over til Opprett ny bruker vinduet
-	// Man bruker fx:id identifikatoren fra FXML filen inne i clickOn metoden
+	public void testErrorMessages() {
 		clickOn("#button_nybruker");
-	
-	// Trykker videre på first name tekstboksen, fyller inn, og bruker tab for å komme til neste felt
-	// Feil inntasting
-	    	clickOn("#firstName");
-		write("N0ra");
-		push(KeyCode.TAB);
-		write("Kallager");
-		push(KeyCode.TAB);
-		write("norak");
-		push(KeyCode.TAB);
-		write("k");
-		push(KeyCode.TAB);
-		write("k");
-		push(KeyCode.TAB);
-		write("norak@stud.ntnu.no");
-		push(KeyCode.TAB);
-		write("norak@stud.ntnu.no");
-		push(KeyCode.TAB);
-		write("46839737");
-		push(KeyCode.TAB);
-		write("IE");
 		
-		// prøver å lage ny ugyldig bruker
-		clickOn("#button_registrer");
-		
-		try {
-			FxAssert.verifyThat("#infotext", hasText("Kan ikke opprette ugyldig bruker"));
-		}
-		catch (IllegalArgumentException e){
-			assertFalse("Fikk IllegalArgumentException etter å sette inn gyldig argument",e.getClass().equals(IllegalArgumentException.class));
-		}
 		clickOn("#firstName");
-		push(KeyCode.LEFT);
-		push(KeyCode.LEFT);
-		push(KeyCode.BACK_SPACE);
-		write("o");
-		clickOn("#button_registrer");
+		write("Nora1");
+		FxAssert.verifyThat("#firstNameRespons", hasText("Fornavn skal kun inneholde bokstaver"));
 		
-		FxAssert.verifyThat("#infotext", hasText("Det eksisterer en bruker med dette brukernavnet"));
-	}
-	
-	@Ignore
-    @Test
-    public void testNyBrukerKorrektInnlogging() {
-    	
-    //Klikker meg over til Opprett ny bruker vinduet
-    	//Man bruker fx:id identitikatoren fra FXML filen inne i clickOn metoden. 
-    		clickOn("#button_nybruker");
-    		
-    	//Trykker videre på first name tekstboksen, fyller inn, og bruker tab for å komme til neste felt.
-    	// Riktig inntasting 
-    		clickOn("#firstName");
-    		write("Tore");
-    		push(KeyCode.TAB);
-    		write("Sagen");
-    		push(KeyCode.TAB);
-    		write("toresagen");
-    		push(KeyCode.TAB);
-    		write("t");
-    		push(KeyCode.TAB);
-    		write("t");
-    		push(KeyCode.TAB);
-    		write("tores@stud.ntnu.no");
-    		push(KeyCode.TAB);
-    		write("tores@stud.ntnu.no");
-    		push(KeyCode.TAB);
-    		write("48739828");
-    		push(KeyCode.TAB);
-    		write("IE");
-    		clickOn("#button_registrer");
-    		
-    	//Prøver så å logge inn
-		clickOn("#brukernavn");
-		write("toresagen");
 		push(KeyCode.TAB);
-		write("t");
-		clickOn("#button_login");
-		FxAssert.verifyThat("#Profile", hasText("Profil")); //Finner profilknappen
-    }
-    
-    
- 
-    
-    
+		write("Kallager1");
+		FxAssert.verifyThat("#familyNameRespons", hasText("Etternavn skal kun inneholde bokstaver"));
 
+		push(KeyCode.TAB);
+		write("norak1");
+		
+		push(KeyCode.TAB);
+		write("hallo");
+		push(KeyCode.TAB);
+		write("hallo");
+		
+		push(KeyCode.TAB);
+		write("norak@");
+		FxAssert.verifyThat("#emailRespons", hasText("Ugyldig email"));
+		write("stud");
+		push(KeyCode.TAB);
+		write("norak@");
+		FxAssert.verifyThat("#repeatEmailRespons", hasText("Emailene er ikke like"));
+		write("stud");
+		
+		push(KeyCode.TAB);
+//		write("12345678");
+
+		push(KeyCode.TAB);
+		write("NN");
+		FxAssert.verifyThat("#facultyRespons", hasText("Dette fakultetet eksisterer ikke"));
+	}
 }

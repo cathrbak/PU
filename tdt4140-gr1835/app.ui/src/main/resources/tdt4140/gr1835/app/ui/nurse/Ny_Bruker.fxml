@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" >
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane prefHeight="750.0" prefWidth="800.0" styleClass="root" stylesheets="@stylesheet.css">
          <children>
@@ -109,7 +109,7 @@
                   <Label fx:id="repeatPassordRespons" prefHeight="17.0" prefWidth="351.0" text="repeatPassordRespons" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                   <Label fx:id="emailRespons" prefHeight="17.0" prefWidth="356.0" text="emailRespons" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                   <Label fx:id="repeatEmailRespons" prefHeight="17.0" prefWidth="349.0" text="repeatEmailRespons" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                  <Label fx:id="phoneNumberRespons" prefHeight="17.0" prefWidth="369.0" text="phoneNumberRespons" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <Label fx:id="phoneNumberResponse" prefHeight="17.0" prefWidth="369.0" text="phoneNumberRespons" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                   <Label fx:id="facultyRespons" prefHeight="17.0" prefWidth="357.0" text="facultyRespons" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="8" />
                </children>
             </GridPane>
