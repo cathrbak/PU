@@ -86,11 +86,6 @@ public class ConnectionSQLTest {
 		udh.deleteStudent(testStudent);
 		udh.deleteStudent(testSurveyStudent);
 		udh.closeConnection();
-//		udh.deleteStudent(udh.getStudent("haraldmu"));
-//		udh.deleteStudent(udh.getStudent("alexoh"));
-//		udh.deleteStudent(udh.getStudent("petter"));
-
-//		deleteStudent over gir nullPointer. Fjerne?
 		
 		
 		udh.closeConnection();
