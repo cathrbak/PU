@@ -38,7 +38,7 @@
                   <Blend />
                </effect>
             </Button>
-            <TableView fx:id="tableID" layoutX="24.0" layoutY="297.0" prefHeight="200.0" prefWidth="760.0" style="-fx-background-color: e8e2e2;" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css">
+            <TableView fx:id="tableID" layoutX="24.0" layoutY="297.0" prefHeight="200.0" prefWidth="760.0" stylesheets="@../../../../../../../../target/classes/tdt4140/gr1835/app/ui/nurse/stylesheet.css">
                <columns>
                   <TableColumn fx:id="Dato" prefWidth="110.0" text="Dato" />
                   <TableColumn fx:id="Spm1" prefWidth="55.0" text="Spm 1" />
