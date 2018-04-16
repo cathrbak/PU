@@ -160,6 +160,7 @@ public class Ny_BrukerController {
 	@FXML
 	Label firstNameRespons;
 	
+	@FXML
 	public void handleFirstNameTextChange() {
 		firstNameRespons.setVisible(false);
 		try {

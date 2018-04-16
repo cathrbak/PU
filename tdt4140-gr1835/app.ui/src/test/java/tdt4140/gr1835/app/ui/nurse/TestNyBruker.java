@@ -36,15 +36,24 @@ public class TestNyBruker extends ApplicationTest {
 		GitLab_CI_Setup.init();
 	}
 
+
+	Stage stage;
+	LoginController controller;
+
 	@Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+		this.stage=stage;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        LoginController controller=new LoginController(true); //kjører i offlinemodus
+        loader.setController(controller);
+        this.controller=controller;
+        Parent root=loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 	
-	@Ignore
+	
 	@Test
 	public void testFeilBrukerInnlogging() {
 		
@@ -92,7 +101,7 @@ public class TestNyBruker extends ApplicationTest {
 		FxAssert.verifyThat("#infotext", hasText("Det eksisterer en bruker med dette brukernavnet"));
 	}
 	
-	@Ignore
+	
     @Test
     public void testNyBrukerKorrektInnlogging() {
     	
@@ -120,6 +129,7 @@ public class TestNyBruker extends ApplicationTest {
     		write("48739828");
     		push(KeyCode.TAB);
     		write("IE");
+    		clickOn("#button_registrer");
     		
     	//Prøver så å logge inn
 		clickOn("#brukernavn");
