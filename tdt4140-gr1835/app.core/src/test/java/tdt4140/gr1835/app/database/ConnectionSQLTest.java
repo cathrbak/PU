@@ -29,9 +29,9 @@ public class ConnectionSQLTest {
 	ConnectionSQL udh;
 	Nurse testNurse;
 	Student testStudent;
+	Student testSurveyStudent;
 	Table testSurvey;
 	Message testMessage;
-	Student testSurveyStudent;
 	
 	@Before
 	public void setUp() throws SQLException{
@@ -56,7 +56,19 @@ public class ConnectionSQLTest {
 		testStudent.setNurse(udh.getNurse("testsoster"));
 		testStudent.setNotat("Dette er et notat");
 		
+		testSurveyStudent = new Student("testStudentSUR");
+		testStudent.setPassword("surveypass");
+		testStudent.setFaculty("MH");
+		testStudent.setAnonymous(false);
+		testStudent.setFirstName("Hans");
+		testStudent.setSecondName("Ovanger");
+		testStudent.setSex("mann");
+		testStudent.setEmail("hans@gmail.com");
+		testStudent.setPhoneNumber("46952270");
+		testStudent.setNurse(udh.getNurse("testsoster"));
+		testStudent.setNotat("Dette er et notat");
 		
+
 		testSurveyStudent = new Student("testStudentSUR");
         testStudent.setPassword("surveypass");
         testStudent.setFaculty("MH");
@@ -68,9 +80,8 @@ public class ConnectionSQLTest {
         testStudent.setPhoneNumber("46952270");
         testStudent.setNurse(udh.getNurse("testsoster"));
         testStudent.setNotat("Dette er et notat");
-		
-		
-		
+
+        
 		testMessage = new Message(testStudent, testNurse);
 		testMessage.setNurse(testNurse);
 		testMessage.setReciver(testStudent);
@@ -82,6 +93,14 @@ public class ConnectionSQLTest {
 	public void tearDown() throws SQLException{
 		udh.deleteNurse(testNurse);
 		udh.deleteStudent(testStudent);
+		udh.deleteStudent(testSurveyStudent);
+		udh.closeConnection();
+//		udh.deleteStudent(udh.getStudent("haraldmu"));
+//		udh.deleteStudent(udh.getStudent("alexoh"));
+//		udh.deleteStudent(udh.getStudent("petter"));
+
+//		deleteStudent over gir nullPointer. Fjerne?
+		
 		
 		udh.closeConnection();
 		udh = null;
@@ -136,6 +155,7 @@ public class ConnectionSQLTest {
 		udh.deleteStudent(testStudent);
 	}
 	
+
 	@Test
     public void testCreateSurvey() throws SQLException {
         
@@ -150,7 +170,7 @@ public class ConnectionSQLTest {
         
 //        //Legger inn en ny unders�kelse for personID lik min til testSurveyStudent
         udh.createSurvey(testSurvey);
-//    
+        
 //        //Sjekker om unders�kelsen er den eneste for denne studenten.
         fromDB = udh.getAnswers(testStudent);
         
@@ -162,23 +182,6 @@ public class ConnectionSQLTest {
         
         udh.deleteSurvey(testStudent);
     }
-		
-	@Test 
-	public void testUpdateStudent() throws SQLException {
-		udh.createNewStudent(testStudent);
-		Student endretStudent=udh.getStudent("testStudentUN");
-		endretStudent.setEmail("hei@gmail.com");
-		endretStudent.setFaculty("MH");
-		endretStudent.setNurse(udh.getNurse("testsoster"));
-		endretStudent.setPassword("frans");
-		endretStudent.setNotat("Dette er ogsaa et notat");
-		udh.updateStudent(endretStudent);
-		
-		assertEquals("hei@gmail.com",udh.getStudent(endretStudent.getUsername()).getEmail() );
-		assertEquals("frans", udh.getStudent(endretStudent.getUsername()).getPassword());
-		assertEquals("Dette er ogsaa et notat", udh.getStudent(endretStudent.getUsername()).getNotat());
-		udh.deleteStudent(testStudent);
-	}
 	
 	@Test
 	public void testgetStudents() throws Exception {
@@ -225,7 +228,25 @@ public class ConnectionSQLTest {
 		udh.deleteStudent(s);
 		udh.deleteStudent(j);
 	}
+	@Test 
+	public void testUpdateStudent() throws SQLException {
+		udh.createNewStudent(testStudent);
+		Student endretStudent=udh.getStudent("testStudentUN");
+		endretStudent.setEmail("hei@gmail.com");
+		endretStudent.setFaculty("MH");
+		endretStudent.setNurse(udh.getNurse("testsoster"));
+		endretStudent.setPassword("frans");
+		endretStudent.setNotat("Dette er ogsaa et notat");
+		udh.updateStudent(endretStudent);
 		
+		assertEquals("hei@gmail.com",udh.getStudent(endretStudent.getUsername()).getEmail() );
+		assertEquals("frans", udh.getStudent(endretStudent.getUsername()).getPassword());
+		assertEquals("Dette er ogsaa et notat", udh.getStudent(endretStudent.getUsername()).getNotat());
+		udh.deleteStudent(testStudent);
+	}
+	
+	
+			
 	@Test
 	public void testCreateNewNurse() throws SQLException {
 		udh.createNewNurse(testNurse);	
@@ -334,8 +355,6 @@ public class ConnectionSQLTest {
 		udh.deleteStudent(testStudent);
 		
 	}
-	
-	
 	
 
 	

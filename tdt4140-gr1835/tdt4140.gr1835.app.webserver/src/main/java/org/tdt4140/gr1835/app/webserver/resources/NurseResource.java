@@ -89,7 +89,7 @@ public class NurseResource {
 	@GET
 	@Path("/{username}/students")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getStudents(@PathParam ("username") String username){
+	public Response getStudents(@PathParam ("username") String username) throws Exception{
 		Nurse nurse;
 		if(nurses.stream().anyMatch(n -> n.getUsername().equals(username))) {
 			System.out.println("Fant nurse objektet lokalt, bruker denne");

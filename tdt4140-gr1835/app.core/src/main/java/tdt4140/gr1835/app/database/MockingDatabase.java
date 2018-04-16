@@ -183,7 +183,6 @@ public class MockingDatabase implements UserDatabaseHandler{
 	}
 
 
-	
 	public int getStudentID(Student student) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
@@ -217,15 +216,12 @@ public class MockingDatabase implements UserDatabaseHandler{
 		return messages;
 	}
 
-
-	
 	public Message getMessageFromID(Integer messageid) throws SQLException {
 		// TODO Auto-generated method stub
 		return message;
 	}
 
 
-	
 	public int getNurseID(Nurse nurse) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
@@ -236,5 +232,4 @@ public class MockingDatabase implements UserDatabaseHandler{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
