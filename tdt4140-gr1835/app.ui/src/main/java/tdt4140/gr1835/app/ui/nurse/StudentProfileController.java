@@ -18,11 +18,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -31,6 +33,8 @@ import tdt4140.gr1835.app.core.Student;
 import tdt4140.gr1835.app.core.Table;
 import tdt4140.gr1835.app.database.ConnectionSQL;
 import tdt4140.gr1835.app.database.UserDatabaseHandler;
+import tdt4140.gr1835.app.webclient.RESTClient;
+import tdt4140.gr1835.app.webclient.RestClientImp;
 
 
 public class StudentProfileController implements Initializable{
@@ -264,15 +268,26 @@ public class StudentProfileController implements Initializable{
 	public void handleSaveButton() {
 		student.setNotat(notat.getText());
 		//legger inn notatet i databasen
-		UserDatabaseHandler database = new ConnectionSQL();
-		try {
-			database.updateStudent(student);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		RESTClient client = new RestClientImp();
+		boolean ok = client.updateStudent(student);
 		
 		//hindrer at det er mulig å skrive i teksfeltet uten å trykke rediger
 		notat.setEditable(false);
+		
+		if (ok) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Notat er endret!");
+			alert.setHeaderText(null);
+			alert.setContentText("Notat ble endret til følgende " + student.getNotat());
+			alert.showAndWait();
+		} else if (!ok) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Notatet ble IKKE endret!");
+			alert.setHeaderText(null);
+			alert.setContentText("Noe gikk galt... fikk ikke lagret notatet.");
+			alert.showAndWait();
+		}
+		
 	}
 	@FXML 
 	LineChart chart;
