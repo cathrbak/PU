@@ -81,8 +81,14 @@
 }
 
 .label_text {
-	-fx-font-family: Monaco;
+	-fx-font-family: Consolas;
 	-fx-font-size: 14px;
+	-fx-text-fill: #283243;
+}
+
+.label_text_bold{
+	-fx-font-family: Consolas Bold;
+	-fx-font-size: 16px;
 	-fx-text-fill: #283243;
 }
 
