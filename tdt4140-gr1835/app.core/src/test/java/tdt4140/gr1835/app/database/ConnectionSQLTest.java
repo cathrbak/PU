@@ -38,48 +38,39 @@ public class ConnectionSQLTest {
 		udh =new ConnectionSQL();
 		
 		testNurse = new Nurse("testNurseUN");
-		testNurse.setFaculty("OK");
+		testNurse.setFaculty("IV");
 		testNurse.setEmail("jajaja@gmail.com");
 		testNurse.setFirstName("Sos");
 		testNurse.setPassword("bla");
 		
 		
+		
 		testStudent = new Student("testStudentUN");
 		testStudent.setPassword("testPass");
-		testStudent.setFaculty("MH");
+		testStudent.setFaculty("IV");
 		testStudent.setAnonymous(false);
 		testStudent.setFirstName("Jonas");
 		testStudent.setSecondName("Haga");
 		testStudent.setSex("mann");
 		testStudent.setEmail("jonas@gmail.com");
 		testStudent.setPhoneNumber("46952270");
-		testStudent.setNurse(udh.getNurse("testsoster"));
+		testStudent.setNurse(testNurse);
 		testStudent.setNotat("Dette er et notat");
 		
 		testSurveyStudent = new Student("testStudentSUR");
-		testStudent.setPassword("surveypass");
-		testStudent.setFaculty("MH");
-		testStudent.setAnonymous(false);
-		testStudent.setFirstName("Hans");
-		testStudent.setSecondName("Ovanger");
-		testStudent.setSex("mann");
-		testStudent.setEmail("hans@gmail.com");
-		testStudent.setPhoneNumber("46952270");
-		testStudent.setNurse(udh.getNurse("testsoster"));
-		testStudent.setNotat("Dette er et notat");
+		testSurveyStudent.setPassword("surveypass");
+		testSurveyStudent.setFaculty("IV");
+		testSurveyStudent.setAnonymous(false);
+		testSurveyStudent.setFirstName("Hans");
+		testSurveyStudent.setSecondName("Ovanger");
+		testSurveyStudent.setSex("mann");
+		testSurveyStudent.setEmail("hans@gmail.com");
+		testSurveyStudent.setPhoneNumber("46952270");
+		testSurveyStudent.setNurse(testNurse);
+		testSurveyStudent.setNotat("Dette er et notat");
 		
 
-		testSurveyStudent = new Student("testStudentSUR");
-        testStudent.setPassword("surveypass");
-        testStudent.setFaculty("MH");
-        testStudent.setAnonymous(false);
-        testStudent.setFirstName("Hans");
-        testStudent.setSecondName("Ovanger");
-        testStudent.setSex("mann");
-        testStudent.setEmail("hans@gmail.com");
-        testStudent.setPhoneNumber("46952270");
-        testStudent.setNurse(udh.getNurse("testsoster"));
-        testStudent.setNotat("Dette er et notat");
+		
 
         
 		testMessage = new Message(testStudent, testNurse);
@@ -122,9 +113,11 @@ public class ConnectionSQLTest {
 	@Test
 	public void testCreateNewStudent() throws SQLException {
 		
+		
+		udh.createNewNurse(testNurse);
+		testStudent.setNurse(udh.getNurse("testNurseUN"));
 		udh.createNewStudent(testStudent);
 		
-
 		testStudent.setStudentID(udh.getStudentID(testStudent));
 		assertEquals("ID",testStudent.getStudentID(), udh.getStudent("testStudentUN").getStudentID());
 		assertEquals("Brukernavn",testStudent.getUsername(), udh.getStudent("testStudentUN").getUsername());
@@ -143,7 +136,7 @@ public class ConnectionSQLTest {
 		
 		try {
 			Student dobbeltgjenger = new Student("testStudentUN");
-			dobbeltgjenger.setFaculty("MH");
+			dobbeltgjenger.setFaculty("IV");
 			dobbeltgjenger.setNurse(udh.getNurse("sostertiltester"));
 			udh.createNewStudent(dobbeltgjenger);
 			
@@ -153,16 +146,19 @@ public class ConnectionSQLTest {
 		}
 		
 		udh.deleteStudent(testStudent);
+		udh.deleteNurse(testNurse);
 	}
 	
-
+	
 	@Test
     public void testCreateSurvey() throws SQLException {
         
         List<Table> expected = new ArrayList<>();
         List<Table> fromDB = new ArrayList<>();
         
-        udh.createNewStudent(testStudent);
+        udh.createNewNurse(testNurse);
+		testStudent.setNurse(udh.getNurse("testNurseUN"));
+		udh.createNewStudent(testStudent);
         int id = udh.getStudentID(testStudent);
         testStudent.setStudentID(id);
         Table testSurvey = new Table(id,1,2,3,4,5,4,3,2,1,1,26);
@@ -181,6 +177,8 @@ public class ConnectionSQLTest {
         assertEquals("Sjekker om totalen er lik i begge", fromDB.get(0).getTotal(), expected.get(0).getTotal());
         
         udh.deleteSurvey(testStudent);
+        udh.deleteNurse(testNurse);
+        udh.deleteStudent(testStudent);
     }
 	
 	@Test
@@ -190,7 +188,7 @@ public class ConnectionSQLTest {
 		
 		//Henter sostertiltest
 		Nurse sostertiltest=udh.getNurse("sostertiltester");
-		
+		System.out.println(sostertiltest.getNurseID());
 		//Oppretter studenter som tilhorer MH fakultetet
 		Student s=new Student("haraldmu");
 		s.setFaculty("OK");
@@ -228,13 +226,20 @@ public class ConnectionSQLTest {
 		udh.deleteStudent(s);
 		udh.deleteStudent(j);
 	}
+	
 	@Test 
 	public void testUpdateStudent() throws SQLException {
+		
+		
+		udh.createNewNurse(testNurse);
+		testStudent.setNurse(udh.getNurse("testNurseUN"));
+		
 		udh.createNewStudent(testStudent);
+		
 		Student endretStudent=udh.getStudent("testStudentUN");
 		endretStudent.setEmail("hei@gmail.com");
-		endretStudent.setFaculty("MH");
-		endretStudent.setNurse(udh.getNurse("testsoster"));
+		endretStudent.setFaculty("IV");
+		
 		endretStudent.setPassword("frans");
 		endretStudent.setNotat("Dette er ogsaa et notat");
 		udh.updateStudent(endretStudent);
@@ -243,10 +248,11 @@ public class ConnectionSQLTest {
 		assertEquals("frans", udh.getStudent(endretStudent.getUsername()).getPassword());
 		assertEquals("Dette er ogsaa et notat", udh.getStudent(endretStudent.getUsername()).getNotat());
 		udh.deleteStudent(testStudent);
+		udh.deleteNurse(testNurse);
 	}
 	
 	
-			
+		
 	@Test
 	public void testCreateNewNurse() throws SQLException {
 		udh.createNewNurse(testNurse);	
@@ -281,11 +287,12 @@ public class ConnectionSQLTest {
 	 * ikke tenk på disse to testene, de blir ikke kjørt. Men sikkert mulig å ta litt inspirasjon av dem
 	 */
 	
-	@Ignore
+	
 	@Test
 	public void testCreateNewMessage() throws SQLException{
-		udh.createNewStudent(testStudent);
 		udh.createNewNurse(testNurse);
+		testStudent.setNurse(udh.getNurse("testNurseUN"));
+		udh.createNewStudent(testStudent);
 		udh.createNewMessage(testMessage);
 		
 		int studentid = udh.getStudentID(testStudent);
@@ -320,13 +327,15 @@ public class ConnectionSQLTest {
 	public void testGetMessages() throws SQLException{
 	
 		Message testMessage2 = new Message(testStudent, testNurse);
+		
 		testMessage2.setNurse(testNurse);
 		
 		testMessage2.setReciver(testStudent);
 		testMessage2.setText("2. melding");
 		
-		udh.createNewStudent(testStudent);
 		udh.createNewNurse(testNurse);
+		testStudent.setNurse(udh.getNurse("testNurseUN"));
+		udh.createNewStudent(testStudent);
 		
 		udh.createNewMessage(testMessage);
 		udh.createNewMessage(testMessage2);
