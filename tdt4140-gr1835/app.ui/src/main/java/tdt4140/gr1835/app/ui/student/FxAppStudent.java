@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tdt4140.gr1835.app.ui.nurse.FxApp;
+import tdt4140.gr1835.app.ui.nurse.LoginController;
 
 public class FxAppStudent extends Application {
 	
@@ -16,11 +17,19 @@ public class FxAppStudent extends Application {
     public void start(Stage primaryStage) throws Exception {
     		
     		
-        Parent root_login = FXMLLoader.load(getClass().getResource("LoginStudent.fxml"));
-        Scene scene_login = new Scene(root_login);
-        scene_login.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        primaryStage.setScene(scene_login);
-        primaryStage.show();
+    	Parent root;
+		
+    	LoginControllerStudent controller = new LoginControllerStudent();
+		
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginStudent.fxml"));
+    
+    loader.setController(controller);
+    
+    root = (Parent) loader.load();
+    Scene scene_login = new Scene(root);
+    scene_login.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+    primaryStage.setScene(scene_login);
+    primaryStage.show();
         
     }
     

@@ -131,18 +131,17 @@ public class MainPageControllerStudent implements Initializable {
         stage=(Stage) Profile.getScene().getWindow();
         ProfileControllerStudent controller= new ProfileControllerStudent(this.student);//Lager en kontroller instans
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileStudent.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileStudent.fxml"));
             
-            loader.setController(controller); //Legger til kontrolleren i fxmlfilen
+        loader.setController(controller); //Legger til kontrolleren i fxmlfilen
 
-            root = (Parent) loader.load();
+        root = (Parent) loader.load();
           //create a new scene with root and set the stage
         Scene scene = new Scene(root);
         //Legger på css stylesheetet
         scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-        System.out.println("Sender bruker tilbake til mainPage");
 	}
 	
 	
@@ -151,15 +150,17 @@ public class MainPageControllerStudent implements Initializable {
 		Stage stage; 
 	    Parent root;
         //get reference to the button's stage         
-        stage=(Stage) Logout.getScene().getWindow();
-        
-        //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("LoginStudent.fxml"));
-      	//create a new scene with root and set the stage
-        Scene scene = new Scene(root);
-        //Legger på css stylesheetet
-        scene.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
-        stage.setScene(scene);
+	    stage=(Stage) Spørsmål.getScene().getWindow();
+	    	LoginControllerStudent controller = new LoginControllerStudent();
+		
+    		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginStudent.fxml"));
+    
+	    loader.setController(controller);
+	    
+	    root = (Parent) loader.load();
+	    Scene scene_login = new Scene(root);
+	    scene_login.getStylesheets().add(FxApp.class.getResource("stylesheet.css").toExternalForm());
+        stage.setScene(scene_login);
         stage.show();
 	}
 	

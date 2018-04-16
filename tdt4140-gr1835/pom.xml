@@ -16,5 +16,5 @@
 		<module>app.core</module>
 		<module>app.ui</module>
     		<module>tdt4140.gr1835.app.webserver</module>
-  </modules>
+	</modules>
 </project>

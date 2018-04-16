@@ -241,9 +241,6 @@ public class StudentProfileController implements Initializable{
 		List<String> datoer = new ArrayList<String>();
 		List<Number> total = new ArrayList<Number>();
 		for(Table answer: listOfAnswers) {
-			if (answer.getDato() == datoer.get(datoer.size()-1)) {
-				continue;
-			}else
 			datoer.add(answer.getDato());
 			total.add(answer.getTotal());
 			}

@@ -24,6 +24,8 @@ Here you find everything you need to install for our project.
 
 * [Git URL](https://gitlab.stud.iie.ntnu.no/tdt4140-2018/35.git)
 
+## Running the tests
+To run all tests use **mvn test**. For integrationtest with setup of web-server project run **mvn integration-test**. 
 
 ## Running the software
 
