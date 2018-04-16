@@ -183,7 +183,7 @@ public class ConnectionSQL implements UserDatabaseHandler{
 	public Student getStudent(String username) throws SQLException {
 		
 		ResultSet rs = null;
-		Student student = new Student(username);
+		Student student=null;
 		
 		try {
 			String query = "SELECT * FROM datagiver WHERE brukernavn='" + username +"';";
@@ -194,10 +194,16 @@ public class ConnectionSQL implements UserDatabaseHandler{
 				if (!rs.isBeforeFirst() ) {    
 				    	return null;
 				} 
-			} 
+			}else {
+				throw new SQLException("Kunne ikke hente resultSet");
+			}
 		}
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
+		}
+		
+		if(rs==null) {
+			throw new SQLException("Kunne ikke hente resultSet");
 		}
 		
 		

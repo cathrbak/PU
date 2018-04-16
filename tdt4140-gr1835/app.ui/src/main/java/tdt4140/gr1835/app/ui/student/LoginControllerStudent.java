@@ -74,6 +74,10 @@ public class LoginControllerStudent {
             
             Student student=database.getStudent(studentbrukernavn.getText());//Henter relevant Studentobjekt
             
+            if(student==null) {
+            		student=database.getStudent(studentbrukernavn.getText());
+            }
+            
             List<Table> listOfAnswers = database.getAnswers(student.getUsername()); //Henter studentens spørreundersøkelser
             
             student.setAnswers(listOfAnswers);

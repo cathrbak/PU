@@ -159,7 +159,7 @@ public class Table  {
 	}
 	@Override
 	public String toString() {
-		return "\nTable [Navn=" + Navn + ", PersonID=" + PersonID  + ", StudentID=" + StudentID + "\n"
+		return "\nTable [Navn=" + Navn + ", PersonID=" + PersonID  + ", StudentID=" + PersonID.get() + "\n"
 				+ ", student=" + student + ", answerlist=" + answerlist.toString() + ", Total=" + Total+", Time="+tstamp+"]\n";
 	}
 	
