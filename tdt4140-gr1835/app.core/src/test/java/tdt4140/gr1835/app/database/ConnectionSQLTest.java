@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Ignore;
 
@@ -139,6 +140,7 @@ public class ConnectionSQLTest {
 		}catch (IllegalStateException e) {
 			assertTrue(e.getClass().equals(IllegalStateException.class));
 		}
+		
 		
 		udh.deleteStudent(testStudent);
 		udh.deleteNurse(testNurse);

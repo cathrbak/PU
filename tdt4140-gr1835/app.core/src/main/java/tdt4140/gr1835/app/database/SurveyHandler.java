@@ -21,7 +21,7 @@ public class SurveyHandler extends AbstractSQLHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 	}
 	
 	
@@ -38,7 +38,7 @@ public class SurveyHandler extends AbstractSQLHandler{
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();			
+				
 	}
 	
 }

@@ -18,13 +18,18 @@ import java.sql.Statement;
 public class ConnectionSQL implements UserDatabaseHandler{
 
 	
+	Connection con = null;
+	
 	//ConnectionSQL må vite om AbstractSQLHandler slik at disse metodene kan ligge i AbstractHandler.
 	private final String dbURL="jdbc:mysql://mysql.stud.ntnu.no/jonahag_prosjektdb?user=jonahag_pu35&password=gruppe35&useSSL=false";
  
 	
 	private Connection getConnection() throws SQLException{
-		return DriverManager.getConnection(dbURL);
-	}
+        if (con == null) {
+            con = DriverManager.getConnection(dbURL);
+        }
+        return con;
+    }
 	
 	public void closeConnection() throws SQLException {
 		getConnection().close();

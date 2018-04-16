@@ -43,7 +43,7 @@ public class NurseHandler extends AbstractSQLHandler {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 		
-		closeConnection();
+		
 		
 	}
 	
@@ -60,7 +60,7 @@ public class NurseHandler extends AbstractSQLHandler {
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 		
 	}
 	
@@ -83,7 +83,7 @@ public class NurseHandler extends AbstractSQLHandler {
 		catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 	}
 	
 	public Nurse getNurse(String username) throws SQLException {
@@ -143,7 +143,7 @@ public class NurseHandler extends AbstractSQLHandler {
 				nurse.setPhoneNumber(phoneNumber);
 			}
 		}
-		closeConnection();
+		
 		return nurse; 
 	}
 	
@@ -169,7 +169,7 @@ public class NurseHandler extends AbstractSQLHandler {
         }
         
         
-        closeConnection();	
+        
 		return false;
 		
 	}

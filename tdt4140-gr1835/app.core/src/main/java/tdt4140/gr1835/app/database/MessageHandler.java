@@ -27,7 +27,7 @@ public class MessageHandler extends AbstractSQLHandler {
 			catch (SQLException e) {
 				System.out.println("SQLException: " + e.getMessage());
 			}
-			closeConnection();
+			
 			
 		}
 
@@ -47,7 +47,7 @@ public class MessageHandler extends AbstractSQLHandler {
 				System.out.println("SQLException: " + e.getMessage());
 			}
 			
-			closeConnection();
+			
 			
 		}
 		//Metode for � hente ut 1 melding
@@ -96,7 +96,7 @@ public class MessageHandler extends AbstractSQLHandler {
 				
 								
 			}
-			closeConnection();
+			
 			return message; 
 			
 			
@@ -133,7 +133,7 @@ public class MessageHandler extends AbstractSQLHandler {
 	            
 	            
 	        }
-	        closeConnection();
+	        
 	        return messages;
 		}
 		

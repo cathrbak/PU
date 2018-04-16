@@ -33,7 +33,7 @@ class StudentHandler extends AbstractSQLHandler {
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 	}
 
 	public List<Student> getStudents(Nurse nurse) throws SQLException {
@@ -60,7 +60,7 @@ class StudentHandler extends AbstractSQLHandler {
             Student student = getStudent(username);
             students.add(student);
         }
-        closeConnection();
+        
         return students;
     }
 
@@ -84,7 +84,7 @@ class StudentHandler extends AbstractSQLHandler {
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 	}
 
 	public void deleteStudent(Student student) throws SQLException {
@@ -97,7 +97,7 @@ class StudentHandler extends AbstractSQLHandler {
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		closeConnection();
+		
 	}
 
 
@@ -126,7 +126,7 @@ class StudentHandler extends AbstractSQLHandler {
 			
 			answers.add(listToTableConverter(student, answer, tstamp));
 		}
-		closeConnection();
+		
 		return answers;
 	}
 
