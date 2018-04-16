@@ -46,7 +46,6 @@ public class TestMessage extends ApplicationTest{
         stage.show();
     }
 	
-	@Ignore
 	@Test
 	public void testMessage() {
 		clickOn("#textbox");
@@ -63,14 +62,6 @@ public class TestMessage extends ApplicationTest{
 				+ "aaaaabbbbbcccccdddddeeeeeQwertyuiopåasdfghjkløæzxcQwertyuiopåasdfghjkløæzxc"
 				+ "aaaaabbbbbcccccdddddeeeeeefew");	
 		assertEquals(controller.MessageResponse.getText(), "Meldingen er for lang. Kan ikke overgå 250 tegn.");
-	}
-	
-	@Ignore
-	@Test
-	public void testButton_Send() {
-		clickOn("#textbox");
-		write("Hallo");
-		clickOn("#Button_Send");
 	}
 
 }
