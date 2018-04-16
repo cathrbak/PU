@@ -53,7 +53,7 @@ public class TestMessage extends ApplicationTest{
 		assertEquals(controller.textbox.getText(), "Hei. Kunne vi tatt en prat neste uke?");
 	}
 	
-	
+	@Ignore
 	@Test
 	public void testHandleTextboxChange() {
 		clickOn("#textbox");
