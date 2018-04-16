@@ -27,7 +27,7 @@
                   <Font name="Lucida Console" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="Logout" layoutX="679.0" layoutY="60.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="104.0" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="60.0">
+            <Button fx:id="Logout" layoutX="679.0" layoutY="60.0" mnemonicParsing="false" onMouseReleased="#handleLogoutButton" prefHeight="29.0" prefWidth="104.0" styleClass="button-darkblue" stylesheets="@stylesheet.css" text="Logg ut" textFill="#e8e2e2" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="60.0">
                <font>
                   <Font name="Lucida Console" size="13.0" />
                </font>
@@ -81,9 +81,9 @@
                   <Image url="@Image/ligthBulb.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="158.0" fitWidth="529.0" layoutX="255.0" layoutY="451.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="386.0" fitWidth="338.0" layoutX="388.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Image/helsehelse.png" />
+                  <Image url="@Image/HELSEBILDE.png" />
                </image>
             </ImageView>
          </children>

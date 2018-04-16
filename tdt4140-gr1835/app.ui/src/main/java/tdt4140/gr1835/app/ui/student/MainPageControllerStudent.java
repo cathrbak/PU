@@ -58,13 +58,13 @@ public class MainPageControllerStudent implements Initializable {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Feilmelding");
 			alert.setHeaderText(null);
-			alert.setContentText("Kunne ikke endre annonymitet. Prøv igjen!");
+			alert.setContentText("Kunne ikke endre anonymitet. Prøv igjen!");
 			alert.showAndWait();
 		}else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Oppdatert");
 			alert.setHeaderText(null);
-			alert.setContentText("Du er nå annonym for din helsesøster,"+ student.getNurse().getFirstName()+" "+student.getNurse().getSecondName()+".\n "
+			alert.setContentText("Du er nå anonym for din helsesøster,"+ student.getNurse().getFirstName()+" "+student.getNurse().getSecondName()+".\n "
 					+ "Helsesøsteren vil fortsatt kunne kontakte deg, men ser ikke ditt navn på sin profil");
 			alert.showAndWait();
 		}
@@ -75,13 +75,13 @@ public class MainPageControllerStudent implements Initializable {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Feilmelding");
 				alert.setHeaderText(null);
-				alert.setContentText("Kunne ikke endre annonymitet. Prøv igjen!");
+				alert.setContentText("Kunne ikke endre anonymitet. Prøv igjen!");
 				alert.showAndWait();
 			}else {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Oppdatert");
 				alert.setHeaderText(null);
-				alert.setContentText("Du er ikke lenger annonym for din helsesøster, "+ student.getNurse().getFirstName()+" "+student.getNurse().getSecondName());
+				alert.setContentText("Du er ikke lenger anonym for din helsesøster, "+ student.getNurse().getFirstName()+" "+student.getNurse().getSecondName());
 				alert.showAndWait();
 			}
 			
@@ -108,10 +108,6 @@ public class MainPageControllerStudent implements Initializable {
 	@FXML 
 	TableColumn<Table, Integer> Total;
 	
-
-	
-	public int idNumber = 1;
-	public int total = 0;
 	
 	//lager listen som skal inneholde dataen
 	final ObservableList<Table> data = FXCollections.observableArrayList();
@@ -183,7 +179,7 @@ public class MainPageControllerStudent implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("QuestionsStudent.fxml"));
             
-        loader.setController(controller); //Smeller den kontrolleren inn i fxmlfilen
+        loader.setController(controller); //Legger kontrolleren inn i fxmlfilen
 
             root = (Parent) loader.load();
           //create a new scene with root and set the stage

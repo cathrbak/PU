@@ -107,7 +107,7 @@ public class LoginControllerStudent {
 	private boolean loginOk() {
 		Student student=database.getStudent(studentbrukernavn.getText());
 		if(student==null) {
-			responsLabel.setText("Denne studenten finner ikke i våre systemer");
+			responsLabel.setText("Denne studenten finnes ikke i våre systemer");
 			return false;
 		}
 		String passord = studentpassord.getText();
